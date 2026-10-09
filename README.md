@@ -12,7 +12,7 @@ The overview explicitly summarizes the intended benefits of the combined design.
 
 ## Skills represented in the showcases
 
-The portfolio maps the competencies needed across the solution lifecycle: product and business analysis, customer-journey design, data and cloud architecture, multilingual NLP and localization, semantic/KPI modeling, data quality and governance, BI and data storytelling, responsive frontend UX, accessibility, browser-based localization, testing and export delivery.
+The overview now maps the skills applied by the portfolio owner to specific steps in both solutions, with visible evidence in the demos: product discovery and requirements framing; multilingual normalization, NLP taxonomy and sentiment; feature and KPI semantics; data/warehouse architecture; quality and governance; BI/data storytelling; responsive and accessible frontend; localization; testing, CSV/XLSX/PPTX export; and GitHub Pages delivery.
 
 The static interfaces, simulated journeys, locale-aware German/English controls and CSV/XLSX/PPTX downloads from sample data are implemented. Connections to live feedback channels, AI inference, Countly/Azure ingestion, Veezoo-to-VQL execution, Databricks and production BI are architectural concepts only—not active integrations.
 

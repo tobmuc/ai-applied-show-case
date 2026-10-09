@@ -107,6 +107,22 @@
     .skills-note strong { display: block; margin-bottom: 7px; color: #c7fff4; font-size: .74rem; }
     .skills-note.concept strong { color: #ffe0a7; }
     .skills-note p { margin: 0; color: #91a7b2; font-size: .69rem; line-height: 1.6; }
+    .applied-skills { margin-top: 48px; }
+    .applied-skills-head { margin-bottom: 17px; }
+    .applied-skills-head h3 { margin: 0 0 6px; font-size: 1.08rem; letter-spacing: -.025em; }
+    .applied-skills-head p { max-width: 720px; margin: 0; color: #91a7b2; font-size: .76rem; line-height: 1.6; }
+    .solution-map-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 15px; }
+    .solution-map-card { padding: 22px; border: 1px solid rgba(176,219,230,.13); border-radius: 17px; background: linear-gradient(155deg, rgba(17,35,50,.84), rgba(9,22,34,.78)); }
+    .solution-map-card h4 { display: flex; align-items: center; gap: 9px; margin: 0 0 15px; font-size: .88rem; }
+    .solution-map-card h4 span { font-size: 1.05rem; }
+    .skill-step-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .skill-step { display: grid; grid-template-columns: 28px minmax(0,1fr); align-items: start; gap: 10px; padding: 11px 0; border-top: 1px solid rgba(176,219,230,.09); }
+    .skill-step:first-child { padding-top: 0; border-top: 0; }
+    .skill-step-index { display: grid; place-items: center; width: 27px; height: 27px; border: 1px solid rgba(107,226,212,.22); border-radius: 8px; background: rgba(107,226,212,.07); color: var(--mint); font-size: .63rem; font-weight: 780; }
+    .skill-step strong { display: block; margin: 1px 0 4px; color: #d9e8eb; font-size: .72rem; }
+    .skill-step p { margin: 0; color: #91a7b2; font-size: .66rem; line-height: 1.55; }
+    .skill-proof { display: inline-block; margin-top: 6px; color: #a8f4e9; font-size: .62rem; font-weight: 700; }
+    .skill-proof.concept { color: #ffdfaa; }
     .stack-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 22px; padding: 23px 27px; border: 1px solid rgba(176,219,230,.12); border-radius: 17px; background: rgba(13,27,41,.55); }
     .stack-copy { max-width: 355px; }
     .stack-copy strong { display: block; margin-bottom: 4px; font-size: .85rem; }
@@ -148,6 +164,8 @@
       .benefit-card { min-height: auto; }
       .skills-grid, .skills-notes { grid-template-columns: 1fr; }
       .skill-card { min-height: auto; }
+      .solution-map-grid { grid-template-columns: 1fr; }
+      .applied-skills { margin-top: 34px; }
       .stack-strip { padding: 20px; }
     }
     @media (max-width: 420px) {
@@ -266,8 +284,8 @@
     <section class="section" id="skills">
       <div class="shell">
         <div class="section-head">
-          <div><p class="kicker">Skills behind the solutions</p><h2>From domain knowledge<br><span class="gradient">to working prototypes.</span></h2></div>
-          <p class="section-intro">These are the competencies needed to shape each stage—from customer problem and data model to useful interfaces, quality checks and decision-ready outputs.</p>
+          <div><p class="kicker">My applied skills</p><h2>From problem framing<br><span class="gradient">to published prototypes.</span></h2></div>
+          <p class="section-intro">This map connects the skills I applied to concrete steps and visible outcomes in both showcases. It also marks which parts are working demos and which are architecture concepts.</p>
         </div>
         <div class="skills-grid">
           <article class="skill-card"><div class="skill-card-top"><span class="skill-card-icon" aria-hidden="true">🧭</span><small>01 · Frame</small></div><h3>Product &amp; business analysis</h3><p>Turn user and stakeholder needs into journeys, use cases, useful questions, KPIs and prioritized next steps.</p></article>
@@ -280,6 +298,29 @@
         <div class="skills-notes">
           <aside class="skills-note"><strong>Implemented in these demos</strong><p>Responsive HTML/CSS/JavaScript interfaces, simulated user journeys, locale-aware German/English controls, custom emoji favicons, and real CSV, Excel and PowerPoint downloads from clearly labeled sample data.</p></aside>
           <aside class="skills-note concept"><strong>Solution architecture shown conceptually</strong><p>Connections to live feedback channels, AI inference, Countly/Azure ingestion, Veezoo-to-VQL execution, Databricks and production BI are design concepts—not active integrations. No company or production data is connected.</p></aside>
+        </div>
+        <div class="applied-skills">
+          <div class="applied-skills-head"><h3>Skills I applied at each step</h3><p>Each stage names the capability, how it was used in the solution work, and the evidence visible in the portfolio.</p></div>
+          <div class="solution-map-grid">
+            <article class="solution-map-card">
+              <h4><span aria-hidden="true">💬</span>Feedback intelligence</h4>
+              <ol class="skill-step-list">
+                <li class="skill-step"><span class="skill-step-index">01</span><div><strong>Frame the customer problem</strong><p>Product discovery, requirements analysis and stakeholder-oriented use-case design turn feedback fragmentation into a focused product question.</p><span class="skill-proof">Evidence: channel map and Korean sample journey</span></div></li>
+                <li class="skill-step"><span class="skill-step-index">02</span><div><strong>Normalize language and context</strong><p>Multilingual UX, localization and data modeling preserve the original voice while making language, market, platform and version comparable.</p><span class="skill-proof">Evidence: Korean original, English normalization and metadata</span></div></li>
+                <li class="skill-step"><span class="skill-step-index">03</span><div><strong>Turn text into product signals</strong><p>NLP taxonomy design, sentiment analysis, feature mapping and evaluation planning organize comments into actionable themes.</p><span class="skill-proof">Evidence: interactive sentiment examples and feature mapping</span></div></li>
+                <li class="skill-step"><span class="skill-step-index">04</span><div><strong>Make insights reviewable</strong><p>Data storytelling, BI design and quality thinking shape trends and role-relevant views for product, support and leadership.</p><span class="skill-proof concept">Architecture concept: production ingestion, model inference and BI are not connected</span></div></li>
+              </ol>
+            </article>
+            <article class="solution-map-card">
+              <h4><span aria-hidden="true">📊</span>Chat Your Data</h4>
+              <ol class="skill-step-list">
+                <li class="skill-step"><span class="skill-step-index">01</span><div><strong>Shape the business question</strong><p>Requirements framing, KPI thinking and conversational UX turn a natural-language request into a defined analytics journey.</p><span class="skill-proof">Evidence: bilingual sample query and animated interaction</span></div></li>
+                <li class="skill-step"><span class="skill-step-index">02</span><div><strong>Model meaning and data flow</strong><p>Semantic modeling, ontology, query design and warehouse architecture connect business language to governed metrics.</p><span class="skill-proof concept">Architecture concept: Veezoo/VQL, Databricks and live data are simulated</span></div></li>
+                <li class="skill-step"><span class="skill-step-index">03</span><div><strong>Present and distribute results</strong><p>Frontend engineering, responsive UX, accessible controls, visualization and browser export skills make results easy to use.</p><span class="skill-proof">Evidence: interactive chart plus working CSV, XLSX and PPTX exports</span></div></li>
+                <li class="skill-step"><span class="skill-step-index">04</span><div><strong>Ship a portfolio-ready experience</strong><p>Localization, testing, documentation, Git workflows and static-site deployment connect the interface to a usable public showcase.</p><span class="skill-proof">Evidence: DE/EN UI, mobile layout and GitHub Pages release</span></div></li>
+              </ol>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -374,10 +415,10 @@
       'Use ground-truth examples, quality checks, access controls and traceable metadata to make results easier to review.': 'Referenzbeispiele, Qualitätsprüfungen, Zugriffsrechte und nachvollziehbare Metadaten einsetzen, damit Ergebnisse leichter überprüfbar sind.',
       'Insights people can use': 'Erkenntnisse, die nutzbar sind',
       'Give product, support and leadership views that fit their needs, with charts and practical CSV, Excel and PowerPoint exports.': 'Produktteams, Support und Management mit passenden Ansichten, Diagrammen und praktischen CSV-, Excel- und PowerPoint-Exporten versorgen.',
-      'Skills behind the solutions': 'Benötigte Kompetenzen für die Lösungen',
-      'From domain knowledge': 'Von Fachwissen',
-      'to working prototypes.': 'zu funktionsfähigen Prototypen.',
-      'These are the competencies needed to shape each stage—from customer problem and data model to useful interfaces, quality checks and decision-ready outputs.': 'Diese Kompetenzen sind erforderlich, um jeden Schritt zu gestalten – von Kundenproblem und Datenmodell über nutzbare Oberflächen und Qualitätsprüfungen bis zu entscheidungsrelevanten Ergebnissen.',
+      'My applied skills': 'Meine eingesetzten Skills',
+      'From problem framing': 'Von der Problemklärung',
+      'to published prototypes.': 'bis zu veröffentlichten Prototypen.',
+      'This map connects the skills I applied to concrete steps and visible outcomes in both showcases. It also marks which parts are working demos and which are architecture concepts.': 'Diese Übersicht verknüpft meine eingesetzten Skills mit konkreten Schritten und sichtbaren Ergebnissen beider Showcases. Sie kennzeichnet außerdem, was als Demo funktioniert und was ein Architekturkonzept ist.',
       '01 · Frame': '01 · Einordnen',
       'Product & business analysis': 'Produkt- & Geschäftsanalysen',
       'Turn user and stakeholder needs into journeys, use cases, useful questions, KPIs and prioritized next steps.': 'Nutzer- und Stakeholder-Bedürfnisse in Abläufe, Anwendungsfälle, zielführende Fragen, KPIs und priorisierte nächste Schritte übersetzen.',
@@ -400,6 +441,33 @@
       'Responsive HTML/CSS/JavaScript interfaces, simulated user journeys, locale-aware German/English controls, custom emoji favicons, and real CSV, Excel and PowerPoint downloads from clearly labeled sample data.': 'Responsive Oberflächen mit HTML/CSS/JavaScript, simulierte Nutzerabläufe, deutsch-englische Sprachwahl nach Browsereinstellung, eigene Emoji-Favicons sowie echte CSV-, Excel- und PowerPoint-Downloads mit klar gekennzeichneten Beispieldaten.',
       'Solution architecture shown conceptually': 'Lösungsarchitektur konzeptionell dargestellt',
       'Connections to live feedback channels, AI inference, Countly/Azure ingestion, Veezoo-to-VQL execution, Databricks and production BI are design concepts—not active integrations. No company or production data is connected.': 'Anbindungen an Live-Feedbackkanäle, KI-Inferenz, Countly-/Azure-Datenaufnahme, Veezoo-zu-VQL-Ausführung, Databricks und produktive BI sind Architekturkonzepte – keine aktiven Integrationen. Es sind keine Unternehmens- oder Produktivdaten angebunden.',
+      'Skills I applied at each step': 'So habe ich die Skills je Schritt eingesetzt',
+      'Each stage names the capability, how it was used in the solution work, and the evidence visible in the portfolio.': 'Jede Phase benennt die Fähigkeit, ihren Einsatz bei der Lösungsarbeit und den sichtbaren Nachweis im Portfolio.',
+      'Feedback intelligence': 'Feedback Intelligence',
+      'Frame the customer problem': 'Kundenproblem einordnen',
+      'Product discovery, requirements analysis and stakeholder-oriented use-case design turn feedback fragmentation into a focused product question.': 'Produktanalyse, Anforderungsanalyse und stakeholderorientiertes Use-Case-Design machen aus fragmentiertem Feedback eine fokussierte Produktfrage.',
+      'Evidence: channel map and Korean sample journey': 'Nachweis: Kanalübersicht und koreanischer Beispieldurchlauf',
+      'Normalize language and context': 'Sprache und Kontext normalisieren',
+      'Multilingual UX, localization and data modeling preserve the original voice while making language, market, platform and version comparable.': 'Mehrsprachige UX, Lokalisierung und Datenmodellierung bewahren die Originalstimme und machen Sprache, Markt, Plattform und Version vergleichbar.',
+      'Evidence: Korean original, English normalization and metadata': 'Nachweis: koreanischer Originaltext, englische Normalisierung und Metadaten',
+      'Turn text into product signals': 'Text in Produktsignale übersetzen',
+      'NLP taxonomy design, sentiment analysis, feature mapping and evaluation planning organize comments into actionable themes.': 'NLP-Taxonomie, Sentiment-Analyse, Feature-Zuordnung und Evaluationsplanung strukturieren Kommentare als umsetzbare Themen.',
+      'Evidence: interactive sentiment examples and feature mapping': 'Nachweis: interaktive Sentiment-Beispiele und Feature-Zuordnung',
+      'Make insights reviewable': 'Erkenntnisse überprüfbar machen',
+      'Data storytelling, BI design and quality thinking shape trends and role-relevant views for product, support and leadership.': 'Data Storytelling, BI-Design und Qualitätsdenken gestalten Trends und rollenbezogene Ansichten für Produktteams, Support und Management.',
+      'Architecture concept: production ingestion, model inference and BI are not connected': 'Architekturkonzept: Produktivdatenaufnahme, Modellinferenz und BI sind nicht angebunden',
+      'Shape the business question': 'Geschäftsfrage gestalten',
+      'Requirements framing, KPI thinking and conversational UX turn a natural-language request into a defined analytics journey.': 'Anforderungsdefinition, KPI-Denken und Conversational UX machen aus einer natürlichsprachlichen Frage einen strukturierten Analyseablauf.',
+      'Evidence: bilingual sample query and animated interaction': 'Nachweis: zweisprachige Beispielfrage und animierte Interaktion',
+      'Model meaning and data flow': 'Bedeutung und Datenfluss modellieren',
+      'Semantic modeling, ontology, query design and warehouse architecture connect business language to governed metrics.': 'Semantische Modellierung, Ontologie, Abfragedesign und Warehouse-Architektur verbinden Geschäftssprache mit kontrollierten Kennzahlen.',
+      'Architecture concept: Veezoo/VQL, Databricks and live data are simulated': 'Architekturkonzept: Veezoo/VQL, Databricks und Live-Daten sind simuliert',
+      'Present and distribute results': 'Ergebnisse darstellen und bereitstellen',
+      'Frontend engineering, responsive UX, accessible controls, visualization and browser export skills make results easy to use.': 'Frontend-Entwicklung, responsives UX, barrierearme Steuerung, Visualisierung und Browser-Export machen Ergebnisse leicht nutzbar.',
+      'Evidence: interactive chart plus working CSV, XLSX and PPTX exports': 'Nachweis: interaktives Diagramm und funktionierende CSV-, XLSX- und PPTX-Exporte',
+      'Ship a portfolio-ready experience': 'Portfolio-Erlebnis veröffentlichen',
+      'Localization, testing, documentation, Git workflows and static-site deployment connect the interface to a usable public showcase.': 'Lokalisierung, Tests, Dokumentation, Git-Workflows und Static-Site-Deployment machen aus der Oberfläche einen nutzbaren öffentlichen Showcase.',
+      'Evidence: DE/EN UI, mobile layout and GitHub Pages release': 'Nachweis: DE/EN-Oberfläche, mobiles Layout und Veröffentlichung über GitHub Pages',
       'Illustrative technology landscape': 'Beispielhafte Technologielandschaft',
       'Connects ingestion, AI, a governed warehouse and familiar BI tools.': 'Verbindet Datenaufnahme, KI, ein kontrolliertes Warehouse und etablierte BI-Werkzeuge.',
       'Technologies': 'Technologien',
