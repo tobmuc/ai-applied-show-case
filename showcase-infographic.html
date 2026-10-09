@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7f6">
+  <meta name="description" content="A concise infographic connecting multilingual customer feedback to app analytics, decisions and an illustrative savings scenario.">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <title>AI Applied Showcase — Infographic</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f7f6;
+      --white: #fff;
+      --ink: #172c34;
+      --muted: #61747a;
+      --line: #dce6e3;
+      --mint: #087f72;
+      --mint-pale: #e6f4f0;
+      --blue: #4263c7;
+      --blue-pale: #edf1fc;
+      --amber: #96651a;
+      --amber-pale: #fbf4e8;
+      --radius: 20px;
+      --shadow: 0 15px 40px rgba(21, 49, 53, .065);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; min-width: 0; color: var(--ink); background: var(--paper); line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #25a99a; outline-offset: 3px; }
+    .shell { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+
+    .topbar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid rgba(220, 230, 227, .9); background: rgba(255, 255, 255, .94); backdrop-filter: blur(14px); }
+    .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 22px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; min-width: 0; }
+    .brand-mark { display: grid; flex: 0 0 38px; place-items: center; width: 38px; height: 38px; border-radius: 12px; color: #fff; background: var(--ink); font-size: 1.1rem; }
+    .brand-name { display: block; font-size: .84rem; font-weight: 780; letter-spacing: -.025em; }
+    .brand-sub { display: block; margin-top: 1px; color: #7a8b90; font-size: .62rem; font-weight: 650; letter-spacing: .1em; text-transform: uppercase; }
+    .nav-right, .nav-links { display: flex; align-items: center; gap: 18px; }
+    .nav-links { color: #52676e; font-size: .73rem; font-weight: 630; }
+    .nav-links a:hover { color: var(--mint); }
+    .lang-toggle { min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: #fff; font-size: .69rem; font-weight: 760; cursor: pointer; }
+    .lang-toggle:hover { border-color: #94cfc4; background: #f5fbf9; }
+
+    .hero { padding: 48px 0 30px; }
+    .hero-shell { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(285px, .85fr); gap: 44px; align-items: center; padding: clamp(28px, 5vw, 54px); border: 1px solid #dfe8e5; border-radius: 25px; background: linear-gradient(116deg, #fff 0%, #fff 57%, #edf6f3 100%); box-shadow: var(--shadow); }
+    .hero-shell::after { position: absolute; top: -140px; right: -95px; width: 365px; height: 365px; border: 1px solid rgba(8,127,114,.09); border-radius: 50%; content: ""; box-shadow: 0 0 0 38px rgba(8,127,114,.025), 0 0 0 78px rgba(8,127,114,.02); pointer-events: none; }
+    .eyebrow, .section-label { display: inline-flex; align-items: center; gap: 9px; color: var(--mint); font-size: .65rem; font-weight: 790; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow-mark { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 690px; margin: 17px 0 16px; color: var(--ink); font-size: clamp(2.05rem, 4.4vw, 4.2rem); line-height: .99; letter-spacing: -.075em; font-weight: 770; hyphens: auto; }
+    .hero-gradient { color: var(--mint); }
+    .hero-copy { min-width: 0; max-width: 650px; margin-bottom: 20px; color: #586c72; font-size: clamp(.94rem, 1.4vw, 1.04rem); line-height: 1.65; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .button-primary, .button-secondary { min-height: 41px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 13px; border: 1px solid transparent; border-radius: 10px; font-size: .72rem; font-weight: 730; transition: transform .18s, background .18s, border-color .18s; }
+    .button-primary { color: #fff; background: var(--mint); }
+    .button-primary:hover { transform: translateY(-1px); background: #056d62; }
+    .button-secondary { border-color: var(--line); color: #354c53; background: #fff; }
+    .button-secondary:hover { border-color: #9dcfc5; background: #f8fcfb; }
+    .hero-qualifier { margin-top: 15px; color: #78898e; font-size: .66rem; }
+    .hero-qualifier strong { color: #4f656b; }
+
+    .signal-card { position: relative; z-index: 1; min-width: 0; padding: 22px; border: 1px solid rgba(25,61,67,.11); border-radius: 18px; background: rgba(255,255,255,.88); box-shadow: 0 12px 34px rgba(24,55,59,.065); }
+    .signal-card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid #e8eeec; }
+    .signal-card-head span:first-child { color: #687d82; font-size: .61rem; font-weight: 740; letter-spacing: .1em; text-transform: uppercase; }
+    .concept-tag { padding: 4px 8px; border: 1px solid #e4eae8; border-radius: 999px; color: #74868b; font-size: .57rem; font-weight: 680; white-space: nowrap; }
+    .signal-volume { display: flex; align-items: end; justify-content: space-between; gap: 15px; padding: 17px 0 15px; }
+    .signal-volume > div { min-width: 0; }
+    .signal-volume strong { display: block; color: var(--ink); font-size: 2.45rem; line-height: .95; letter-spacing: -.065em; }
+    .signal-volume small { display: block; margin-top: 8px; color: #687d82; font-size: .66rem; }
+    .volume-chip { padding: 7px 9px; border-radius: 9px; color: #167769; background: var(--mint-pale); font-size: .59rem; font-weight: 730; }
+    .signal-flow { display: grid; grid-template-columns: minmax(0,1fr) 17px minmax(0,1fr) 17px minmax(0,1fr); align-items: center; gap: 7px; padding: 12px; border-radius: 11px; background: #f5f8f7; }
+    .signal-node { min-width: 0; color: #344d54; font-size: .61rem; font-weight: 690; text-align: center; overflow-wrap: anywhere; }
+    .signal-node span { display: block; margin-bottom: 4px; font-size: .95rem; }
+    .signal-arrow { color: #90a3a5; font-size: .75rem; text-align: center; }
+    .signal-card-foot { margin: 12px 0 0; color: #819094; font-size: .58rem; line-height: 1.45; }
+
+    .section { padding: 43px 0; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 22px; }
+    .section-label { margin-bottom: 9px; }
+    h2 { margin-bottom: 0; color: var(--ink); font-size: clamp(1.8rem, 3.5vw, 2.7rem); line-height: 1.05; letter-spacing: -.06em; }
+    .section-summary { max-width: 480px; margin: 0 0 2px; color: #65777d; font-size: .77rem; line-height: 1.6; }
+
+    .journey-panel { position: relative; padding: 22px; border: 1px solid #dfe8e5; border-radius: 19px; background: #fff; box-shadow: var(--shadow); }
+    .journey-bands { display: grid; grid-template-columns: 3fr 2fr; gap: 8px; margin-bottom: 20px; }
+    .journey-band { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px; font-size: .59rem; font-weight: 750; letter-spacing: .065em; text-transform: uppercase; }
+    .journey-band.feedback-band { color: #13796e; background: var(--mint-pale); }
+    .journey-band.analytics-band { color: #4a59a0; background: var(--blue-pale); }
+    .band-key { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .journey-grid { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 11px; }
+    .journey-grid::before { position: absolute; z-index: 0; top: 16px; right: 8%; left: 8%; height: 1px; background: linear-gradient(90deg, #79bdb0 0%, #79bdb0 60%, #98a5da 60%, #98a5da 100%); content: ""; }
+    .journey-step { position: relative; z-index: 1; min-width: 0; padding: 0 11px 10px; }
+    .journey-index { display: grid; place-items: center; width: 33px; height: 33px; margin-bottom: 14px; border: 1px solid #a7d4cc; border-radius: 50%; color: #11796d; background: #fff; font-size: .66rem; font-weight: 780; box-shadow: 0 0 0 5px #fff; }
+    .journey-step:nth-child(n+4) .journey-index { border-color: #bac3e6; color: #4b5b9d; }
+    .journey-icon { display: block; margin-bottom: 6px; color: #74888e; font-size: .8rem; }
+    .journey-step h3 { min-height: 36px; margin: 0 0 6px; color: #203a42; font-size: .77rem; line-height: 1.25; letter-spacing: -.02em; }
+    .journey-step p { margin: 0; color: #687b80; font-size: .64rem; line-height: 1.52; }
+    .journey-foot { display: flex; align-items: flex-start; gap: 8px; margin: 12px 2px 0; padding-top: 13px; border-top: 1px solid #e9efed; color: #7d8e92; font-size: .61rem; line-height: 1.55; }
+    .journey-foot strong { color: #52676d; }
+
+    .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .case-card { position: relative; overflow: hidden; padding: clamp(21px,3vw,27px); border: 1px solid #dfe8e5; border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
+    .case-card.feedback-case { border-top: 3px solid #168477; }
+    .case-card.analytics-case { border-top: 3px solid #586bc0; }
+    .case-top { display: flex; align-items: center; gap: 11px; margin-bottom: 13px; }
+    .case-mark { display: grid; place-items: center; flex: 0 0 38px; width: 38px; height: 38px; border: 1px solid #dfe9e6; border-radius: 11px; background: #f7faf9; font-size: 1rem; }
+    .case-top small { display: block; margin-bottom: 2px; color: #71848a; font-size: .56rem; font-weight: 760; letter-spacing: .1em; text-transform: uppercase; }
+    .case-top strong { color: #203a42; font-size: .83rem; }
+    .case-card h3 { margin: 0 0 7px; color: #203a42; font-size: 1.1rem; line-height: 1.25; letter-spacing: -.035em; }
+    .case-lead { margin: 0 0 14px; color: #65777d; font-size: .71rem; line-height: 1.6; }
+    .case-points { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .case-points li { display: grid; grid-template-columns: 14px 1fr; gap: 8px; color: #61747a; font-size: .66rem; line-height: 1.48; }
+    .case-points li::before { margin-top: 2px; color: var(--mint); content: "✓"; font-size: .67rem; font-weight: 800; }
+    .analytics-case .case-points li::before { color: var(--blue); }
+    .case-proof { margin-top: 14px; padding: 9px 11px; border: 1px solid #e6ecea; border-radius: 9px; color: #75878c; background: #f8faf9; font-size: .58rem; line-height: 1.5; }
+    .case-proof strong { color: #465f65; }
+    .sample-signal { margin-top: 13px; padding: 12px; border: 1px solid #dceae6; border-radius: 11px; background: linear-gradient(125deg, #f7fbf9, #fff); }
+    .sample-signal-head { display: flex; align-items: center; justify-content: space-between; gap: 9px; margin-bottom: 8px; color: #6c8084; font-size: .55rem; font-weight: 740; letter-spacing: .07em; text-transform: uppercase; }
+    .sample-signal-head span:last-child { color: #879699; font-size: .52rem; letter-spacing: 0; text-align: right; }
+    .sample-signal blockquote { margin: 0 0 5px; color: #27464a; font-size: .69rem; font-weight: 680; line-height: 1.5; }
+    .sample-signal-translation-label { display: block; margin-bottom: 2px; color: #819195; font-size: .5rem; font-weight: 740; letter-spacing: .06em; text-transform: uppercase; }
+    .sample-signal-translation { margin: 0; color: #667a7e; font-size: .62rem; line-height: 1.5; }
+    .sample-signal-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+    .sample-signal-tags span { padding: 4px 7px; border: 1px solid #e3eae8; border-radius: 999px; color: #62767a; background: #fff; font-size: .53rem; font-weight: 670; }
+    .sample-signal-tags span:first-child { border-color: #eedadb; color: #a0545d; background: #fff7f7; }
+    .case-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 15px; color: var(--mint); font-size: .68rem; font-weight: 750; }
+    .analytics-case .case-link { color: #4c60b0; }
+    .analytics-sample { margin-top: 13px; padding: 12px; border: 1px solid #dfe4f1; border-radius: 11px; background: linear-gradient(125deg, #f8f9fd, #fff); }
+    .analytics-sample-label { display: block; margin-bottom: 7px; color: #6573a9; font-size: .53rem; font-weight: 760; letter-spacing: .07em; text-transform: uppercase; }
+    .analytics-sample blockquote { margin: 0; color: #33466f; font-size: .65rem; font-weight: 650; line-height: 1.5; }
+    .analytics-sample-output { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+    .analytics-sample-output span { padding: 4px 7px; border: 1px solid #e1e5ef; border-radius: 999px; color: #687794; background: #fff; font-size: .52rem; font-weight: 640; }
+
+    .roi-panel { display: grid; grid-template-columns: minmax(0,1fr) minmax(300px,.94fr); gap: 25px; align-items: stretch; padding: clamp(22px,3.8vw,32px); border: 1px solid #cfe0db; border-radius: 20px; background: linear-gradient(115deg,#fff 0%,#f5faf8 100%); box-shadow: var(--shadow); }
+    .roi-kicker { margin: 0 0 9px; color: var(--mint); font-size: .61rem; font-weight: 790; letter-spacing: .12em; text-transform: uppercase; }
+    .roi-panel h2 { margin-bottom: 9px; font-size: clamp(1.65rem, 3vw, 2.3rem); }
+    .roi-intro { max-width: 520px; margin: 0; color: #64767c; font-size: .72rem; line-height: 1.6; }
+    .roi-label { display: inline-flex; margin-top: 15px; padding: 6px 9px; border: 1px solid #ead9b8; border-radius: 999px; color: #865c1a; background: var(--amber-pale); font-size: .56rem; font-weight: 750; letter-spacing: .03em; }
+    .roi-equation { display: grid; gap: 9px; align-content: center; }
+    .roi-row { display: flex; align-items: center; justify-content: space-between; gap: 13px; padding: 10px 12px; border: 1px solid #e2eae7; border-radius: 10px; background: rgba(255,255,255,.86); }
+    .roi-row span { color: #5d7177; font-size: .64rem; line-height: 1.45; }
+    .roi-row small { display: block; margin-top: 2px; color: #829196; font-size: .55rem; }
+    .roi-row strong { flex: 0 0 auto; color: #203a42; font-size: .95rem; letter-spacing: -.035em; }
+    .roi-row.difference { border-color: #a9d7cc; background: var(--mint-pale); }
+    .roi-row.difference strong { color: #087f72; font-size: 1.15rem; }
+    .roi-divider { text-align: center; color: #a2b1b4; font-size: .68rem; line-height: .7; }
+    .roi-formula { margin: 3px 2px 0; color: #647a7e; font-size: .58rem; line-height: 1.5; text-align: center; }
+    .roi-formula strong { color: #14796d; }
+    .roi-details { margin-top: 14px; border-top: 1px solid #e1eae7; padding-top: 10px; }
+    .roi-details summary { color: #526b70; font-size: .65rem; font-weight: 730; cursor: pointer; }
+    .roi-details p { margin: 8px 0 0; color: #718389; font-size: .61rem; line-height: 1.6; }
+
+    .skills-strip { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px 20px; border: 1px solid #dfe8e5; border-radius: 15px; background: #fff; }
+    .skills-title { flex: 0 0 auto; color: #2c454c; font-size: .7rem; font-weight: 770; }
+    .skill-chips { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+    .skill-chips span { padding: 5px 8px; border: 1px solid #e2eae7; border-radius: 999px; color: #64777d; background: #f8faf9; font-size: .56rem; font-weight: 620; }
+    .tech-strip { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 10px; padding: 13px 16px; border: 1px solid #dfe8e5; border-radius: 13px; background: rgba(255,255,255,.72); }
+    .tech-strip strong { flex: 0 0 auto; color: #6b7e82; font-size: .57rem; font-weight: 770; letter-spacing: .07em; text-transform: uppercase; }
+    .tech-tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px; }
+    .tech-tags span { padding: 4px 7px; border: 1px solid #e2eae7; border-radius: 999px; color: #738489; background: #fbfcfc; font-size: .52rem; font-weight: 630; }
+    .demo-note { margin-top: 12px; padding: 12px 14px; border-left: 3px solid #be8b39; border-radius: 0 9px 9px 0; color: #74603f; background: var(--amber-pale); font-size: .63rem; line-height: 1.55; }
+
+    .footer { margin-top: 28px; border-top: 1px solid var(--line); background: rgba(255,255,255,.55); }
+    .footer-inner { min-height: 66px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: #788a8f; font-size: .63rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 15px; }
+    .footer-links a:hover { color: var(--mint); }
+
+    @media (max-width: 920px) {
+      .hero-shell { grid-template-columns: minmax(0,1fr) minmax(245px,.82fr); gap: 25px; }
+      .journey-grid { grid-template-columns: repeat(3,minmax(0,1fr)); row-gap: 20px; }
+      .journey-grid::before { display: none; }
+      .journey-bands { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 32px, 560px); }
+      .nav { min-height: 62px; gap: 12px; }
+      .nav-right { gap: 8px; }
+      .nav-links { gap: 10px; font-size: .67rem; }
+      .nav-links a:nth-child(1), .nav-links a:nth-child(3) { display: none; }
+      .lang-toggle { min-height: 33px; padding-inline: 8px; font-size: .65rem; }
+      .hero { padding: 27px 0 13px; }
+      .hero-shell { grid-template-columns: 1fr; gap: 22px; padding: 25px 22px; border-radius: 19px; }
+      h1 { font-size: clamp(2.05rem, 5.5vw, 3.2rem); }
+      .signal-card { max-width: none; }
+      .section { padding: 34px 0; }
+      .section-heading { display: block; margin-bottom: 16px; }
+      .section-summary { margin-top: 9px; }
+      .journey-panel { padding: 16px; }
+      .journey-grid { grid-template-columns: 1fr; gap: 0; }
+      .journey-step { display: grid; grid-template-columns: 38px minmax(0,1fr); column-gap: 11px; padding: 10px 3px 14px; border-top: 1px solid #edf1f0; }
+      .journey-step:first-child { border-top: 0; }
+      .journey-index { grid-row: 1 / span 3; margin: 0; box-shadow: none; }
+      .journey-icon { display: none; }
+      .journey-step h3 { min-height: 0; margin: 0 0 4px; }
+      .journey-step p { max-width: 440px; }
+      .case-grid { grid-template-columns: 1fr; }
+      .roi-panel { grid-template-columns: 1fr; gap: 19px; padding: 21px; }
+      .skills-strip { align-items: flex-start; flex-direction: column; }
+      .skill-chips { justify-content: flex-start; }
+      .tech-strip { align-items: flex-start; flex-direction: column; }
+      .tech-tags { justify-content: flex-start; }
+      .footer-inner { align-items: flex-start; flex-direction: column; padding-block: 15px; }
+    }
+    @media (max-width: 390px) {
+      .brand-name { font-size: .77rem; }
+      .brand-sub { font-size: .53rem; }
+      .nav-links a:nth-child(2) { display: none; }
+      .hero-actions > a { width: 100%; }
+      .signal-flow { gap: 4px; padding: 10px 7px; }
+      .signal-node { font-size: .56rem; }
+      .signal-arrow { font-size: .65rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="AI Applied Showcase home" data-i18n-aria="brandLabel">
+        <span class="brand-mark" aria-hidden="true">◒</span>
+        <span><span class="brand-name">AI Applied Showcase</span><span class="brand-sub" data-i18n="brandSub">Use-case infographic</span></span>
+      </a>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#flow" data-i18n="navFlow">Flow</a>
+          <a href="#use-cases" data-i18n="navCases">Use cases</a>
+          <a href="#economics" data-i18n="navEconomics">Business case</a>
+        </nav>
+        <button class="lang-toggle" id="language-toggle" type="button" aria-label="Switch to German" title="Switch language">EN / DE</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="hero">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span><span data-i18n="eyebrow">AI applied · Executive infographic</span></div>
+          <h1><span class="hero-gradient" data-i18n="heroTitle">From customer voice<br>to product decisions.</span></h1>
+          <p class="hero-copy" data-i18n="heroIntro">A concise overview of two complementary use cases: turn multilingual feedback into product signals, then explore app usage asynchronously through governed self-service analytics.</p>
+          <div class="hero-actions">
+            <a class="button-primary" href="#flow"><span data-i18n="heroPrimary">See the solution flow</span><span aria-hidden="true">↓</span></a>
+            <a class="button-secondary" href="#use-cases"><span data-i18n="heroSecondary">Compare the use cases</span><span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-qualifier"><strong data-i18n="conceptLabel">Solution concept + interactive prototypes</strong><span data-i18n="conceptQualifier"> · no production data or live integrations</span></p>
+        </div>
+        <aside class="signal-card" aria-label="Infographic summary" data-i18n-aria="signalCardAria">
+          <div class="signal-card-head"><span data-i18n="signalCardTitle">The shared decision loop</span><span class="concept-tag" data-i18n="signalCardStatus">Illustrative target</span></div>
+          <div class="signal-volume"><div><strong data-i18n="signalVolume">~1,000</strong><small data-i18n="signalVolumeLabel">feedback items per processing day · scenario input</small></div><span class="volume-chip" data-i18n="signalDaily">daily signal</span></div>
+          <div class="signal-flow" aria-label="Feedback to action" data-i18n-aria="signalFlowAria">
+            <div class="signal-node"><span aria-hidden="true">💬</span><span data-i18n="signalNode1">Voice</span></div>
+            <span class="signal-arrow" aria-hidden="true">→</span>
+            <div class="signal-node"><span aria-hidden="true">🧭</span><span data-i18n="signalNode2">Context</span></div>
+            <span class="signal-arrow" aria-hidden="true">→</span>
+            <div class="signal-node"><span aria-hidden="true">📊</span><span data-i18n="signalNode3">Decision</span></div>
+          </div>
+          <p class="signal-card-foot" data-i18n="signalCardFoot">Volume is an illustrative business-case input, not live traffic from these demos.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="flow">
+      <div class="section-heading">
+        <div><p class="section-label" data-i18n="flowKicker">One picture · two connected disciplines</p><h2 data-i18n="flowTitle">The insight-to-action flow</h2></div>
+        <p class="section-summary" data-i18n="flowSummary">First structure what customers say. Then explore product usage and feature performance with consistent business meaning.</p>
+      </div>
+      <div class="journey-panel">
+        <div class="journey-bands">
+          <div class="journey-band feedback-band"><span class="band-key" aria-hidden="true"></span><span data-i18n="feedbackBand">Feedback intelligence · understand the voice</span></div>
+          <div class="journey-band analytics-band"><span class="band-key" aria-hidden="true"></span><span data-i18n="analyticsBand">App analytics · explore and act</span></div>
+        </div>
+        <div class="journey-grid" role="list" aria-label="Five-step solution flow" data-i18n-aria="journeyAria">
+          <article class="journey-step" role="listitem"><span class="journey-index">01</span><span class="journey-icon" aria-hidden="true">◉</span><h3 data-i18n="step1Title">Capture signals</h3><p data-i18n="step1Text">App reviews, in-app feedback, CSAT, support and app-usage events.</p></article>
+          <article class="journey-step" role="listitem"><span class="journey-index">02</span><span class="journey-icon" aria-hidden="true">⇄</span><h3 data-i18n="step2Title">Normalize context</h3><p data-i18n="step2Text">Keep original language; add translation, channel, market, platform and version.</p></article>
+          <article class="journey-step" role="listitem"><span class="journey-index">03</span><span class="journey-icon" aria-hidden="true">✳</span><h3 data-i18n="step3Title">Classify &amp; validate</h3><p data-i18n="step3Text">Label themes and sentiment, map comments to features and review quality.</p></article>
+          <article class="journey-step" role="listitem"><span class="journey-index">04</span><span class="journey-icon" aria-hidden="true">⌕</span><h3 data-i18n="step4Title">Explore asynchronously</h3><p data-i18n="step4Text">Veezoo self-service target: ask app and feature questions without an ad-hoc queue.</p></article>
+          <article class="journey-step" role="listitem"><span class="journey-index">05</span><span class="journey-icon" aria-hidden="true">↗</span><h3 data-i18n="step5Title">Decide &amp; share</h3><p data-i18n="step5Text">Monitor feature launches, explore hypotheses and correlations, present findings.</p></article>
+        </div>
+        <p class="journey-foot"><strong data-i18n="flowBoundaryStrong">Boundary:</strong><span data-i18n="flowBoundary"> this is a combined solution narrative, not a live end-to-end system. The two interactive pages demonstrate selected parts using sample content.</span></p>
+      </div>
+    </section>
+
+    <section class="section" id="use-cases">
+      <div class="section-heading">
+        <div><p class="section-label" data-i18n="casesKicker">Distinct use-case value</p><h2 data-i18n="casesTitle">Two problems. Two clear USPs.</h2></div>
+        <p class="section-summary" data-i18n="casesSummary">Designed to complement each other: first make customer signals actionable, then make product usage easier to investigate.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card feedback-case">
+          <div class="case-top"><span class="case-mark" aria-hidden="true">💬</span><div><small data-i18n="feedbackEyebrow">01 · Feedback Intelligence</small><strong data-i18n="feedbackTagline">Context-rich customer signals</strong></div></div>
+          <h3 data-i18n="feedbackTitle">Preserve the voice. Connect it to the product.</h3>
+          <p class="case-lead" data-i18n="feedbackLead">Not just positive/negative labels: keep the original language and relate each signal to the feature and operating context.</p>
+          <ul class="case-points">
+            <li data-i18n="feedbackPoint1">Compare markets with original text and normalized translation together.</li>
+            <li data-i18n="feedbackPoint2">Connect topic and sentiment to feature, channel, country, platform and version.</li>
+            <li data-i18n="feedbackPoint3">Make outputs reviewable with reference examples, confidence checks and quality review.</li>
+          </ul>
+          <div class="sample-signal" aria-label="Illustrative Korean customer feedback example" data-i18n-aria="sampleAria">
+            <div class="sample-signal-head"><span data-i18n="sampleTitle">Illustrative sample · original voice retained</span><span>KR · Android · v3.4.1</span></div>
+            <blockquote lang="ko">로그인은 편리한데, 자주 로그아웃돼서 다시 인증해야 해요.</blockquote>
+            <span class="sample-signal-translation-label" data-i18n="sampleTranslationLabel">Normalized · English</span>
+            <p class="sample-signal-translation" lang="en">“Login is easy, but I get logged out often and have to authenticate again.”</p>
+            <div class="sample-signal-tags"><span data-i18n="sampleSentiment">Negative</span><span data-i18n="sampleFeature">Login &amp; authentication</span><span data-i18n="sampleSource">In-app feedback</span></div>
+          </div>
+          <p class="case-proof"><strong data-i18n="evidenceLabel">In the demo:</strong> <span data-i18n="feedbackEvidence">interactive Korean examples show the classification and feature-mapping experience; no live sources or model calls are connected.</span></p>
+          <a class="case-link" href="./ai-applied-show-case-feedback-intelligence/"><span data-i18n="openFeedback">Open feedback showcase</span><span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="case-card analytics-case">
+          <div class="case-top"><span class="case-mark" aria-hidden="true">📊</span><div><small data-i18n="analyticsEyebrow">02 · Veezoo app analytics</small><strong data-i18n="analyticsTagline">Asynchronous self-service</strong></div></div>
+          <h3 data-i18n="analyticsTitle">Explore app usage without the ad-hoc queue.</h3>
+          <p class="case-lead" data-i18n="analyticsLead">The target: a Veezoo-based portal where teams investigate governed app and feature metrics themselves, instead of repeatedly queueing one-off requests with partners or service providers.</p>
+          <ul class="case-points">
+            <li data-i18n="analyticsPoint1">Use presentation-ready visualizations to report app and feature adoption to management.</li>
+            <li data-i18n="analyticsPoint2">Monitor usage after feature launches; test hypotheses and explore potential correlations.</li>
+            <li data-i18n="analyticsPoint3">Move from a question to a chart and take results into existing work with CSV, Excel and editable PowerPoint.</li>
+          </ul>
+          <div class="analytics-sample" aria-label="Illustrative natural-language analytics example" data-i18n-aria="analyticsSampleAria">
+            <span class="analytics-sample-label" data-i18n="analyticsPromptLabel">Illustrative sample question · not a live query</span>
+            <blockquote data-i18n="analyticsPrompt">Show all app users from Chicago in September 2026 and list their top five app features.</blockquote>
+            <div class="analytics-sample-output"><span data-i18n="analyticsUsers">122,384 sample users</span><span data-i18n="analyticsTopFeature">Top feature: Precondition vehicle · 94,520</span></div>
+          </div>
+          <p class="case-proof"><strong data-i18n="targetLabel">Target vs. demo:</strong> <span data-i18n="analyticsEvidence">Veezoo/VQL querying, the governed warehouse, live metrics, before/after analysis and correlations are not implemented; the natural-language query/results are simulated, while exports work on labeled sample data.</span></p>
+          <a class="case-link" href="./ai-applied-show-case-chat-your-data/"><span data-i18n="openAnalytics">Open app analytics showcase</span><span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="economics">
+      <div class="roi-panel">
+        <div>
+            <p class="roi-kicker" data-i18n="roiKicker">Feedback classification · scenario, not a forecast</p>
+          <h2 data-i18n="roiTitle">Illustrative potential: ~€249k gross labor-cost difference / year</h2>
+          <p class="roi-intro" data-i18n="roiIntro">Based on the stated daily volume and token estimate plus explicit manual-work assumptions. This is a gross scenario estimate—not measured, guaranteed or net savings.</p>
+          <span class="roi-label" data-i18n="roiScenario">Inputs to validate with operating data</span>
+          <details class="roi-details">
+            <summary data-i18n="roiDetailsLabel">See assumptions, break-even threshold and calendar-day variant</summary>
+            <p data-i18n="roiDetails">Scenario uses 1.5 minutes of manual handling per item, €40 fully loaded labor cost/hour and 250 processing days/year. For a gross difference above €200k, manual handling must average more than ~1.21 minutes/item under those assumptions. If 1,000 items are processed on all 365 calendar days, the same inputs yield ~€363,540/year gross (€365,000 labor minus €1,460 tokens). Implementation, human review, infrastructure and ongoing operations are excluded; released capacity is not automatically cash savings.</p>
+          </details>
+        </div>
+        <div class="roi-equation" aria-label="Illustrative annual savings calculation" data-i18n-aria="roiCalcAria">
+          <div class="roi-row"><span><span data-i18n="roiVolumeLabel">Feedback volume · stated input</span><small data-i18n="roiVolumeCalc">Items on each processing day</small></span><strong data-i18n="roiVolumeValue">~1,000 / day</strong></div>
+          <div class="roi-row"><span><span data-i18n="roiManualLabel">Manual classification · scenario</span><small data-i18n="roiManualCalc">1.5 min/item × €40 loaded hourly cost × 250 days</small></span><strong data-i18n="roiManualValue">€250,000 / yr</strong></div>
+          <div class="roi-row"><span><span data-i18n="roiTokensLabel">Translation + LLM tokens · stated estimate</span><small data-i18n="roiTokensCalc">€4/day × 250 processing days</small></span><strong data-i18n="roiTokensValue">− €1,000 / yr</strong></div>
+          <div class="roi-row difference"><span><span data-i18n="roiDifferenceLabel">Indicative gross difference</span><small data-i18n="roiDifferenceCalc">Before implementation, review and operating costs</small></span><strong data-i18n="roiDifferenceValue">~ €249,000 / yr</strong></div>
+          <p class="roi-formula"><span data-i18n="roiFormula">1,000 × 1.5 min ÷ 60 × €40/h × 250 − €4 × 250 = </span><strong data-i18n="roiFormulaResult">€249,000 gross</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="skills-title">
+      <div class="skills-strip">
+        <strong class="skills-title" id="skills-title" data-i18n="skillsTitle">Skills applied across the work</strong>
+        <div class="skill-chips">
+          <span data-i18n="skill1">Product &amp; requirements analysis</span><span data-i18n="skill2">Data, cloud &amp; warehouse architecture</span><span data-i18n="skill3">Multilingual NLP &amp; localization</span><span data-i18n="skill4">Semantic &amp; KPI modeling</span><span data-i18n="skill5">Quality, governance &amp; BI</span><span data-i18n="skill6">Frontend, accessible UX &amp; delivery</span>
+        </div>
+      </div>
+      <div class="tech-strip"><strong data-i18n="techTitle">Illustrative target architecture</strong><div class="tech-tags" aria-label="Illustrative technology stack" data-i18n-aria="techAria"><span>Countly</span><span>Azure AI</span><span>Databricks</span><span>Veezoo / VQL</span><span>Amazon QuickSight</span><span>Power BI</span></div></div>
+      <p class="demo-note"><strong data-i18n="noteLabel">Portfolio prototype:</strong> <span data-i18n="noteText">the pages use illustrative data. Live AI, feedback sources, Veezoo/VQL, Databricks and production BI are not connected. The feedback-classification cost/time inputs are scenario assumptions; only the ~1,000/day volume and ~€4/day token estimate were supplied as inputs.</span></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span data-i18n="footerText">AI Applied Showcase · Concise solution infographic</span>
+      <div class="footer-links"><a href="./ai-applied-show-case-feedback-intelligence/" data-i18n="footerFeedback">Feedback deep dive</a><a href="./ai-applied-show-case-chat-your-data/" data-i18n="footerAnalytics">Analytics deep dive</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const strings = {
+      en: {
+        brandSub: 'Use-case infographic', brandLabel: 'AI Applied Showcase home', signalCardAria: 'Infographic summary', signalFlowAria: 'Feedback to action', journeyAria: 'Five-step solution flow', roiCalcAria: 'Illustrative annual savings calculation', sampleAria: 'Illustrative Korean customer feedback example', techAria: 'Illustrative technology stack', analyticsSampleAria: 'Illustrative natural-language analytics example',
+        navFlow: 'Flow', navCases: 'Use cases', navEconomics: 'Business case',
+        eyebrow: 'AI applied · Executive infographic', heroTitle: 'From customer voice to product insights.',
+        heroIntro: 'A concise overview of two complementary use cases: turn multilingual feedback into product signals, then explore app usage asynchronously through governed self-service analytics.',
+        heroPrimary: 'See the solution flow', heroSecondary: 'Compare the use cases',
+        conceptLabel: 'Solution concept + interactive prototypes', conceptQualifier: ' · no production data or live integrations',
+        signalCardTitle: 'The shared decision loop', signalCardStatus: 'Illustrative target', signalVolume: '~1,000', signalVolumeLabel: 'feedback items per processing day · scenario input', signalDaily: 'daily signal',
+        signalNode1: 'Voice', signalNode2: 'Context', signalNode3: 'Decision', signalCardFoot: 'Volume is an illustrative business-case input, not live traffic from these demos.',
+        flowKicker: 'One picture · two connected disciplines', flowTitle: 'The insight-to-action flow', flowSummary: 'First structure what customers say. Then explore product usage and feature performance with consistent business meaning.',
+        feedbackBand: 'Feedback intelligence · understand the voice', analyticsBand: 'App analytics · explore and act',
+        step1Title: 'Capture signals', step1Text: 'App reviews, in-app feedback, CSAT, support and app-usage events.',
+        step2Title: 'Normalize context', step2Text: 'Keep original language; add translation, channel, market, platform and version.',
+        step3Title: 'Classify & validate', step3Text: 'Label themes and sentiment, map comments to features and review quality.',
+        step4Title: 'Explore asynchronously', step4Text: 'Veezoo self-service target: ask app and feature questions without an ad-hoc queue.',
+        step5Title: 'Decide & share', step5Text: 'Monitor feature launches, explore hypotheses and correlations, present findings.',
+        flowBoundaryStrong: 'Boundary:', flowBoundary: ' this is a combined solution narrative, not a live end-to-end system. The two interactive pages demonstrate selected parts using sample content.',
+        casesKicker: 'Distinct use-case value', casesTitle: 'Two problems. Two clear USPs.', casesSummary: 'Designed to complement each other: first make customer signals actionable, then make product usage easier to investigate.',
+        feedbackEyebrow: '01 · Feedback Intelligence', feedbackTagline: 'Context-rich customer signals', feedbackTitle: 'Preserve the voice. Connect it to the product.',
+        feedbackLead: 'Not just positive/negative labels: keep the original language and relate each signal to the feature and operating context.',
+        sampleTitle: 'Illustrative sample · original voice retained', sampleTranslationLabel: 'Normalized · English', sampleSentiment: 'Negative', sampleFeature: 'Login & authentication', sampleSource: 'In-app feedback',
+        feedbackPoint1: 'Compare markets with original text and normalized translation together.',
+        feedbackPoint2: 'Connect topic and sentiment to feature, channel, country, platform and version.',
+        feedbackPoint3: 'Make outputs reviewable with reference examples, confidence checks and quality review.',
+        evidenceLabel: 'In the demo:', feedbackEvidence: 'interactive Korean examples show the classification and feature-mapping experience; no live sources or model calls are connected.',
+        openFeedback: 'Open feedback showcase', analyticsEyebrow: '02 · Veezoo app analytics', analyticsTagline: 'Asynchronous self-service',
+        analyticsTitle: 'Explore app usage without the ad-hoc queue.',
+        analyticsLead: 'The target: a Veezoo-based portal where teams investigate governed app and feature metrics themselves, instead of repeatedly queueing one-off requests with partners or service providers.',
+        analyticsPoint1: 'Use presentation-ready visualizations to report app and feature adoption to management.',
+        analyticsPoint2: 'Monitor usage after feature launches; test hypotheses and explore potential correlations.',
+        analyticsPoint3: 'Move from a question to a chart and take findings into management presentations; export CSV, Excel or editable PowerPoint.',
+        analyticsPromptLabel: 'Illustrative sample question · not a live query', analyticsPrompt: 'Show all app users from Chicago in September 2026 and list their top five app features.', analyticsUsers: '122,384 sample users', analyticsTopFeature: 'Top feature: Precondition vehicle · 94,520',
+        targetLabel: 'Target vs. demo:', analyticsEvidence: 'Veezoo/VQL querying, the governed warehouse, live metrics, before/after analysis and correlations are not implemented; the natural-language query/results are simulated, while exports work on labeled sample data.',
+        openAnalytics: 'Open app analytics showcase',
+        roiKicker: 'Feedback classification · scenario, not a forecast', roiTitle: 'Illustrative potential: ~€249k gross labor-cost difference / year',
+        roiIntro: 'Based on the stated daily volume and token estimate plus explicit manual-work assumptions. This is a gross scenario estimate—not measured, guaranteed or net savings.',
+        roiScenario: 'Inputs to validate with operating data', roiDetailsLabel: 'See assumptions, break-even threshold and calendar-day variant',
+        roiDetails: 'Scenario uses 1.5 minutes of manual handling per item, €40 fully loaded labor cost/hour and 250 processing days/year. For a gross difference above €200k, manual handling must average more than ~1.21 minutes/item under those assumptions. If 1,000 items are processed on all 365 calendar days, the same inputs yield ~€363,540/year gross (€365,000 labor minus €1,460 tokens). Implementation, human review, infrastructure and ongoing operations are excluded; released capacity is not automatically cash savings.',
+        roiVolumeLabel: 'Feedback volume · stated input', roiVolumeCalc: 'Items on each processing day', roiVolumeValue: '~1,000 / day',
+        roiManualLabel: 'Manual classification · scenario', roiManualCalc: '1.5 min/item × €40 loaded hourly cost × 250 days',
+        roiTokensLabel: 'Translation + LLM tokens · stated estimate', roiTokensCalc: '€4/day × 250 processing days',
+        roiDifferenceLabel: 'Indicative gross difference', roiDifferenceCalc: 'Before implementation, review and operating costs', roiFormula: '1,000 × 1.5 min ÷ 60 × €40/h × 250 − €4 × 250 = ', roiFormulaResult: '€249,000 gross',
+        roiManualValue: '€250,000 / yr', roiTokensValue: '− €1,000 / yr', roiDifferenceValue: '~ €249,000 / yr',
+        skillsTitle: 'Skills applied across the work', skill1: 'Product & requirements analysis', skill2: 'Data, cloud & warehouse architecture', skill3: 'Multilingual NLP & localization', skill4: 'Semantic & KPI modeling', skill5: 'Quality, governance & BI', skill6: 'Frontend, accessible UX & delivery',
+        techTitle: 'Illustrative target architecture',
+        noteLabel: 'Portfolio prototype:', noteText: 'the pages use illustrative data. Live AI, feedback sources, Veezoo/VQL, Databricks and production BI are not connected. Manual handling time and labor cost in the feedback scenario are assumptions; only ~1,000 items/day and ~€4/day token cost were supplied as inputs.',
+        footerText: 'AI Applied Showcase · Concise solution infographic', footerFeedback: 'Feedback deep dive', footerAnalytics: 'Analytics deep dive',
+      },
+      de: {
+        brandSub: 'Infografik zu den Use Cases', brandLabel: 'AI Applied Showcase – Startseite', signalCardAria: 'Infografik-Zusammenfassung', signalFlowAria: 'Vom Feedback zur Maßnahme', journeyAria: 'Fünfstufiger Lösungsablauf', roiCalcAria: 'Illustrative jährliche Einsparungsrechnung', sampleAria: 'Illustratives Beispiel für koreanisches Kundenfeedback', techAria: 'Illustrativer Technologie-Stack', analyticsSampleAria: 'Illustratives Beispiel für natürlichsprachliche Datenanalyse',
+        navFlow: 'Ablauf', navCases: 'Use Cases', navEconomics: 'Wirtschaftlichkeit',
+        eyebrow: 'KI in der Praxis · Executive-Infografik', heroTitle: 'Von Kundenstimmen zu Produkt-Insights.',
+        heroIntro: 'Zwei ergänzende Use Cases auf einen Blick: Mehrsprachiges Feedback wird zu Produktsignalen; die App-Nutzung wird anschließend asynchron per kontrolliertem Self-Service analysierbar.',
+        heroPrimary: 'Lösungsablauf ansehen', heroSecondary: 'Use Cases vergleichen',
+        conceptLabel: 'Lösungskonzept + interaktive Prototypen', conceptQualifier: ' · keine Produktivdaten oder Live-Integrationen',
+        signalCardTitle: 'Die gemeinsame Entscheidungsschleife', signalCardStatus: 'Beispiel-Zielbild', signalVolume: '~1.000', signalVolumeLabel: 'Feedbacks je Verarbeitungstag · Szenario-Input', signalDaily: 'tägliches Signal',
+        signalNode1: 'Stimme', signalNode2: 'Kontext', signalNode3: 'Entscheidung', signalCardFoot: 'Das Volumen ist ein Szenario-Input, kein Live-Traffic dieser Demos.',
+        flowKicker: 'Ein Bild · zwei verbundene Disziplinen', flowTitle: 'Vom Signal zur Maßnahme', flowSummary: 'Zuerst Kundenstimmen strukturieren. Danach Produktnutzung und Feature-Wirkung mit gemeinsamer Geschäftssemantik untersuchen.',
+        feedbackBand: 'Feedback Intelligence · Stimmen verstehen', analyticsBand: 'App Analytics · erkunden und handeln',
+        step1Title: 'Signale erfassen', step1Text: 'App-Bewertungen, In-App-Feedback, CSAT, Support und App-Nutzungsereignisse.',
+        step2Title: 'Kontext normalisieren', step2Text: 'Originalsprache bewahren; Übersetzung, Kanal, Markt, Plattform und Version ergänzen.',
+        step3Title: 'Klassifizieren & prüfen', step3Text: 'Themen und Stimmung einordnen, Kommentare Features zuordnen und Qualität prüfen.',
+        step4Title: 'Asynchron erkunden', step4Text: 'Veezoo-Self-Service-Zielbild: Fragen zu App und Features ohne Ad-hoc-Warteschlange.',
+        step5Title: 'Entscheiden & teilen', step5Text: 'Feature-Launches beobachten, Hypothesen und Korrelationen erkunden, Ergebnisse präsentieren.',
+        flowBoundaryStrong: 'Abgrenzung:', flowBoundary: ' dies ist ein gemeinsames Lösungsnarrativ, kein durchgängig live integriertes System. Die zwei interaktiven Seiten zeigen ausgewählte Teile mit Beispieldaten.',
+        casesKicker: 'Eigenständiger Mehrwert je Use Case', casesTitle: 'Zwei Probleme. Zwei klare USPs.', casesSummary: 'Die Lösungen ergänzen sich: erst Kundensignale nutzbar machen, dann Produktnutzung leichter untersuchen.',
+        feedbackEyebrow: '01 · Feedback Intelligence', feedbackTagline: 'Kundensignale mit Kontext', feedbackTitle: 'Originalstimme bewahren. Mit dem Produkt verknüpfen.',
+        feedbackLead: 'Mehr als positiv/negativ: Die Ausgangssprache bleibt erhalten und jedes Signal wird mit Feature- und Nutzungskontext verknüpft.',
+        sampleTitle: 'Beispiel · Originalstimme bleibt erhalten', sampleTranslationLabel: 'Normalisiert · Englisch', sampleSentiment: 'Negativ', sampleFeature: 'Login & Authentifizierung', sampleSource: 'In-App-Feedback',
+        feedbackPoint1: 'Märkte vergleichen und dabei Originaltext und normalisierte Übersetzung gemeinsam behalten.',
+        feedbackPoint2: 'Thema und Stimmung mit Feature, Kanal, Land, Plattform und Version verknüpfen.',
+        feedbackPoint3: 'Ergebnisse mit Referenzbeispielen, Konfidenzprüfungen und Qualitätskontrolle überprüfbar machen.',
+        evidenceLabel: 'In der Demo:', feedbackEvidence: 'Interaktive koreanische Beispiele zeigen Klassifikation und Feature-Zuordnung; Live-Datenquellen oder Modellaufrufe sind nicht angebunden.',
+        openFeedback: 'Feedback-Showcase öffnen', analyticsEyebrow: '02 · Veezoo App Analytics', analyticsTagline: 'Asynchroner Self-Service',
+        analyticsTitle: 'App-Nutzung erkunden – ohne Ad-hoc-Warteschlange.',
+        analyticsLead: 'Zielbild: ein Veezoo-Portal, in dem Teams kontrollierte App- und Feature-Kennzahlen selbst untersuchen, statt wiederholt Einzelanfragen bei Partnern oder Dienstleistern einzureihen.',
+        analyticsPoint1: 'Präsentationsfertige Visualisierungen zeigen App- und Feature-Akzeptanz im Management.',
+        analyticsPoint2: 'Nutzung nach Feature-Launches beobachten, eigene Hypothesen prüfen und mögliche Korrelationen erkunden.',
+        analyticsPoint3: 'Von der Frage zum Diagramm gelangen und Erkenntnisse in Management-Präsentationen übernehmen; CSV, Excel oder bearbeitbares PowerPoint exportieren.',
+        analyticsPromptLabel: 'Beispielfrage · keine Live-Abfrage', analyticsPrompt: 'Zeige alle App-Nutzer aus Chicago im September 2026 und nenne die fünf meistgenutzten App-Funktionen.', analyticsUsers: '122.384 Beispiel-Nutzer', analyticsTopFeature: 'Top-Feature: Fahrzeug Vorklimatisieren · 94.520',
+        targetLabel: 'Zielbild vs. Demo:', analyticsEvidence: 'Veezoo/VQL-Abfragen, kontrolliertes Warehouse, Live-Kennzahlen, Vorher-/Nachher-Analysen und Korrelationen sind nicht implementiert; natürlichsprachliche Abfrage und Ergebnisse sind simuliert, Exporte funktionieren mit gekennzeichneten Beispieldaten.',
+        openAnalytics: 'App-Analytics-Showcase öffnen',
+        roiKicker: 'Feedback-Klassifizierung · Szenario, keine Prognose', roiTitle: 'Beispielpotenzial: ~249.000 € Brutto-Arbeitskostendifferenz / Jahr',
+        roiIntro: 'Basierend auf dem genannten Tagesvolumen und der Tokenkostenschätzung sowie ausdrücklich ausgewiesenen Annahmen zur manuellen Bearbeitung. Das ist ein Brutto-Szenario – keine gemessene, garantierte oder Netto-Einsparung.',
+        roiScenario: 'Eingaben anhand Betriebsdaten validieren', roiDetailsLabel: 'Annahmen, Schwelle und Variante mit Kalendertagen ansehen',
+        roiDetails: 'Szenario: 1,5 Minuten manuelle Bearbeitung je Feedback, 40 € Arbeitsvollkosten pro Stunde und 250 Verarbeitungstage pro Jahr. Für mehr als 200.000 € Brutto-Differenz müsste die Bearbeitung unter diesen Annahmen durchschnittlich länger als ~1,21 Minuten je Feedback dauern. Bei 1.000 Feedbacks an allen 365 Kalendertagen ergeben dieselben Eingaben ~363.540 € Brutto-Differenz pro Jahr (365.000 € Arbeitskosten minus 1.460 € Tokenkosten). Implementierung, menschliche Prüfung, Infrastruktur und laufender Betrieb sind ausgeschlossen; freiwerdende Kapazität ist nicht automatisch eine zahlungswirksame Einsparung.',
+        roiVolumeLabel: 'Feedbackvolumen · genannter Input', roiVolumeCalc: 'Elemente je Verarbeitungstag', roiVolumeValue: '~1.000 / Tag',
+        roiManualLabel: 'Manuelle Klassifizierung · Szenario', roiManualCalc: '1,5 Min./Feedback × 40 € Vollkosten/Std. × 250 Tage',
+        roiTokensLabel: 'Tokenkosten Übersetzung + LLM · Schätzung', roiTokensCalc: '4 €/Tag × 250 Verarbeitungstage',
+        roiDifferenceLabel: 'Geschätzte Brutto-Differenz', roiDifferenceCalc: 'Vor Implementierungs-, Prüf- und Betriebskosten', roiFormula: '1.000 × 1,5 Min. ÷ 60 × 40 €/Std. × 250 − 4 € × 250 = ', roiFormulaResult: '249.000 € brutto',
+        roiManualValue: '250.000 € / Jahr', roiTokensValue: '− 1.000 € / Jahr', roiDifferenceValue: '~ 249.000 € / Jahr',
+        skillsTitle: 'Eingesetzte Kompetenzen', skill1: 'Produkt- & Anforderungsanalyse', skill2: 'Daten-, Cloud- & Warehouse-Architektur', skill3: 'Mehrsprachiges NLP & Lokalisierung', skill4: 'Semantik & KPI-Modellierung', skill5: 'Qualität, Governance & BI', skill6: 'Frontend, barrierearme UX & Umsetzung',
+        techTitle: 'Illustratives Architektur-Zielbild',
+        noteLabel: 'Portfolio-Prototyp:', noteText: 'Die Seiten verwenden Beispieldaten. Live-KI, Feedbackquellen, Veezoo/VQL, Databricks und Produktiv-BI sind nicht angebunden. Bearbeitungszeit und Arbeitskosten im Feedback-Szenario sind Annahmen; als Inputs genannt wurden nur ~1.000 Feedbacks/Tag und ~4 € Tokenkosten/Tag.',
+        footerText: 'AI Applied Showcase · Kompakte Lösungsinfografik', footerFeedback: 'Feedback im Detail', footerAnalytics: 'Analytics im Detail',
+      },
+    };
+
+    const toggle = document.querySelector('#language-toggle');
+    function applyLanguage(language) {
+      const dictionary = strings[language];
+      document.documentElement.lang = language;
+      document.title = language === 'de' ? 'AI Applied Showcase — Infografik' : 'AI Applied Showcase — Infographic';
+      document.querySelector('meta[name="description"]').content = language === 'de'
+        ? 'Kompakte Infografik: mehrsprachiges Kundenfeedback und Veezoo Self-Service App Analytics mit transparentem Einsparszenario.'
+        : 'Concise infographic: multilingual customer feedback and Veezoo self-service app analytics with a transparent savings scenario.';
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.dataset.i18n;
+        if (dictionary[key] !== undefined) element.textContent = dictionary[key];
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(element => {
+        const key = element.dataset.i18nAria;
+        if (dictionary[key] !== undefined) element.setAttribute('aria-label', dictionary[key]);
+      });
+      document.querySelector('nav[aria-label]').setAttribute('aria-label', language === 'de' ? 'Hauptnavigation' : 'Main navigation');
+      document.querySelector('.lang-toggle').setAttribute('aria-label', language === 'de' ? 'Sprache zu Englisch wechseln' : 'Switch language to German');
+      document.querySelector('.lang-toggle').title = language === 'de' ? 'Sprache wechseln' : 'Switch language';
+      toggle.textContent = language === 'de' ? 'DE / EN' : 'EN / DE';
+    }
+    const preferredLanguage = navigator.languages?.[0] || navigator.language || 'en';
+    let language = /^de(?:-|$)/i.test(preferredLanguage) ? 'de' : 'en';
+    try {
+      const savedLanguage = localStorage.getItem('ai-showcase-language');
+      if (savedLanguage === 'de' || savedLanguage === 'en') language = savedLanguage;
+    } catch { /* Browser language still applies if storage is unavailable. */ }
+    applyLanguage(language);
+    toggle.addEventListener('click', () => {
+      language = document.documentElement.lang === 'de' ? 'en' : 'de';
+      try { localStorage.setItem('ai-showcase-language', language); } catch { /* Use the choice for this visit. */ }
+      applyLanguage(language);
+    });
+  </script>
+  <script src="./analytics-config.js"></script>
+  <script src="./analytics-consent.js"></script>
+</body>
+</html>

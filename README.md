@@ -1,4 +1,4 @@
-# AI Applied Showcase — Overview
+# AI Applied Showcase — Infographic
 
 A bilingual static portfolio hub connecting two AI solution concepts: multilingual feedback intelligence and natural-language analytics.
 
@@ -13,7 +13,7 @@ The overview explicitly summarizes the intended benefits of the combined design.
 
 ## Skills represented in the showcases
 
-The overview now maps the skills applied by the portfolio owner to specific steps in both solutions, with visible evidence in the demos: product discovery and requirements framing; multilingual normalization, NLP taxonomy and sentiment; feature and KPI semantics; data/warehouse architecture; quality and governance; BI/data storytelling; responsive and accessible frontend; localization; testing, CSV/XLSX/PPTX export; and GitHub Pages delivery.
+The infographic summarizes the applied capabilities across the two prototypes: product and requirements analysis; data, cloud and warehouse architecture; multilingual NLP and localization; semantic and KPI modeling; quality and governance; BI storytelling; and accessible frontend, UX and delivery. The individual demos show concrete examples, while clearly distinguishing working browser interactions from architecture concepts.
 
 ## Use-case differentiators and illustrative savings scenario
 
@@ -25,7 +25,8 @@ The static interfaces, simulated journeys, locale-aware German/English controls 
 
 ## Repository structure
 
-- `index.html` — combined overview, benefits and skills map
+- `index.html` — immediate redirect to the infographic start page
+- `showcase-infographic.html` — concise bilingual infographic connecting both use cases, USPs, skills and the illustrative savings scenario
 - `ai-applied-show-case-feedback-intelligence/index.html` — feedback pipeline showcase
 - `ai-applied-show-case-chat-your-data/index.html` — natural-language analytics showcase
 - `analytics-config.js` — optional, blank-by-default GA4 Measurement ID
@@ -43,11 +44,11 @@ Files: `analytics-config.js` contains the Measurement ID placeholder; `analytics
 
 ## Local preview
 
-Open `index.html` in a browser. The language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally. Without a GA4 Measurement ID, no analytics consent UI or Google tag is loaded. With an ID configured, the shared consent UI appears and Google Analytics is loaded only after opt-in.
+Open `index.html` or `showcase-infographic.html` in a browser; the root page redirects to the infographic. Its language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally. Without a GA4 Measurement ID, no analytics consent UI or Google tag is loaded. With an ID configured, the shared consent UI appears and Google Analytics is loaded only after opt-in.
 
 ---
 
-# AI Applied Showcase — Übersicht
+# AI Applied Showcase — Infografik
 
 Eine zweisprachige statische Portfolio-Übersicht, die zwei KI-Lösungskonzepte verbindet: mehrsprachige Feedback-Intelligence und natürlichsprachliche Datenanalyse.
 
@@ -62,7 +63,7 @@ Die Übersicht benennt ausdrücklich die vorgesehenen Vorteile des kombinierten 
 
 ## Dargestellte Kompetenzen
 
-Das Portfolio ordnet die benötigten Fähigkeiten entlang des gesamten Lösungswegs ein: Produkt- und Geschäftsanalysen, Customer-Journey-Design, Daten- und Cloud-Architektur, mehrsprachiges NLP und Lokalisierung, semantische/KPI-Modellierung, Datenqualität und Governance, BI und Data Storytelling, responsives Frontend-UX, Barrierefreiheit, browserbasierte Sprachumschaltung, Tests und Exportbereitstellung.
+Die Infografik fasst die eingesetzten Kompetenzen über beide Prototypen hinweg zusammen: Produkt- und Anforderungsanalyse, Daten-, Cloud- und Warehouse-Architektur, mehrsprachiges NLP und Lokalisierung, semantische/KPI-Modellierung, Qualität und Governance, BI-Storytelling sowie barrierearmes Frontend, UX und Umsetzung. Die Einzeldemos zeigen konkrete Beispiele und grenzen funktionierende Browser-Interaktionen klar von Architekturkonzepten ab.
 
 ## Alleinstellungsmerkmale und beispielhaftes Einsparszenario
 
@@ -74,7 +75,8 @@ Die statischen Oberflächen, simulierten Nutzerabläufe, deutsch-englischen Spra
 
 ## Repository-Struktur
 
-- `index.html` — kombinierte Übersicht, Vorteile, USPs und Kompetenzmatrix
+- `index.html` — sofortige Weiterleitung auf die Infografik-Startseite
+- `showcase-infographic.html` — kompakte zweisprachige Infografik zu beiden Use Cases, USPs, Kompetenzen und Einsparszenario
 - `ai-applied-show-case-feedback-intelligence/index.html` — Feedback-Pipeline-Showcase
 - `ai-applied-show-case-chat-your-data/index.html` — Showcase für natürlichsprachliche Datenanalyse
 - `analytics-config.js` — optionale, standardmäßig leere GA4-Measurement-ID
@@ -92,4 +94,4 @@ Dateien: `analytics-config.js` enthält den Measurement-ID-Platzhalter; `analyti
 
 ## Lokale Vorschau
 
-`index.html` im Browser öffnen. Beim ersten Besuch richtet sich die Sprache nach den bevorzugten Browsersprachen; die DE/EN-Steuerung speichert eine manuelle Auswahl lokal. Ohne GA4-Measurement-ID erscheinen weder Consent-Oberfläche noch Google-Tag. Mit eingetragener ID erscheint die Einwilligung; Google Analytics wird erst nach Zustimmung geladen.
+`index.html` oder direkt `showcase-infographic.html` im Browser öffnen; die Root-Seite leitet zur Infografik weiter. Beim ersten Besuch richtet sich deren Sprache nach den bevorzugten Browsersprachen; die DE/EN-Steuerung speichert eine manuelle Auswahl lokal. Ohne GA4-Measurement-ID erscheinen weder Consent-Oberfläche noch Google-Tag. Mit eingetragener ID erscheint die Einwilligung; Google Analytics wird erst nach Zustimmung geladen.
