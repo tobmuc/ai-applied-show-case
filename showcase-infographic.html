@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f7f6">
-  <meta name="description" content="A concise infographic connecting multilingual customer feedback to app analytics, decisions and an illustrative savings scenario.">
+  <meta name="description" content="Two AI use cases and seven delivery skills: classify customer feedback and explore app data through illustrative prototypes.">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <title>AI Applied Showcase — Infographic</title>
+  <title>AI Applied Showcase — Use Cases &amp; Skills</title>
   <style>
     :root {
       color-scheme: light;
@@ -216,6 +216,110 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
+    .shell { width: min(1380px, calc(100% - 48px)); }
+    .nav { min-height: 66px; }
+    .nav-links { gap: 20px; }
+    .nav-links a { padding-block: 8px; }
+    .hero { padding: 38px 0 25px; }
+    .hero-heading { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); gap: 48px; align-items: end; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+    .hero h1 { max-width: 700px; margin: 12px 0 0; font-size: 3.15rem; line-height: 1.06; letter-spacing: 0; overflow-wrap: anywhere; }
+    .hero-copy { max-width: 540px; margin: 0 0 3px; color: #586c72; font-size: .95rem; line-height: 1.65; }
+    .overview-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; padding-bottom: 20px; }
+    .case-card, .skills-card { min-width: 0; padding: 22px; border: 1px solid #dfe8e5; border-radius: 16px; background: #fff; box-shadow: var(--shadow); }
+    .case-card { display: flex; flex-direction: column; }
+    .case-card.feedback-case { border-top: 3px solid #168477; }
+    .case-card.analytics-case { border-top: 3px solid #586bc0; }
+    .case-card h2, .skills-card h2 { margin: 0 0 8px; color: #203a42; font-size: 1.28rem; line-height: 1.22; letter-spacing: 0; }
+    .case-lead { margin-bottom: 12px; font-size: .7rem; }
+    .case-points { gap: 7px; }
+    .case-points li { font-size: .63rem; }
+    .demo-panel { margin-top: 15px; padding: 12px; border: 1px solid #dceae6; border-radius: 11px; background: linear-gradient(125deg, #f7fbf9, #fff); }
+    .analytics-demo { border-color: #dfe4f1; background: linear-gradient(125deg, #f8f9fd, #fff); }
+    .demo-panel-head, .chart-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .demo-panel-head strong, .chart-head strong { color: #3d575c; font-size: .62rem; font-weight: 750; }
+    .demo-tag, .chart-head span { color: #74868b; font-size: .51rem; text-align: right; }
+    .feedback-ring { position: relative; display: grid; place-items: center; width: 210px; max-width: 100%; aspect-ratio: 1; margin: 14px auto 10px; isolation: isolate; }
+    .feedback-ring__segments { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from -45deg, var(--mint) 0deg 72deg, transparent 72deg 90deg, #49aaa0 90deg 162deg, transparent 162deg 180deg, #82c4b5 180deg 252deg, transparent 252deg 270deg, #1c756b 270deg 342deg, transparent 342deg 360deg); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 15px), #000 calc(100% - 14px)); mask: radial-gradient(farthest-side, transparent calc(100% - 15px), #000 calc(100% - 14px)); animation: ring-spin 28s linear infinite; }
+    .feedback-ring__orbit { position: absolute; inset: 0; border-radius: 50%; animation: ring-spin 8s linear infinite; }
+    .feedback-ring__orbit::before { position: absolute; top: 1px; left: calc(50% - 5px); width: 10px; height: 10px; border: 2px solid #fff; border-radius: 50%; background: #e28b45; box-shadow: 0 0 0 3px rgba(226, 139, 69, .18); content: ""; }
+    .feedback-ring__core { position: relative; z-index: 1; display: flex; width: 53%; aspect-ratio: 1; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #e4efeb; border-radius: 50%; background: #fff; box-shadow: 0 0 0 8px rgba(8, 127, 114, .04); text-align: center; }
+    .feedback-ring__core strong { color: var(--mint); font-size: 1.55rem; line-height: 1; }
+    .feedback-ring__core span { max-width: 90px; margin-top: 6px; color: #71848a; font-size: .53rem; line-height: 1.3; }
+    .feedback-signal { position: absolute; z-index: 2; padding: 5px 7px; border: 1px solid #dfe9e6; border-radius: 8px; color: #48615f; background: #fff; box-shadow: 0 3px 0 #e4eeea, 0 6px 12px rgba(24, 55, 59, .08); font-size: .48rem; font-weight: 750; white-space: nowrap; animation: signal-bob 2.7s ease-in-out infinite alternate; }
+    .feedback-signal--one { top: 11%; left: -11%; }
+    .feedback-signal--two { top: 11%; right: -12%; animation-delay: -.7s; }
+    .feedback-signal--three { bottom: 11%; left: -10%; animation-delay: -1.4s; }
+    .feedback-signal--four { right: -11%; bottom: 11%; animation-delay: -2.1s; }
+    .feedback-stages { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 8px; margin: 0; padding: 0; counter-reset: process-step; list-style: none; }
+    .feedback-stages li { display: flex; min-width: 0; align-items: center; gap: 6px; color: #5f7478; font-size: .55rem; line-height: 1.25; counter-increment: process-step; }
+    .feedback-stages li::before { display: grid; flex: 0 0 18px; place-items: center; width: 18px; height: 18px; border: 1px solid #cfe3dd; border-radius: 50%; color: var(--mint); content: counter(process-step, decimal-leading-zero); font-size: .46rem; font-weight: 750; }
+    .chat-field { display: flex; min-height: 44px; align-items: flex-start; gap: 8px; margin-top: 12px; padding: 10px; border: 1px solid #dfe4f1; border-radius: 9px; color: #33466f; background: #fff; font-size: .62rem; line-height: 1.4; }
+    .chat-demo.is-typing .chat-field { animation: query-pulse 1.25s ease-in-out infinite; }
+    .chat-search { flex: 0 0 auto; color: var(--blue); font-size: .9rem; line-height: 1; }
+    .chat-question { min-width: 0; overflow-wrap: anywhere; }
+    .chat-caret { flex: 0 0 1px; width: 1px; height: 1em; margin-top: 1px; background: var(--blue); animation: caret-blink .8s steps(2, start) infinite; }
+    .chat-results { margin-top: 11px; padding-top: 10px; border-top: 1px solid #e7eaf2; }
+    .chart-head strong { color: #455782; }
+    .chart-head span { color: #7a86a5; }
+    .chat-bars { display: grid; gap: 8px; margin-top: 10px; }
+    .chat-bar-row { display: grid; grid-template-columns: minmax(98px, 1.15fr) minmax(50px, 1fr) 22px; align-items: center; gap: 6px; }
+    .chat-bar-name { min-width: 0; color: #62718f; font-size: .5rem; line-height: 1.2; overflow-wrap: anywhere; }
+    .chat-bar-track { display: block; height: 7px; overflow: hidden; border-radius: 999px; background: #e9edf6; }
+    .chat-bar { display: block; width: var(--bar-width); height: 100%; transform: scaleX(1); transform-origin: left; border-radius: inherit; background: linear-gradient(90deg, #5268bd, #91a0dc); }
+    .chat-demo.is-typing .chat-bar { transform: scaleX(0); }
+    .chat-demo.is-answered .chat-bar { animation: bar-grow .65s var(--bar-delay) cubic-bezier(.2, .75, .25, 1) both; }
+    .chat-bar-value { color: #65749a; font-size: .49rem; font-weight: 700; text-align: right; }
+    .case-proof { margin: 12px 0 0; font-size: .57rem; }
+    .case-proof strong { color: #465f65; }
+    .case-link { margin-top: auto; padding-top: 14px; }
+    .skills-card { border-top: 3px solid #b8733e; }
+    .skills-card h2 { margin-bottom: 5px; }
+    .skills-intro { margin: 0; color: #718187; font-size: .66rem; line-height: 1.5; }
+    .skills-list { display: grid; gap: 0; margin: 13px 0 0; padding: 0; list-style: none; }
+    .skills-list li { display: grid; grid-template-columns: 23px minmax(0, 1fr); gap: 9px; padding: 10px 0; border-top: 1px solid #edf1ef; }
+    .skill-number { display: grid; place-items: center; width: 22px; height: 22px; border: 1px solid #ead8ca; border-radius: 50%; color: #9a5b32; background: #fffaf6; font-size: .48rem; font-weight: 760; }
+    .skills-list strong { display: block; color: #314950; font-size: .65rem; line-height: 1.3; }
+    .skills-list p { margin: 3px 0 0; color: #718187; font-size: .57rem; line-height: 1.42; overflow-wrap: anywhere; }
+    .demo-note { margin: 3px 0 18px; font-size: .62rem; }
+    .footer { margin-top: 0; }
+    .footer-inner { min-height: 62px; }
+    .brand-name, .brand-sub, .eyebrow, .case-top small { letter-spacing: 0; }
+    h1, h2, h3 { letter-spacing: 0; }
+    @keyframes ring-spin { to { transform: rotate(360deg); } }
+    @keyframes signal-bob { from { transform: translateY(-2px); } to { transform: translateY(3px); } }
+    @keyframes query-pulse { 50% { border-color: #9eaddd; box-shadow: 0 0 0 4px rgba(82, 104, 189, .08); } }
+    @keyframes caret-blink { 50% { opacity: 0; } }
+    @keyframes bar-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @media (max-width: 1100px) {
+      .overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .skills-card { grid-column: 1 / -1; }
+      .skills-list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
+    }
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 32px, 560px); }
+      .nav { min-height: 62px; }
+      .nav-links { gap: 12px; font-size: .67rem; }
+      .nav-links a:nth-child(1) { display: inline-flex; }
+      .hero { padding: 27px 0 21px; }
+      .hero-heading { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-bottom: 20px; }
+      .hero h1 { font-size: 2.25rem; }
+      .overview-grid { grid-template-columns: minmax(0, 1fr); gap: 13px; }
+      .skills-card { grid-column: auto; }
+      .skills-list { grid-template-columns: minmax(0, 1fr); }
+      .case-card, .skills-card { padding: 20px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; padding-block: 15px; }
+    }
+    @media (max-width: 390px) {
+      .shell { width: calc(100% - 28px); }
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2rem; }
+      .case-card, .skills-card { padding: 17px; }
+      .chat-bar-row { grid-template-columns: minmax(84px, 1.15fr) minmax(38px, 1fr) 22px; gap: 5px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .feedback-ring__segments, .feedback-ring__orbit, .feedback-signal, .chat-caret, .chat-demo .chat-field, .chat-demo .chat-bar { animation: none !important; }
+      .chat-demo .chat-bar { transform: scaleX(1) !important; }
+    }
   </style>
 </head>
 <body>
@@ -227,9 +331,8 @@
       </a>
       <div class="nav-right">
         <nav class="nav-links" aria-label="Main navigation">
-          <a href="#flow" data-i18n="navFlow">Flow</a>
           <a href="#use-cases" data-i18n="navCases">Use cases</a>
-          <a href="#economics" data-i18n="navEconomics">Business case</a>
+          <a href="#skills" data-i18n="navSkills">Skills</a>
         </nav>
         <button class="lang-toggle" id="language-toggle" type="button" aria-label="Switch to German" title="Switch language">EN / DE</button>
       </div>
@@ -238,129 +341,86 @@
 
   <main id="top" class="shell">
     <section class="hero">
-      <div class="hero-shell">
-        <div class="hero-copy">
-          <div class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span><span data-i18n="eyebrow">AI applied · Executive infographic</span></div>
-          <h1><span class="hero-gradient" data-i18n="heroTitle">From customer voice<br>to product decisions.</span></h1>
-          <p class="hero-copy" data-i18n="heroIntro">A concise overview of two complementary use cases: turn multilingual feedback into product signals, then explore app usage asynchronously through governed self-service analytics.</p>
-          <div class="hero-actions">
-            <a class="button-primary" href="#flow"><span data-i18n="heroPrimary">See the solution flow</span><span aria-hidden="true">↓</span></a>
-            <a class="button-secondary" href="#use-cases"><span data-i18n="heroSecondary">Compare the use cases</span><span aria-hidden="true">↗</span></a>
-          </div>
-          <p class="hero-qualifier"><strong data-i18n="conceptLabel">Solution concept + interactive prototypes</strong><span data-i18n="conceptQualifier"> · no production data or live integrations</span></p>
-        </div>
-        <aside class="signal-card" aria-label="Infographic summary" data-i18n-aria="signalCardAria">
-          <div class="signal-card-head"><span data-i18n="signalCardTitle">The shared decision loop</span><span class="concept-tag" data-i18n="signalCardStatus">Illustrative target</span></div>
-          <div class="signal-volume"><div><strong data-i18n="signalVolume">~1,000</strong><small data-i18n="signalVolumeLabel">feedback items per processing day · scenario input</small></div><span class="volume-chip" data-i18n="signalDaily">daily signal</span></div>
-          <div class="signal-flow" aria-label="Feedback to action" data-i18n-aria="signalFlowAria">
-            <div class="signal-node"><span aria-hidden="true">💬</span><span data-i18n="signalNode1">Voice</span></div>
-            <span class="signal-arrow" aria-hidden="true">→</span>
-            <div class="signal-node"><span aria-hidden="true">🧭</span><span data-i18n="signalNode2">Context</span></div>
-            <span class="signal-arrow" aria-hidden="true">→</span>
-            <div class="signal-node"><span aria-hidden="true">📊</span><span data-i18n="signalNode3">Decision</span></div>
-          </div>
-          <p class="signal-card-foot" data-i18n="signalCardFoot">Volume is an illustrative business-case input, not live traffic from these demos.</p>
-        </aside>
+      <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span><span data-i18n="pageEyebrow">AI applied · Use Cases &amp; Delivery Skills</span></p>
+      <div class="hero-heading">
+        <h1 id="page-title" data-i18n="pageTitle">Zwei AI Use Cases. Ein Skillset für die Umsetzung.</h1>
+        <p class="hero-copy" data-i18n="pageIntro">Vom Kundenfeedback zur Produktanalyse: zwei konkrete Anwendungsfälle, umgesetzt mit skalierbarer Architektur, Datenqualität und nutzerzentrierten Dashboards.</p>
       </div>
     </section>
 
-    <section class="section" id="flow">
-      <div class="section-heading">
-        <div><p class="section-label" data-i18n="flowKicker">One picture · two connected disciplines</p><h2 data-i18n="flowTitle">The insight-to-action flow</h2></div>
-        <p class="section-summary" data-i18n="flowSummary">First structure what customers say. Then explore product usage and feature performance with consistent business meaning.</p>
-      </div>
-      <div class="journey-panel">
-        <div class="journey-bands">
-          <div class="journey-band feedback-band"><span class="band-key" aria-hidden="true"></span><span data-i18n="feedbackBand">Feedback intelligence · understand the voice</span></div>
-          <div class="journey-band analytics-band"><span class="band-key" aria-hidden="true"></span><span data-i18n="analyticsBand">App analytics · explore and act</span></div>
-        </div>
-        <div class="journey-grid" role="list" aria-label="Five-step solution flow" data-i18n-aria="journeyAria">
-          <article class="journey-step" role="listitem"><span class="journey-index">01</span><span class="journey-icon" aria-hidden="true">◉</span><h3 data-i18n="step1Title">Capture signals</h3><p data-i18n="step1Text">App reviews, in-app feedback, CSAT, support and app-usage events.</p></article>
-          <article class="journey-step" role="listitem"><span class="journey-index">02</span><span class="journey-icon" aria-hidden="true">⇄</span><h3 data-i18n="step2Title">Normalize context</h3><p data-i18n="step2Text">Keep original language; add translation, channel, market, platform and version.</p></article>
-          <article class="journey-step" role="listitem"><span class="journey-index">03</span><span class="journey-icon" aria-hidden="true">✳</span><h3 data-i18n="step3Title">Classify &amp; validate</h3><p data-i18n="step3Text">Label themes and sentiment, map comments to features and review quality.</p></article>
-          <article class="journey-step" role="listitem"><span class="journey-index">04</span><span class="journey-icon" aria-hidden="true">⌕</span><h3 data-i18n="step4Title">Explore asynchronously</h3><p data-i18n="step4Text">Veezoo self-service target: ask app and feature questions without an ad-hoc queue.</p></article>
-          <article class="journey-step" role="listitem"><span class="journey-index">05</span><span class="journey-icon" aria-hidden="true">↗</span><h3 data-i18n="step5Title">Decide &amp; share</h3><p data-i18n="step5Text">Monitor feature launches, explore hypotheses and correlations, present findings.</p></article>
-        </div>
-        <p class="journey-foot"><strong data-i18n="flowBoundaryStrong">Boundary:</strong><span data-i18n="flowBoundary"> this is a combined solution narrative, not a live end-to-end system. The two interactive pages demonstrate selected parts using sample content.</span></p>
-      </div>
-    </section>
-
-    <section class="section" id="use-cases">
-      <div class="section-heading">
-        <div><p class="section-label" data-i18n="casesKicker">Distinct use-case value</p><h2 data-i18n="casesTitle">Two problems. Two clear USPs.</h2></div>
-        <p class="section-summary" data-i18n="casesSummary">Designed to complement each other: first make customer signals actionable, then make product usage easier to investigate.</p>
-      </div>
-      <div class="case-grid">
+    <section class="overview" id="use-cases" aria-label="Use cases and skills" data-i18n-aria="overviewAria">
+      <div class="overview-grid">
         <article class="case-card feedback-case">
-          <div class="case-top"><span class="case-mark" aria-hidden="true">💬</span><div><small data-i18n="feedbackEyebrow">01 · Feedback Intelligence</small><strong data-i18n="feedbackTagline">Context-rich customer signals</strong></div></div>
-          <h3 data-i18n="feedbackTitle">Preserve the voice. Connect it to the product.</h3>
-          <p class="case-lead" data-i18n="feedbackLead">Not just positive/negative labels: keep the original language and relate each signal to the feature and operating context.</p>
+          <div class="case-top"><span class="case-mark" aria-hidden="true">◉</span><div><small data-i18n="feedbackEyebrow">01 · AI Use Case</small><strong data-i18n="feedbackTagline">Feedback Intelligence</strong></div></div>
+          <h2 data-i18n="feedbackCardTitle">Kundenfeedback klassifizieren</h2>
+          <p class="case-lead" data-i18n="feedbackCardLead">Originalsprache, Stimmung und Feature-Kontext in einem nachvollziehbaren Tagesprozess verbinden.</p>
           <ul class="case-points">
             <li data-i18n="feedbackPoint1">Compare markets with original text and normalized translation together.</li>
             <li data-i18n="feedbackPoint2">Connect topic and sentiment to feature, channel, country, platform and version.</li>
             <li data-i18n="feedbackPoint3">Make outputs reviewable with reference examples, confidence checks and quality review.</li>
           </ul>
-          <div class="sample-signal" aria-label="Illustrative Korean customer feedback example" data-i18n-aria="sampleAria">
-            <div class="sample-signal-head"><span data-i18n="sampleTitle">Illustrative sample · original voice retained</span><span>KR · Android · v3.4.1</span></div>
-            <blockquote lang="ko">로그인은 편리한데, 자주 로그아웃돼서 다시 인증해야 해요.</blockquote>
-            <span class="sample-signal-translation-label" data-i18n="sampleTranslationLabel">Normalized · English</span>
-            <p class="sample-signal-translation" lang="en">“Login is easy, but I get logged out often and have to authenticate again.”</p>
-            <div class="sample-signal-tags"><span data-i18n="sampleSentiment">Negative</span><span data-i18n="sampleFeature">Login &amp; authentication</span><span data-i18n="sampleSource">In-app feedback</span></div>
+          <div class="demo-panel feedback-demo" role="img" aria-label="Illustrative ring diagram of a daily feedback classification process" data-i18n-aria="feedbackDemoAria">
+            <div class="demo-panel-head"><strong data-i18n="feedbackDemoTitle">Daily feedback loop</strong><span class="demo-tag" data-i18n="demoScenario">Illustrative scenario</span></div>
+            <div class="feedback-ring" aria-hidden="true">
+              <span class="feedback-ring__segments"></span>
+              <span class="feedback-ring__orbit"></span>
+              <span class="feedback-signal feedback-signal--one" data-i18n="feedbackSource1">App Store</span>
+              <span class="feedback-signal feedback-signal--two" data-i18n="feedbackSource2">In-App</span>
+              <span class="feedback-signal feedback-signal--three" data-i18n="feedbackSource3">Support</span>
+              <span class="feedback-signal feedback-signal--four" data-i18n="feedbackSource4">CSAT</span>
+              <span class="feedback-ring__core"><strong data-i18n="feedbackVolume">~1,000</strong><span data-i18n="feedbackUnit">feedbacks / day</span></span>
+            </div>
+            <ol class="feedback-stages" aria-hidden="true">
+              <li data-i18n="feedbackStage1">Collect</li>
+              <li data-i18n="feedbackStage2">Classify</li>
+              <li data-i18n="feedbackStage3">Add product context</li>
+              <li data-i18n="feedbackStage4">Quality check</li>
+            </ol>
           </div>
-          <p class="case-proof"><strong data-i18n="evidenceLabel">In the demo:</strong> <span data-i18n="feedbackEvidence">interactive Korean examples show the classification and feature-mapping experience; no live sources or model calls are connected.</span></p>
+          <p class="case-proof"><strong data-i18n="evidenceLabel">In the demo:</strong> <span data-i18n="feedbackCardEvidence">Illustrative process; no live feedback sources or model calls are connected.</span></p>
           <a class="case-link" href="./ai-applied-show-case-feedback-intelligence/"><span data-i18n="openFeedback">Open feedback showcase</span><span aria-hidden="true">↗</span></a>
         </article>
         <article class="case-card analytics-case">
-          <div class="case-top"><span class="case-mark" aria-hidden="true">📊</span><div><small data-i18n="analyticsEyebrow">02 · Veezoo app analytics</small><strong data-i18n="analyticsTagline">Asynchronous self-service</strong></div></div>
-          <h3 data-i18n="analyticsTitle">Explore app usage without the ad-hoc queue.</h3>
-          <p class="case-lead" data-i18n="analyticsLead">The target: a Veezoo-based portal where teams investigate governed app and feature metrics themselves, instead of repeatedly queueing one-off requests with partners or service providers.</p>
+          <div class="case-top"><span class="case-mark" aria-hidden="true">⌕</span><div><small data-i18n="analyticsEyebrow">02 · AI Use Case</small><strong data-i18n="analyticsTagline">App Analytics</strong></div></div>
+          <h2 data-i18n="analyticsCardTitle">Chat your Data</h2>
+          <p class="case-lead" data-i18n="analyticsCardLead">Ask questions in natural language and explore the answer as a chart.</p>
           <ul class="case-points">
             <li data-i18n="analyticsPoint1">Use presentation-ready visualizations to report app and feature adoption to management.</li>
             <li data-i18n="analyticsPoint2">Monitor usage after feature launches; test hypotheses and explore potential correlations.</li>
             <li data-i18n="analyticsPoint3">Move from a question to a chart and take results into existing work with CSV, Excel and editable PowerPoint.</li>
           </ul>
-          <div class="analytics-sample" aria-label="Illustrative natural-language analytics example" data-i18n-aria="analyticsSampleAria">
-            <span class="analytics-sample-label" data-i18n="analyticsPromptLabel">Illustrative sample question · not a live query</span>
-            <blockquote data-i18n="analyticsPrompt">Show all app users from Chicago in September 2026 and list their top five app features.</blockquote>
-            <div class="analytics-sample-output"><span data-i18n="analyticsUsers">122,384 sample users</span><span data-i18n="analyticsTopFeature">Top feature: Precondition vehicle · 94,520</span></div>
+          <div class="demo-panel analytics-demo chat-demo" id="analytics-demo" role="img" aria-label="Animated sample question followed by a simulated horizontal bar chart" data-i18n-aria="analyticsDemoAria">
+            <div class="demo-panel-head"><strong data-i18n="analyticsDemoTitle">Question → chart</strong><span class="demo-tag" data-i18n="analyticsDemoTag">Simulated flow</span></div>
+            <div class="chat-field"><span class="chat-search" aria-hidden="true">⌕</span><span class="chat-question" id="chat-question" data-i18n="chatQuestion">Which app features are most used in Chicago?</span><span class="chat-caret" aria-hidden="true"></span></div>
+            <div class="chat-results">
+              <div class="chart-head"><strong data-i18n="analyticsResultTitle">Most-used features</strong><span data-i18n="analyticsResultLabel">Illustrative index</span></div>
+              <div class="chat-bars" aria-hidden="true">
+                <div class="chat-bar-row"><span class="chat-bar-name" data-i18n="analyticsFeature1">Precondition vehicle</span><span class="chat-bar-track"><span class="chat-bar" style="--bar-width: 100%; --bar-delay: 0ms"></span></span><b class="chat-bar-value">100</b></div>
+                <div class="chat-bar-row"><span class="chat-bar-name" data-i18n="analyticsFeature2">Plan charging</span><span class="chat-bar-track"><span class="chat-bar" style="--bar-width: 78%; --bar-delay: 90ms"></span></span><b class="chat-bar-value">78</b></div>
+                <div class="chat-bar-row"><span class="chat-bar-name" data-i18n="analyticsFeature3">Start navigation</span><span class="chat-bar-track"><span class="chat-bar" style="--bar-width: 63%; --bar-delay: 180ms"></span></span><b class="chat-bar-value">63</b></div>
+                <div class="chat-bar-row"><span class="chat-bar-name" data-i18n="analyticsFeature4">Locate vehicle</span><span class="chat-bar-track"><span class="chat-bar" style="--bar-width: 46%; --bar-delay: 270ms"></span></span><b class="chat-bar-value">46</b></div>
+              </div>
+            </div>
           </div>
-          <p class="case-proof"><strong data-i18n="targetLabel">Target vs. demo:</strong> <span data-i18n="analyticsEvidence">Veezoo/VQL querying, the governed warehouse, live metrics, before/after analysis and correlations are not implemented; the natural-language query/results are simulated, while exports work on labeled sample data.</span></p>
+          <p class="case-proof"><strong data-i18n="targetLabel">Target vs. demo:</strong> <span data-i18n="analyticsCardEvidence">Query and chart use simulated data; Veezoo/VQL and live metrics are not connected.</span></p>
           <a class="case-link" href="./ai-applied-show-case-chat-your-data/"><span data-i18n="openAnalytics">Open app analytics showcase</span><span aria-hidden="true">↗</span></a>
         </article>
+        <aside class="skills-card" id="skills" aria-labelledby="skills-title">
+          <div class="case-top"><span class="case-mark" aria-hidden="true">↗</span><div><small data-i18n="skillsEyebrow">How I deliver</small><strong data-i18n="skillsTagline">From concept to usable product</strong></div></div>
+          <h2 id="skills-title" data-i18n="skillsTitle">Skills applied across the work</h2>
+          <p class="skills-intro" data-i18n="skillsIntro">Method, architecture and data products brought together from the first idea to daily use.</p>
+          <ol class="skills-list">
+            <li><span class="skill-number">01</span><div><strong data-i18n="capability1">Agile project management</strong><p data-i18n="capability1Detail">Methodical project steering and coordination; confident stakeholder management.</p></div></li>
+            <li><span class="skill-number">02</span><div><strong data-i18n="capability2">Scalable system architecture</strong><p data-i18n="capability2Detail">Designing robust, extensible system landscapes and interfaces.</p></div></li>
+            <li><span class="skill-number">03</span><div><strong data-i18n="capability3">Incremental delivery</strong><p data-i18n="capability3Detail">Planning and delivering small, focused proof-of-concept steps.</p></div></li>
+            <li><span class="skill-number">04</span><div><strong data-i18n="capability4">Process modelling</strong><p data-i18n="capability4Detail">Using process diagrams to model workflows and shape the system landscape.</p></div></li>
+            <li><span class="skill-number">05</span><div><strong data-i18n="capability5">ETL &amp; data modelling</strong><p data-i18n="capability5Detail">Structuring data flows and building consistent data models.</p></div></li>
+            <li><span class="skill-number">06</span><div><strong data-i18n="capability6">Data interface quality</strong><p data-i18n="capability6Detail">Establishing quality assurance across every data interface.</p></div></li>
+            <li><span class="skill-number">07</span><div><strong data-i18n="capability7">Interactive dashboards</strong><p data-i18n="capability7Detail">Data quality, search, dynamic filters, complex aggregation and management KPI tracking.</p></div></li>
+          </ol>
+        </aside>
       </div>
-    </section>
-
-    <section class="section" id="economics">
-      <div class="roi-panel">
-        <div>
-            <p class="roi-kicker" data-i18n="roiKicker">Feedback classification · scenario, not a forecast</p>
-          <h2 data-i18n="roiTitle">Illustrative potential: ~€249k gross labor-cost difference / year</h2>
-          <p class="roi-intro" data-i18n="roiIntro">Based on the stated daily volume and token estimate plus explicit manual-work assumptions. This is a gross scenario estimate—not measured, guaranteed or net savings.</p>
-          <span class="roi-label" data-i18n="roiScenario">Inputs to validate with operating data</span>
-          <details class="roi-details">
-            <summary data-i18n="roiDetailsLabel">See assumptions, break-even threshold and calendar-day variant</summary>
-            <p data-i18n="roiDetails">Scenario uses 1.5 minutes of manual handling per item, €40 fully loaded labor cost/hour and 250 processing days/year. For a gross difference above €200k, manual handling must average more than ~1.21 minutes/item under those assumptions. If 1,000 items are processed on all 365 calendar days, the same inputs yield ~€363,540/year gross (€365,000 labor minus €1,460 tokens). Implementation, human review, infrastructure and ongoing operations are excluded; released capacity is not automatically cash savings.</p>
-          </details>
-        </div>
-        <div class="roi-equation" aria-label="Illustrative annual savings calculation" data-i18n-aria="roiCalcAria">
-          <div class="roi-row"><span><span data-i18n="roiVolumeLabel">Feedback volume · stated input</span><small data-i18n="roiVolumeCalc">Items on each processing day</small></span><strong data-i18n="roiVolumeValue">~1,000 / day</strong></div>
-          <div class="roi-row"><span><span data-i18n="roiManualLabel">Manual classification · scenario</span><small data-i18n="roiManualCalc">1.5 min/item × €40 loaded hourly cost × 250 days</small></span><strong data-i18n="roiManualValue">€250,000 / yr</strong></div>
-          <div class="roi-row"><span><span data-i18n="roiTokensLabel">Translation + LLM tokens · stated estimate</span><small data-i18n="roiTokensCalc">€4/day × 250 processing days</small></span><strong data-i18n="roiTokensValue">− €1,000 / yr</strong></div>
-          <div class="roi-row difference"><span><span data-i18n="roiDifferenceLabel">Indicative gross difference</span><small data-i18n="roiDifferenceCalc">Before implementation, review and operating costs</small></span><strong data-i18n="roiDifferenceValue">~ €249,000 / yr</strong></div>
-          <p class="roi-formula"><span data-i18n="roiFormula">1,000 × 1.5 min ÷ 60 × €40/h × 250 − €4 × 250 = </span><strong data-i18n="roiFormulaResult">€249,000 gross</strong></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="skills-title">
-      <div class="skills-strip">
-        <strong class="skills-title" id="skills-title" data-i18n="skillsTitle">Skills applied across the work</strong>
-        <div class="skill-chips">
-          <span data-i18n="skill1">Product &amp; requirements analysis</span><span data-i18n="skill2">Data, cloud &amp; warehouse architecture</span><span data-i18n="skill3">Multilingual NLP &amp; localization</span><span data-i18n="skill4">Semantic &amp; KPI modeling</span><span data-i18n="skill5">Quality, governance &amp; BI</span><span data-i18n="skill6">Frontend, accessible UX &amp; delivery</span>
-        </div>
-      </div>
-      <div class="tech-strip"><strong data-i18n="techTitle">Illustrative target architecture</strong><div class="tech-tags" aria-label="Illustrative technology stack" data-i18n-aria="techAria"><span>Countly</span><span>Azure AI</span><span>Databricks</span><span>Veezoo / VQL</span><span>Amazon QuickSight</span><span>Power BI</span></div></div>
-      <p class="demo-note"><strong data-i18n="noteLabel">Portfolio prototype:</strong> <span data-i18n="noteText">the pages use illustrative data. Live AI, feedback sources, Veezoo/VQL, Databricks and production BI are not connected. The feedback-classification cost/time inputs are scenario assumptions; only the ~1,000/day volume and ~€4/day token estimate were supplied as inputs.</span></p>
+      <p class="demo-note"><strong data-i18n="prototypeLabel">Portfolio prototype:</strong> <span data-i18n="prototypeText">Both animations and chart values are illustrative. Live AI, feedback sources, Veezoo/VQL, Databricks and production BI are not connected.</span></p>
     </section>
   </main>
 
@@ -374,7 +434,22 @@
   <script>
     const strings = {
       en: {
-        brandSub: 'Use-case infographic', brandLabel: 'AI Applied Showcase home', signalCardAria: 'Infographic summary', signalFlowAria: 'Feedback to action', journeyAria: 'Five-step solution flow', roiCalcAria: 'Illustrative annual savings calculation', sampleAria: 'Illustrative Korean customer feedback example', techAria: 'Illustrative technology stack', analyticsSampleAria: 'Illustrative natural-language analytics example',
+        navSkills: 'Skills', overviewAria: 'Two AI use cases and the skills used to deliver them',
+          pageEyebrow: 'AI applied · Use Cases & Delivery Skills', pageTitle: 'My agile skillset for your data science, data analytics and AI projects.', pageIntro: 'I help you turn customer feedback into product improvements and use app data to make better decisions. Together, we create scalable architecture, trusted data quality and dashboards that help your teams act with confidence.',
+            feedbackCardTitle: 'Turn customer feedback into clear product signals.', feedbackCardLead: 'See what your customers need sooner. I connect their original words, sentiment and product context in a transparent workflow.',
+        feedbackDemoAria: 'Illustrative ring diagram of a daily feedback classification process, with four stages and a scenario volume of one thousand items.', feedbackDemoTitle: 'Daily feedback loop', demoScenario: 'Illustrative scenario', feedbackVolume: '~1,000', feedbackUnit: 'feedbacks / day', feedbackStage1: 'Collect', feedbackStage2: 'Classify', feedbackStage3: 'Add product context', feedbackStage4: 'Quality check', feedbackSource1: 'App Store', feedbackSource2: 'In-App', feedbackSource3: 'Support', feedbackSource4: 'CSAT', feedbackCardEvidence: 'Illustrative process; no live feedback sources or model calls are connected.',
+            analyticsCardTitle: 'Chat your Data', analyticsCardLead: 'Ask questions in plain language and turn app data into clear, actionable charts.',
+            analyticsDemoAria: 'Animated example: a natural-language question is entered, followed by a horizontal bar chart with simulated data.', analyticsDemoTitle: 'Question → chart', analyticsDemoTag: 'Simulated flow', chatQuestion: 'Which app features do your customers use most in Chicago?', analyticsResultTitle: 'Most-used features', analyticsResultLabel: 'Illustrative index', analyticsFeature1: 'Precondition vehicle', analyticsFeature2: 'Plan charging', analyticsFeature3: 'Start navigation', analyticsFeature4: 'Locate vehicle', analyticsCardEvidence: 'Query and chart use simulated data; Veezoo/VQL and live metrics are not connected.',
+            skillsEyebrow: 'Moving forward together', skillsTagline: 'From idea to everyday impact', skillsIntro: 'I guide your work from first concept to daily use, partnering with your team and stakeholders at every step.',
+            capability1: 'Agile project management', capability1Detail: 'I provide clear project steering, coordinate teams and involve stakeholders early.',
+            capability2: 'Scalable system architecture', capability2Detail: 'I design resilient architecture that grows with your requirements.',
+            capability3: 'Incremental delivery', capability3Detail: 'We make progress in useful steps and validate ideas through focused proof-of-concept work.',
+            capability4: 'Process modelling & diagrams', capability4Detail: 'I map workflows with process diagrams and shape a coherent system landscape with your team.',
+            capability5: 'ETL & data modelling', capability5Detail: 'I structure ETL flows into consistent, useful data models.',
+            capability6: 'Quality across data interfaces', capability6Detail: 'I establish quality checks across every data interface so issues surface early.',
+            capability7: 'Interactive data visualizations & dashboards', capability7Detail: 'I build search, dynamic filters, complex aggregations, data-quality checks and management KPI tracking into your dashboards.',
+        prototypeLabel: 'Portfolio prototype:', prototypeText: 'Both animations and chart values are illustrative. Live AI, feedback sources, Veezoo/VQL, Databricks and production BI are not connected.',
+        brandSub: 'Use cases & skills', brandLabel: 'AI Applied Showcase home', signalCardAria: 'Infographic summary', signalFlowAria: 'Feedback to action', journeyAria: 'Five-step solution flow', roiCalcAria: 'Illustrative annual savings calculation', sampleAria: 'Illustrative Korean customer feedback example', techAria: 'Illustrative technology stack', analyticsSampleAria: 'Illustrative natural-language analytics example',
         navFlow: 'Flow', navCases: 'Use cases', navEconomics: 'Business case',
         eyebrow: 'AI applied · Executive infographic', heroTitle: 'From customer voice to product insights.',
         heroIntro: 'A concise overview of two complementary use cases: turn multilingual feedback into product signals, then explore app usage asynchronously through governed self-service analytics.',
@@ -391,22 +466,22 @@
         step5Title: 'Decide & share', step5Text: 'Monitor feature launches, explore hypotheses and correlations, present findings.',
         flowBoundaryStrong: 'Boundary:', flowBoundary: ' this is a combined solution narrative, not a live end-to-end system. The two interactive pages demonstrate selected parts using sample content.',
         casesKicker: 'Distinct use-case value', casesTitle: 'Two problems. Two clear USPs.', casesSummary: 'Designed to complement each other: first make customer signals actionable, then make product usage easier to investigate.',
-        feedbackEyebrow: '01 · Feedback Intelligence', feedbackTagline: 'Context-rich customer signals', feedbackTitle: 'Preserve the voice. Connect it to the product.',
+        feedbackEyebrow: '01 · Feedback Intelligence', feedbackTagline: 'Put customer signals to work', feedbackTitle: 'Preserve the voice. Connect it to the product.',
         feedbackLead: 'Not just positive/negative labels: keep the original language and relate each signal to the feature and operating context.',
         sampleTitle: 'Illustrative sample · original voice retained', sampleTranslationLabel: 'Normalized · English', sampleSentiment: 'Negative', sampleFeature: 'Login & authentication', sampleSource: 'In-app feedback',
-        feedbackPoint1: 'Compare markets with original text and normalized translation together.',
-        feedbackPoint2: 'Connect topic and sentiment to feature, channel, country, platform and version.',
-        feedbackPoint3: 'Make outputs reviewable with reference examples, confidence checks and quality review.',
+        feedbackPoint1: 'Compare markets with original text and translations, keeping the customer voice intact.',
+        feedbackPoint2: 'Connect sentiment and themes to the relevant features, channels, markets, platforms and versions.',
+        feedbackPoint3: 'Validate classifications with reference examples, confidence checks and focused quality review.',
         evidenceLabel: 'In the demo:', feedbackEvidence: 'interactive Korean examples show the classification and feature-mapping experience; no live sources or model calls are connected.',
-        openFeedback: 'Open feedback showcase', analyticsEyebrow: '02 · Veezoo app analytics', analyticsTagline: 'Asynchronous self-service',
+        openFeedback: 'Explore the feedback demo', analyticsEyebrow: '02 · App analytics', analyticsTagline: 'Explore your app data directly',
         analyticsTitle: 'Explore app usage without the ad-hoc queue.',
         analyticsLead: 'The target: a Veezoo-based portal where teams investigate governed app and feature metrics themselves, instead of repeatedly queueing one-off requests with partners or service providers.',
-        analyticsPoint1: 'Use presentation-ready visualizations to report app and feature adoption to management.',
-        analyticsPoint2: 'Monitor usage after feature launches; test hypotheses and explore potential correlations.',
-        analyticsPoint3: 'Move from a question to a chart and take findings into management presentations; export CSV, Excel or editable PowerPoint.',
+        analyticsPoint1: 'Show feature adoption in clear, management-ready visualizations.',
+        analyticsPoint2: 'Track launches, test your hypotheses and uncover potential relationships.',
+        analyticsPoint3: 'Take insights into management presentations and share them through CSV, Excel or editable PowerPoint.',
         analyticsPromptLabel: 'Illustrative sample question · not a live query', analyticsPrompt: 'Show all app users from Chicago in September 2026 and list their top five app features.', analyticsUsers: '122,384 sample users', analyticsTopFeature: 'Top feature: Precondition vehicle · 94,520',
         targetLabel: 'Target vs. demo:', analyticsEvidence: 'Veezoo/VQL querying, the governed warehouse, live metrics, before/after analysis and correlations are not implemented; the natural-language query/results are simulated, while exports work on labeled sample data.',
-        openAnalytics: 'Open app analytics showcase',
+        openAnalytics: 'Try the Chat your Data demo',
         roiKicker: 'Feedback classification · scenario, not a forecast', roiTitle: 'Illustrative potential: ~€249k gross labor-cost difference / year',
         roiIntro: 'Based on the stated daily volume and token estimate plus explicit manual-work assumptions. This is a gross scenario estimate—not measured, guaranteed or net savings.',
         roiScenario: 'Inputs to validate with operating data', roiDetailsLabel: 'See assumptions, break-even threshold and calendar-day variant',
@@ -416,13 +491,28 @@
         roiTokensLabel: 'Translation + LLM tokens · stated estimate', roiTokensCalc: '€4/day × 250 processing days',
         roiDifferenceLabel: 'Indicative gross difference', roiDifferenceCalc: 'Before implementation, review and operating costs', roiFormula: '1,000 × 1.5 min ÷ 60 × €40/h × 250 − €4 × 250 = ', roiFormulaResult: '€249,000 gross',
         roiManualValue: '€250,000 / yr', roiTokensValue: '− €1,000 / yr', roiDifferenceValue: '~ €249,000 / yr',
-        skillsTitle: 'Skills applied across the work', skill1: 'Product & requirements analysis', skill2: 'Data, cloud & warehouse architecture', skill3: 'Multilingual NLP & localization', skill4: 'Semantic & KPI modeling', skill5: 'Quality, governance & BI', skill6: 'Frontend, accessible UX & delivery',
+        skillsTitle: 'Skills to move your project forward', skill1: 'Product & requirements analysis', skill2: 'Data, cloud & warehouse architecture', skill3: 'Multilingual NLP & localization', skill4: 'Semantic & KPI modeling', skill5: 'Quality, governance & BI', skill6: 'Frontend, accessible UX & delivery',
         techTitle: 'Illustrative target architecture',
         noteLabel: 'Portfolio prototype:', noteText: 'the pages use illustrative data. Live AI, feedback sources, Veezoo/VQL, Databricks and production BI are not connected. Manual handling time and labor cost in the feedback scenario are assumptions; only ~1,000 items/day and ~€4/day token cost were supplied as inputs.',
-        footerText: 'AI Applied Showcase · Concise solution infographic', footerFeedback: 'Feedback deep dive', footerAnalytics: 'Analytics deep dive', footerPrivacy: 'Privacy & tracking · draft',
+        footerText: 'AI Applied Showcase · Use Cases & Skills', footerFeedback: 'Explore feedback', footerAnalytics: 'Explore app analytics', footerPrivacy: 'Privacy & tracking · draft',
       },
       de: {
-        brandSub: 'Infografik zu den Use Cases', brandLabel: 'AI Applied Showcase – Startseite', signalCardAria: 'Infografik-Zusammenfassung', signalFlowAria: 'Vom Feedback zur Maßnahme', journeyAria: 'Fünfstufiger Lösungsablauf', roiCalcAria: 'Illustrative jährliche Einsparungsrechnung', sampleAria: 'Illustratives Beispiel für koreanisches Kundenfeedback', techAria: 'Illustrativer Technologie-Stack', analyticsSampleAria: 'Illustratives Beispiel für natürlichsprachliche Datenanalyse',
+        navSkills: 'Skills', overviewAria: 'Zwei AI Use Cases und die dafür eingesetzten Fähigkeiten',
+        pageEyebrow: 'KI in der Praxis · Use Cases & Umsetzung', pageTitle: 'Mein agiles Skillset für Ihre Projekte in Data Science, Data Analytics und KI.', pageIntro: 'Ich helfe Ihnen, Kundenfeedback in konkrete Produktimpulse zu verwandeln und App-Daten für bessere Entscheidungen zu nutzen. Gemeinsam schaffen wir skalierbare Architektur, verlässliche Datenqualität und Dashboards, mit denen Ihre Teams selbstständig handeln können.',
+          feedbackCardTitle: 'Machen Sie aus Feedback klare Produktsignale.', feedbackCardLead: 'Erkennen Sie schneller, was Ihre Kundinnen und Kunden brauchen. Ich verbinde Originalstimme, Stimmung und Produktkontext zu einem nachvollziehbaren Gesamtbild.',
+        feedbackDemoAria: 'Illustrative Ringgrafik eines täglichen Feedback-Klassifikationsprozesses mit vier Schritten und einem Szenariovolumen von eintausend Elementen.', feedbackDemoTitle: 'Täglicher Feedback-Kreislauf', demoScenario: 'Beispielszenario', feedbackVolume: '~1.000', feedbackUnit: 'Feedbacks / Tag', feedbackStage1: 'Erfassen', feedbackStage2: 'Klassifizieren', feedbackStage3: 'Produktkontext', feedbackStage4: 'Qualität sichern', feedbackSource1: 'App Store', feedbackSource2: 'In-App', feedbackSource3: 'Support', feedbackSource4: 'CSAT', feedbackCardEvidence: 'Illustrativer Prozess; Live-Feedbackquellen oder Modellaufrufe sind nicht angebunden.',
+          analyticsCardTitle: 'Chat your Data', analyticsCardLead: 'Stellen Sie Fragen in natürlicher Sprache und verwandeln Sie Ihre App-Daten in klare, handlungsrelevante Diagramme.',
+          analyticsDemoAria: 'Animiertes Beispiel: Eine natürlichsprachliche Frage wird eingegeben, danach erscheint ein Balkendiagramm mit simulierten Daten.', analyticsDemoTitle: 'Frage → Diagramm', analyticsDemoTag: 'Simulierter Ablauf', chatQuestion: 'Welche App-Funktionen nutzen Ihre Kundinnen und Kunden in Chicago am häufigsten?', analyticsResultTitle: 'Meistgenutzte Funktionen', analyticsResultLabel: 'Illustrativer Index', analyticsFeature1: 'Fahrzeug vorklimatisieren', analyticsFeature2: 'Laden planen', analyticsFeature3: 'Navigation starten', analyticsFeature4: 'Fahrzeug lokalisieren', analyticsCardEvidence: 'Abfrage und Diagramm verwenden Beispieldaten; Veezoo/VQL und Live-Kennzahlen sind nicht angebunden.',
+          skillsEyebrow: 'Gemeinsam vorankommen', skillsTagline: 'Von der Idee in den Arbeitsalltag', skillsIntro: 'Ich begleite Sie vom ersten Konzept bis zur täglichen Nutzung – strukturiert, in kleinen Schritten und gemeinsam mit Ihrem Team.',
+          capability1: 'Agiles Projektmanagement', capability1Detail: 'Ich steuere Projekte methodisch, koordiniere Teams und binde Ihre Stakeholder früh ein.',
+          capability2: 'Skalierbare Systemarchitektur', capability2Detail: 'Ich entwickle eine belastbare Architektur, die mit Ihren Anforderungen wächst.',
+          capability3: 'Inkrementelle Projektfortschritte', capability3Detail: 'Wir liefern in nutzbaren Schritten und validieren Ideen mit gezielten Proof-of-Concept-Ansätzen.',
+          capability4: 'Prozessmodellierung & Ablaufdiagramme', capability4Detail: 'Ich mache Abläufe sichtbar und entwickle mit Ihnen per Ablaufdiagrammen eine stimmige Systemlandschaft.',
+          capability5: 'ETL & Datenmodellierung', capability5Detail: 'Ich überführe Daten strukturiert in konsistente, für Ihr Team nutzbare Modelle.',
+          capability6: 'Qualitätssicherung an Datenschnittstellen', capability6Detail: 'Ich verankere Qualitätschecks an allen Datenschnittstellen, damit Probleme früh auffallen.',
+          capability7: 'Interaktive Datenvisualisierungen & Dashboards', capability7Detail: 'Ich integriere Suche, dynamische Filter, komplexe Aggregationen und Datenqualitätschecks, damit Sie Management-KPIs verlässlich nachverfolgen.',
+        prototypeLabel: 'Portfolio-Prototyp:', prototypeText: 'Animationen und Diagrammwerte sind illustrativ. Live-KI, Feedbackquellen, Veezoo/VQL, Databricks und Produktiv-BI sind nicht angebunden.',
+        brandSub: 'Use Cases & Skills', brandLabel: 'AI Applied Showcase – Startseite', signalCardAria: 'Infografik-Zusammenfassung', signalFlowAria: 'Vom Feedback zur Maßnahme', journeyAria: 'Fünfstufiger Lösungsablauf', roiCalcAria: 'Illustrative jährliche Einsparungsrechnung', sampleAria: 'Illustratives Beispiel für koreanisches Kundenfeedback', techAria: 'Illustrativer Technologie-Stack', analyticsSampleAria: 'Illustratives Beispiel für natürlichsprachliche Datenanalyse',
         navFlow: 'Ablauf', navCases: 'Use Cases', navEconomics: 'Wirtschaftlichkeit',
         eyebrow: 'KI in der Praxis · Executive-Infografik', heroTitle: 'Von Kundenstimmen zu Produkt-Insights.',
         heroIntro: 'Zwei ergänzende Use Cases auf einen Blick: Mehrsprachiges Feedback wird zu Produktsignalen; die App-Nutzung wird anschließend asynchron per kontrolliertem Self-Service analysierbar.',
@@ -439,22 +529,22 @@
         step5Title: 'Entscheiden & teilen', step5Text: 'Feature-Launches beobachten, Hypothesen und Korrelationen erkunden, Ergebnisse präsentieren.',
         flowBoundaryStrong: 'Abgrenzung:', flowBoundary: ' dies ist ein gemeinsames Lösungsnarrativ, kein durchgängig live integriertes System. Die zwei interaktiven Seiten zeigen ausgewählte Teile mit Beispieldaten.',
         casesKicker: 'Eigenständiger Mehrwert je Use Case', casesTitle: 'Zwei Probleme. Zwei klare USPs.', casesSummary: 'Die Lösungen ergänzen sich: erst Kundensignale nutzbar machen, dann Produktnutzung leichter untersuchen.',
-        feedbackEyebrow: '01 · Feedback Intelligence', feedbackTagline: 'Kundensignale mit Kontext', feedbackTitle: 'Originalstimme bewahren. Mit dem Produkt verknüpfen.',
+        feedbackEyebrow: '01 · Feedback Intelligence', feedbackTagline: 'Kundensignale wirksam nutzen', feedbackTitle: 'Originalstimme bewahren. Mit dem Produkt verknüpfen.',
         feedbackLead: 'Mehr als positiv/negativ: Die Ausgangssprache bleibt erhalten und jedes Signal wird mit Feature- und Nutzungskontext verknüpft.',
         sampleTitle: 'Beispiel · Originalstimme bleibt erhalten', sampleTranslationLabel: 'Normalisiert · Englisch', sampleSentiment: 'Negativ', sampleFeature: 'Login & Authentifizierung', sampleSource: 'In-App-Feedback',
-        feedbackPoint1: 'Märkte vergleichen und dabei Originaltext und normalisierte Übersetzung gemeinsam behalten.',
-        feedbackPoint2: 'Thema und Stimmung mit Feature, Kanal, Land, Plattform und Version verknüpfen.',
-        feedbackPoint3: 'Ergebnisse mit Referenzbeispielen, Konfidenzprüfungen und Qualitätskontrolle überprüfbar machen.',
+        feedbackPoint1: 'Vergleichen Sie Märkte mit Originaltext und Übersetzung – und bewahren Sie dabei die Stimme Ihrer Kundschaft.',
+        feedbackPoint2: 'Ordnen Sie Stimmung und Themen den passenden Features, Kanälen, Märkten, Plattformen und Versionen zu.',
+        feedbackPoint3: 'Prüfen Sie Zuordnungen anhand von Referenzbeispielen, Konfidenz und gezielter Qualitätssicherung.',
         evidenceLabel: 'In der Demo:', feedbackEvidence: 'Interaktive koreanische Beispiele zeigen Klassifikation und Feature-Zuordnung; Live-Datenquellen oder Modellaufrufe sind nicht angebunden.',
-        openFeedback: 'Feedback-Showcase öffnen', analyticsEyebrow: '02 · Veezoo App Analytics', analyticsTagline: 'Asynchroner Self-Service',
+        openFeedback: 'Feedback-Demo erleben', analyticsEyebrow: '02 · App Analytics', analyticsTagline: 'Erkunden Sie Ihre App-Daten selbst',
         analyticsTitle: 'App-Nutzung erkunden – ohne Ad-hoc-Warteschlange.',
         analyticsLead: 'Zielbild: ein Veezoo-Portal, in dem Teams kontrollierte App- und Feature-Kennzahlen selbst untersuchen, statt wiederholt Einzelanfragen bei Partnern oder Dienstleistern einzureihen.',
-        analyticsPoint1: 'Präsentationsfertige Visualisierungen zeigen App- und Feature-Akzeptanz im Management.',
-        analyticsPoint2: 'Nutzung nach Feature-Launches beobachten, eigene Hypothesen prüfen und mögliche Korrelationen erkunden.',
-        analyticsPoint3: 'Von der Frage zum Diagramm gelangen und Erkenntnisse in Management-Präsentationen übernehmen; CSV, Excel oder bearbeitbares PowerPoint exportieren.',
+        analyticsPoint1: 'Zeigen Sie Feature-Akzeptanz in klaren, managementtauglichen Visualisierungen.',
+        analyticsPoint2: 'Verfolgen Sie Launches, prüfen Sie Ihre Hypothesen und entdecken Sie mögliche Zusammenhänge.',
+        analyticsPoint3: 'Teilen Sie Erkenntnisse in Management-Präsentationen oder exportieren Sie sie als CSV, Excel und bearbeitbares PowerPoint.',
         analyticsPromptLabel: 'Beispielfrage · keine Live-Abfrage', analyticsPrompt: 'Zeige alle App-Nutzer aus Chicago im September 2026 und nenne die fünf meistgenutzten App-Funktionen.', analyticsUsers: '122.384 Beispiel-Nutzer', analyticsTopFeature: 'Top-Feature: Fahrzeug Vorklimatisieren · 94.520',
         targetLabel: 'Zielbild vs. Demo:', analyticsEvidence: 'Veezoo/VQL-Abfragen, kontrolliertes Warehouse, Live-Kennzahlen, Vorher-/Nachher-Analysen und Korrelationen sind nicht implementiert; natürlichsprachliche Abfrage und Ergebnisse sind simuliert, Exporte funktionieren mit gekennzeichneten Beispieldaten.',
-        openAnalytics: 'App-Analytics-Showcase öffnen',
+        openAnalytics: 'Chat your Data ausprobieren',
         roiKicker: 'Feedback-Klassifizierung · Szenario, keine Prognose', roiTitle: 'Beispielpotenzial: ~249.000 € Brutto-Arbeitskostendifferenz / Jahr',
         roiIntro: 'Basierend auf dem genannten Tagesvolumen und der Tokenkostenschätzung sowie ausdrücklich ausgewiesenen Annahmen zur manuellen Bearbeitung. Das ist ein Brutto-Szenario – keine gemessene, garantierte oder Netto-Einsparung.',
         roiScenario: 'Eingaben anhand Betriebsdaten validieren', roiDetailsLabel: 'Annahmen, Schwelle und Variante mit Kalendertagen ansehen',
@@ -464,10 +554,10 @@
         roiTokensLabel: 'Tokenkosten Übersetzung + LLM · Schätzung', roiTokensCalc: '4 €/Tag × 250 Verarbeitungstage',
         roiDifferenceLabel: 'Geschätzte Brutto-Differenz', roiDifferenceCalc: 'Vor Implementierungs-, Prüf- und Betriebskosten', roiFormula: '1.000 × 1,5 Min. ÷ 60 × 40 €/Std. × 250 − 4 € × 250 = ', roiFormulaResult: '249.000 € brutto',
         roiManualValue: '250.000 € / Jahr', roiTokensValue: '− 1.000 € / Jahr', roiDifferenceValue: '~ 249.000 € / Jahr',
-        skillsTitle: 'Eingesetzte Kompetenzen', skill1: 'Produkt- & Anforderungsanalyse', skill2: 'Daten-, Cloud- & Warehouse-Architektur', skill3: 'Mehrsprachiges NLP & Lokalisierung', skill4: 'Semantik & KPI-Modellierung', skill5: 'Qualität, Governance & BI', skill6: 'Frontend, barrierearme UX & Umsetzung',
+        skillsTitle: 'Skills, die Ihr Vorhaben voranbringen', skill1: 'Produkt- & Anforderungsanalyse', skill2: 'Daten-, Cloud- & Warehouse-Architektur', skill3: 'Mehrsprachiges NLP & Lokalisierung', skill4: 'Semantik & KPI-Modellierung', skill5: 'Qualität, Governance & BI', skill6: 'Frontend, barrierearme UX & Umsetzung',
         techTitle: 'Illustratives Architektur-Zielbild',
         noteLabel: 'Portfolio-Prototyp:', noteText: 'Die Seiten verwenden Beispieldaten. Live-KI, Feedbackquellen, Veezoo/VQL, Databricks und Produktiv-BI sind nicht angebunden. Bearbeitungszeit und Arbeitskosten im Feedback-Szenario sind Annahmen; als Inputs genannt wurden nur ~1.000 Feedbacks/Tag und ~4 € Tokenkosten/Tag.',
-        footerText: 'AI Applied Showcase · Kompakte Lösungsinfografik', footerFeedback: 'Feedback im Detail', footerAnalytics: 'Analytics im Detail', footerPrivacy: 'Datenschutz & Tracking · Entwurf',
+        footerText: 'AI Applied Showcase · Use Cases & Skills', footerFeedback: 'Feedback-Demo ansehen', footerAnalytics: 'Analytics-Demo ansehen', footerPrivacy: 'Datenschutz & Tracking · Entwurf',
       },
     };
 
@@ -475,10 +565,10 @@
     function applyLanguage(language) {
       const dictionary = strings[language];
       document.documentElement.lang = language;
-      document.title = language === 'de' ? 'AI Applied Showcase — Infografik' : 'AI Applied Showcase — Infographic';
+      document.title = 'AI Applied Showcase — Use Cases & Skills';
       document.querySelector('meta[name="description"]').content = language === 'de'
-        ? 'Kompakte Infografik: mehrsprachiges Kundenfeedback und Veezoo Self-Service App Analytics mit transparentem Einsparszenario.'
-        : 'Concise infographic: multilingual customer feedback and Veezoo self-service app analytics with a transparent savings scenario.';
+        ? 'Ich bringe Ihre Projekte in Data Science, Data Analytics und KI mit agilem Projektmanagement, skalierbarer Architektur und verlässlichen Datenprodukten voran.'
+        : 'I help move your data science, data analytics and AI projects forward with agile delivery, scalable architecture and trusted data products.';
       document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.dataset.i18n;
         if (dictionary[key] !== undefined) element.textContent = dictionary[key];
@@ -499,10 +589,42 @@
       if (savedLanguage === 'de' || savedLanguage === 'en') language = savedLanguage;
     } catch { /* Browser language still applies if storage is unavailable. */ }
     applyLanguage(language);
+    const chatQuestion = document.querySelector('#chat-question');
+    const analyticsDemo = document.querySelector('#analytics-demo');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let typingInterval;
+    let replayTimeout;
+    function startAnalyticsAnimation() {
+      window.clearInterval(typingInterval);
+      window.clearTimeout(replayTimeout);
+      const question = strings[language].chatQuestion;
+      analyticsDemo.classList.remove('is-answered');
+      if (reducedMotion.matches) {
+        analyticsDemo.classList.remove('is-typing');
+        chatQuestion.textContent = question;
+        analyticsDemo.classList.add('is-answered');
+        return;
+      }
+      analyticsDemo.classList.add('is-typing');
+      chatQuestion.textContent = '';
+      let characterIndex = 0;
+      typingInterval = window.setInterval(() => {
+        characterIndex += 1;
+        chatQuestion.textContent = question.slice(0, characterIndex);
+        if (characterIndex >= question.length) {
+          window.clearInterval(typingInterval);
+          analyticsDemo.classList.remove('is-typing');
+          analyticsDemo.classList.add('is-answered');
+          replayTimeout = window.setTimeout(startAnalyticsAnimation, 7000);
+        }
+      }, 38);
+    }
+    startAnalyticsAnimation();
     toggle.addEventListener('click', () => {
       language = document.documentElement.lang === 'de' ? 'en' : 'de';
       try { localStorage.setItem('ai-showcase-language', language); } catch { /* Use the choice for this visit. */ }
       applyLanguage(language);
+      startAnalyticsAnimation();
     });
   </script>
   <script src="./goatcounter-config.js"></script>
