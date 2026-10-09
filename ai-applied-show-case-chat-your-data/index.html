@@ -252,6 +252,43 @@
         </div>
     </section>
 
+    <section class="max-w-6xl mx-auto px-6 pb-10" id="chat-your-data-usps">
+        <div class="bg-slate-900/80 rounded-3xl border border-slate-700/80 p-6 md:p-8 shadow-xl">
+            <div class="max-w-3xl mb-6">
+                <p class="text-xs uppercase tracking-[0.18em] font-bold text-emerald-300 mb-3">Alleinstellungsmerkmale · Chat Your Data</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">Asynchroner Self-Service statt Ad-hoc-Warteschlange.</h2>
+                <p class="text-sm md:text-base leading-relaxed text-slate-400">Ein Veezoo-basiertes Self-Service-Datenexplorationsportal soll Teams direkten Zugang zu App- und Feature-Kennzahlen geben – ohne Partner und Dienstleister mit wiederholten Einzelanfragen auszulasten.</p>
+            </div>
+            <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+                <article class="rounded-2xl border border-blue-400/20 bg-blue-400/5 p-5">
+                    <div class="text-2xl mb-3" aria-hidden="true">🧠</div>
+                    <h3 class="font-bold text-white mb-2">Weniger iterative Ad-hoc-Schleifen</h3>
+                    <p class="text-sm leading-relaxed text-slate-400">Teams können definierte Fragen selbst und asynchron untersuchen, statt eine Analyse nach der anderen bei Partnern oder Dienstleistern anzufragen und darauf zu warten.</p>
+                    <span class="mt-4 inline-flex rounded-full border border-amber-400/20 bg-amber-400/5 px-2.5 py-1 text-[11px] text-amber-200">Zielbild · Portal nicht live angebunden</span>
+                </article>
+                <article class="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-5">
+                    <div class="text-2xl mb-3" aria-hidden="true">📊</div>
+                    <h3 class="font-bold text-white mb-2">App-Nutzung anschaulich monitoren</h3>
+                    <p class="text-sm leading-relaxed text-slate-400">Visuelle App- und Feature-Kennzahlen unterstützen die laufende Produktbeobachtung und liefern ansprechende Grafiken für Management-Präsentationen.</p>
+                    <span class="mt-4 inline-flex rounded-full border border-amber-400/20 bg-amber-400/5 px-2.5 py-1 text-[11px] text-amber-200">Zielbild · Live-Kennzahlen simuliert</span>
+                </article>
+                <article class="rounded-2xl border border-violet-400/20 bg-violet-400/5 p-5">
+                    <div class="text-2xl mb-3" aria-hidden="true">🧪</div>
+                    <h3 class="font-bold text-white mb-2">Feature-Launches datenbasiert bewerten</h3>
+                    <p class="text-sm leading-relaxed text-slate-400">Nutzung vor und nach der Einführung eines Features vergleichen, Trends und mögliche Korrelationen prüfen und Erkenntnisse in die nächste Produktentscheidung einbringen.</p>
+                    <span class="mt-4 inline-flex rounded-full border border-amber-400/20 bg-amber-400/5 px-2.5 py-1 text-[11px] text-amber-200">Zielbild · Vorher/Nachher und Korrelation nicht live</span>
+                </article>
+                <article class="rounded-2xl border border-sky-400/20 bg-sky-400/5 p-5">
+                    <div class="text-2xl mb-3" aria-hidden="true">📤</div>
+                    <h3 class="font-bold text-white mb-2">Ergebnisse direkt weitergeben</h3>
+                    <p class="text-sm leading-relaxed text-slate-400">Diagramme sowie CSV-, Excel- und bearbeitbare PowerPoint-Exporte erleichtern Analyse, Bericht und Management-Präsentation.</p>
+                    <span class="mt-4 inline-flex rounded-full border border-emerald-400/20 bg-emerald-400/5 px-2.5 py-1 text-[11px] text-emerald-200">Im Browser-Demo umgesetzt</span>
+                </article>
+            </div>
+            <p class="mt-5 text-xs leading-relaxed text-slate-500"><strong class="text-slate-300">Transparenz:</strong> Veezoo/VQL, semantische Live-Auswertung, Partnerentlastung, Vorher/Nachher-Vergleiche und Korrelationen beschreiben das Lösungsziel und sind in dieser Portfolio-Demo nicht implementiert. Die natürlichsprachliche Abfrage und Kennzahlen sind simuliert; die Exporte erzeugen lokale Dateien aus klar gekennzeichneten Beispieldaten.</p>
+        </div>
+    </section>
+
     <section class="max-w-5xl mx-auto px-6 py-12">
         <div class="bg-slate-900 rounded-3xl shadow-2xl overflow-hidden border border-slate-700" id="demo-container">
             
@@ -391,6 +428,34 @@
 
     <script>
         const textTranslations = {
+            'Alleinstellungsmerkmale · Chat Your Data': 'What makes Chat Your Data distinct',
+            'Asynchroner Self-Service statt Ad-hoc-Warteschlange.': 'Asynchronous self-service instead of an ad-hoc request queue.',
+            'Ein Veezoo-basiertes Self-Service-Datenexplorationsportal soll Teams direkten Zugang zu App- und Feature-Kennzahlen geben – ohne Partner und Dienstleister mit wiederholten Einzelanfragen auszulasten.': 'A Veezoo-based self-service data-exploration portal is intended to give teams direct access to app and feature metrics—without overloading partners and service providers with repeated one-off requests.',
+            'Weniger iterative Ad-hoc-Schleifen': 'Fewer iterative ad-hoc loops',
+            'Teams können definierte Fragen selbst und asynchron untersuchen, statt eine Analyse nach der anderen bei Partnern oder Dienstleistern anzufragen und darauf zu warten.': 'Teams can investigate defined questions themselves and asynchronously, rather than repeatedly requesting analyses from partners or providers and waiting for each response.',
+            'Zielbild · Portal nicht live angebunden': 'Target operating model · portal not live-connected',
+            'App-Nutzung anschaulich monitoren': 'Monitor app usage visually',
+            'Visuelle App- und Feature-Kennzahlen unterstützen die laufende Produktbeobachtung und liefern ansprechende Grafiken für Management-Präsentationen.': 'Visual app and feature metrics support ongoing product monitoring and provide engaging charts for management presentations.',
+            'Zielbild · Live-Kennzahlen simuliert': 'Target operating model · live metrics simulated',
+            'Feature-Launches datenbasiert bewerten': 'Evaluate feature launches with data',
+            'Nutzung vor und nach der Einführung eines Features vergleichen, Trends und mögliche Korrelationen prüfen und Erkenntnisse in die nächste Produktentscheidung einbringen.': 'Compare usage before and after a feature launch, explore trends and potential correlations, and use the findings to inform the next product decision.',
+            'Zielbild · Vorher/Nachher und Korrelation nicht live': 'Target operating model · before/after and correlation analysis not live',
+            'Ergebnisse direkt weitergeben': 'Share results directly',
+            'Diagramme sowie CSV-, Excel- und bearbeitbare PowerPoint-Exporte erleichtern Analyse, Bericht und Management-Präsentation.': 'Charts plus CSV, Excel and editable PowerPoint exports support analysis, reporting and management presentations.',
+            'Transparenz:': 'Transparency:',
+            'Veezoo/VQL, semantische Live-Auswertung, Partnerentlastung, Vorher/Nachher-Vergleiche und Korrelationen beschreiben das Lösungsziel und sind in dieser Portfolio-Demo nicht implementiert. Die natürlichsprachliche Abfrage und Kennzahlen sind simuliert; die Exporte erzeugen lokale Dateien aus klar gekennzeichneten Beispieldaten.': 'Veezoo/VQL, live semantic analysis, reducing partner request load, before/after comparisons and correlations describe the target solution and are not implemented in this portfolio demo. The natural-language query and metrics are simulated; exports create local files from clearly labeled sample data.',
+            'Geschäftsdaten verstehen, ohne an SQL zu denken.': 'Explore business data without having to write SQL.',
+            'Der besondere Wert liegt in der Kombination aus gemeinsamer Geschäftssemantik, natürlichsprachlicher Exploration und direkt weiterverwendbaren Ergebnissen.': 'The differentiator is the combination of shared business semantics, natural-language exploration and results ready to reuse.',
+            'Gemeinsame Bedeutung statt SQL-Silos': 'Shared meaning instead of SQL silos',
+            'Eine semantische Ebene kann Fachbegriffe, KPIs und Kennzahlen vereinheitlichen und natürlichsprachliche Fragen konsistenter interpretieren.': 'A semantic layer can align business terms, KPIs and metrics, helping interpret natural-language questions consistently.',
+            'Lösungsziel · nicht live angebunden': 'Solution target · not live-connected',
+            'Kontrollierter Zugriff mit skalierbarem Datenpfad': 'Governed access with a scalable data path',
+            'Das Architekturziel verbindet rollenbasierte Zugriffe mit einem elastischen Warehouse, damit Self-Service nicht auf Kosten von Governance geht.': 'The architecture aims to combine role-based access with an elastic warehouse, so self-service does not come at the expense of governance.',
+            'Architekturkonzept · simuliert': 'Architecture concept · simulated',
+            'Vom Ergebnis zur Weiterverwendung': 'From result to reuse',
+            'Diagramme unterstützen die schnelle Einordnung; CSV, Excel und PowerPoint machen Ergebnisse für Analyse, Bericht und Präsentation nutzbar.': 'Charts help interpret results quickly; CSV, Excel and PowerPoint make them useful for analysis, reporting and presentations.',
+            'Im Browser-Demo umgesetzt': 'Implemented in this browser demo',
+            'Natürlichsprachliche Datenabfrage, semantische Auswertung und Warehouse-Ergebnis sind in dieser Portfolio-Demo simuliert. Die Exporte erzeugen lokale Dateien aus klar gekennzeichneten Beispieldaten.': 'Natural-language data querying, semantic interpretation and warehouse results are simulated in this portfolio demo. Exports create local files from clearly labeled sample data.',
             'Interaktive Datenanalyse neu gedacht': 'Rethinking interactive data analytics',
             'Ein Paradigmenwechsel im Self-Service BI: Komplexe App-Daten werden durch die Integration einer Schweizer NLP-Lösung (Veezoo) und eines dynamisch skalierenden Databricks Data-Warehouses per natürlicher Sprache abfragbar.': 'A new approach to self-service BI: complex app data becomes searchable in natural language through a Swiss NLP solution (Veezoo) and an elastically scaling Databricks data warehouse.',
             'Demo-Simulation: Beispielwerte, keine Echtdaten und keine Live-Abfrage.': 'Demo simulation: sample values only — no real data or live queries.',

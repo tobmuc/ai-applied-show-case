@@ -226,6 +226,21 @@
     .mapping-result .tag { font-size: .61rem; }
     .mapping-result svg { width: 13px; height: 13px; color: var(--mint); }
 
+    .case-economics { padding: clamp(23px, 4vw, 37px); border: 1px solid rgba(107,226,212,.21); border-radius: var(--radius); background: radial-gradient(ellipse at 90% 0, rgba(107,226,212,.1), transparent 27rem), rgba(13,27,41,.72); }
+    .economics-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 11px; margin-top: 20px; }
+    .economic-card { min-width: 0; padding: 15px; border: 1px solid rgba(176,219,230,.12); border-radius: 13px; background: rgba(5,17,29,.46); }
+    .economic-card.highlight { border-color: rgba(107,226,212,.34); background: rgba(107,226,212,.07); }
+    .economic-card span { display: block; margin-bottom: 7px; color: #93aab4; font-size: .65rem; line-height: 1.4; }
+    .economic-card strong { display: block; margin-bottom: 7px; color: #f2fbfb; font-size: clamp(1.2rem, 2.6vw, 1.7rem); letter-spacing: -.04em; }
+    .economic-card.highlight strong { color: #8df2df; }
+    .economic-card small { display: block; color: #8fa4af; font-size: .61rem; line-height: 1.55; }
+    .economic-caveat { margin: 13px 0 0; color: #9aafbb; font-size: .67rem; line-height: 1.65; }
+    .economic-link { display: inline-flex; margin-top: 13px; color: #a8f4e9; font-size: .7rem; font-weight: 700; }
+    .case-usp-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; }
+    .case-usp-card { padding: 19px; border: 1px solid rgba(176,219,230,.13); border-radius: 15px; background: linear-gradient(155deg, rgba(17,35,50,.84), rgba(9,22,34,.78)); }
+    .case-usp-card h3 { display: flex; align-items: center; gap: 9px; margin: 0 0 8px; font-size: .86rem; }
+    .case-usp-card h3 span { color: var(--mint); }
+    .case-usp-card p { margin: 0; color: #91a7b2; font-size: .7rem; line-height: 1.6; }
     .ops-section { padding-top: 52px; }
     .ops-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
     .ops-card { position: relative; min-height: 174px; padding: 20px; overflow: hidden; border: 1px solid rgba(176,219,230,.13); border-radius: 16px; background: linear-gradient(155deg, rgba(17,35,50,.83), rgba(9,22,34,.78)); transition: transform .25s ease, border-color .25s, box-shadow .25s; }
@@ -301,6 +316,8 @@
       .demo-disclaimer { margin-top: 16px; }
       .record-meta { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .closing-panel { align-items: flex-start; flex-direction: column; }
+      .economics-grid { grid-template-columns: 1fr; }
+      .case-usp-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 500px) {
       .shell { width: min(100% - 28px, 450px); }
@@ -558,6 +575,40 @@
       </div>
     </section>
 
+    <section class="section" id="feedback-differentiators">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div><p class="section-kicker">Was den Use Case auszeichnet</p><h2>Mehr als Sentiment.<br><span class="gradient-text">Kontext für Maßnahmen.</span></h2></div>
+          <p class="section-intro">Der Mehrwert entsteht aus der Verbindung von Originalsprache, einheitlicher Klassifikation und konkretem Produktkontext – nicht aus einem isolierten KI-Label.</p>
+        </div>
+        <div class="case-usp-grid">
+          <article class="case-usp-card"><h3><span aria-hidden="true">🌐</span>Originalsprache bleibt erhalten</h3><p>Originaltext und normalisierte Übersetzung stehen gemeinsam bereit. So können Teams globale Themen vergleichen, ohne Nuancen oder Quellenbezug der Kundenstimme zu verlieren.</p></article>
+          <article class="case-usp-card"><h3><span aria-hidden="true">🧭</span>Von Stimmung zu Feature-Kontext</h3><p>Thema und Sentiment werden mit App-Feature, Kanal, Land, Plattform und Version verknüpft. Das macht aus einer Stimmungskennzahl einen Ansatzpunkt für Produktteams.</p></article>
+          <article class="case-usp-card"><h3><span aria-hidden="true">✅</span>Nachvollziehbar statt Black Box</h3><p>Referenzbeispiele, Konfidenz und Qualitätsprüfungen schaffen einen vorgesehenen Weg, KI-Klassifikationen zu prüfen und Taxonomien gezielt zu verbessern.</p></article>
+          <article class="case-usp-card"><h3><span aria-hidden="true">📊</span>Für Entscheidungen aufbereitet</h3><p>Metadaten, Trends und Feature-Zuordnung unterstützen vergleichbare Ansichten für Produkt, Support und Management – statt manueller Einzelprüfung verstreuter Kommentare.</p></article>
+        </div>
+        <p class="demo-disclaimer"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>Die gezeigten Beispiele illustrieren das Lösungsdesign. Live-Datenaufnahme, Übersetzungs- oder LLM-Aufrufe sowie produktive BI sind nicht angebunden.</span></p>
+      </div>
+    </section>
+
+    <section class="section" id="business-case">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div><p class="section-kicker">Wirtschaftliches Potenzial</p><h2>Aufwand senken.<br><span class="gradient-text">Feedback besser skalieren.</span></h2></div>
+          <p class="section-intro">Bei rund 1.000 Feedbacks an 250 Verarbeitungstagen pro Jahr zeigt das Szenario eine Brutto-Differenz von etwa 249.000 € pro Jahr – unter den offengelegten Annahmen.</p>
+        </div>
+        <div class="case-economics reveal">
+          <div class="economics-grid">
+            <div class="economic-card"><span>Manuelle Klassifizierung · Szenario</span><strong>250.000 € / Jahr</strong><small>1.000 Feedbacks je Arbeitstag × 1,5 Min. × 40 €/Std. Vollkosten × 250 Arbeitstage</small></div>
+            <div class="economic-card"><span>Übersetzung + LLM-Tokenkosten · Schätzung</span><strong>1.000 € / Jahr</strong><small>Ca. 4 € je Verarbeitungstag × 250 Arbeitstage</small></div>
+            <div class="economic-card highlight"><span>Geschätzte Brutto-Differenz</span><strong>249.000 € / Jahr</strong><small>Direkte Arbeitskosten minus Tokenkosten; vor weiteren Kosten</small></div>
+          </div>
+          <p class="economic-caveat"><strong>Annahmen, keine Messwerte:</strong> Die Rechnung setzt 1,5 Minuten manuelle Bearbeitung pro Feedback, 40 € Arbeitsvollkosten pro Stunde und 250 Verarbeitungstage pro Jahr an; diese Werte müssen mit Betriebsdaten validiert werden. Für mehr als 200.000 € Brutto-Differenz müsste die manuelle Bearbeitung unter diesen Annahmen im Schnitt mehr als ca. 1,21 Minuten pro Feedback dauern. Die 4 €/Tag umfassen nur Tokenkosten. Implementierung, Infrastruktur, menschliche Prüfung, Qualitätssicherung, Ausnahmefälle und Betrieb sind nicht berücksichtigt. Freiwerdende Kapazität ist nicht automatisch eine zahlungswirksame Nettoeinsparung.</p>
+          <a class="economic-link" href="../#use-case-usps">Alleinstellungsmerkmale und vollständige Annahmen ansehen <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
     <section class="section ops-section" id="tech-stack">
       <div class="shell">
         <div class="section-head reveal">
@@ -658,6 +709,39 @@
     });
 
     const deToEn = {
+      "Was den Use Case auszeichnet": "What makes this use case distinct",
+      "Mehr als Sentiment.": "More than sentiment.",
+      "Kontext für Maßnahmen.": "Context for action.",
+      "Der Mehrwert entsteht aus der Verbindung von Originalsprache, einheitlicher Klassifikation und konkretem Produktkontext – nicht aus einem isolierten KI-Label.": "The value comes from connecting original language, consistent classification and concrete product context—not from an isolated AI label.",
+      "🌐": "🌐",
+      "Originalsprache bleibt erhalten": "Preserve the original voice",
+      "Originaltext und normalisierte Übersetzung stehen gemeinsam bereit. So können Teams globale Themen vergleichen, ohne Nuancen oder Quellenbezug der Kundenstimme zu verlieren.": "Keep original text alongside normalized translation. Teams can compare global themes without losing nuance or the source of each customer voice.",
+      "🧭": "🧭",
+      "Von Stimmung zu Feature-Kontext": "From sentiment to feature context",
+      "Thema und Sentiment werden mit App-Feature, Kanal, Land, Plattform und Version verknüpft. Das macht aus einer Stimmungskennzahl einen Ansatzpunkt für Produktteams.": "Connect topic and sentiment to app feature, channel, country, platform and version. This turns a sentiment score into a starting point for product action.",
+      "✅": "✅",
+      "Nachvollziehbar statt Black Box": "Reviewable, not a black box",
+      "Referenzbeispiele, Konfidenz und Qualitätsprüfungen schaffen einen vorgesehenen Weg, KI-Klassifikationen zu prüfen und Taxonomien gezielt zu verbessern.": "Reference examples, confidence checks and quality reviews provide a path to validate AI classifications and improve taxonomies deliberately.",
+      "📊": "📊",
+      "Für Entscheidungen aufbereitet": "Ready for decisions",
+      "Metadaten, Trends und Feature-Zuordnung unterstützen vergleichbare Ansichten für Produkt, Support und Management – statt manueller Einzelprüfung verstreuter Kommentare.": "Metadata, trends and feature mapping support comparable views for product, support and leadership—instead of manually inspecting scattered comments one by one.",
+      "Die gezeigten Beispiele illustrieren das Lösungsdesign. Live-Datenaufnahme, Übersetzungs- oder LLM-Aufrufe sowie produktive BI sind nicht angebunden.": "The examples illustrate the solution design. Live data ingestion, translation or LLM calls, and production BI are not connected.",
+      "Wirtschaftliches Potenzial": "Illustrative savings potential",
+      "Aufwand senken.": "Reduce handling effort.",
+      "Feedback besser skalieren.": "Scale feedback analysis.",
+      "Bei rund 1.000 Feedbacks an 250 Verarbeitungstagen pro Jahr zeigt das Szenario eine Brutto-Differenz von etwa 249.000 € pro Jahr – unter den offengelegten Annahmen.": "At roughly 1,000 feedback items on 250 processing days per year, this scenario shows a gross difference of about €249,000 per year—under the stated assumptions.",
+      "Manuelle Klassifizierung · Szenario": "Manual classification · scenario",
+      "250.000 € / Jahr": "€250,000 / year",
+      "1.000 Feedbacks je Arbeitstag × 1,5 Min. × 40 €/Std. Vollkosten × 250 Arbeitstage": "1,000 items per workday × 1.5 min × €40 loaded cost/hour × 250 workdays",
+      "Übersetzung + LLM-Tokenkosten · Schätzung": "Translation + LLM token costs · estimate",
+      "1.000 € / Jahr": "€1,000 / year",
+      "Ca. 4 € je Verarbeitungstag × 250 Arbeitstage": "Approx. €4 per processing day × 250 workdays",
+      "Geschätzte Brutto-Differenz": "Indicative gross difference",
+      "249.000 € / Jahr": "€249,000 / year",
+      "Direkte Arbeitskosten minus Tokenkosten; vor weiteren Kosten": "Direct labor cost minus token cost; before other costs",
+      "Annahmen, keine Messwerte:": "Assumptions, not measured values:",
+      "Die Rechnung setzt 1,5 Minuten manuelle Bearbeitung pro Feedback, 40 € Arbeitsvollkosten pro Stunde und 250 Verarbeitungstage pro Jahr an; diese Werte müssen mit Betriebsdaten validiert werden. Für mehr als 200.000 € Brutto-Differenz müsste die manuelle Bearbeitung unter diesen Annahmen im Schnitt mehr als ca. 1,21 Minuten pro Feedback dauern. Die 4 €/Tag umfassen nur Tokenkosten. Implementierung, Infrastruktur, menschliche Prüfung, Qualitätssicherung, Ausnahmefälle und Betrieb sind nicht berücksichtigt. Freiwerdende Kapazität ist nicht automatisch eine zahlungswirksame Nettoeinsparung.": "The calculation assumes 1.5 minutes of manual handling per item, €40 fully loaded labor cost per hour and 250 processing days per year; validate these values against operating data. To exceed €200,000 gross difference, average manual handling must exceed about 1.21 minutes per item under these assumptions. The €4/day covers token costs only. Implementation, infrastructure, human review, quality assurance, exceptions and operations are excluded. Released capacity does not automatically become cash savings.",
+      "Alleinstellungsmerkmale und vollständige Annahmen ansehen": "View differentiators and full assumptions",
       "Kundenerlebnis · KI-Pipeline": "Customer experience · AI pipeline",
       "Über alle Kanäle": "Across channels",
       "Für Stakeholder aufbereitet": "Stakeholder-ready",

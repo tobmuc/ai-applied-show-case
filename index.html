@@ -94,6 +94,41 @@
     .benefit-icon { display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 14px; border: 1px solid rgba(168,144,255,.25); border-radius: 11px; background: rgba(168,144,255,.08); font-size: 1rem; }
     .benefit-card h3 { margin-bottom: 7px; font-size: .85rem; }
     .benefit-card p { margin: 0; color: #8fa4af; font-size: .72rem; line-height: 1.58; }
+    .usp-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 15px; }
+    .usp-card { padding: clamp(21px,3vw,29px); border: 1px solid rgba(176,219,230,.14); border-radius: 19px; background: linear-gradient(155deg, rgba(17,35,50,.9), rgba(9,22,34,.86)); }
+    .usp-card.feedback { border-top: 3px solid #6be2d4; }
+    .usp-card.analytics { border-top: 3px solid #a890ff; }
+    .usp-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .usp-card-icon { display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; border: 1px solid rgba(107,226,212,.2); border-radius: 13px; background: rgba(107,226,212,.07); font-size: 1.15rem; }
+    .usp-card.analytics .usp-card-icon { border-color: rgba(168,144,255,.23); background: rgba(168,144,255,.08); }
+    .usp-card-head small { color: var(--mint); font-size: .63rem; font-weight: 780; letter-spacing: .11em; text-transform: uppercase; }
+    .usp-card.analytics .usp-card-head small { color: #c0b0ff; }
+    .usp-card h3 { margin: 0 0 9px; font-size: 1.2rem; line-height: 1.2; letter-spacing: -.035em; }
+    .usp-card-intro { margin: 0 0 18px; color: #9aafbb; font-size: .77rem; line-height: 1.6; }
+    .usp-points { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; }
+    .usp-points li { position: relative; padding-left: 19px; color: #9aafbb; font-size: .72rem; line-height: 1.58; }
+    .usp-points li::before { position: absolute; top: .02em; left: 0; color: var(--mint); content: "✦"; font-size: .72rem; }
+    .usp-card.analytics .usp-points li::before { color: #c0b0ff; }
+    .usp-points strong { color: #e4f0f1; font-weight: 720; }
+    .usp-evidence { margin-top: 17px; padding: 11px 12px; border: 1px solid rgba(176,219,230,.1); border-radius: 11px; background: rgba(5,17,29,.34); color: #93aab4; font-size: .66rem; line-height: 1.55; }
+    .usp-evidence strong { color: #c9fff7; }
+    .usp-evidence.concept strong { color: #ffdfaa; }
+    .savings-panel { margin-top: 17px; padding: clamp(22px,4vw,34px); border: 1px solid rgba(107,226,212,.22); border-radius: 20px; background: radial-gradient(ellipse at 90% 0, rgba(107,226,212,.11), transparent 27rem), linear-gradient(135deg, rgba(16,39,50,.88), rgba(9,22,34,.92)); }
+    .savings-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 22px; margin-bottom: 21px; }
+    .savings-header h3 { margin: 0 0 7px; font-size: clamp(1.3rem,2.7vw,2rem); letter-spacing: -.045em; }
+    .savings-header p { max-width: 690px; margin: 0; color: #9aafbb; font-size: .75rem; line-height: 1.6; }
+    .savings-badge { flex: 0 0 auto; padding: 7px 10px; border: 1px solid rgba(255,207,123,.22); border-radius: 999px; background: rgba(255,207,123,.07); color: #ffdfaa; font-size: .61rem; font-weight: 720; }
+    .savings-metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 11px; }
+    .savings-metric { min-width: 0; padding: 15px; border: 1px solid rgba(176,219,230,.12); border-radius: 14px; background: rgba(5,17,29,.46); }
+    .savings-metric.highlight { border-color: rgba(107,226,212,.32); background: rgba(107,226,212,.07); }
+    .savings-metric span { display: block; margin-bottom: 7px; color: #93aab4; font-size: .65rem; line-height: 1.4; }
+    .savings-metric strong { display: block; margin-bottom: 7px; color: #f2fbfb; font-size: clamp(1.2rem,2.5vw,1.72rem); letter-spacing: -.04em; }
+    .savings-metric.highlight strong { color: #8df2df; }
+    .savings-metric small { display: block; color: #8fa4af; font-size: .61rem; line-height: 1.55; }
+    .savings-assumptions { display: grid; grid-template-columns: 1.1fr .9fr; gap: 12px; margin-top: 13px; }
+    .savings-assumption { padding: 13px 15px; border: 1px solid rgba(176,219,230,.1); border-radius: 12px; background: rgba(5,17,29,.27); color: #9aafbb; font-size: .67rem; line-height: 1.6; }
+    .savings-assumption strong { color: #d7e8eb; }
+    .savings-footnote { margin: 13px 0 0; color: #8299a5; font-size: .62rem; line-height: 1.6; }
     .skills-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; }
     .skill-card { min-height: 205px; padding: 20px; border: 1px solid rgba(176,219,230,.13); border-radius: 16px; background: linear-gradient(155deg, rgba(17,35,50,.84), rgba(9,22,34,.78)); }
     .skill-card-top { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
@@ -139,6 +174,7 @@
       .flow-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
       .flow-step:nth-child(3)::after { display: none; }
       .benefit-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .usp-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
     @media (max-width: 680px) {
@@ -147,6 +183,7 @@
       .nav-right { gap: 10px; }
       .nav-links { gap: 11px; }
       .nav-links a:nth-child(2) { display: none; }
+      .nav-links a:first-child, .nav-links a:last-child { display: none; }
       .nav-links { font-size: .69rem; }
       .language-toggle { min-height: 34px; padding-inline: 7px; font-size: .66rem; }
       .hero { padding: 58px 0 42px; }
@@ -162,6 +199,8 @@
       .flow-step:last-child::after { display: none; }
       .benefit-grid { grid-template-columns: 1fr; }
       .benefit-card { min-height: auto; }
+      .savings-header { flex-direction: column; }
+      .savings-metrics, .savings-assumptions { grid-template-columns: 1fr; }
       .skills-grid, .skills-notes { grid-template-columns: 1fr; }
       .skill-card { min-height: auto; }
       .solution-map-grid { grid-template-columns: 1fr; }
@@ -191,6 +230,7 @@
           <a href="#showcases">Showcases</a>
           <a href="#journey">Combined flow</a>
           <a href="#benefits">Benefits</a>
+          <a href="#use-case-usps">Use-case USPs</a>
           <a href="#skills">Skills</a>
         </nav>
         <button class="language-toggle" id="language-toggle" type="button" aria-label="Switch language to German" title="Switch language"><span data-language-option="en">EN</span><span aria-hidden="true">/</span><span data-language-option="de">DE</span></button>
@@ -243,6 +283,56 @@
             <a class="card-link" href="./ai-applied-show-case-chat-your-data/">Open data analytics showcase <span aria-hidden="true">↗</span></a>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="use-case-usps">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="kicker">Unique value by use case</p><h2>Different problems.<br><span class="gradient">Distinct advantages.</span></h2></div>
+          <p class="section-intro">The two use cases solve different bottlenecks: turning multilingual customer comments into traceable product signals, and making governed business metrics easier to explore.</p>
+        </div>
+        <div class="usp-grid">
+          <article class="usp-card feedback">
+            <div class="usp-card-head"><span class="usp-card-icon" aria-hidden="true">💬</span><div><small>01 · Feedback intelligence</small></div></div>
+            <h3>From multilingual feedback volume to feature-level action</h3>
+            <p class="usp-card-intro">The differentiator is not just automatic sentiment labeling: it connects each customer voice to a consistent language, product feature and operating context.</p>
+            <ul class="usp-points">
+              <li><strong>Keep the original voice:</strong> retain source-language feedback alongside normalized translations for comparisons across markets.</li>
+              <li><strong>Go beyond positive or negative:</strong> combine topic, sentiment, app feature, channel, country, platform and version context.</li>
+              <li><strong>Make classifications reviewable:</strong> design for reference examples, confidence checks and downstream quality review rather than treating an AI label as ground truth.</li>
+            </ul>
+            <div class="usp-evidence"><strong>Demo boundary:</strong> the Korean examples and classifications are illustrative; live channel ingestion and model calls are not connected.</div>
+          </article>
+          <article class="usp-card analytics">
+            <div class="usp-card-head"><span class="usp-card-icon" aria-hidden="true">📊</span><div><small>02 · Chat your data</small></div></div>
+            <h3>Async self-service instead of an ad-hoc request queue</h3>
+            <p class="usp-card-intro">A Veezoo-based, asynchronous self-service data-exploration portal can give teams direct access to governed app-usage and feature metrics—without repeatedly queuing one-off analysis requests with partners or service providers.</p>
+            <ul class="usp-points">
+              <li><strong>Reduce iterative handoffs:</strong> let teams explore defined metrics asynchronously instead of sending repeated ad-hoc questions to external partners and waiting for each analysis cycle.</li>
+              <li><strong>Make app and feature usage visible:</strong> use engaging, presentation-ready visualizations to review adoption and monitor usage after a feature launch.</li>
+              <li><strong>Support evidence-led decisions:</strong> explore trends and potential correlations, compare usage before and after releases, then carry findings into management presentations.</li>
+            </ul>
+            <div class="usp-evidence concept"><strong>Architecture target—not a live integration:</strong> Veezoo/VQL, governed data access, asynchronous self-service exploration and correlation analysis are not connected or implemented in this demo. Its natural-language query and sample results are simulated; CSV, Excel and PowerPoint exports work on labeled sample data.</div>
+          </article>
+        </div>
+
+        <aside class="savings-panel" aria-labelledby="savings-title">
+          <div class="savings-header">
+            <div><p class="kicker">Feedback classification · illustrative business case</p><h3 id="savings-title">Potential for &gt; €200,000 gross labor savings per year</h3><p>At roughly 1,000 feedback items on each of 250 processing days per year, a transparent baseline scenario gives approximately €249,000/year in direct labor-cost difference versus estimated translation and LLM token costs.</p></div>
+            <span class="savings-badge">Scenario, not a measured result</span>
+          </div>
+          <div class="savings-metrics">
+            <div class="savings-metric"><span>Manual classification · scenario baseline</span><strong>€250,000 / year</strong><small>1,000/day × 1.5 min each × €40 loaded hourly cost × 250 working days</small></div>
+            <div class="savings-metric"><span>Translation + LLM tokens · estimate provided</span><strong>€1,000 / year</strong><small>Approx. €4 per processing day × 250 working days</small></div>
+            <div class="savings-metric highlight"><span>Indicative gross annual difference</span><strong>€249,000 / year</strong><small>Manual labor baseline minus token estimate; before other costs</small></div>
+          </div>
+          <div class="savings-assumptions">
+            <div class="savings-assumption"><strong>What the &gt;€200k threshold assumes:</strong> at €40 loaded labor cost/hour and 250 working days/year, average manual handling must exceed about 1.21 minutes per feedback at 1,000 items/day. The example uses 1.5 minutes.</div>
+            <div class="savings-assumption"><strong>Validate before using as a forecast:</strong> replace handling time, fully loaded labor cost, actual processing days and token usage with measured company data.</div>
+          </div>
+          <p class="savings-footnote">This is an illustrative gross direct-labor comparison, not guaranteed net savings or a complete TCO. The €4/day estimate covers token costs only; implementation, platform/infrastructure, human review, quality assurance, exceptions, monitoring and ongoing operations are excluded. Released capacity is not automatically cash savings.</p>
+        </aside>
       </div>
     </section>
 
@@ -344,6 +434,7 @@
       'Showcases': 'Showcases',
       'Combined flow': 'Kombinierter Ablauf',
       'Benefits': 'Vorteile',
+      'Use-case USPs': 'USPs je Use Case',
       'Skills': 'Kompetenzen',
       'Two complementary AI concepts': 'Zwei ergänzende KI-Konzepte',
       'From customer signals': 'Von Kundensignalen',
@@ -380,6 +471,51 @@
       '📈 Interactive charts': '📈 Interaktive Diagramme',
       '📤 CSV · Excel · PPTX': '📤 CSV · Excel · PPTX',
       'Open data analytics showcase': 'Datenanalyse-Showcase öffnen',
+      'Unique value by use case': 'Alleinstellungsmerkmale je Use Case',
+      'Different problems.': 'Unterschiedliche Probleme.',
+      'Distinct advantages.': 'Klare Alleinstellungsmerkmale.',
+      'The two use cases solve different bottlenecks: turning multilingual customer comments into traceable product signals, and making governed business metrics easier to explore.': 'Die beiden Use Cases adressieren unterschiedliche Engpässe: mehrsprachige Kundenstimmen in nachvollziehbare Produktsignale verwandeln und kontrollierte Geschäftskennzahlen leichter zugänglich machen.',
+      '01 · Feedback intelligence': '01 · Feedback Intelligence',
+      'From multilingual feedback volume to feature-level action': 'Von mehrsprachigem Feedbackvolumen zu konkreten Feature-Maßnahmen',
+      'The differentiator is not just automatic sentiment labeling: it connects each customer voice to a consistent language, product feature and operating context.': 'Der Unterschied liegt nicht nur in der automatischen Stimmungserkennung: Jede Kundenstimme wird mit einer einheitlichen Sprache, einem Produkt-Feature und dem Nutzungskontext verknüpft.',
+      'Keep the original voice:': 'Originalstimme bewahren:',
+      'retain source-language feedback alongside normalized translations for comparisons across markets.': 'Feedback in der Ausgangssprache bleibt zusammen mit normalisierten Übersetzungen erhalten und wird so über Märkte hinweg vergleichbar.',
+      'Go beyond positive or negative:': 'Mehr als positiv oder negativ:',
+      'combine topic, sentiment, app feature, channel, country, platform and version context.': 'Thema, Stimmung, App-Feature, Kanal, Land, Plattform und Version werden gemeinsam betrachtet.',
+      'Make classifications reviewable:': 'Klassifikationen überprüfbar machen:',
+      'design for reference examples, confidence checks and downstream quality review rather than treating an AI label as ground truth.': 'Referenzbeispiele, Konfidenzprüfungen und nachgelagerte Qualitätskontrollen einplanen, statt ein KI-Label als Wahrheit zu behandeln.',
+      'Demo boundary:': 'Demo-Abgrenzung:',
+      'the Korean examples and classifications are illustrative; live channel ingestion and model calls are not connected.': 'Die koreanischen Beispiele und Klassifikationen sind illustrativ; Live-Kanalaufnahme und Modellaufrufe sind nicht angebunden.',
+      '02 · Chat your data': '02 · Chat your data',
+      'Async self-service instead of an ad-hoc request queue': 'Asynchroner Self-Service statt Ad-hoc-Warteschlange',
+      'A Veezoo-based, asynchronous self-service data-exploration portal can give teams direct access to governed app-usage and feature metrics—without repeatedly queuing one-off analysis requests with partners or service providers.': 'Ein asynchrones Self-Service-Datenexplorationsportal auf Basis von Veezoo kann Teams direkten Zugriff auf kontrollierte App-Nutzungs- und Feature-Kennzahlen geben – ohne wiederholt einzelne Analyseanfragen bei Partnern oder Dienstleistern einzureihen.',
+      'Reduce iterative handoffs:': 'Weniger iterative Übergaben:',
+      'let teams explore defined metrics asynchronously instead of sending repeated ad-hoc questions to external partners and waiting for each analysis cycle.': 'Teams können definierte Kennzahlen asynchron erkunden, statt wiederholt Ad-hoc-Fragen an externe Partner zu senden und auf jeden Analysezyklus zu warten.',
+      'Make app and feature usage visible:': 'App- und Feature-Nutzung sichtbar machen:',
+      'use engaging, presentation-ready visualizations to review adoption and monitor usage after a feature launch.': 'Anschauliche, präsentationsfertige Visualisierungen nutzen, um Akzeptanz zu prüfen und die Nutzung nach einem Feature-Launch zu beobachten.',
+      'Support evidence-led decisions:': 'Evidenzbasierte Entscheidungen unterstützen:',
+      'explore trends and potential correlations, compare usage before and after releases, then carry findings into management presentations.': 'Trends und mögliche Korrelationen erkunden, die Nutzung vor und nach Releases vergleichen und Erkenntnisse in Management-Präsentationen übernehmen.',
+      'Architecture target—not a live integration:': 'Architekturziel – keine Live-Integration:',
+      'Veezoo/VQL, governed data access, asynchronous self-service exploration and correlation analysis are not connected or implemented in this demo. Its natural-language query and sample results are simulated; CSV, Excel and PowerPoint exports work on labeled sample data.': 'Veezoo/VQL, kontrollierter Datenzugriff, asynchrone Self-Service-Exploration und Korrelationsanalyse sind in dieser Demo weder angebunden noch implementiert. Natürlichsprachliche Abfrage und Beispieldaten sind simuliert; CSV-, Excel- und PowerPoint-Exporte funktionieren mit gekennzeichneten Beispieldaten.',
+      'Feedback classification · illustrative business case': 'Feedback-Klassifizierung · beispielhafte Wirtschaftlichkeitsrechnung',
+      'Potential for > €200,000 gross labor savings per year': 'Potenzial für > 200.000 € Brutto-Arbeitskosteneinsparung pro Jahr',
+      'At roughly 1,000 feedback items on each of 250 processing days per year, a transparent baseline scenario gives approximately €249,000/year in direct labor-cost difference versus estimated translation and LLM token costs.': 'Bei rund 1.000 Feedbacks an 250 Verarbeitungstagen pro Jahr ergibt ein transparentes Basisszenario eine Differenz von etwa 249.000 € pro Jahr zwischen direkten manuellen Arbeitskosten und geschätzten Tokenkosten für Übersetzung und LLM-Klassifizierung.',
+      'Scenario, not a measured result': 'Szenario, kein gemessener Wert',
+      'Manual classification · scenario baseline': 'Manuelle Klassifizierung · Szenario-Basiswert',
+      '€250,000 / year': '250.000 € / Jahr',
+      '1,000/day × 1.5 min each × €40 loaded hourly cost × 250 working days': '1.000/Tag × 1,5 Min. je Feedback × 40 €/Std. Vollkosten × 250 Arbeitstage',
+      'Translation + LLM tokens · estimate provided': 'Tokenkosten für Übersetzung + LLM · Schätzung',
+      '€1,000 / year': '1.000 € / Jahr',
+      'Approx. €4 per processing day × 250 working days': 'Ca. 4 € je Verarbeitungstag × 250 Arbeitstage',
+      'Indicative gross annual difference': 'Geschätzte Brutto-Differenz pro Jahr',
+      '€249,000 / year': '249.000 € / Jahr',
+      'Manual labor baseline minus token estimate; before other costs': 'Manuelle Arbeitskosten abzüglich Token-Schätzung; weitere Kosten noch nicht berücksichtigt',
+      'What the >€200k threshold assumes:': 'Annahmen für die Schwelle von >200.000 €:',
+      'at €40 loaded labor cost/hour and 250 working days/year, average manual handling must exceed about 1.21 minutes per feedback at 1,000 items/day. The example uses 1.5 minutes.': 'Bei 40 € Arbeitsvollkosten pro Stunde und 250 Arbeitstagen pro Jahr muss die manuelle Bearbeitung bei 1.000 Feedbacks täglich durchschnittlich mehr als etwa 1,21 Minuten pro Feedback dauern. Das Beispiel rechnet mit 1,5 Minuten.',
+      'Validate before using as a forecast:': 'Vor einer Prognose validieren:',
+      'replace handling time, fully loaded labor cost, actual processing days and token usage with measured company data.': 'Bearbeitungszeit, Arbeitsvollkosten, tatsächliche Verarbeitungstage und Tokenverbrauch anhand gemessener Unternehmensdaten ersetzen.',
+      'This is an illustrative gross direct-labor comparison, not guaranteed net savings or a complete TCO. The €4/day estimate covers token costs only; implementation, platform/infrastructure, human review, quality assurance, exceptions, monitoring and ongoing operations are excluded.': 'Dies ist ein illustrativer Bruttovergleich direkter Arbeitskosten, keine garantierte Nettoeinsparung und keine vollständige TCO-Rechnung. Die Schätzung von 4 €/Tag umfasst nur Tokenkosten; Implementierung, Plattform/Infrastruktur, menschliche Prüfung, Qualitätssicherung, Ausnahmefälle, Monitoring und laufender Betrieb sind nicht enthalten.',
+      'This is an illustrative gross direct-labor comparison, not guaranteed net savings or a complete TCO. The €4/day estimate covers token costs only; implementation, platform/infrastructure, human review, quality assurance, exceptions, monitoring and ongoing operations are excluded. Released capacity is not automatically cash savings.': 'Dies ist ein illustrativer Bruttovergleich direkter Arbeitskosten, keine garantierte Nettoeinsparung und keine vollständige TCO-Rechnung. Die Schätzung von 4 €/Tag umfasst nur Tokenkosten; Implementierung, Plattform/Infrastruktur, menschliche Prüfung, Qualitätssicherung, Ausnahmefälle, Monitoring und laufender Betrieb sind nicht enthalten. Freiwerdende Kapazität ist nicht automatisch eine zahlungswirksame Einsparung.',
       'One connected solution': 'Eine verknüpfte Lösung',
       'From raw signals': 'Von rohen Signalen',
       'to shared action.': 'zu gemeinsamem Handeln.',
