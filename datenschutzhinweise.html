@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111d">
+  <meta name="description" content="Entwurf der Datenschutzhinweise für den AI Applied Showcase und eine optionale, datensparsame GoatCounter-Reichweitenmessung.">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <title>Datenschutzhinweise · AI Applied Showcase</title>
+  <style>
+    :root { color-scheme: dark; --bg:#07111d; --panel:#0d1b29; --line:rgba(176,219,230,.14); --text:#edf7f8; --muted:#a3b6c0; --mint:#6be2d4; --amber:#ffcf7b; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    *,*::before,*::after { box-sizing:border-box; }
+    body { margin:0; min-width:320px; background:radial-gradient(ellipse at 85% 0,rgba(53,130,156,.15),transparent 34rem),var(--bg); color:var(--text); line-height:1.65; }
+    a { color:#a8f4e9; text-underline-offset:3px; }
+    button { font:inherit; }
+    button:focus-visible,a:focus-visible { outline:2px solid var(--mint); outline-offset:3px; }
+    .shell { width:min(880px,calc(100% - 36px)); margin-inline:auto; }
+    header { position:sticky; top:0; z-index:5; border-bottom:1px solid rgba(193,225,232,.1); background:rgba(7,17,29,.9); backdrop-filter:blur(16px); }
+    .nav { min-height:66px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+    .brand { color:var(--text); font-size:.86rem; font-weight:750; text-decoration:none; }
+    .nav-actions { display:flex; align-items:center; gap:9px; }
+    .nav-actions a { font-size:.75rem; }
+    .lang-toggle { min-height:36px; padding:6px 10px; border:1px solid rgba(107,226,212,.3); border-radius:10px; background:rgba(107,226,212,.08); color:#e9ffff; font-size:.7rem; font-weight:750; cursor:pointer; }
+    main { padding:42px 0 64px; }
+    .draft-warning { margin-bottom:18px; padding:15px 17px; border:1px solid rgba(255,207,123,.3); border-radius:14px; background:rgba(255,207,123,.065); color:#ffe3af; font-size:.8rem; }
+    article { padding:clamp(21px,4vw,36px); border:1px solid var(--line); border-radius:20px; background:rgba(13,27,41,.86); box-shadow:0 20px 60px rgba(0,0,0,.22); }
+    h1 { margin:0 0 8px; font-size:clamp(1.8rem,4.5vw,2.75rem); line-height:1.12; letter-spacing:-.05em; }
+    .updated { margin:0 0 24px; color:#829ba6; font-size:.75rem; }
+    h2 { margin:28px 0 9px; color:#dff8f5; font-size:1.04rem; letter-spacing:-.02em; }
+    h2:first-of-type { margin-top:0; }
+    p,li { color:var(--muted); font-size:.85rem; }
+    p { margin:0 0 12px; }
+    ul { margin:7px 0 13px; padding-left:22px; }
+    li { padding-left:3px; margin:5px 0; }
+    strong { color:#e7f3f4; }
+    code { color:#bafff4; font: .82em ui-monospace,SFMono-Regular,Consolas,monospace; overflow-wrap:anywhere; }
+    .placeholder { color:#ffe0a7; font-weight:750; }
+    .contact-box { padding:14px 16px; border:1px solid rgba(255,207,123,.2); border-radius:12px; background:rgba(255,207,123,.035); }
+    footer { padding:20px 0 27px; border-top:1px solid rgba(193,225,232,.1); color:#718792; font-size:.7rem; }
+    @media(max-width:520px) { .nav { min-height:60px; } .brand { font-size:.74rem; } .nav-actions { gap:6px; } .nav-actions a,.lang-toggle { font-size:.66rem; } .lang-toggle { padding:5px 8px; } main { padding-top:25px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="./">🤖 AI Applied Showcase</a>
+      <div class="nav-actions">
+        <a href="./" data-de="Zur Übersicht" data-en="Back to overview">Zur Übersicht</a>
+        <button class="lang-toggle" id="language-toggle" type="button" aria-label="Zu Englisch wechseln">DE / EN</button>
+      </div>
+    </div>
+  </header>
+  <main class="shell">
+    <div class="draft-warning" role="alert" data-de="Entwurf – bitte die gelb markierten Angaben zum Verantwortlichen/Kontakt und die GoatCounter-Einstellungen prüfen, bevor dieser Hinweis als endgültig gilt oder ein Site-Endpunkt aktiviert wird. Die Messung ist derzeit ausgeschaltet." data-en="Draft — complete the highlighted controller/contact details and verify the GoatCounter site settings before treating this notice as final or enabling a site endpoint. Measurement is currently disabled.">Entwurf – bitte die gelb markierten Angaben zum Verantwortlichen/Kontakt und die GoatCounter-Einstellungen prüfen, bevor dieser Hinweis als endgültig gilt oder ein Site-Endpunkt aktiviert wird. Die Messung ist derzeit ausgeschaltet.</div>
+    <article>
+      <h1 data-de="Datenschutzhinweise" data-en="Privacy notice">Datenschutzhinweise</h1>
+      <p class="updated" data-de="AI Applied Showcase · Stand: 9. Oktober 2026" data-en="AI Applied Showcase · Updated: October 9, 2026">AI Applied Showcase · Stand: 9. Oktober 2026</p>
+
+      <h2 data-de="1. Verantwortliche Person" data-en="1. Data controller">1. Verantwortliche Person</h2>
+      <p data-de="Verantwortlich für diese private Portfolio-Website und eine gegebenenfalls aktivierte Reichweitenmessung ist die unten einzutragende natürliche Person. Es wird kein Unternehmen als Betreiber fingiert." data-en="The natural person identified below is responsible for this private portfolio website and any enabled audience measurement. No company is represented as the site operator.">Verantwortlich für diese private Portfolio-Website und eine gegebenenfalls aktivierte Reichweitenmessung ist die unten einzutragende natürliche Person. Es wird kein Unternehmen als Betreiber fingiert.</p>
+      <div class="contact-box">
+        <p><strong data-de="Name:" data-en="Name:">Name:</strong> <span class="placeholder" data-de="[Vor- und Nachname der verantwortlichen Person]" data-en="[Full name of the responsible person]">[Vor- und Nachname der verantwortlichen Person]</span></p>
+        <p><strong data-de="Kontakt-E-Mail:" data-en="Contact email:">Kontakt-E-Mail:</strong> <span class="placeholder" data-de="[öffentlich nutzbare Kontakt-E-Mail-Adresse]" data-en="[public contact email address]">[öffentlich nutzbare Kontakt-E-Mail-Adresse]</span></p>
+        <p><strong data-de="Postanschrift (falls erforderlich):" data-en="Postal address (if required):">Postanschrift (falls erforderlich):</strong> <span class="placeholder" data-de="[öffentliche bzw. ladungsfähige Anschrift ergänzen]" data-en="[add a public/serviceable postal address]">[öffentliche bzw. ladungsfähige Anschrift ergänzen]</span></p>
+      </div>
+
+      <h2 data-de="2. Hosting und technische Auslieferung" data-en="2. Hosting and technical delivery">2. Hosting und technische Auslieferung</h2>
+      <p data-de="Die statischen Showcase-Seiten werden über GitHub Pages ausgeliefert. Beim Abruf verarbeitet der Hosting-Anbieter die für Auslieferung, Sicherheit und Fehleranalyse erforderlichen Verbindungs- und Protokolldaten, etwa IP-Adresse, Zeitpunkt, angeforderte URL und Browser-/Geräteinformationen. Weitere Informationen findest du in der GitHub-Datenschutzerklärung:" data-en="The static showcase pages are served through GitHub Pages. To deliver and secure the pages and diagnose errors, the hosting provider processes connection/log data such as IP address, time, requested URL and browser/device information. See GitHub's Privacy Statement:">Die statischen Showcase-Seiten werden über GitHub Pages ausgeliefert. Beim Abruf verarbeitet der Hosting-Anbieter die für Auslieferung, Sicherheit und Fehleranalyse erforderlichen Verbindungs- und Protokolldaten, etwa IP-Adresse, Zeitpunkt, angeforderte URL und Browser-/Geräteinformationen. Weitere Informationen findest du in der GitHub-Datenschutzerklärung:</p>
+      <p><a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer" data-de="GitHub-Datenschutzerklärung" data-en="GitHub Privacy Statement">GitHub-Datenschutzerklärung</a></p>
+      <p data-de="Wenn du die Sprache manuell wechselst, kann die Website deine Auswahl im Browser unter <code>ai-showcase-language</code> in <code>localStorage</code> speichern, damit sie beim nächsten Besuch erhalten bleibt. Das ist eine reine Darstellungseinstellung und kein Analytics- oder Besucherkennzeichen. Du kannst sie durch Löschen der Website-Daten entfernen." data-en="If you manually change the language, the site may store that preference in the browser under <code>ai-showcase-language</code> in <code>localStorage</code> so it remains selected on a later visit. This is a display preference, not an analytics or visitor identifier. You can remove it by clearing the site's data.">Wenn du die Sprache manuell wechselst, kann die Website deine Auswahl im Browser unter <code>ai-showcase-language</code> in <code>localStorage</code> speichern, damit sie beim nächsten Besuch erhalten bleibt. Das ist eine reine Darstellungseinstellung und kein Analytics- oder Besucherkennzeichen. Du kannst sie durch Löschen der Website-Daten entfernen.</p>
+
+      <h2 data-de="3. Optionale Reichweitenmessung mit GoatCounter" data-en="3. Optional audience measurement with GoatCounter">3. Optionale Reichweitenmessung mit GoatCounter</h2>
+      <p data-de="Der Quellcode ist für GoatCounter vorbereitet. Auf dieser Website wird das Zählskript erst geladen, wenn in der öffentlichen Konfiguration ein GoatCounter-Site-Endpunkt eingetragen ist. Das Feld ist derzeit leer: Es wird aktuell kein GoatCounter-Tag geladen und es werden keine Statistikdaten an GoatCounter gesendet. Eine Einwilligungsoberfläche wird nicht verwendet." data-en="The source is prepared for GoatCounter. The counter script loads only after a GoatCounter site endpoint is entered in the public configuration. That field is currently blank: no GoatCounter tag is loaded and no statistics are sent to GoatCounter. No consent interface is used.">Der Quellcode ist für GoatCounter vorbereitet. Auf dieser Website wird das Zählskript erst geladen, wenn in der öffentlichen Konfiguration ein GoatCounter-Site-Endpunkt eingetragen ist. Das Feld ist derzeit leer: Es wird aktuell kein GoatCounter-Tag geladen und es werden keine Statistikdaten an GoatCounter gesendet. Eine Einwilligungsoberfläche wird nicht verwendet.</p>
+      <p data-de="Nach einer Aktivierung dient die Verarbeitung ausschließlich der aggregierten Reichweitenmessung. Laut der Datenschutzerklärung von GoatCounter werden unter anderem Seitenpfade und Referrer nach Stunde/Tag sowie aggregierte Browser-, System-, Länder-, Sprach- und Bildschirmbreitenwerte gespeichert. Die Roh-IP-Adresse, der vollständige User-Agent und dauerhafte Browser-Kennungen werden laut Anbieter nicht in der Datenbank gespeichert; zur Zählung wiederkehrender Besuche kann eine Zuordnung aus Website, IP und User-Agent bis zu acht Stunden im Arbeitsspeicher gehalten werden. Die optionale Erfassung einzelner Seitenaufrufe ist bei GoatCounter standardmäßig ausgeschaltet und muss vor Aktivierung in den Website-Einstellungen geprüft werden." data-en="If enabled, processing is limited to aggregated audience statistics. According to GoatCounter's privacy policy, it stores items such as page paths and referrers by hour/day and aggregated browser, system, country, language and screen-width values. The provider says raw IP addresses, full User-Agent strings and persistent browser identifiers are not stored in the database; a mapping based on site, IP and User-Agent may be held in memory for up to eight hours to count repeat visits. GoatCounter's optional individual-pageview collection is disabled by default and should be checked in the site settings before activation.">Nach einer Aktivierung dient die Verarbeitung ausschließlich der aggregierten Reichweitenmessung. Laut der Datenschutzerklärung von GoatCounter werden unter anderem Seitenpfade und Referrer nach Stunde/Tag sowie aggregierte Browser-, System-, Länder-, Sprach- und Bildschirmbreitenwerte gespeichert. Die Roh-IP-Adresse, der vollständige User-Agent und dauerhafte Browser-Kennungen werden laut Anbieter nicht in der Datenbank gespeichert; zur Zählung wiederkehrender Besuche kann eine Zuordnung aus Website, IP und User-Agent bis zu acht Stunden im Arbeitsspeicher gehalten werden. Die optionale Erfassung einzelner Seitenaufrufe ist bei GoatCounter standardmäßig ausgeschaltet und muss vor Aktivierung in den Website-Einstellungen geprüft werden.</p>
+      <p data-de="GoatCounter gibt an, im Besuchenden-Browser keine Cookies, keinen localStorage und keine dauerhaften Kennungen zu verwenden. Der Anbieter begründet in seiner eigenen GDPR-Erläuterung, warum für sein aggregiertes Modell aus seiner Sicht häufig kein Einwilligungsbanner nötig ist. Das ist keine Rechtsberatung und keine verbindliche Prüfung deines Einzelfalls; Betreiber und geltende lokale Regeln sind maßgeblich. Vor Aktivierung müssen die passende Rechtsgrundlage und diese Hinweise geprüft werden." data-en="GoatCounter says its visitor counter does not use cookies, localStorage or persistent identifiers in the visitor's browser. Its own GDPR guidance explains why it considers a consent banner often unnecessary for its aggregated model. This is not legal advice or a binding assessment of your situation; the site operator and applicable local rules remain responsible. The legal basis and this notice must be reviewed before activation.">GoatCounter gibt an, im Besuchenden-Browser keine Cookies, keinen localStorage und keine dauerhaften Kennungen zu verwenden. Der Anbieter begründet in seiner eigenen GDPR-Erläuterung, warum für sein aggregiertes Modell aus seiner Sicht häufig kein Einwilligungsbanner nötig ist. Das ist keine Rechtsberatung und keine verbindliche Prüfung deines Einzelfalls; Betreiber und geltende lokale Regeln sind maßgeblich. Vor Aktivierung müssen die passende Rechtsgrundlage und diese Hinweise geprüft werden.</p>
+      <p data-de="Der Dienst GoatCounter.com wird vom Anbieter in Irland betrieben. Laut dessen Datenschutzhinweisen liegen die Server bei Hetzner in Finnland und Deutschland. Weitere Angaben zu Verarbeitung und Speicherung stehen in den Informationen des Anbieters:" data-en="GoatCounter.com is operated by its provider in Ireland. According to its privacy information, servers are hosted by Hetzner in Finland and Germany. Further details about processing and storage are available in the provider's information:">Der Dienst GoatCounter.com wird vom Anbieter in Irland betrieben. Laut dessen Datenschutzhinweisen liegen die Server bei Hetzner in Finnland und Deutschland. Weitere Angaben zu Verarbeitung und Speicherung stehen in den Informationen des Anbieters:</p>
+      <p><a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer" data-de="GoatCounter-Datenschutzhinweise" data-en="GoatCounter Privacy Policy">GoatCounter-Datenschutzhinweise</a> · <a href="https://www.goatcounter.com/help/gdpr" target="_blank" rel="noopener noreferrer" data-de="Erläuterung zu GDPR/Einwilligung" data-en="GDPR/consent explanation">Erläuterung zu GDPR/Einwilligung</a></p>
+      <p data-de="Der Anbieter hält aggregierte Statistiken bis zur Löschung der Website bzw. des Kontos vor. Nach einer Kontolöschung können Sicherungskopien laut Anbieter noch bis zu 30 Tage bestehen. Einzelne Seitenaufrufe werden nur gespeichert, wenn diese zusätzliche Option ausdrücklich aktiviert wird; sie soll für dieses Projekt ausgeschaltet bleiben." data-en="The provider retains aggregated statistics until the site or account is deleted. According to the provider, backups may remain for up to 30 days after account deletion. Individual pageviews are stored only if that additional option is explicitly enabled; it should remain disabled for this project.">Der Anbieter hält aggregierte Statistiken bis zur Löschung der Website bzw. des Kontos vor. Nach einer Kontolöschung können Sicherungskopien laut Anbieter noch bis zu 30 Tage bestehen. Einzelne Seitenaufrufe werden nur gespeichert, wenn diese zusätzliche Option ausdrücklich aktiviert wird; sie soll für dieses Projekt ausgeschaltet bleiben.</p>
+
+      <h2 data-de="4. Keine Live-Abfrage und keine Formulardaten" data-en="4. No live queries or form submissions">4. Keine Live-Abfrage und keine Formulardaten</h2>
+      <p data-de="Die dargestellten Feedback- und Analytics-Beispiele sind Simulationen. Die Demo-Abfrage wird nicht an Veezoo, Databricks oder einen anderen Server gesendet. CSV-, Excel- und PowerPoint-Exporte werden im Browser aus markierten Beispieldaten erzeugt; es gibt kein Eingabeformular, das diese Inhalte an den Betreiber übermittelt." data-en="The feedback and analytics examples are simulations. The demo query is not sent to Veezoo, Databricks or another server. CSV, Excel and PowerPoint exports are generated in the browser from labeled sample data; there is no input form that sends this content to the site operator.">Die dargestellten Feedback- und Analytics-Beispiele sind Simulationen. Die Demo-Abfrage wird nicht an Veezoo, Databricks oder einen anderen Server gesendet. CSV-, Excel- und PowerPoint-Exporte werden im Browser aus markierten Beispieldaten erzeugt; es gibt kein Eingabeformular, das diese Inhalte an den Betreiber übermittelt.</p>
+
+      <h2 data-de="5. Ausschluss, Rechte und Beschwerden" data-en="5. Opt-out, rights and complaints">5. Ausschluss, Rechte und Beschwerden</h2>
+      <p data-de="Die Messung kann auf dieser Website vollständig deaktiviert bleiben, indem kein GoatCounter-Endpunkt konfiguriert wird. Nach einer Aktivierung kannst du Besuche in deinem Browser nach der Anleitung von GoatCounter ausschließen, indem du an die Seitenadresse den Zusatz <code>#toggle-goatcounter</code> anhängst und die Seite neu lädst. Für Anfragen zu deinen Rechten nutze den oben genannten Kontakt. Weil GoatCounter primär aggregierte Statistiken ohne dauerhaftes Besucherkennzeichen speichert, kann der Anbieter einzelne Besuchsdatensätze in der Regel nicht einer Person zuordnen. Außerdem kannst du dich bei einer Datenschutzaufsichtsbehörde beschweren." data-en="Measurement can remain entirely disabled on this site by leaving the GoatCounter endpoint blank. If it is enabled, you can exclude visits from your browser as described by GoatCounter by adding <code>#toggle-goatcounter</code> to the page URL and reloading. For rights requests, use the contact details above. Because GoatCounter primarily stores aggregate statistics without a persistent visitor identifier, the provider generally cannot associate individual visit records with a person. You may also lodge a complaint with a data-protection supervisory authority.">Die Messung kann auf dieser Website vollständig deaktiviert bleiben, indem kein GoatCounter-Endpunkt konfiguriert wird. Nach einer Aktivierung kannst du Besuche in deinem Browser nach der Anleitung von GoatCounter ausschließen, indem du an die Seitenadresse den Zusatz <code>#toggle-goatcounter</code> anhängst und die Seite neu lädst. Für Anfragen zu deinen Rechten nutze den oben genannten Kontakt. Weil GoatCounter primär aggregierte Statistiken ohne dauerhaftes Besucherkennzeichen speichert, kann der Anbieter einzelne Besuchsdatensätze in der Regel nicht einer Person zuordnen. Außerdem kannst du dich bei einer Datenschutzaufsichtsbehörde beschweren.</p>
+
+      <h2 data-de="6. Noch vor Aktivierung zu ergänzen" data-en="6. Details to complete before enabling Analytics">6. Noch vor Aktivierung zu ergänzen</h2>
+      <ul>
+        <li data-de="Verantwortlicher Name und erreichbarer Kontakt (gelb markiert oben)." data-en="Controller's name and reachable contact (highlighted above).">Verantwortlicher Name und erreichbarer Kontakt (gelb markiert oben).</li>
+        <li data-de="Vor Einrichtung: GoatCounter-Site anlegen und dessen öffentlichen Endpunkt in goatcounter-config.js eintragen. Der Endpunkt ist derzeit leer; es findet keine Messung statt." data-en="Before setup: create a GoatCounter site and enter its public endpoint in goatcounter-config.js. The endpoint is currently blank; no measurement occurs.">Vor Einrichtung: GoatCounter-Site anlegen und dessen öffentlichen Endpunkt in goatcounter-config.js eintragen. Der Endpunkt ist derzeit leer; es findet keine Messung statt.</li>
+        <li data-de="Nach Einrichtung prüfen, dass die optionale Erfassung einzelner Seitenaufrufe deaktiviert bleibt, und die Rechtsgrundlage für den konkreten Einsatz festlegen." data-en="After setup, confirm optional individual-pageview collection stays disabled and determine the legal basis for this specific use.">Nach Einrichtung prüfen, dass die optionale Erfassung einzelner Seitenaufrufe deaktiviert bleibt, und die Rechtsgrundlage für den konkreten Einsatz festlegen.</li>
+        <li data-de="Falls zutreffend: Kontaktdaten des Datenschutzbeauftragten und zuständige Aufsichtsbehörde." data-en="If applicable: data protection officer contact and competent supervisory authority.">Falls zutreffend: Kontaktdaten des Datenschutzbeauftragten und zuständige Aufsichtsbehörde.</li>
+      </ul>
+      <p data-de="Diese Vorlage ist keine Rechtsberatung. Bitte vor der Veröffentlichung an die tatsächliche Nutzung und deinen konkreten Fall anpassen." data-en="This template is not legal advice. Adapt it to the actual use and your specific circumstances before publication.">Diese Vorlage ist keine Rechtsberatung. Bitte vor der Veröffentlichung an die tatsächliche Nutzung und deinen konkreten Fall anpassen.</p>
+    </article>
+  </main>
+  <footer><div class="shell"><a href="./">← <span data-de="Zurück zur Übersicht" data-en="Back to overview">Zurück zur Übersicht</span></a></div></footer>
+  <script>
+    const switchButton = document.querySelector('#language-toggle');
+    function setLanguage(language) {
+      document.documentElement.lang = language;
+      document.querySelectorAll('[data-de][data-en]').forEach((element) => {
+        const markup = language === 'de' ? element.dataset.de : element.dataset.en;
+        element.innerHTML = markup;
+      });
+      document.title = language === 'de' ? 'Datenschutzhinweise · AI Applied Showcase' : 'Privacy notice · AI Applied Showcase';
+      switchButton.textContent = language === 'de' ? 'DE / EN' : 'EN / DE';
+      switchButton.setAttribute('aria-label', language === 'de' ? 'Zu Englisch wechseln' : 'Switch to German');
+    }
+    const preferred = navigator.languages?.[0] || navigator.language || 'en';
+    let language = /^de(?:-|$)/i.test(preferred) ? 'de' : 'en';
+    try {
+      const saved = localStorage.getItem('ai-showcase-language');
+      if (saved === 'de' || saved === 'en') language = saved;
+    } catch { /* Use browser language when storage is unavailable. */ }
+    setLanguage(language);
+    switchButton.addEventListener('click', () => {
+      language = document.documentElement.lang === 'de' ? 'en' : 'de';
+      try { localStorage.setItem('ai-showcase-language', language); } catch { /* Keep the selection for this page view. */ }
+      setLanguage(language);
+    });
+  </script>
+  <script src="./goatcounter-config.js"></script>
+  <script src="./goatcounter.js"></script>
+</body>
+</html>

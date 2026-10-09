@@ -183,7 +183,10 @@
     <header class="bg-slate-900 text-white pt-20 pb-16 px-6 relative overflow-hidden border-b border-slate-800">
         <div class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between gap-3">
             <a href="../" class="text-sm text-emerald-200 hover:text-white transition-colors"><i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i><span>Alle Showcases</span></a>
-            <button class="language-toggle" id="language-toggle" type="button" aria-label="Sprache zu Englisch wechseln" title="Sprache wechseln"><span data-language-option="de">DE</span><span aria-hidden="true">/</span><span data-language-option="en">EN</span></button>
+            <div class="flex items-center gap-3">
+                <a class="text-xs text-slate-400 hover:text-white" href="../datenschutzhinweise.html" data-privacy-link>Datenschutzhinweise</a>
+                <button class="language-toggle" id="language-toggle" type="button" aria-label="Sprache zu Englisch wechseln" title="Sprache wechseln"><span data-language-option="de">DE</span><span aria-hidden="true">/</span><span data-language-option="en">EN</span></button>
+            </div>
         </div>
         <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
         <div class="max-w-5xl mx-auto relative z-10 text-center">
@@ -460,6 +463,7 @@
             'Ein Paradigmenwechsel im Self-Service BI: Komplexe App-Daten werden durch die Integration einer Schweizer NLP-Lösung (Veezoo) und eines dynamisch skalierenden Databricks Data-Warehouses per natürlicher Sprache abfragbar.': 'A new approach to self-service BI: complex app data becomes searchable in natural language through a Swiss NLP solution (Veezoo) and an elastically scaling Databricks data warehouse.',
             'Demo-Simulation: Beispielwerte, keine Echtdaten und keine Live-Abfrage.': 'Demo simulation: sample values only — no real data or live queries.',
             'Alle Showcases': 'All showcases',
+            'Datenschutzhinweise': 'Privacy notice',
             'Portfolio-Übersicht': 'Showcase overview',
             'Systemarchitektur & Datenfluss': 'System architecture & data flow',
             'Sichere, dynamisch skalierbare und ontologiegestützte Verarbeitung von der Nutzeranfrage bis zur Datenbank.': 'Secure, elastic and ontology-powered processing from the user question to the database.',
@@ -588,6 +592,7 @@
                 'Beispielabfrage starten': 'Run sample query',
                 'Demo-Daten exportieren': 'Export demo data',
                 'Alle Showcases': 'All showcases',
+                'Datenschutzhinweise': 'Privacy notice',
             };
             const reverseAttributeTranslations = Object.fromEntries(Object.entries(attributeTranslations).map(([german, english]) => [english, german]));
             const currentAttributes = language === 'en' ? attributeTranslations : reverseAttributeTranslations;
@@ -904,7 +909,7 @@
             window.setTimeout(runAnimationSequence, 1000);
         });
     </script>
-    <script src="../analytics-config.js"></script>
-    <script src="../analytics-consent.js"></script>
+    <script src="../goatcounter-config.js"></script>
+    <script src="../goatcounter.js"></script>
 </body>
 </html>
