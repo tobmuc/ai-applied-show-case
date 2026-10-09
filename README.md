@@ -28,10 +28,22 @@ The static interfaces, simulated journeys, locale-aware German/English controls 
 - `index.html` — combined overview, benefits and skills map
 - `ai-applied-show-case-feedback-intelligence/index.html` — feedback pipeline showcase
 - `ai-applied-show-case-chat-your-data/index.html` — natural-language analytics showcase
+- `analytics-config.js` — optional, blank-by-default GA4 Measurement ID
+- `analytics-consent.js` — shared opt-in, preferences and withdrawal flow
+
+## Google Analytics 4 (optional)
+
+GA4 is not active until a valid public Measurement ID (`G-...`) is added to `analytics-config.js`. The shared consent script loads the Google tag only after a visitor explicitly opts in; a visitor can reject or later change/withdraw the choice. The same Measurement ID can cover both GitHub Pages paths because they share the `tobmuc.github.io` hostname. The Measurement ID is a public identifier, not an API secret.
+
+The standard GA4 service has a no-cost version; Google Analytics 360 is paid. This repository cannot create a property inside a Google account. In the Google account that should own the data, create a GA4 property (e.g. “My AI Showcases”, reporting timezone Europe/Berlin, currency EUR), then add a Web data stream for `https://tobmuc.github.io`. Copy its `G-...` Measurement ID and provide it to enable collection. See Google's [setup guide](https://support.google.com/analytics/answer/9304153?hl=en) and [tag ID guide](https://support.google.com/analytics/answer/9539598?hl=en).
+
+Before activation, publish a site-specific privacy notice with the data controller/contact and the applicable Google Analytics disclosures/retention settings. The consent UI is a technical safeguard, not legal advice or a substitute for that notice.
+
+Files: `analytics-config.js` contains the Measurement ID placeholder; `analytics-consent.js` implements consent-before-load, rejection, settings and withdrawal.
 
 ## Local preview
 
-Open `index.html` in a browser. The language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally. The site has no runtime dependencies.
+Open `index.html` in a browser. The language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally. Without a GA4 Measurement ID, no analytics consent UI or Google tag is loaded. With an ID configured, the shared consent UI appears and Google Analytics is loaded only after opt-in.
 
 ---
 
@@ -62,10 +74,22 @@ Die statischen Oberflächen, simulierten Nutzerabläufe, deutsch-englischen Spra
 
 ## Repository-Struktur
 
-- `index.html` — kombinierte Übersicht, Vorteile und Kompetenzmatrix
+- `index.html` — kombinierte Übersicht, Vorteile, USPs und Kompetenzmatrix
 - `ai-applied-show-case-feedback-intelligence/index.html` — Feedback-Pipeline-Showcase
 - `ai-applied-show-case-chat-your-data/index.html` — Showcase für natürlichsprachliche Datenanalyse
+- `analytics-config.js` — optionale, standardmäßig leere GA4-Measurement-ID
+- `analytics-consent.js` — gemeinsame Einwilligungs-, Einstellungs- und Widerrufssteuerung
+
+## Google Analytics 4 (optional)
+
+GA4 ist erst aktiv, wenn in `analytics-config.js` eine gültige öffentliche Measurement ID (`G-...`) eingetragen ist. Das gemeinsame Consent-Skript lädt das Google-Tag ausschließlich nach ausdrücklicher Zustimmung; Besucher können ablehnen oder die Auswahl später ändern/widerrufen. Dieselbe Measurement ID kann beide GitHub-Pages-Pfade erfassen, da beide denselben Hostnamen `tobmuc.github.io` nutzen. Die Measurement ID ist ein öffentlicher Bezeichner, kein API-Geheimnis.
+
+GA4 Standard gibt es in einer kostenfreien Version; Google Analytics 360 ist kostenpflichtig. Dieses Repository kann keine Property im Google-Konto anlegen. Lege im Google-Konto, das die Daten besitzen soll, eine GA4-Property an (z. B. „My AI Showcases“, Zeitzone Europe/Berlin, Währung EUR) und füge einen Web-Datenstream für `https://tobmuc.github.io` hinzu. Kopiere dessen Measurement ID `G-...` und übermittle sie zum Aktivieren der Erfassung. Google beschreibt das in der [Einrichtungsanleitung](https://support.google.com/analytics/answer/9304153?hl=de) und der [Anleitung zur Google-Tag-ID](https://support.google.com/analytics/answer/9539598?hl=de).
+
+Vor Aktivierung sollte eine projektspezifische Datenschutzerklärung mit Verantwortlichem/Kontakt sowie den passenden Google-Analytics-Hinweisen und Aufbewahrungseinstellungen veröffentlicht werden. Die Consent-Oberfläche ist eine technische Schutzmaßnahme, keine Rechtsberatung und kein Ersatz für diese Erklärung.
+
+Dateien: `analytics-config.js` enthält den Measurement-ID-Platzhalter; `analytics-consent.js` implementiert Laden erst nach Einwilligung, Ablehnung, Einstellungen und Widerruf.
 
 ## Lokale Vorschau
 
-`index.html` im Browser öffnen. Beim ersten Besuch richtet sich die Sprache nach den bevorzugten Browsersprachen; die DE/EN-Steuerung speichert eine manuelle Auswahl lokal. Die Seite benötigt keine Laufzeit-Abhängigkeiten.
+`index.html` im Browser öffnen. Beim ersten Besuch richtet sich die Sprache nach den bevorzugten Browsersprachen; die DE/EN-Steuerung speichert eine manuelle Auswahl lokal. Ohne GA4-Measurement-ID erscheinen weder Consent-Oberfläche noch Google-Tag. Mit eingetragener ID erscheint die Einwilligung; Google Analytics wird erst nach Zustimmung geladen.
