@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Applied Showcase: explore natural-language data analytics, interactive visuals and browser-based CSV, Excel and PowerPoint exports.">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <title>AI Applied Showcase — Chat Your Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@4.0.1/dist/pptxgen.bundle.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        /* Flowchart Animations */
+        .flow-line {
+            stroke-dasharray: 10;
+            animation: dash 20s linear infinite;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -1000;
+            }
+        }
+
+        .pulse-icon {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        /* Demo Simulation Styles */
+        #demo-container {
+            perspective: 1000px;
+        }
+        
+        #fake-cursor {
+            position: absolute;
+            top: 90%;
+            left: 90%;
+            width: 46px;
+            height: 54px;
+            opacity: 0;
+            transition: top 0.8s ease-in-out, left 0.8s ease-in-out, opacity 0.2s ease;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        #fake-cursor.visible { opacity: 1; }
+
+        #search-box {
+            min-width: 0;
+        }
+
+        #search-input {
+            flex: 1 1 auto;
+            min-width: 0;
+            overflow-wrap: anywhere;
+            white-space: normal;
+            line-height: 1.55;
+        }
+
+        #export-actions {
+            flex: 0 1 auto;
+        }
+
+        .cursor-halo {
+            position: absolute;
+            top: -3px;
+            left: 5px;
+            width: 18px;
+            height: 18px;
+            border: 1px solid rgba(107, 226, 212, 0.9);
+            border-radius: 50%;
+            background: rgba(107, 226, 212, 0.12);
+            box-shadow: 0 0 18px rgba(107, 226, 212, 0.45);
+            animation: fingertip-pulse 2s ease-out infinite;
+        }
+
+        .cursor-hand {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 37px;
+            height: 49px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.55));
+            transform-origin: 14px 4px;
+            transition: transform 0.16s ease;
+        }
+
+        .cursor-hand path {
+            fill: #9cf3e7;
+            stroke: #07111d;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .cursor-hand circle {
+            fill: #f7ffff;
+            stroke: #07111d;
+            stroke-width: 1.8;
+        }
+
+        #fake-cursor.active .cursor-hand { transform: scale(0.9); }
+        #fake-cursor.pressed .cursor-hand { transform: scale(0.82) rotate(-7deg); }
+
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @keyframes fingertip-pulse {
+            0% { transform: scale(0.65); opacity: 0.75; }
+            80%, 100% { transform: scale(1.9); opacity: 0; }
+        }
+
+        .chart-bar {
+            height: 0;
+            transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .chart-bar-horizontal {
+            width: 0;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Glassmorphism utilities for Dark Theme */
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .language-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            min-height: 38px;
+            padding: 0 11px;
+            border: 1px solid rgba(110, 231, 183, 0.35);
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.88);
+            color: #d1fae5;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .language-toggle span[aria-current="true"] {
+            border-radius: 999px;
+            background: #6ee7b7;
+            color: #052e2b;
+            padding: 2px 5px;
+        }
+
+        .language-toggle span[aria-hidden="true"] { color: #64748b; }
+
+        @media (max-width: 640px) {
+            #export-actions { width: 100%; }
+            #export-actions button { flex: 1 1 auto; }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-20 bg-slate-950 text-slate-300">
+
+    <header class="bg-slate-900 text-white pt-20 pb-16 px-6 relative overflow-hidden border-b border-slate-800">
+        <div class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between gap-3">
+            <a href="../" class="text-sm text-emerald-200 hover:text-white transition-colors"><i class="fa-solid fa-arrow-left mr-1" aria-hidden="true"></i><span>Alle Showcases</span></a>
+            <button class="language-toggle" id="language-toggle" type="button" aria-label="Sprache zu Englisch wechseln" title="Sprache wechseln"><span data-language-option="de">DE</span><span aria-hidden="true">/</span><span data-language-option="en">EN</span></button>
+        </div>
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+        <div class="max-w-5xl mx-auto relative z-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">
+                "Chat Your Data" <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Interaktive Datenanalyse neu gedacht</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+                Ein Paradigmenwechsel im Self-Service BI: Komplexe App-Daten werden durch die Integration einer Schweizer NLP-Lösung (Veezoo) und eines dynamisch skalierenden Databricks Data-Warehouses per natürlicher Sprache abfragbar.
+            </p>
+            <div class="mt-6 inline-flex max-w-3xl flex-wrap items-center justify-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/5 px-4 py-2 text-xs font-medium text-amber-200" role="note">
+                <i class="fa-solid fa-flask" aria-hidden="true"></i>
+                Demo-Simulation: Beispielwerte, keine Echtdaten und keine Live-Abfrage.
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-6xl mx-auto px-6 py-16">
+        <h2 class="text-3xl font-bold text-center mb-4 text-white">Systemarchitektur & Datenfluss</h2>
+        <p class="text-center text-slate-400 mb-16 max-w-2xl mx-auto">Sichere, dynamisch skalierbare und ontologiegestützte Verarbeitung von der Nutzeranfrage bis zur Datenbank.</p>
+
+        <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
+            
+            <div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-1 -translate-y-1/2 z-0">
+                <svg width="100%" height="20" class="overflow-visible">
+                    <line x1="0" y1="10" x2="100%" y2="10" stroke="#334155" stroke-width="2" />
+                    <line x1="0" y1="10" x2="100%" y2="10" stroke="#3b82f6" stroke-width="4" class="flow-line" />
+                </svg>
+            </div>
+
+            <div class="relative z-10 rounded-2xl shadow-2xl p-8 w-full md:w-1/3 border-t-4 border-blue-500 glass-panel">
+                <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4 pulse-icon">
+                    <i class="fa-solid fa-laptop-code text-2xl text-blue-400"></i>
+                </div>
+                <h3 class="text-xl font-bold text-center mb-2 text-white">Web-Frontend</h3>
+                <ul class="text-sm text-slate-300 space-y-2 mt-4">
+                    <li><i class="fa-solid fa-check text-blue-400 mr-2"></i>Interaktive Visualisierung</li>
+                    <li><i class="fa-solid fa-check text-blue-400 mr-2"></i>Dynamische Verfeinerung</li>
+                    <li><i class="fa-solid fa-check text-blue-400 mr-2"></i>Exportieren & Herunterladen</li>
+                </ul>
+            </div>
+
+            <div class="relative z-10 rounded-2xl shadow-2xl p-8 w-full md:w-1/3 border-t-4 border-emerald-500 glass-panel mt-8 md:mt-0">
+                <div class="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4 pulse-icon">
+                    <i class="fa-solid fa-brain text-2xl text-emerald-400"></i>
+                </div>
+                <h3 class="text-xl font-bold text-center mb-2 text-white">Veezoo-Engine (CH)</h3>
+                <ul class="text-sm text-slate-300 space-y-2 mt-4">
+                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i>Ontologisches Wissen (App, KPIs)</li>
+                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i>Übersetzung natürlicher Sprache in VQL</li>
+                    <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i>Automatische Kontextfindung</li>
+                </ul>
+            </div>
+
+            <div class="relative z-10 rounded-2xl shadow-2xl p-8 w-full md:w-1/3 border-t-4 border-orange-500 glass-panel mt-8 md:mt-0">
+                <div class="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4 pulse-icon">
+                    <i class="fa-solid fa-database text-2xl text-orange-400"></i>
+                </div>
+                <h3 class="text-xl font-bold text-center mb-2 text-white">Databricks-Warehouse</h3>
+                <ul class="text-sm text-slate-300 space-y-2 mt-4">
+                    <li><i class="fa-solid fa-check text-orange-400 mr-2"></i>Ausführung via SQL / API</li>
+                    <li><i class="fa-solid fa-check text-orange-400 mr-2"></i>Dynamische Worker-Skalierung</li>
+                    <li><i class="fa-solid fa-check text-orange-400 mr-2"></i>Strenge Zugriffsrechte</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-12">
+        <div class="bg-slate-900 rounded-3xl shadow-2xl overflow-hidden border border-slate-700" id="demo-container">
+            
+            <div class="bg-slate-800 border-b border-slate-700 p-4 flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                <div class="ml-4 bg-slate-950 rounded-md px-4 py-1 text-xs text-slate-400 border border-slate-700 shadow-inner flex-grow flex items-center gap-2">
+                    <i class="fa-solid fa-lock text-slate-500"></i> demo.example/veezoo
+                </div>
+                <button id="replay-btn" class="ml-2 text-sm bg-blue-600/20 text-blue-400 border border-blue-500/30 px-3 py-1.5 rounded hover:bg-blue-600/40 transition-colors">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Demo wiederholen
+                </button>
+            </div>
+
+            <div class="p-8 relative min-h-[500px] bg-slate-900" id="demo-body">
+                
+                <div class="max-w-4xl mx-auto mb-10 text-center">
+                    <h2 class="text-2xl font-bold text-white mb-6">Frage deine Daten</h2>
+                    <div class="relative flex items-center shadow-lg rounded-2xl bg-slate-800 border border-slate-600" id="search-box">
+                        <i class="fa-solid fa-magnifying-glass text-blue-400 ml-4 md:ml-6 text-xl flex-shrink-0"></i>
+                        <div id="search-input" role="textbox" aria-label="Beispielprompt" aria-readonly="true" class="min-w-0 flex-1 py-3 px-4 text-sm md:text-base text-slate-200 outline-none bg-transparent text-left whitespace-normal break-words overflow-y-auto">
+                            <!-- Typing text goes here -->
+                        </div>
+                        <button id="submit-btn" type="button" aria-label="Beispielabfrage starten" class="bg-blue-600 text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mr-2 shadow hover:bg-blue-500 transition cursor-pointer">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="results-area" class="opacity-0 transition-opacity duration-500 max-w-4xl mx-auto bg-slate-800 rounded-xl shadow-lg border border-slate-700 p-8">
+                    
+                    <!-- Loading Spinner (initially hidden) -->
+                    <div id="loading-spinner" class="hidden flex flex-col items-center justify-center py-10">
+                        <i class="fa-solid fa-circle-notch fa-spin text-4xl text-blue-500 mb-4"></i>
+                        <p class="text-slate-400 text-sm animate-pulse">Abfrage wird durch Veezoo übersetzt und in Databricks ausgeführt...</p>
+                    </div>
+
+                    <!-- Dashboard Content -->
+                    <div id="dashboard-content" class="hidden">
+                        <div class="flex flex-col gap-5 sm:flex-row sm:justify-between sm:items-start mb-8 border-b border-slate-700 pb-6">
+                            <div>
+                                <h3 class="font-bold text-slate-300 text-lg uppercase tracking-wider">September 2026 Demo-Metriken:</h3>
+                                <div class="text-4xl font-black text-white mt-2 flex items-baseline gap-3">
+                                    122.384 <span class="text-lg font-medium text-blue-400">Beispiel-Nutzer</span>
+                                </div>
+                                <p class="text-sm text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> Beispielregion: Chicago, IL</p>
+                            </div>
+                            <div id="export-actions" class="flex flex-wrap gap-2" role="group" aria-label="Demo-Daten exportieren">
+                                <button id="download-csv-btn" type="button" class="export-btn px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-900/20">
+                                    <i class="fa-solid fa-file-csv mr-1" aria-hidden="true"></i> CSV
+                                </button>
+                                <button id="download-excel-btn" type="button" class="export-btn px-3 py-2 text-sm bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors shadow-lg shadow-emerald-900/20">
+                                    <i class="fa-solid fa-file-excel mr-1" aria-hidden="true"></i> Excel
+                                </button>
+                                <button id="download-pptx-btn" type="button" class="export-btn px-3 py-2 text-sm bg-violet-600 text-white rounded-lg hover:bg-violet-500 transition-colors shadow-lg shadow-violet-900/20">
+                                    <i class="fa-solid fa-file-powerpoint mr-1" aria-hidden="true"></i> PowerPoint
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-5">
+                            <h4 class="text-sm font-semibold text-slate-400 uppercase mb-4">Top 5 App-Features · Beispielwerte</h4>
+                            
+                            <!-- Feature 1 -->
+                            <div class="relative">
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <span class="text-slate-200 font-medium">1. Fahrzeug Vorklimatisieren</span>
+                                    <span class="font-bold text-emerald-400">94.520</span>
+                                </div>
+                                <div class="w-full bg-slate-900 rounded-full h-3 border border-slate-700">
+                                    <div class="bg-gradient-to-r from-blue-600 to-blue-400 h-full rounded-full chart-bar-horizontal relative overflow-hidden" id="bar-1">
+                                        <div class="absolute inset-0 bg-white/20 w-full animate-[shimmer_2s_infinite]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Feature 2 -->
+                            <div class="relative">
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <span class="text-slate-200 font-medium">2. Fahrzeug Ladezustand prüfen</span>
+                                    <span class="font-bold text-emerald-400">87.102</span>
+                                </div>
+                                <div class="w-full bg-slate-900 rounded-full h-3 border border-slate-700">
+                                    <div class="bg-gradient-to-r from-blue-600 to-blue-400 h-full rounded-full chart-bar-horizontal" id="bar-2"></div>
+                                </div>
+                            </div>
+                            <!-- Feature 3 -->
+                            <div class="relative">
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <span class="text-slate-200 font-medium">3. Fahrzeug Remote entsperren</span>
+                                    <span class="font-bold text-emerald-400">65.340</span>
+                                </div>
+                                <div class="w-full bg-slate-900 rounded-full h-3 border border-slate-700">
+                                    <div class="bg-gradient-to-r from-blue-600 to-blue-400 h-full rounded-full chart-bar-horizontal" id="bar-3"></div>
+                                </div>
+                            </div>
+                            <!-- Feature 4 -->
+                            <div class="relative">
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <span class="text-slate-200 font-medium">4. Fahrzeug Ortung</span>
+                                    <span class="font-bold text-emerald-400">54.912</span>
+                                </div>
+                                <div class="w-full bg-slate-900 rounded-full h-3 border border-slate-700">
+                                    <div class="bg-gradient-to-r from-blue-600 to-blue-400 h-full rounded-full chart-bar-horizontal" id="bar-4"></div>
+                                </div>
+                            </div>
+                            <!-- Feature 5 -->
+                            <div class="relative">
+                                <div class="flex justify-between text-sm mb-1.5">
+                                    <span class="text-slate-200 font-medium">5. Fahrzeug Navigationsziel senden</span>
+                                    <span class="font-bold text-emerald-400">41.205</span>
+                                </div>
+                                <div class="w-full bg-slate-900 rounded-full h-3 border border-slate-700">
+                                    <div class="bg-gradient-to-r from-blue-600 to-blue-400 h-full rounded-full chart-bar-horizontal" id="bar-5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="toast" role="status" aria-live="polite" class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-emerald-500 text-slate-900 px-6 py-3 rounded-full shadow-2xl opacity-0 transition-opacity duration-300 text-sm font-bold flex items-center gap-2 border border-emerald-400 z-50">
+                    <i class="fa-solid fa-circle-check text-lg" aria-hidden="true"></i>
+                    <span id="toast-message">Demo bereit: CSV, Excel und PowerPoint sind verfügbar.</span>
+                </div>
+
+                <div id="fake-cursor" aria-hidden="true">
+                    <span class="cursor-halo"></span>
+                    <svg class="cursor-hand" viewBox="0 0 38 50" aria-hidden="true">
+                        <path d="M14.9 3.2c-2.3 0-3.8 1.7-3.8 4v15l-2.5-3.1c-1.4-1.7-3.7-1.8-5-.4-1.2 1.3-1.2 3.1-.2 4.8l7.5 12.1c1.8 2.8 4.9 4.5 8.2 4.5h6.1c4.3 0 7.7-3.4 7.7-7.7V24.5c0-2.1-1.6-3.8-3.7-3.8-1.1 0-2.1.5-2.8 1.3v-2.2c0-2.2-1.7-3.9-3.8-3.9-.9 0-1.7.3-2.3.8v-9c0-2.6-1.5-4.5-3.7-4.5Z" />
+                        <circle cx="15" cy="4.7" r="2.1" />
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const textTranslations = {
+            'Interaktive Datenanalyse neu gedacht': 'Rethinking interactive data analytics',
+            'Ein Paradigmenwechsel im Self-Service BI: Komplexe App-Daten werden durch die Integration einer Schweizer NLP-Lösung (Veezoo) und eines dynamisch skalierenden Databricks Data-Warehouses per natürlicher Sprache abfragbar.': 'A new approach to self-service BI: complex app data becomes searchable in natural language through a Swiss NLP solution (Veezoo) and an elastically scaling Databricks data warehouse.',
+            'Demo-Simulation: Beispielwerte, keine Echtdaten und keine Live-Abfrage.': 'Demo simulation: sample values only — no real data or live queries.',
+            'Alle Showcases': 'All showcases',
+            'Portfolio-Übersicht': 'Showcase overview',
+            'Systemarchitektur & Datenfluss': 'System architecture & data flow',
+            'Sichere, dynamisch skalierbare und ontologiegestützte Verarbeitung von der Nutzeranfrage bis zur Datenbank.': 'Secure, elastic and ontology-powered processing from the user question to the database.',
+            'Interaktive Visualisierung': 'Interactive visualization',
+            'Dynamische Verfeinerung': 'Dynamic refinement',
+            'Exportieren & Herunterladen': 'Exports & downloads',
+            'Ontologisches Wissen (App, KPIs)': 'Ontology for apps and KPIs',
+            'Übersetzung natürlicher Sprache in VQL': 'Natural language to VQL',
+            'Automatische Kontextfindung': 'Automatic context discovery',
+            'Ausführung via SQL / API': 'Execution via SQL / API',
+            'Dynamische Worker-Skalierung': 'Elastic worker scaling',
+            'Strenge Zugriffsrechte': 'Strict access controls',
+            'Demo wiederholen': 'Replay demo',
+            'Frage deine Daten': 'Ask your data',
+            'Web-Frontend': 'Web frontend',
+            'Veezoo-Engine (CH)': 'Veezoo engine (CH)',
+            'Databricks-Warehouse': 'Databricks warehouse',
+            'Zeige alle App-Nutzer aus Chicago im September 2026 und nenne ihre fünf meistgenutzten App-Funktionen.': 'Show all app users from Chicago in September 2026 and list their top five app features.',
+            'Suche z.B. "Zeige mir..."': 'Try a query, for example “Show me…”',
+            'Abfrage wird durch Veezoo übersetzt und in Databricks ausgeführt...': 'Veezoo is translating the question and running it in Databricks…',
+            'September 2026 Demo-Metriken:': 'September 2026 demo metrics:',
+            '122.384': '122,384',
+            'Beispiel-Nutzer': 'Sample users',
+            'Beispielregion: Chicago, IL': 'Sample region: Chicago, IL',
+            'Demo-Daten exportieren': 'Export demo data',
+            'Top 5 App-Features · Beispielwerte': 'Top 5 app features · sample values',
+            '1. Fahrzeug Vorklimatisieren': '1. Precondition vehicle',
+            '94.520': '94,520',
+            '2. Fahrzeug Ladezustand prüfen': '2. Check vehicle charge level',
+            '87.102': '87,102',
+            '3. Fahrzeug Remote entsperren': '3. Unlock vehicle remotely',
+            '65.340': '65,340',
+            '4. Fahrzeug Ortung': '4. Locate vehicle',
+            '54.912': '54,912',
+            '5. Fahrzeug Navigationsziel senden': '5. Send a navigation destination',
+            '41.205': '41,205',
+            'Demo bereit: CSV, Excel und PowerPoint sind verfügbar.': 'Demo ready: CSV, Excel and PowerPoint exports are available.',
+            'Demo abgeschlossen — CSV, Excel und PowerPoint sind als Dateien exportierbar.': 'Demo complete — download the results as CSV, Excel or PowerPoint.',
+            'CSV-Datei heruntergeladen — sie enthält ausschließlich Demo-Beispieldaten.': 'CSV downloaded — it contains sample data only.',
+            'Excel-Datei heruntergeladen — Übersicht und Top-5-Tabelle sind enthalten.': 'Excel downloaded — includes an overview and a top-five table.',
+            'PowerPoint heruntergeladen — mit editierbarer Top-5-Balkenvisualisierung.': 'PowerPoint downloaded — includes an editable top-five bar chart.',
+            'Excel-Export nicht möglich. Bitte die Internetverbindung prüfen.': 'Excel export unavailable. Please check your internet connection.',
+            'PowerPoint-Export nicht möglich. Bitte die Internetverbindung prüfen.': 'PowerPoint export unavailable. Please check your internet connection.',
+        };
+        const reverseTextTranslations = Object.fromEntries(Object.entries(textTranslations).map(([german, english]) => [english, german]));
+        let currentLanguage = 'de';
+        const exportMessages = {
+            de: {
+                csv: 'CSV-Datei heruntergeladen — sie enthält ausschließlich Demo-Beispieldaten.',
+                excel: 'Excel-Datei heruntergeladen — Übersicht und Top-5-Tabelle sind enthalten.',
+                powerPoint: 'PowerPoint heruntergeladen — mit editierbarer Top-5-Balkenvisualisierung.',
+                spreadsheetError: 'Excel-Export nicht möglich. Bitte die Internetverbindung prüfen.',
+                presentationError: 'PowerPoint-Export nicht möglich. Bitte die Internetverbindung prüfen.',
+            },
+            en: {
+                csv: 'CSV downloaded — it contains sample data only.',
+                excel: 'Excel downloaded — includes an overview and a top-five table.',
+                powerPoint: 'PowerPoint downloaded — includes an editable top-five bar chart.',
+                spreadsheetError: 'Excel export unavailable. Please check your internet connection.',
+                presentationError: 'PowerPoint export unavailable. Please check your internet connection.',
+            },
+        };
+
+        const cursor = document.getElementById('fake-cursor');
+        const searchInput = document.getElementById('search-input');
+        const searchBox = document.getElementById('search-box');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultsArea = document.getElementById('results-area');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const dashboardContent = document.getElementById('dashboard-content');
+        const exportActions = document.getElementById('export-actions');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const replayBtn = document.getElementById('replay-btn');
+        const demoBody = document.getElementById('demo-body');
+        const bars = [
+            { el: document.getElementById('bar-1'), width: '100%' },
+            { el: document.getElementById('bar-2'), width: '92.1%' },
+            { el: document.getElementById('bar-3'), width: '69.1%' },
+            { el: document.getElementById('bar-4'), width: '58.1%' },
+            { el: document.getElementById('bar-5'), width: '43.6%' },
+        ];
+
+        const demoSummary = {
+            period: 'September 2026',
+            region: 'Chicago, IL',
+            users: 122384,
+        };
+        const featureData = [
+            { rank: 1, name: { de: 'Fahrzeug Vorklimatisieren', en: 'Precondition vehicle' }, users: 94520 },
+            { rank: 2, name: { de: 'Fahrzeug Ladezustand prüfen', en: 'Check vehicle charge level' }, users: 87102 },
+            { rank: 3, name: { de: 'Fahrzeug Remote entsperren', en: 'Unlock vehicle remotely' }, users: 65340 },
+            { rank: 4, name: { de: 'Fahrzeug Ortung', en: 'Locate vehicle' }, users: 54912 },
+            { rank: 5, name: { de: 'Fahrzeug Navigationsziel senden', en: 'Send a navigation destination' }, users: 41205 },
+        ];
+        const queryText = {
+            de: 'Zeige alle App-Nutzer aus Chicago im September 2026 und nenne ihre fünf meistgenutzten App-Funktionen.',
+            en: 'Show all app users from Chicago in September 2026 and list their top five app features.',
+        };
+        let isAnimating = false;
+        let toastTimer;
+
+        const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+        const formatNumber = (value) => new Intl.NumberFormat(currentLanguage === 'de' ? 'de-DE' : 'en-US').format(value);
+        const languageToggle = document.getElementById('language-toggle');
+
+        function applyLanguage(language) {
+            currentLanguage = language;
+            document.documentElement.lang = language;
+
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+                acceptNode(node) {
+                    return node.parentElement?.closest('script, style, svg') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+                },
+            });
+            while (walker.nextNode()) {
+                const node = walker.currentNode;
+                const trimmed = node.nodeValue.trim();
+                if (!trimmed) continue;
+                const translated = language === 'en' ? textTranslations[trimmed] : reverseTextTranslations[trimmed];
+                if (translated) node.nodeValue = node.nodeValue.replace(trimmed, translated);
+            }
+
+            const attributeTranslations = {
+                'Beispielprompt': 'Sample prompt',
+                'Beispielabfrage starten': 'Run sample query',
+                'Demo-Daten exportieren': 'Export demo data',
+                'Alle Showcases': 'All showcases',
+            };
+            const reverseAttributeTranslations = Object.fromEntries(Object.entries(attributeTranslations).map(([german, english]) => [english, german]));
+            const currentAttributes = language === 'en' ? attributeTranslations : reverseAttributeTranslations;
+            document.querySelectorAll('[aria-label], [title]').forEach(element => {
+                for (const attribute of ['aria-label', 'title']) {
+                    const value = element.getAttribute(attribute);
+                    if (value && currentAttributes[value]) element.setAttribute(attribute, currentAttributes[value]);
+                }
+            });
+
+            document.title = 'AI Applied Showcase — Chat Your Data';
+            document.querySelector('meta[name="description"]').content = language === 'en'
+                ? 'AI Applied Showcase: explore natural-language data analytics, interactive visuals and browser-based CSV, Excel and PowerPoint exports.'
+                : 'AI Applied Showcase: natürlichsprachliche Datenanalyse, interaktive Visualisierungen und CSV-, Excel- sowie PowerPoint-Exporte im Browser.';
+            languageToggle.setAttribute('aria-label', language === 'de' ? 'Sprache zu Englisch wechseln' : 'Switch language to German');
+            languageToggle.title = language === 'de' ? 'Sprache wechseln' : 'Switch language';
+            languageToggle.querySelectorAll('[data-language-option]').forEach(option => {
+                option.setAttribute('aria-current', String(option.dataset.languageOption === language));
+            });
+        }
+
+        function getPreferredLanguage() {
+            const preferredLanguage = navigator.languages?.[0] || navigator.language || 'en';
+            return /^de(?:-|$)/i.test(preferredLanguage) ? 'de' : 'en';
+        }
+
+        let initialLanguage = getPreferredLanguage();
+        try {
+            const savedLanguage = localStorage.getItem('ai-showcase-language');
+            if (savedLanguage === 'de' || savedLanguage === 'en') initialLanguage = savedLanguage;
+        } catch { /* Continue with the browser language if storage is unavailable. */ }
+        applyLanguage(initialLanguage);
+        languageToggle.addEventListener('click', () => {
+            const nextLanguage = currentLanguage === 'de' ? 'en' : 'de';
+            try { localStorage.setItem('ai-showcase-language', nextLanguage); } catch { /* The page can still be switched for this visit. */ }
+            applyLanguage(nextLanguage);
+        });
+
+        function hideToast() {
+            toast.classList.remove('opacity-100');
+            toast.classList.add('opacity-0');
+        }
+
+        function showToast(message, isError = false) {
+            toastMessage.textContent = message;
+            toast.classList.toggle('bg-emerald-500', !isError);
+            toast.classList.toggle('text-slate-900', !isError);
+            toast.classList.toggle('border-emerald-400', !isError);
+            toast.classList.toggle('bg-rose-500', isError);
+            toast.classList.toggle('text-white', isError);
+            toast.classList.toggle('border-rose-400', isError);
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            window.clearTimeout(toastTimer);
+            toastTimer = window.setTimeout(hideToast, 4000);
+        }
+
+        async function moveCursorTo(element, offsetX = 0, offsetY = 0) {
+            if (!element) return;
+
+            const bodyRect = demoBody.getBoundingClientRect();
+            const elementRect = element.getBoundingClientRect();
+            const targetX = elementRect.left - bodyRect.left + (elementRect.width / 2) + offsetX - 14;
+            const targetY = elementRect.top - bodyRect.top + (elementRect.height / 2) + offsetY - 4;
+
+            cursor.classList.add('visible');
+            cursor.style.left = `${Math.max(0, targetX)}px`;
+            cursor.style.top = `${Math.max(0, targetY)}px`;
+            await wait(850);
+        }
+
+        async function click() {
+            cursor.classList.add('pressed');
+            await wait(160);
+            cursor.classList.remove('pressed');
+            await wait(180);
+        }
+
+        async function typeText(text) {
+            searchInput.classList.add('typing-cursor');
+            searchInput.textContent = '';
+            for (const character of text) {
+                searchInput.textContent += character;
+                await wait(Math.random() * 15 + 10);
+            }
+            searchInput.scrollTop = 0;
+            await wait(400);
+            searchInput.classList.remove('typing-cursor');
+        }
+
+        async function resetDemo() {
+            cursor.classList.remove('pressed', 'active', 'visible');
+            cursor.style.left = '90%';
+            cursor.style.top = '90%';
+            const placeholder = 'Suche z.B. "Zeige mir..."';
+            searchInput.textContent = currentLanguage === 'de' ? placeholder : textTranslations[placeholder];
+            searchBox.style.transform = 'scale(1)';
+            searchBox.style.boxShadow = 'none';
+            searchBox.style.borderColor = '#475569';
+            resultsArea.classList.remove('opacity-100');
+            resultsArea.classList.add('opacity-0');
+            loadingSpinner.classList.add('hidden');
+            loadingSpinner.classList.remove('flex');
+            dashboardContent.classList.add('hidden');
+            window.clearTimeout(toastTimer);
+            hideToast();
+            bars.forEach(bar => { bar.el.style.width = '0%'; });
+            await wait(700);
+        }
+
+        async function runAnimationSequence() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            try {
+                await resetDemo();
+
+                await moveCursorTo(searchInput);
+                await click();
+                searchBox.style.borderColor = '#3b82f6';
+                searchBox.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.2)';
+                await typeText(queryText[currentLanguage]);
+
+                await moveCursorTo(submitBtn);
+                await click();
+                searchBox.style.borderColor = '#475569';
+                searchBox.style.boxShadow = 'none';
+
+                resultsArea.classList.remove('opacity-0');
+                resultsArea.classList.add('opacity-100');
+                loadingSpinner.classList.remove('hidden');
+                loadingSpinner.classList.add('flex');
+                await wait(2200);
+
+                loadingSpinner.classList.remove('flex');
+                loadingSpinner.classList.add('hidden');
+                dashboardContent.classList.remove('hidden');
+                await wait(100);
+                bars.forEach((bar, index) => {
+                    window.setTimeout(() => { bar.el.style.width = bar.width; }, index * 150);
+                });
+                await wait(1500);
+
+                await moveCursorTo(exportActions);
+                cursor.classList.add('active');
+                await click();
+                cursor.classList.remove('active');
+                const completionMessage = 'Demo abgeschlossen — CSV, Excel und PowerPoint sind als Dateien exportierbar.';
+                showToast(currentLanguage === 'de' ? completionMessage : textTranslations[completionMessage]);
+            } finally {
+                isAnimating = false;
+            }
+        }
+
+        function downloadBlob(blob, fileName) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        function exportCsv() {
+            const headers = currentLanguage === 'de'
+                ? ['Zeitraum', 'Region', 'Beispiel-Nutzer', 'Rang', 'App-Feature', 'Feature-Nutzer']
+                : ['Period', 'Region', 'Sample users', 'Rank', 'App feature', 'Feature users'];
+            const rows = featureData.map(feature => [
+                demoSummary.period,
+                demoSummary.region,
+                demoSummary.users,
+                feature.rank,
+                feature.name[currentLanguage],
+                feature.users,
+            ]);
+            const csvField = (value) => `"${String(value).replace(/"/g, '""')}"`;
+            const csv = [headers, ...rows].map(row => row.map(csvField).join(';')).join('\r\n');
+            downloadBlob(new Blob(['\uFEFF', csv], { type: 'text/csv;charset=utf-8' }), 'chat-your-data-demo-september-2026.csv');
+            showToast(exportMessages[currentLanguage].csv);
+        }
+
+        async function exportExcel() {
+            try {
+                if (!window.XLSX) throw new Error('Die Excel-Bibliothek wurde nicht geladen.');
+
+                const workbook = window.XLSX.utils.book_new();
+                const isGerman = currentLanguage === 'de';
+                const overview = window.XLSX.utils.aoa_to_sheet([
+                    [isGerman ? 'Chat Your Data — Demoexport' : 'Chat Your Data — demo export'],
+                    [isGerman ? 'Hinweis' : 'Note', isGerman ? 'Illustrative Beispieldaten — keine Echtdaten und keine Live-Abfrage' : 'Illustrative sample data — no real data or live query'],
+                    [isGerman ? 'Zeitraum' : 'Period', demoSummary.period],
+                    [isGerman ? 'Beispielregion' : 'Sample region', demoSummary.region],
+                    [isGerman ? 'Beispiel-Nutzer' : 'Sample users', demoSummary.users],
+                ]);
+                overview['!cols'] = [{ wch: 22 }, { wch: 72 }];
+
+                const topFeatures = window.XLSX.utils.json_to_sheet(featureData.map(feature => ({
+                    [isGerman ? 'Rang' : 'Rank']: feature.rank,
+                    [isGerman ? 'App-Feature' : 'App feature']: feature.name[currentLanguage],
+                    [isGerman ? 'Feature-Nutzer' : 'Feature users']: feature.users,
+                })));
+                topFeatures['!cols'] = [{ wch: 10 }, { wch: 42 }, { wch: 20 }];
+                topFeatures['!autofilter'] = { ref: `A1:C${featureData.length + 1}` };
+
+                window.XLSX.utils.book_append_sheet(workbook, overview, isGerman ? 'Übersicht' : 'Overview');
+                window.XLSX.utils.book_append_sheet(workbook, topFeatures, isGerman ? 'Top 5 Features' : 'Top 5 features');
+                await window.XLSX.writeFile(workbook, 'chat-your-data-demo-september-2026.xlsx');
+                showToast(exportMessages[currentLanguage].excel);
+            } catch (error) {
+                console.error('Excel-Export fehlgeschlagen:', error);
+                showToast(exportMessages[currentLanguage].spreadsheetError, true);
+            }
+        }
+
+        async function exportPowerPoint() {
+            try {
+                const PptxGen = window.PptxGenJS || window.pptxgen;
+                if (typeof PptxGen !== 'function') throw new Error('Die PowerPoint-Bibliothek wurde nicht geladen.');
+
+                const isGerman = currentLanguage === 'de';
+                const pptx = new PptxGen();
+                pptx.layout = 'LAYOUT_WIDE';
+                pptx.author = 'Chat Your Data Showcase';
+                pptx.subject = isGerman ? 'Illustrative Demo-Visualisierung der Top-App-Features' : 'Illustrative visualization of top app features';
+                pptx.title = isGerman ? 'Chat Your Data — Demoexport' : 'Chat Your Data — demo export';
+                pptx.theme = { headFontFace: 'Aptos Display', bodyFontFace: 'Aptos', lang: isGerman ? 'de-DE' : 'en-US' };
+
+                const slide = pptx.addSlide();
+                const rect = pptx.ShapeType?.rect || 'rect';
+                slide.background = { color: '0F172A' };
+                slide.addText('CHAT YOUR DATA', {
+                    x: 0.6, y: 0.38, w: 8.9, h: 0.22, margin: 0,
+                    fontFace: 'Aptos', fontSize: 10, bold: true, charSpacing: 2, color: '38BDF8',
+                });
+                slide.addText(isGerman ? 'Top-App-Features in Chicago' : 'Top app features in Chicago', {
+                    x: 0.6, y: 0.72, w: 9.2, h: 0.48, margin: 0,
+                    fontFace: 'Aptos Display', fontSize: 25, bold: true, color: 'F8FAFC',
+                });
+                slide.addText(`${isGerman ? 'Beispiel-Analyse' : 'Sample analysis'} · ${demoSummary.period}`, {
+                    x: 0.6, y: 1.28, w: 8.8, h: 0.28, margin: 0,
+                    fontFace: 'Aptos', fontSize: 12, color: '94A3B8',
+                });
+
+                slide.addShape(rect, {
+                    x: 10.25, y: 0.42, w: 2.48, h: 1.12,
+                    rectRadius: 0.08, fill: { color: '172554' }, line: { color: '1D4ED8' },
+                });
+                slide.addText(formatNumber(demoSummary.users), {
+                    x: 10.4, y: 0.58, w: 2.18, h: 0.44, margin: 0,
+                    fontFace: 'Aptos Display', fontSize: 25, bold: true, align: 'center', color: 'F8FAFC',
+                });
+                slide.addText(isGerman ? 'Beispiel-Nutzer' : 'Sample users', {
+                    x: 10.4, y: 1.1, w: 2.18, h: 0.2, margin: 0,
+                    fontFace: 'Aptos', fontSize: 10, align: 'center', color: 'BFDBFE',
+                });
+
+                slide.addShape(rect, {
+                    x: 0.6, y: 1.82, w: 12.13, h: 0.015,
+                    fill: { color: '334155' }, line: { color: '334155' },
+                });
+                slide.addText(isGerman ? 'Meistgenutzte App-Features · Anzahl der Nutzer' : 'Most-used app features · user count', {
+                    x: 0.6, y: 2.04, w: 8.5, h: 0.28, margin: 0,
+                    fontFace: 'Aptos', fontSize: 12, bold: true, color: 'CBD5E1',
+                });
+
+                const chartX = 4.85;
+                const chartWidth = 6.7;
+                featureData.forEach((feature, index) => {
+                    const rowY = 2.52 + index * 0.74;
+                    slide.addText(`${feature.rank}. ${feature.name[currentLanguage]}`, {
+                        x: 0.6, y: rowY - 0.03, w: 4.05, h: 0.34, margin: 0,
+                        fontFace: 'Aptos', fontSize: 11, color: 'E2E8F0',
+                    });
+                    slide.addShape(rect, {
+                        x: chartX, y: rowY + 0.025, w: chartWidth, h: 0.22,
+                        fill: { color: '1E293B' }, line: { color: '1E293B' },
+                    });
+                    slide.addShape(rect, {
+                        x: chartX, y: rowY + 0.025, w: chartWidth * feature.users / featureData[0].users, h: 0.22,
+                        fill: { color: index === 0 ? '38BDF8' : '34D399' },
+                        line: { color: index === 0 ? '38BDF8' : '34D399' },
+                    });
+                    slide.addText(formatNumber(feature.users), {
+                        x: 11.78, y: rowY - 0.03, w: 0.95, h: 0.34, margin: 0,
+                        fontFace: 'Aptos', fontSize: 11, bold: true, align: 'right', color: '6EE7B7',
+                    });
+                });
+
+                slide.addText(isGerman
+                    ? 'Demo-Simulation · Illustrative Beispielwerte, keine Echtdaten und keine Live-Abfrage.'
+                    : 'Demo simulation · Illustrative sample values, no real data or live query.', {
+                    x: 0.6, y: 6.65, w: 12.13, h: 0.28, margin: 0,
+                    fontFace: 'Aptos', fontSize: 9, color: '94A3B8',
+                });
+
+                await pptx.writeFile({ fileName: 'chat-your-data-demo-september-2026.pptx' });
+                showToast(exportMessages[currentLanguage].powerPoint);
+            } catch (error) {
+                console.error('PowerPoint-Export fehlgeschlagen:', error);
+                showToast(exportMessages[currentLanguage].presentationError, true);
+            }
+        }
+
+        document.getElementById('download-csv-btn').addEventListener('click', exportCsv);
+        document.getElementById('download-excel-btn').addEventListener('click', exportExcel);
+        document.getElementById('download-pptx-btn').addEventListener('click', exportPowerPoint);
+        replayBtn.addEventListener('click', runAnimationSequence);
+        submitBtn.addEventListener('click', runAnimationSequence);
+
+        window.addEventListener('load', () => {
+            window.setTimeout(runAnimationSequence, 1000);
+        });
+    </script>
+</body>
+</html>

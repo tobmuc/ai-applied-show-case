@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111d">
+  <meta name="description" content="A connected AI showcase: turn multilingual customer feedback into trusted context, then explore business data with natural language.">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <title>AI Applied Showcase — Overview</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111d;
+      --surface: #0d1b29;
+      --surface-2: #112332;
+      --line: rgba(176, 219, 230, .14);
+      --text: #edf7f8;
+      --muted: #9aafbb;
+      --mint: #6be2d4;
+      --cyan: #67c9f3;
+      --violet: #a890ff;
+      --amber: #ffcf7b;
+      --green: #8be5b4;
+      --radius: 22px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; min-width: 320px; overflow-x: hidden; background: radial-gradient(ellipse at 82% 0%, rgba(53,130,156,.2), transparent 34rem), radial-gradient(ellipse at 4% 45%, rgba(91,77,153,.15), transparent 34rem), var(--bg); color: var(--text); line-height: 1.55; }
+    body::before { position: fixed; z-index: -1; inset: 0; content: ""; pointer-events: none; opacity: .15; background-image: linear-gradient(rgba(164,211,222,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(164,211,222,.08) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, #000, transparent 82%); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--mint); outline-offset: 4px; }
+    .shell { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar { position: sticky; z-index: 10; top: 0; border-bottom: 1px solid rgba(193,225,232,.1); background: rgba(7,17,29,.78); backdrop-filter: blur(18px); }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: .92rem; font-weight: 780; letter-spacing: -.03em; white-space: nowrap; }
+    .brand-icon { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid rgba(107,226,212,.32); border-radius: 12px; background: linear-gradient(145deg, rgba(107,226,212,.17), rgba(103,201,243,.07)); font-size: 1.2rem; }
+    .nav-right, .nav-links { display: flex; align-items: center; gap: 19px; }
+    .nav-links { color: #9aafbb; font-size: .78rem; }
+    .nav-links a:hover { color: #edf7f8; }
+    .language-toggle { display: inline-flex; align-items: center; gap: 5px; min-height: 38px; padding: 0 10px; border: 1px solid rgba(107,226,212,.25); border-radius: 10px; background: rgba(107,226,212,.07); color: #d4e7e8; font-size: .72rem; font-weight: 750; cursor: pointer; }
+    .language-toggle span[aria-current="true"] { padding: 2px 4px; border-radius: 5px; background: var(--mint); color: #07111d; }
+    .language-toggle span[aria-hidden="true"] { color: #718792; }
+    .hero { padding: 76px 0 62px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(300px,.95fr); align-items: center; gap: clamp(34px, 7vw, 86px); }
+    .eyebrow, .kicker { color: var(--mint); font-size: .7rem; font-weight: 780; letter-spacing: .15em; text-transform: uppercase; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 14px var(--mint); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 700px; margin: 20px 0 20px; font-size: clamp(2.9rem, 6vw, 5.5rem); line-height: .98; letter-spacing: -.075em; }
+    .gradient { background: linear-gradient(100deg, #f0fbfb, #85e6dc 55%, #90baf8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-copy { max-width: 650px; color: #a8bbc6; font-size: clamp(1rem, 1.6vw, 1.13rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 27px; }
+    .button { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 15px; border: 1px solid rgba(107,226,212,.31); border-radius: 12px; background: rgba(107,226,212,.09); color: #c9fff7; font-size: .78rem; font-weight: 740; transition: transform .2s, background .2s, border-color .2s; }
+    .button:hover { transform: translateY(-2px); background: rgba(107,226,212,.16); border-color: rgba(107,226,212,.55); }
+    .button.secondary { border-color: var(--line); background: rgba(255,255,255,.025); color: #c0cdd3; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 23px; color: #8299a5; font-size: .73rem; }
+    .hero-meta span { padding: 5px 9px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.02); }
+    .journey-card { position: relative; padding: 25px; border: 1px solid rgba(172,218,228,.19); border-radius: 23px; background: linear-gradient(145deg, rgba(22,43,58,.95), rgba(10,25,39,.97)); box-shadow: 0 24px 75px rgba(0,0,0,.28); }
+    .journey-label { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 21px; color: #91a8b4; font-size: .72rem; }
+    .journey-label strong { color: var(--mint); font-weight: 700; }
+    .journey-step { display: grid; grid-template-columns: 35px 1fr; align-items: start; gap: 12px; padding: 13px 0; border-top: 1px solid rgba(176,219,230,.1); }
+    .journey-step:first-of-type { border-top: 0; }
+    .step-icon { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid rgba(107,226,212,.19); border-radius: 10px; background: rgba(107,226,212,.08); font-size: 1rem; }
+    .journey-step strong { display: block; margin-bottom: 2px; font-size: .8rem; }
+    .journey-step small { color: #839ba7; font-size: .68rem; }
+    .section { padding: 78px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 29px; }
+    .kicker { margin-bottom: 10px; }
+    h2 { margin-bottom: 0; font-size: clamp(2rem,4vw,3.15rem); line-height: 1.05; letter-spacing: -.06em; }
+    .section-intro { max-width: 480px; margin-bottom: 3px; color: var(--muted); font-size: .88rem; }
+    .showcase-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 17px; }
+    .showcase-card { position: relative; overflow: hidden; padding: clamp(22px,3.4vw,34px); border: 1px solid rgba(172,218,228,.15); border-radius: 20px; background: linear-gradient(145deg, rgba(17,35,50,.93), rgba(9,22,34,.93)); transition: transform .25s, border-color .25s, box-shadow .25s; }
+    .showcase-card:hover { transform: translateY(-5px); border-color: rgba(107,226,212,.4); box-shadow: 0 20px 48px rgba(0,0,0,.22); }
+    .card-top { display: flex; align-items: center; gap: 13px; margin-bottom: 18px; }
+    .card-icon { display: grid; place-items: center; width: 47px; height: 47px; border: 1px solid rgba(107,226,212,.22); border-radius: 14px; background: rgba(107,226,212,.07); font-size: 1.35rem; }
+    .card-top small { color: var(--mint); font-size: .64rem; font-weight: 740; letter-spacing: .1em; text-transform: uppercase; }
+    .showcase-card h3 { margin: 0 0 8px; font-size: 1.26rem; letter-spacing: -.035em; }
+    .showcase-card p { min-height: 69px; margin-bottom: 20px; color: #97acb7; font-size: .82rem; }
+    .feature-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+    .feature-tags span { padding: 5px 9px; border: 1px solid rgba(176,219,230,.13); border-radius: 999px; color: #b9c9d0; font-size: .64rem; }
+    .card-link { display: inline-flex; align-items: center; gap: 8px; color: #a8f4e9; font-size: .78rem; font-weight: 740; }
+    .card-link:hover { color: white; }
+    .flow-panel { padding: clamp(22px,4vw,37px); border: 1px solid rgba(107,226,212,.18); border-radius: 22px; background: radial-gradient(ellipse at 82% 0, rgba(107,226,212,.08), transparent 25rem), rgba(13,27,41,.68); }
+    .flow-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 11px; }
+    .flow-step { position: relative; min-height: 185px; padding: 17px 14px; border: 1px solid rgba(176,219,230,.12); border-radius: 15px; background: rgba(6,17,28,.4); }
+    .flow-step:not(:last-child)::after { position: absolute; z-index: 2; top: 25px; right: -15px; width: 19px; color: var(--mint); content: "→"; font-size: 1.1rem; }
+    .flow-step .number { color: var(--mint); font-size: .67rem; font-weight: 780; letter-spacing: .1em; }
+    .flow-step h3 { margin: 12px 0 7px; font-size: .86rem; }
+    .flow-step p { margin: 0; color: #91a7b2; font-size: .68rem; line-height: 1.5; }
+    .benefit-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; }
+    .benefit-card { min-height: 190px; padding: 20px; border: 1px solid rgba(176,219,230,.13); border-radius: 16px; background: linear-gradient(155deg, rgba(17,35,50,.84), rgba(9,22,34,.78)); }
+    .benefit-icon { display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 14px; border: 1px solid rgba(168,144,255,.25); border-radius: 11px; background: rgba(168,144,255,.08); font-size: 1rem; }
+    .benefit-card h3 { margin-bottom: 7px; font-size: .85rem; }
+    .benefit-card p { margin: 0; color: #8fa4af; font-size: .72rem; line-height: 1.58; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; }
+    .skill-card { min-height: 205px; padding: 20px; border: 1px solid rgba(176,219,230,.13); border-radius: 16px; background: linear-gradient(155deg, rgba(17,35,50,.84), rgba(9,22,34,.78)); }
+    .skill-card-top { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+    .skill-card-icon { display: grid; flex: 0 0 36px; place-items: center; width: 36px; height: 36px; border: 1px solid rgba(107,226,212,.2); border-radius: 11px; background: rgba(107,226,212,.07); font-size: 1rem; }
+    .skill-card-top small { color: var(--mint); font-size: .62rem; font-weight: 760; letter-spacing: .1em; text-transform: uppercase; }
+    .skill-card h3 { margin: 0 0 8px; font-size: .85rem; }
+    .skill-card p { margin: 0; color: #8fa4af; font-size: .71rem; line-height: 1.6; }
+    .skills-notes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; margin-top: 16px; }
+    .skills-note { padding: 18px 20px; border: 1px solid rgba(107,226,212,.16); border-radius: 15px; background: rgba(13,27,41,.58); }
+    .skills-note.concept { border-color: rgba(255,207,123,.18); background: rgba(255,207,123,.035); }
+    .skills-note strong { display: block; margin-bottom: 7px; color: #c7fff4; font-size: .74rem; }
+    .skills-note.concept strong { color: #ffe0a7; }
+    .skills-note p { margin: 0; color: #91a7b2; font-size: .69rem; line-height: 1.6; }
+    .stack-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 22px; padding: 23px 27px; border: 1px solid rgba(176,219,230,.12); border-radius: 17px; background: rgba(13,27,41,.55); }
+    .stack-copy { max-width: 355px; }
+    .stack-copy strong { display: block; margin-bottom: 4px; font-size: .85rem; }
+    .stack-copy span { color: #91a7b2; font-size: .71rem; }
+    .stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-tags span { padding: 7px 11px; border: 1px solid rgba(107,226,212,.17); border-radius: 999px; background: rgba(107,226,212,.045); color: #c5d7da; font-size: .69rem; }
+    .notice { display: flex; align-items: flex-start; gap: 11px; margin-top: 22px; padding: 15px 17px; border: 1px solid rgba(255,207,123,.19); border-radius: 13px; background: rgba(255,207,123,.045); color: #ddc796; font-size: .7rem; }
+    .notice strong { color: #ffe0a7; }
+    .footer { padding: 22px 0 30px; border-top: 1px solid rgba(193,225,232,.09); color: #718792; font-size: .67rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .journey-card { max-width: 700px; }
+      .flow-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .flow-step:nth-child(3)::after { display: none; }
+      .benefit-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .skills-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 34px, 600px); }
+      .nav { min-height: 64px; }
+      .nav-right { gap: 10px; }
+      .nav-links { gap: 11px; }
+      .nav-links a:nth-child(2) { display: none; }
+      .nav-links { font-size: .69rem; }
+      .language-toggle { min-height: 34px; padding-inline: 7px; font-size: .66rem; }
+      .hero { padding: 58px 0 42px; }
+      .section { padding: 61px 0; }
+      .section-head { display: block; }
+      .section-intro { margin-top: 14px; }
+      .showcase-grid { grid-template-columns: 1fr; }
+      .showcase-card p { min-height: 0; }
+      .flow-grid { grid-template-columns: 1fr; }
+      .flow-step { min-height: auto; }
+      .flow-step:not(:last-child)::after { top: auto; right: 18px; bottom: -21px; width: auto; content: "↓"; }
+      .flow-step:nth-child(3)::after { display: block; }
+      .flow-step:last-child::after { display: none; }
+      .benefit-grid { grid-template-columns: 1fr; }
+      .benefit-card { min-height: auto; }
+      .skills-grid, .skills-notes { grid-template-columns: 1fr; }
+      .skill-card { min-height: auto; }
+      .stack-strip { padding: 20px; }
+    }
+    @media (max-width: 420px) {
+      .shell { width: min(100% - 28px, 390px); }
+      .nav { gap: 10px; }
+      .brand { font-size: .78rem; }
+      .brand-icon { width: 32px; height: 32px; }
+      .nav-links a:first-child { display: none; }
+      .nav-links { gap: 8px; }
+      .hero-actions .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="#top"><span class="brand-icon" aria-hidden="true">🤖</span><span>AI Applied Showcase</span></a>
+      <div class="nav-right">
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#showcases">Showcases</a>
+          <a href="#journey">Combined flow</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#skills">Skills</a>
+        </nav>
+        <button class="language-toggle" id="language-toggle" type="button" aria-label="Switch language to German" title="Switch language"><span data-language-option="en">EN</span><span aria-hidden="true">/</span><span data-language-option="de">DE</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot" aria-hidden="true"></span>Two complementary AI concepts</div>
+          <h1><span class="gradient">From customer signals</span><br><span>to decisions.</span></h1>
+          <p class="hero-copy">One connected analytics journey: transform multilingual customer feedback into structured product insight, then explore trusted business data with natural language.</p>
+          <div class="hero-actions">
+            <a class="button" href="#journey">Explore the combined flow <span aria-hidden="true">↓</span></a>
+            <a class="button secondary" href="#showcases">Open both demos <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-meta"><span>💬 Customer voice</span><span>🧠 AI-assisted insight</span><span>📊 Decision-ready data</span></div>
+        </div>
+
+        <aside class="journey-card" aria-label="Combined journey preview">
+          <div class="journey-label"><span>The connected journey</span><strong>01 → 05</strong></div>
+          <div class="journey-step"><span class="step-icon" aria-hidden="true">💬</span><div><strong>Listen across channels</strong><small>App reviews, surveys, support and usage data</small></div></div>
+          <div class="journey-step"><span class="step-icon" aria-hidden="true">🌐</span><div><strong>Normalize &amp; enrich</strong><small>Language, sentiment, themes and product context</small></div></div>
+          <div class="journey-step"><span class="step-icon" aria-hidden="true">📊</span><div><strong>Ask, visualize, act</strong><small>Natural-language analytics and stakeholder views</small></div></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="showcases">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="kicker">Two focused demos</p><h2>Explore each part<br><span class="gradient">in detail.</span></h2></div>
+          <p class="section-intro">The showcases are complementary: one structures the voice of the customer; the other makes business data easier to explore and share.</p>
+        </div>
+        <div class="showcase-grid">
+          <article class="showcase-card">
+            <div class="card-top"><span class="card-icon" aria-hidden="true">💬</span><div><small>01 · Feedback intelligence</small></div></div>
+            <h3>From feedback to insight</h3>
+            <p>See how multilingual app feedback can be collected, translated, classified, enriched with feature context and prepared for quality checks.</p>
+            <div class="feature-tags"><span>🌐 Multilingual</span><span>🏷️ Topic &amp; sentiment</span><span>✅ Quality checks</span></div>
+            <a class="card-link" href="./ai-applied-show-case-feedback-intelligence/">Open feedback showcase <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="showcase-card">
+            <div class="card-top"><span class="card-icon" aria-hidden="true">📊</span><div><small>02 · Chat your data</small></div></div>
+            <h3>From questions to analytics</h3>
+            <p>Watch a natural-language query turn into a visual result, then export the illustrative dashboard data to CSV, Excel or PowerPoint.</p>
+            <div class="feature-tags"><span>💬 Natural language</span><span>📈 Interactive charts</span><span>📤 CSV · Excel · PPTX</span></div>
+            <a class="card-link" href="./ai-applied-show-case-chat-your-data/">Open data analytics showcase <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="journey">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="kicker">One connected solution</p><h2>From raw signals<br><span class="gradient">to shared action.</span></h2></div>
+          <p class="section-intro">A clear operating model connects customer feedback with governed analytics, so teams can move from a customer signal to a measurable follow-up.</p>
+        </div>
+        <div class="flow-panel">
+          <div class="flow-grid">
+            <article class="flow-step"><span class="number">STEP 01</span><h3>Capture</h3><p>Bring together app reviews, in-app comments, CSAT responses and support conversations.</p></article>
+            <article class="flow-step"><span class="number">STEP 02</span><h3>Normalize</h3><p>Translate where needed and attach consistent channel, platform, version and product metadata.</p></article>
+            <article class="flow-step"><span class="number">STEP 03</span><h3>Understand</h3><p>Use AI to label topics and sentiment, map feedback to features, and validate results against examples.</p></article>
+            <article class="flow-step"><span class="number">STEP 04</span><h3>Explore</h3><p>Query shared business metrics in natural language, backed by a defined data model and warehouse.</p></article>
+            <article class="flow-step"><span class="number">STEP 05</span><h3>Share &amp; act</h3><p>Visualize trends, distribute role-appropriate views and export results for follow-up.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="kicker">Explicit solution benefits</p><h2>Why this approach<br><span class="gradient">creates value.</span></h2></div>
+          <p class="section-intro">The value comes from connecting the workflow end to end—not from a model alone. These are the intended benefits of the showcased solution design.</p>
+        </div>
+        <div class="benefit-grid">
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">🗂️</span><h3>One view of customer voice</h3><p>Combine feedback from different channels with product, platform, country and version context instead of reviewing isolated fragments.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">🌍</span><h3>Multilingual reach</h3><p>Preserve original-language feedback while making translated content easier to compare across markets and languages.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">⚡</span><h3>Faster insight cycles</h3><p>Automate repetitive triage and let teams explore defined business metrics with natural-language questions.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">🧭</span><h3>Consistent product context</h3><p>Map customer language to shared feature and KPI definitions so trends are easier to compare and prioritize.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">✅</span><h3>More trustworthy outputs</h3><p>Use ground-truth examples, quality checks, access controls and traceable metadata to make results easier to review.</p></article>
+          <article class="benefit-card"><span class="benefit-icon" aria-hidden="true">📤</span><h3>Insights people can use</h3><p>Give product, support and leadership views that fit their needs, with charts and practical CSV, Excel and PowerPoint exports.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="kicker">Skills behind the solutions</p><h2>From domain knowledge<br><span class="gradient">to working prototypes.</span></h2></div>
+          <p class="section-intro">These are the competencies needed to shape each stage—from customer problem and data model to useful interfaces, quality checks and decision-ready outputs.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card"><div class="skill-card-top"><span class="skill-card-icon" aria-hidden="true">🧭</span><small>01 · Frame</small></div><h3>Product &amp; business analysis</h3><p>Turn user and stakeholder needs into journeys, use cases, useful questions, KPIs and prioritized next steps.</p></article>
+          <article class="skill-card"><div class="skill-card-top"><span class="skill-card-icon" aria-hidden="true">🔌</span><small>02 · Connect</small></div><h3>Data &amp; cloud architecture</h3><p>Design omnichannel ingestion, metadata enrichment, scalable warehouse flows, access boundaries and BI-ready datasets.</p></article>
+          <article class="skill-card"><div class="skill-card-top"><span class="skill-card-icon" aria-hidden="true">🌐</span><small>03 · Understand</small></div><h3>Applied AI, NLP &amp; localization</h3><p>Shape multilingual normalization, prompts, topic and sentiment taxonomies, and natural-language query experiences.</p></article>
+          <article class="skill-card"><div class="skill-card-top"><span class="skill-card-icon" aria-hidden="true">🧩</span><small>04 · Model</small></div><h3>Semantic modeling &amp; product context</h3><p>Connect customer language to shared concepts, feature maps, KPI definitions, ontology and query semantics.</p></article>
+          <article class="skill-card"><div class="skill-card-top"><span class="skill-card-icon" aria-hidden="true">✅</span><small>05 · Validate</small></div><h3>Quality, governance &amp; BI</h3><p>Use reference examples, confidence checks, privacy-aware access, validation and role-appropriate dashboards.</p></article>
+          <article class="skill-card"><div class="skill-card-top"><span class="skill-card-icon" aria-hidden="true">🛠️</span><small>06 · Deliver</small></div><h3>Frontend, UX &amp; product delivery</h3><p>Build responsive interactions, accessible navigation, browser-based DE/EN localization, visualizations and practical exports.</p></article>
+        </div>
+        <div class="skills-notes">
+          <aside class="skills-note"><strong>Implemented in these demos</strong><p>Responsive HTML/CSS/JavaScript interfaces, simulated user journeys, locale-aware German/English controls, custom emoji favicons, and real CSV, Excel and PowerPoint downloads from clearly labeled sample data.</p></aside>
+          <aside class="skills-note concept"><strong>Solution architecture shown conceptually</strong><p>Connections to live feedback channels, AI inference, Countly/Azure ingestion, Veezoo-to-VQL execution, Databricks and production BI are design concepts—not active integrations. No company or production data is connected.</p></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="stack-strip">
+          <div class="stack-copy"><strong>Illustrative technology landscape</strong><span>Connects ingestion, AI, a governed warehouse and familiar BI tools.</span></div>
+          <div class="stack-tags" aria-label="Technologies"><span>Countly</span><span>Azure AI</span><span>Veezoo</span><span>Databricks</span><span>QuickSight</span><span>Power BI</span></div>
+        </div>
+        <div class="notice" role="note"><span aria-hidden="true">⚠️</span><span><strong>Portfolio demo, not a live system.</strong> The pages illustrate a solution concept with fictional sample content. They do not connect to company data, production systems or live AI services.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="shell footer-inner"><span>AI Applied Showcase · Combined overview</span><span>Fictional samples · No production data or live queries</span></div></footer>
+
+  <script>
+    const englishToGerman = {
+      'Main navigation': 'Hauptnavigation',
+      'Showcases': 'Showcases',
+      'Combined flow': 'Kombinierter Ablauf',
+      'Benefits': 'Vorteile',
+      'Skills': 'Kompetenzen',
+      'Two complementary AI concepts': 'Zwei ergänzende KI-Konzepte',
+      'From customer signals': 'Von Kundensignalen',
+      'to decisions.': 'zu Entscheidungen.',
+      'One connected analytics journey: transform multilingual customer feedback into structured product insight, then explore trusted business data with natural language.': 'Ein zusammenhängender Analyseprozess: Mehrsprachiges Kundenfeedback wird zu strukturierten Produkterkenntnissen, die anschließend gemeinsam mit vertrauenswürdigen Geschäftsdaten in natürlicher Sprache erkundet werden können.',
+      'Explore the combined flow': 'Den kombinierten Ablauf entdecken',
+      'Open both demos': 'Beide Demos öffnen',
+      '💬 Customer voice': '💬 Kundenstimmen',
+      '🧠 AI-assisted insight': '🧠 KI-gestützte Erkenntnisse',
+      '📊 Decision-ready data': '📊 Entscheidungsreife Daten',
+      'Combined journey preview': 'Vorschau des kombinierten Ablaufs',
+      'The connected journey': 'Der zusammenhängende Ablauf',
+      'Listen across channels': 'Kanäleübergreifend zuhören',
+      'App reviews, surveys, support and usage data': 'App-Bewertungen, Umfragen, Support und Nutzungsdaten',
+      'Normalize & enrich': 'Normalisieren & anreichern',
+      'Language, sentiment, themes and product context': 'Sprache, Stimmung, Themen und Produktkontext',
+      'Ask, visualize, act': 'Fragen, visualisieren, handeln',
+      'Natural-language analytics and stakeholder views': 'Analysen in natürlicher Sprache und Stakeholder-Ansichten',
+      'Two focused demos': 'Zwei fokussierte Demos',
+      'Explore each part': 'Jeden Teil entdecken',
+      'in detail.': 'im Detail.',
+      'The showcases are complementary: one structures the voice of the customer; the other makes business data easier to explore and share.': 'Die Showcases ergänzen einander: Das eine strukturiert Kundenstimmen, das andere macht Geschäftsdaten leichter erkundbar und teilbar.',
+      '01 · Feedback intelligence': '01 · Feedback Intelligence',
+      'From feedback to insight': 'Von Feedback zu Erkenntnissen',
+      'See how multilingual app feedback can be collected, translated, classified, enriched with feature context and prepared for quality checks.': 'Erfahre, wie mehrsprachiges App-Feedback gesammelt, übersetzt, klassifiziert, mit Feature-Kontext angereichert und für Qualitätsprüfungen vorbereitet werden kann.',
+      '🌐 Multilingual': '🌐 Mehrsprachig',
+      '🏷️ Topic & sentiment': '🏷️ Thema & Stimmung',
+      '✅ Quality checks': '✅ Qualitätsprüfungen',
+      'Open feedback showcase': 'Feedback-Showcase öffnen',
+      '02 · Chat your data': '02 · Chat your data',
+      'From questions to analytics': 'Von Fragen zu Analysen',
+      'Watch a natural-language query turn into a visual result, then export the illustrative dashboard data to CSV, Excel or PowerPoint.': 'Sieh zu, wie eine Frage in natürlicher Sprache zu einem visuellen Ergebnis wird; exportiere anschließend die beispielhaften Dashboard-Daten als CSV, Excel oder PowerPoint.',
+      '💬 Natural language': '💬 Natürliche Sprache',
+      '📈 Interactive charts': '📈 Interaktive Diagramme',
+      '📤 CSV · Excel · PPTX': '📤 CSV · Excel · PPTX',
+      'Open data analytics showcase': 'Datenanalyse-Showcase öffnen',
+      'One connected solution': 'Eine verknüpfte Lösung',
+      'From raw signals': 'Von rohen Signalen',
+      'to shared action.': 'zu gemeinsamem Handeln.',
+      'A clear operating model connects customer feedback with governed analytics, so teams can move from a customer signal to a measurable follow-up.': 'Ein klares Betriebsmodell verbindet Kundenfeedback mit kontrollierter Analytik, damit Teams von einem Kundensignal zu konkreten, messbaren Maßnahmen gelangen.',
+      'STEP 01': 'SCHRITT 01',
+      'Capture': 'Erfassen',
+      'Bring together app reviews, in-app comments, CSAT responses and support conversations.': 'App-Bewertungen, In-App-Kommentare, CSAT-Antworten und Supportgespräche zusammenführen.',
+      'STEP 02': 'SCHRITT 02',
+      'Normalize': 'Normalisieren',
+      'Translate where needed and attach consistent channel, platform, version and product metadata.': 'Bei Bedarf übersetzen und einheitliche Metadaten zu Kanal, Plattform, Version und Produkt ergänzen.',
+      'STEP 03': 'SCHRITT 03',
+      'Understand': 'Verstehen',
+      'Use AI to label topics and sentiment, map feedback to features, and validate results against examples.': 'KI nutzen, um Themen und Stimmung zu klassifizieren, Feedback Features zuzuordnen und Ergebnisse mit Beispielen zu prüfen.',
+      'STEP 04': 'SCHRITT 04',
+      'Explore': 'Erkunden',
+      'Query shared business metrics in natural language, backed by a defined data model and warehouse.': 'Gemeinsame Geschäftskennzahlen in natürlicher Sprache abfragen – gestützt auf ein definiertes Datenmodell und Warehouse.',
+      'STEP 05': 'SCHRITT 05',
+      'Share & act': 'Teilen & handeln',
+      'Visualize trends, distribute role-appropriate views and export results for follow-up.': 'Trends visualisieren, rollenbezogene Ansichten teilen und Ergebnisse für die Weiterverfolgung exportieren.',
+      'Explicit solution benefits': 'Konkrete Lösungsvorteile',
+      'Why this approach': 'Warum dieser Ansatz',
+      'creates value.': 'Mehrwert schafft.',
+      'The value comes from connecting the workflow end to end—not from a model alone. These are the intended benefits of the showcased solution design.': 'Der Mehrwert entsteht durch die Verbindung des gesamten Prozesses – nicht allein durch ein Modell. Dies sind die vorgesehenen Vorteile des gezeigten Lösungsdesigns.',
+      'One view of customer voice': 'Eine Sicht auf Kundenstimmen',
+      'Combine feedback from different channels with product, platform, country and version context instead of reviewing isolated fragments.': 'Feedback aus verschiedenen Kanälen mit Produkt-, Plattform-, Länder- und Versionskontext verbinden, statt isolierte Ausschnitte zu betrachten.',
+      'Multilingual reach': 'Mehrsprachige Reichweite',
+      'Preserve original-language feedback while making translated content easier to compare across markets and languages.': 'Feedback in der Originalsprache bewahren und übersetzte Inhalte über Märkte und Sprachen hinweg vergleichbar machen.',
+      'Faster insight cycles': 'Schnellere Erkenntniszyklen',
+      'Automate repetitive triage and let teams explore defined business metrics with natural-language questions.': 'Wiederkehrende Triage-Aufgaben automatisieren und Teams Kennzahlen mit Fragen in natürlicher Sprache erkunden lassen.',
+      'Consistent product context': 'Einheitlicher Produktkontext',
+      'Map customer language to shared feature and KPI definitions so trends are easier to compare and prioritize.': 'Kundensprache gemeinsamen Feature- und KPI-Definitionen zuordnen, damit Trends leichter vergleichbar und priorisierbar sind.',
+      'More trustworthy outputs': 'Vertrauenswürdigere Ergebnisse',
+      'Use ground-truth examples, quality checks, access controls and traceable metadata to make results easier to review.': 'Referenzbeispiele, Qualitätsprüfungen, Zugriffsrechte und nachvollziehbare Metadaten einsetzen, damit Ergebnisse leichter überprüfbar sind.',
+      'Insights people can use': 'Erkenntnisse, die nutzbar sind',
+      'Give product, support and leadership views that fit their needs, with charts and practical CSV, Excel and PowerPoint exports.': 'Produktteams, Support und Management mit passenden Ansichten, Diagrammen und praktischen CSV-, Excel- und PowerPoint-Exporten versorgen.',
+      'Skills behind the solutions': 'Benötigte Kompetenzen für die Lösungen',
+      'From domain knowledge': 'Von Fachwissen',
+      'to working prototypes.': 'zu funktionsfähigen Prototypen.',
+      'These are the competencies needed to shape each stage—from customer problem and data model to useful interfaces, quality checks and decision-ready outputs.': 'Diese Kompetenzen sind erforderlich, um jeden Schritt zu gestalten – von Kundenproblem und Datenmodell über nutzbare Oberflächen und Qualitätsprüfungen bis zu entscheidungsrelevanten Ergebnissen.',
+      '01 · Frame': '01 · Einordnen',
+      'Product & business analysis': 'Produkt- & Geschäftsanalysen',
+      'Turn user and stakeholder needs into journeys, use cases, useful questions, KPIs and prioritized next steps.': 'Nutzer- und Stakeholder-Bedürfnisse in Abläufe, Anwendungsfälle, zielführende Fragen, KPIs und priorisierte nächste Schritte übersetzen.',
+      '02 · Connect': '02 · Verbinden',
+      'Data & cloud architecture': 'Daten- & Cloud-Architektur',
+      'Design omnichannel ingestion, metadata enrichment, scalable warehouse flows, access boundaries and BI-ready datasets.': 'Datenaufnahme über alle Kanäle, Metadatenanreicherung, skalierbare Warehouse-Abläufe, Zugriffsgrenzen und BI-fähige Datensätze konzipieren.',
+      '03 · Understand': '03 · Verstehen',
+      'Applied AI, NLP & localization': 'Angewandte KI, NLP & Lokalisierung',
+      'Shape multilingual normalization, prompts, topic and sentiment taxonomies, and natural-language query experiences.': 'Mehrsprachige Normalisierung, Prompts, Themen- und Sentiment-Taxonomien sowie Abfragen in natürlicher Sprache gestalten.',
+      '04 · Model': '04 · Modellieren',
+      'Semantic modeling & product context': 'Semantische Modellierung & Produktkontext',
+      'Connect customer language to shared concepts, feature maps, KPI definitions, ontology and query semantics.': 'Kundensprache mit gemeinsamen Begriffen, Feature-Zuordnungen, KPI-Definitionen, Ontologie und Abfragesemantik verbinden.',
+      '05 · Validate': '05 · Prüfen',
+      'Quality, governance & BI': 'Qualität, Governance & BI',
+      'Use reference examples, confidence checks, privacy-aware access, validation and role-appropriate dashboards.': 'Referenzbeispiele, Konfidenzprüfungen, datenschutzbewusste Zugriffe, Validierung und rollenbezogene Dashboards einsetzen.',
+      '06 · Deliver': '06 · Umsetzen',
+      'Frontend, UX & product delivery': 'Frontend, UX & Produktumsetzung',
+      'Build responsive interactions, accessible navigation, browser-based DE/EN localization, visualizations and practical exports.': 'Responsive Interaktionen, barrierearme Navigation, DE/EN-Lokalisierung nach Browsersprache, Visualisierungen und praktische Exporte entwickeln.',
+      'Implemented in these demos': 'In diesen Demos umgesetzt',
+      'Responsive HTML/CSS/JavaScript interfaces, simulated user journeys, locale-aware German/English controls, custom emoji favicons, and real CSV, Excel and PowerPoint downloads from clearly labeled sample data.': 'Responsive Oberflächen mit HTML/CSS/JavaScript, simulierte Nutzerabläufe, deutsch-englische Sprachwahl nach Browsereinstellung, eigene Emoji-Favicons sowie echte CSV-, Excel- und PowerPoint-Downloads mit klar gekennzeichneten Beispieldaten.',
+      'Solution architecture shown conceptually': 'Lösungsarchitektur konzeptionell dargestellt',
+      'Connections to live feedback channels, AI inference, Countly/Azure ingestion, Veezoo-to-VQL execution, Databricks and production BI are design concepts—not active integrations. No company or production data is connected.': 'Anbindungen an Live-Feedbackkanäle, KI-Inferenz, Countly-/Azure-Datenaufnahme, Veezoo-zu-VQL-Ausführung, Databricks und produktive BI sind Architekturkonzepte – keine aktiven Integrationen. Es sind keine Unternehmens- oder Produktivdaten angebunden.',
+      'Illustrative technology landscape': 'Beispielhafte Technologielandschaft',
+      'Connects ingestion, AI, a governed warehouse and familiar BI tools.': 'Verbindet Datenaufnahme, KI, ein kontrolliertes Warehouse und etablierte BI-Werkzeuge.',
+      'Technologies': 'Technologien',
+      'Portfolio demo, not a live system.': 'Portfolio-Demo, kein Live-System.',
+      'The pages illustrate a solution concept with fictional sample content. They do not connect to company data, production systems or live AI services.': 'Die Seiten veranschaulichen ein Lösungskonzept mit fiktiven Beispielen. Sie greifen weder auf Unternehmensdaten noch auf Produktivsysteme oder Live-KI-Dienste zu.',
+      'AI Applied Showcase · Combined overview': 'AI Applied Showcase · Kombinierte Übersicht',
+      'Fictional samples · No production data or live queries': 'Fiktive Beispiele · Keine Produktivdaten oder Live-Abfragen',
+    };
+    const germanToEnglish = Object.fromEntries(Object.entries(englishToGerman).map(([english, german]) => [german, english]));
+    const toggle = document.querySelector('#language-toggle');
+
+    function applyLanguage(language) {
+      document.documentElement.lang = language;
+      const dictionary = language === 'de' ? englishToGerman : germanToEnglish;
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          return node.parentElement?.closest('script, style, svg') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+        },
+      });
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        const trimmed = node.nodeValue.trim();
+        if (trimmed && dictionary[trimmed]) node.nodeValue = node.nodeValue.replace(trimmed, dictionary[trimmed]);
+      }
+      const labels = language === 'de'
+        ? { 'Main navigation': 'Hauptnavigation', 'Combined journey preview': 'Vorschau des kombinierten Ablaufs', 'Technologies': 'Technologien' }
+        : { 'Hauptnavigation': 'Main navigation', 'Vorschau des kombinierten Ablaufs': 'Combined journey preview', 'Technologien': 'Technologies' };
+      document.querySelectorAll('[aria-label]').forEach(element => {
+        const value = element.getAttribute('aria-label');
+        if (labels[value]) element.setAttribute('aria-label', labels[value]);
+      });
+      document.title = 'AI Applied Showcase — Overview';
+      document.querySelector('meta[name="description"]').content = language === 'de'
+        ? 'Eine verknüpfte KI-Showcase-Übersicht: Mehrsprachiges Kundenfeedback wird zu vertrauenswürdigem Produktkontext und natürlichsprachlicher Datenanalyse.'
+        : 'A connected AI showcase: turn multilingual customer feedback into trusted context, then explore business data with natural language.';
+      toggle.setAttribute('aria-label', language === 'en' ? 'Switch language to German' : 'Sprache zu Englisch wechseln');
+      toggle.title = language === 'en' ? 'Switch language' : 'Sprache wechseln';
+      toggle.querySelectorAll('[data-language-option]').forEach(option => {
+        option.setAttribute('aria-current', String(option.dataset.languageOption === language));
+      });
+    }
+
+    function browserLanguage() {
+      const preferredLanguage = navigator.languages?.[0] || navigator.language || 'en';
+      return /^de(?:-|$)/i.test(preferredLanguage) ? 'de' : 'en';
+    }
+
+    let language = browserLanguage();
+    try {
+      const savedLanguage = localStorage.getItem('ai-showcase-language');
+      if (savedLanguage === 'de' || savedLanguage === 'en') language = savedLanguage;
+    } catch { /* Use the browser preference when storage is unavailable. */ }
+    applyLanguage(language);
+    toggle.addEventListener('click', () => {
+      language = document.documentElement.lang === 'en' ? 'de' : 'en';
+      try { localStorage.setItem('ai-showcase-language', language); } catch { /* The selected language still applies for this visit. */ }
+      applyLanguage(language);
+    });
+  </script>
+</body>
+</html>
