@@ -7,6 +7,17 @@
   <meta name="description" content="Two AI use cases and seven delivery skills: classify customer feedback and explore app data through illustrative prototypes.">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <title>AI Applied Showcase — Use Cases &amp; Skills</title>
+  <script>
+    (() => {
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      try {
+        const savedTheme = localStorage.getItem('ai-showcase-theme');
+        if (savedTheme === 'dark' || savedTheme === 'light') theme = savedTheme;
+      } catch {}
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#111a1d' : '#f4f7f6';
+    })();
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -42,8 +53,9 @@
     .nav-right, .nav-links { display: flex; align-items: center; gap: 18px; }
     .nav-links { color: #52676e; font-size: .73rem; font-weight: 630; }
     .nav-links a:hover { color: var(--mint); }
-    .lang-toggle { min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: #fff; font-size: .69rem; font-weight: 760; cursor: pointer; }
-    .lang-toggle:hover { border-color: #94cfc4; background: #f5fbf9; }
+    .lang-toggle, .theme-toggle { min-height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: #fff; font-size: .69rem; font-weight: 760; cursor: pointer; }
+    .theme-toggle { display: grid; place-items: center; width: 36px; padding: 0; font-size: 1rem; line-height: 1; }
+    .lang-toggle:hover, .theme-toggle:hover { border-color: #94cfc4; background: #f5fbf9; }
 
     .hero { padding: 48px 0 30px; }
     .hero-shell { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(285px, .85fr); gap: 44px; align-items: center; padding: clamp(28px, 5vw, 54px); border: 1px solid #dfe8e5; border-radius: 25px; background: linear-gradient(116deg, #fff 0%, #fff 57%, #edf6f3 100%); box-shadow: var(--shadow); }
@@ -180,7 +192,8 @@
       .nav-right { gap: 8px; }
       .nav-links { gap: 10px; font-size: .67rem; }
       .nav-links a:nth-child(1), .nav-links a:nth-child(3) { display: none; }
-      .lang-toggle { min-height: 33px; padding-inline: 8px; font-size: .65rem; }
+      .lang-toggle, .theme-toggle { min-height: 33px; padding-inline: 8px; font-size: .65rem; }
+      .theme-toggle { width: 33px; padding-inline: 0; font-size: .9rem; }
       .hero { padding: 27px 0 13px; }
       .hero-shell { grid-template-columns: 1fr; gap: 22px; padding: 25px 22px; border-radius: 19px; }
       h1 { font-size: clamp(2.05rem, 5.5vw, 3.2rem); }
@@ -320,6 +333,57 @@
       .feedback-ring__segments, .feedback-ring__orbit, .feedback-signal, .chat-caret, .chat-demo .chat-field, .chat-demo .chat-bar { animation: none !important; }
       .chat-demo .chat-bar { transform: scaleX(1) !important; }
     }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #111a1d;
+      --white: #1b292d;
+      --ink: #e9f0ee;
+      --muted: #b4c2c0;
+      --line: #384b4f;
+      --mint: #68d2bf;
+      --mint-pale: #193c36;
+      --blue: #a4b5ff;
+      --blue-pale: #28324d;
+      --amber: #e5be7b;
+      --amber-pale: #382e20;
+      --shadow: 0 15px 40px rgba(0, 0, 0, .28);
+    }
+    html[data-theme="dark"] body { color: var(--ink); background: var(--paper); }
+    html[data-theme="dark"] .topbar { border-color: var(--line); background: rgba(17, 26, 29, .95); }
+    html[data-theme="dark"] .brand-mark { color: #10201d; background: #68d2bf; }
+    html[data-theme="dark"] .brand-sub, html[data-theme="dark"] .nav-links { color: #b4c3c1; }
+    html[data-theme="dark"] .lang-toggle, html[data-theme="dark"] .theme-toggle,
+    html[data-theme="dark"] .case-card, html[data-theme="dark"] .skills-card,
+    html[data-theme="dark"] .feedback-ring__core, html[data-theme="dark"] .feedback-signal,
+    html[data-theme="dark"] .chat-field { color: var(--ink); background: var(--white); border-color: var(--line); }
+    html[data-theme="dark"] .lang-toggle:hover, html[data-theme="dark"] .theme-toggle:hover { background: #26363a; }
+    html[data-theme="dark"] .hero-heading { border-color: var(--line); }
+    html[data-theme="dark"] .hero-copy, html[data-theme="dark"] .case-top small,
+    html[data-theme="dark"] .case-lead, html[data-theme="dark"] .case-points li,
+    html[data-theme="dark"] .skills-intro, html[data-theme="dark"] .skills-list p,
+    html[data-theme="dark"] .feedback-stages li, html[data-theme="dark"] .case-proof,
+    html[data-theme="dark"] .footer-inner { color: #b4c3c1; }
+    html[data-theme="dark"] .case-mark { color: #e4efec; background: #26373a; border-color: var(--line); }
+    html[data-theme="dark"] .case-top strong, html[data-theme="dark"] .case-card h2,
+    html[data-theme="dark"] .skills-card h2, html[data-theme="dark"] .skills-list strong { color: var(--ink); }
+    html[data-theme="dark"] .demo-panel { color: var(--ink); border-color: var(--line); background: linear-gradient(125deg, #223236, #1b292d); }
+    html[data-theme="dark"] .analytics-demo { border-color: #3b4864; background: linear-gradient(125deg, #242e43, #1b292d); }
+    html[data-theme="dark"] .demo-panel-head strong, html[data-theme="dark"] .chart-head strong { color: #dce8e6; }
+    html[data-theme="dark"] .demo-tag, html[data-theme="dark"] .chart-head span,
+    html[data-theme="dark"] .feedback-ring__core span, html[data-theme="dark"] .chat-bar-name,
+    html[data-theme="dark"] .chat-bar-value { color: #a9b8bb; }
+    html[data-theme="dark"] .feedback-signal { box-shadow: 0 3px 0 #35474a, 0 6px 12px rgba(0, 0, 0, .22); }
+    html[data-theme="dark"] .feedback-stages li::before { border-color: #47766b; }
+    html[data-theme="dark"] .chat-results { border-color: var(--line); }
+    html[data-theme="dark"] .chat-bar-track { background: #34464b; }
+    html[data-theme="dark"] .chat-bar { background: linear-gradient(90deg, #8197ff, #b1bdff); }
+    html[data-theme="dark"] .case-proof { background: #202f32; border-color: var(--line); }
+    html[data-theme="dark"] .case-proof strong { color: #e1ece9; }
+    html[data-theme="dark"] .analytics-case .case-link { color: #b5c2ff; }
+    html[data-theme="dark"] .skills-list li { border-color: #34474a; }
+    html[data-theme="dark"] .skill-number { color: #f0cb8e; background: #3a3023; border-color: #655138; }
+    html[data-theme="dark"] .demo-note { color: #e7d5ad; background: #352c20; border-color: var(--amber); }
+    html[data-theme="dark"] .footer { border-color: var(--line); background: rgba(17, 26, 29, .8); }
   </style>
 </head>
 <body>
@@ -334,6 +398,7 @@
           <a href="#use-cases" data-i18n="navCases">Use cases</a>
           <a href="#skills" data-i18n="navSkills">Skills</a>
         </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Dunkles Design aktivieren" title="Dunkles Design aktivieren" aria-pressed="false"><span id="theme-toggle-icon" aria-hidden="true">☾</span></button>
         <button class="lang-toggle" id="language-toggle" type="button" aria-label="Switch to German" title="Switch language">EN / DE</button>
       </div>
     </div>
@@ -434,7 +499,7 @@
   <script>
     const strings = {
       en: {
-        navSkills: 'Skills', overviewAria: 'Two AI use cases and the skills used to deliver them',
+        navSkills: 'Skills', overviewAria: 'Two AI use cases and the skills used to deliver them', themeLabel: 'Dark mode', themeEnableDark: 'Enable dark theme', themeEnableLight: 'Enable light theme',
           pageEyebrow: 'AI applied · Use Cases & Delivery Skills', pageTitle: 'My agile skillset for your data science, data analytics and AI projects.', pageIntro: 'I help you turn customer feedback into product improvements and use app data to make better decisions. Together, we create scalable architecture, trusted data quality and dashboards that help your teams act with confidence.',
             feedbackCardTitle: 'Turn customer feedback into clear product signals.', feedbackCardLead: 'See what your customers need sooner. I connect their original words, sentiment and product context in a transparent workflow.',
         feedbackDemoAria: 'Illustrative ring diagram of a daily feedback classification process, with four stages and a scenario volume of one thousand items.', feedbackDemoTitle: 'Daily feedback loop', demoScenario: 'Illustrative scenario', feedbackVolume: '~1,000', feedbackUnit: 'feedbacks / day', feedbackStage1: 'Collect', feedbackStage2: 'Classify', feedbackStage3: 'Add product context', feedbackStage4: 'Quality check', feedbackSource1: 'App Store', feedbackSource2: 'In-App', feedbackSource3: 'Support', feedbackSource4: 'CSAT', feedbackCardEvidence: 'Illustrative process; no live feedback sources or model calls are connected.',
@@ -497,7 +562,7 @@
         footerText: 'AI Applied Showcase · Use Cases & Skills', footerFeedback: 'Explore feedback', footerAnalytics: 'Explore app analytics', footerPrivacy: 'Privacy & tracking · draft',
       },
       de: {
-        navSkills: 'Skills', overviewAria: 'Zwei AI Use Cases und die dafür eingesetzten Fähigkeiten',
+        navSkills: 'Skills', overviewAria: 'Zwei AI Use Cases und die dafür eingesetzten Fähigkeiten', themeLabel: 'Dunkelmodus', themeEnableDark: 'Dunkles Design aktivieren', themeEnableLight: 'Helles Design aktivieren',
         pageEyebrow: 'KI in der Praxis · Use Cases & Umsetzung', pageTitle: 'Mein agiles Skillset für Ihre Projekte in Data Science, Data Analytics und KI.', pageIntro: 'Ich helfe Ihnen und Ihren Kunden dabei, Kundenfeedback in konkrete Produktimpulse zu verwandeln und technische App-Daten so zu modellieren, dass Sie daraus bessere Entscheidungen ableiten können. Gemeinsam entwickeln wir skalierbare Cloud-Architekturen, sichern eine verlässliche Datenqualität und erstellen interaktive Dashboards, mit denen Ihre Teams und Kunden selbstständig handeln und datengetriebene Entscheidungen treffen können.',
           feedbackCardTitle: 'Machen Sie aus Feedback klare Produktsignale.', feedbackCardLead: 'Erkennen Sie schneller, was Ihre Kundinnen und Kunden brauchen. Ich verbinde Originalstimme, Stimmung und Produktkontext zu einem nachvollziehbaren Gesamtbild.',
         feedbackDemoAria: 'Illustrative Ringgrafik eines täglichen Feedback-Klassifikationsprozesses mit vier Schritten und einem Szenariovolumen von eintausend Elementen.', feedbackDemoTitle: 'Täglicher Feedback-Kreislauf', demoScenario: 'Beispielszenario', feedbackVolume: '~1.000', feedbackUnit: 'Feedbacks / Tag', feedbackStage1: 'Erfassen', feedbackStage2: 'Klassifizieren', feedbackStage3: 'Produktkontext', feedbackStage4: 'Qualität sichern', feedbackSource1: 'App Store', feedbackSource2: 'In-App', feedbackSource3: 'Support', feedbackSource4: 'CSAT', feedbackCardEvidence: 'Illustrativer Prozess; Live-Feedbackquellen oder Modellaufrufe sind nicht angebunden.',
@@ -562,6 +627,8 @@
     };
 
     const toggle = document.querySelector('#language-toggle');
+    const themeToggle = document.querySelector('#theme-toggle');
+    const themeIcon = document.querySelector('#theme-toggle-icon');
     function applyLanguage(language) {
       const dictionary = strings[language];
       document.documentElement.lang = language;
@@ -581,6 +648,7 @@
       document.querySelector('.lang-toggle').setAttribute('aria-label', language === 'de' ? 'Sprache zu Englisch wechseln' : 'Switch language to German');
       document.querySelector('.lang-toggle').title = language === 'de' ? 'Sprache wechseln' : 'Switch language';
       toggle.textContent = language === 'de' ? 'DE / EN' : 'EN / DE';
+      updateThemeToggle();
     }
     const preferredLanguage = navigator.languages?.[0] || navigator.language || 'en';
     let language = /^de(?:-|$)/i.test(preferredLanguage) ? 'de' : 'en';
@@ -588,7 +656,24 @@
       const savedLanguage = localStorage.getItem('ai-showcase-language');
       if (savedLanguage === 'de' || savedLanguage === 'en') language = savedLanguage;
     } catch { /* Browser language still applies if storage is unavailable. */ }
+    let theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    function updateThemeToggle() {
+      const isDark = theme === 'dark';
+      const label = isDark ? strings[language].themeEnableLight : strings[language].themeEnableDark;
+      themeToggle.setAttribute('aria-label', strings[language].themeLabel);
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.title = label;
+      themeIcon.textContent = isDark ? '☼' : '☾';
+    }
+    function applyTheme(nextTheme) {
+      theme = nextTheme;
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#111a1d' : '#f4f7f6';
+      updateThemeToggle();
+      try { localStorage.setItem('ai-showcase-theme', theme); } catch {}
+    }
     applyLanguage(language);
+    themeToggle.addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark'));
     const chatQuestion = document.querySelector('#chat-question');
     const analyticsDemo = document.querySelector('#analytics-demo');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
