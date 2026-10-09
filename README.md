@@ -7,6 +7,7 @@ A bilingual static portfolio hub connecting two AI solution concepts: multilingu
 - Feedback intelligence: https://tobmuc.github.io/ai-applied-show-case/ai-applied-show-case-feedback-intelligence/
 - Chat your data: https://tobmuc.github.io/ai-applied-show-case/ai-applied-show-case-chat-your-data/
 - Combined overview: https://tobmuc.github.io/ai-applied-show-case/
+- Alternative Pages URL with the same content: https://tobmuc.github.io/my-ai-show-cases/
 
 The overview explicitly summarizes the intended benefits of the combined design. All examples are illustrative; none of the sites connects to production systems or company data.
 
@@ -37,6 +38,7 @@ Eine zweisprachige statische Portfolio-Übersicht, die zwei KI-Lösungskonzepte 
 - Feedback Intelligence: https://tobmuc.github.io/ai-applied-show-case/ai-applied-show-case-feedback-intelligence/
 - Chat Your Data: https://tobmuc.github.io/ai-applied-show-case/ai-applied-show-case-chat-your-data/
 - Kombinierte Übersicht: https://tobmuc.github.io/ai-applied-show-case/
+- Zusätzliche Pages-URL mit identischem Inhalt: https://tobmuc.github.io/my-ai-show-cases/
 
 Die Übersicht benennt ausdrücklich die vorgesehenen Vorteile des kombinierten Designs. Alle Beispiele sind illustrativ; keine Seite ist mit Produktivsystemen oder Unternehmensdaten verbunden.
 
