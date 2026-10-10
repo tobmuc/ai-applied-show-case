@@ -29,23 +29,11 @@ The static interfaces, simulated journeys, locale-aware German/English controls 
 - `showcase-infographic.html` — concise bilingual infographic connecting both use cases, USPs, skills and the illustrative savings scenario
 - `ai-applied-show-case-feedback-intelligence/index.html` — feedback pipeline showcase
 - `ai-applied-show-case-chat-your-data/index.html` — natural-language analytics showcase
-- `goatcounter-config.js` — optional public GoatCounter endpoint; blank by default
-- `goatcounter.js` — production-host-only loader for GoatCounter's privacy-oriented counter
 - `datenschutzhinweise.html` — bilingual privacy-notice draft; controller/contact details still need completion
-
-## GoatCounter (optional)
-
-GoatCounter is the selected option for this personal hobby site. Its current terms allow personal websites and free reasonable public usage. The tracker is currently inactive: `goatcounter-config.js` contains an empty endpoint, so the loader sends no statistics. Google Analytics is not used.
-
-To activate later, create a site at [GoatCounter signup](https://www.goatcounter.com/signup) for `tobmuc.github.io`, then copy its public counter endpoint from **Settings → Site code**, in the form `https://<site-code>.goatcounter.com/count`, into `goatcounter-config.js`. The same endpoint covers the main and alternate GitHub Pages URLs and their subpages: they share the `tobmuc.github.io` hostname and their paths distinguish the pages. The loader runs only on that production hostname; local previews and other hosts are ignored. Add `#toggle-goatcounter` to the page URL to exclude your own browser's visits.
-
-GoatCounter's provider says its visitor counter uses no browser cookies, `localStorage` or persistent visitor IDs, and stores aggregate statistics; IP/User-Agent-derived values may be held in memory temporarily. Individual pageview collection is disabled by default and should remain disabled. See the provider's [privacy policy](https://www.goatcounter.com/help/privacy), [GDPR explanation](https://www.goatcounter.com/help/gdpr) and [terms](https://www.goatcounter.com/help/terms). These are the provider's statements, not legal advice or a guarantee that no notice/consent obligations apply in every jurisdiction.
-
-Before entering an endpoint, complete and review the site-specific privacy notice, including the operator's public name/contact, legal basis and actual GoatCounter site settings. The current notice is explicitly a draft. The service endpoint is a public site identifier, not a secret; do not send account credentials.
 
 ## Local preview
 
-Open `index.html` or `showcase-infographic.html` in a browser; the root page redirects to the infographic. Its language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally. GoatCounter is not loaded unless a valid endpoint is configured, and it is ignored on local preview hosts.
+Open `index.html` or `showcase-infographic.html` in a browser; the root page redirects to the infographic. Its language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally.
 
 ---
 
@@ -80,20 +68,8 @@ Die statischen Oberflächen, simulierten Nutzerabläufe, deutsch-englischen Spra
 - `showcase-infographic.html` — kompakte zweisprachige Infografik zu beiden Use Cases, USPs, Kompetenzen und Einsparszenario
 - `ai-applied-show-case-feedback-intelligence/index.html` — Feedback-Pipeline-Showcase
 - `ai-applied-show-case-chat-your-data/index.html` — Showcase für natürlichsprachliche Datenanalyse
-- `goatcounter-config.js` — optionaler öffentlicher GoatCounter-Endpunkt, standardmäßig leer
-- `goatcounter.js` — Loader nur für den produktiven Host und den GoatCounter-Zähler
 - `datenschutzhinweise.html` — zweisprachiger Entwurf; Name/Kontakt des Verantwortlichen fehlen noch
-
-## GoatCounter (optional)
-
-Für diese private Hobby-Website ist GoatCounter als datensparsame Alternative vorgesehen. Laut den aktuellen Nutzungsbedingungen sind persönliche Websites und übliche öffentliche Nutzung kostenfrei. Der Tracker ist momentan **inaktiv**: In `goatcounter-config.js` ist der Endpunkt leer, daher werden keine Statistikdaten gesendet. Google Analytics wird nicht verwendet.
-
-Zur späteren Aktivierung erstelle eine Site unter [GoatCounter-Anmeldung](https://www.goatcounter.com/signup) für `tobmuc.github.io` und kopiere anschließend den öffentlichen Zähler-Endpunkt aus **Settings → Site code** im Format `https://<site-code>.goatcounter.com/count` in `goatcounter-config.js`. Derselbe Endpunkt erfasst Haupt- und zusätzliche GitHub-Pages-URL samt Unterseiten: Sie teilen den Hostnamen `tobmuc.github.io`, die Pfade unterscheiden die Seiten. Der Loader läuft nur auf diesem Produktions-Host; lokale Vorschauen und andere Hosts werden ignoriert. Mit `#toggle-goatcounter` in der Seitenadresse kannst du Besuche deines eigenen Browsers ausschließen.
-
-Der GoatCounter-Anbieter erklärt, dass sein Besucherzähler weder Browser-Cookies noch `localStorage` oder dauerhafte Besucherkennungen nutzt und aggregierte Statistiken speichert; aus IP/User-Agent abgeleitete Werte können vorübergehend im Arbeitsspeicher verarbeitet werden. Die optionale Erfassung einzelner Seitenaufrufe ist standardmäßig deaktiviert und sollte ausgeschaltet bleiben. Siehe die [Datenschutzhinweise](https://www.goatcounter.com/help/privacy), die [GDPR-Erläuterung](https://www.goatcounter.com/help/gdpr) und die [Nutzungsbedingungen](https://www.goatcounter.com/help/terms) des Anbieters. Das sind Anbieterangaben, keine Rechtsberatung und keine Garantie, dass in jeder Rechtsordnung keinerlei Hinweis- oder Einwilligungspflicht gilt.
-
-Vor Eintragung eines Endpunkts müssen der projektspezifische Datenschutzhinweis mit öffentlichem Namen/Kontakt, die Rechtsgrundlage und die tatsächlichen GoatCounter-Site-Einstellungen geprüft und vervollständigt werden. Der vorhandene Datenschutzhinweis ist ausdrücklich noch ein Entwurf. Der Site-Endpunkt ist ein öffentlicher Bezeichner, kein Geheimnis; Zugangsdaten bitte nicht teilen.
 
 ## Lokale Vorschau
 
-`index.html` oder direkt `showcase-infographic.html` im Browser öffnen; die Root-Seite leitet zur Infografik weiter. Beim ersten Besuch richtet sich deren Sprache nach den bevorzugten Browsersprachen; die DE/EN-Steuerung speichert eine manuelle Auswahl lokal. GoatCounter wird nur mit einem gültigen konfigurierten Endpunkt geladen und auf lokalen Vorschau-Hosts ignoriert.
+`index.html` oder direkt `showcase-infographic.html` im Browser öffnen; die Root-Seite leitet zur Infografik weiter. Beim ersten Besuch richtet sich deren Sprache nach den bevorzugten Browsersprachen; die DE/EN-Steuerung speichert eine manuelle Auswahl lokal.
