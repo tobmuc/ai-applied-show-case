@@ -1,15 +1,21 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXHY8714SY"></script>
+  <!-- Google tag (gtag.js) with Consent Mode v2: consent.js loads gtag.js only after opt-in -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    });
     gtag('js', new Date());
 
     gtag('config', 'G-NXHY8714SY');
   </script>
+  <script src="../consent.js" defer></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07111d">
@@ -641,7 +647,7 @@
     </section>
   </main>
 
-  <footer class="footer"><div class="shell footer-inner"><span><strong>Feedback Intelligence</strong> · Interaktive Pipeline-Übersicht</span><span>Fiktive Beispieldaten · Keine Echtdaten oder Unternehmenskennzahlen · <a href="../datenschutzhinweise.html" data-de="Datenschutzhinweise" data-en="Privacy notice">Datenschutzhinweise</a> · <span data-de="Kontakt:" data-en="Contact:">Kontakt:</span> <a href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer">Instagram</a></span></div></footer>
+  <footer class="footer"><div class="shell footer-inner"><span><strong>Feedback Intelligence</strong> · Interaktive Pipeline-Übersicht</span><span>Fiktive Beispieldaten · Keine Echtdaten oder Unternehmenskennzahlen · <a href="../datenschutzhinweise.html" data-de="Datenschutzhinweise" data-en="Privacy notice">Datenschutzhinweise</a> · <button type="button" data-consent-open>Cookie-Einstellungen</button> · <span data-de="Kontakt:" data-en="Contact:">Kontakt:</span> <a href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer">Instagram</a></span></div></footer>
 
   <script>
     const examples = {

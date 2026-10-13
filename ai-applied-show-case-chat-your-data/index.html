@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXHY8714SY"></script>
+  <!-- Google tag (gtag.js) with Consent Mode v2: consent.js loads gtag.js only after opt-in -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    });
     gtag('js', new Date());
 
     gtag('config', 'G-NXHY8714SY');
   </script>
+  <script src="../consent.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AI Applied Showcase: explore natural-language data analytics, interactive visuals and browser-based CSV, Excel and PowerPoint exports.">
@@ -922,6 +928,7 @@
         <nav aria-label="Contact · Kontakt" class="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-5 gap-y-2">
             <a class="hover:text-white" href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a class="hover:text-white" href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <button type="button" class="hover:text-white" data-consent-open>Cookie-Einstellungen</button>
         </nav>
     </footer>
 </body>

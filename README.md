@@ -35,9 +35,9 @@ The static interfaces, simulated journeys, locale-aware German/English controls 
 
 Open `index.html` or `showcase-infographic.html` in a browser; the root page redirects to the infographic. Its language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally.
 
-## Google Analytics
+## Google Analytics and cookie consent
 
-Every HTML page loads the Google tag (`gtag.js`) for Google Analytics 4 with measurement ID `G-NXHY8714SY`, placed directly after the opening `<head>` element. The measurement ID is public and not a secret. Verify the legal basis or consent requirements and keep `datenschutzhinweise.html` in sync before publishing.
+Every HTML page sets Google Consent Mode v2 defaults to `denied` directly after the opening `<head>` element, queues `gtag('config', 'G-NXHY8714SY')` and includes `consent.js`. The script shows a bilingual cookie banner (Accept / Reject with equal weight) and loads the Google tag (`gtag.js`) only after the visitor accepts (basic consent mode). The choice is stored in `localStorage` under `ai-showcase-consent` for up to 12 months; footer buttons marked with `data-consent-open` reopen the banner, and rejecting deletes the `_ga` cookies. Ad storage and ad personalization always remain denied. Keep `datenschutzhinweise.html` in sync when changing tracking.
 
 LinkedIn and Instagram contact links appear in the page footers.
 
