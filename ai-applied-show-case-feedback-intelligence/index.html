@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="de">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXHY8714SY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NXHY8714SY');
+  </script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07111d">
@@ -547,9 +556,9 @@
             <h3>Feedback-Beispiel auswählen</h3>
             <p>Drei illustrative Stimmen aus Südkorea — keine Echtdaten.</p>
             <div class="sample-list" role="group" aria-label="Koreanische Feedback-Beispiele">
-              <button class="sample-button" type="button" data-sample="negative" aria-pressed="true" data-umami-event="feedback-example-select" data-umami-event-sample="negative"><span class="sample-emoji" aria-hidden="true">🙁</span><span><strong>Negativ</strong><small>Login-Probleme</small></span></button>
-              <button class="sample-button" type="button" data-sample="neutral" aria-pressed="false" data-umami-event="feedback-example-select" data-umami-event-sample="neutral"><span class="sample-emoji" aria-hidden="true">😐</span><span><strong>Neutral</strong><small>Feature-Wunsch</small></span></button>
-              <button class="sample-button" type="button" data-sample="positive" aria-pressed="false" data-umami-event="feedback-example-select" data-umami-event-sample="positive"><span class="sample-emoji" aria-hidden="true">🙂</span><span><strong>Positiv</strong><small>Schneller Checkout</small></span></button>
+              <button class="sample-button" type="button" data-sample="negative" aria-pressed="true"><span class="sample-emoji" aria-hidden="true">🙁</span><span><strong>Negativ</strong><small>Login-Probleme</small></span></button>
+              <button class="sample-button" type="button" data-sample="neutral" aria-pressed="false"><span class="sample-emoji" aria-hidden="true">😐</span><span><strong>Neutral</strong><small>Feature-Wunsch</small></span></button>
+              <button class="sample-button" type="button" data-sample="positive" aria-pressed="false"><span class="sample-emoji" aria-hidden="true">🙂</span><span><strong>Positiv</strong><small>Schneller Checkout</small></span></button>
             </div>
             <div class="demo-disclaimer"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5 18 17H2L10 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 7v4m0 2.5h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>Fiktive Demo-Texte; Metriken und Klassifikationen dienen nur der Illustration.</span></div>
           </aside>
@@ -632,7 +641,7 @@
     </section>
   </main>
 
-  <footer class="footer"><div class="shell footer-inner"><span><strong>Feedback Intelligence</strong> · Interaktive Pipeline-Übersicht</span><span>Fiktive Beispieldaten · Keine Echtdaten oder Unternehmenskennzahlen · <a href="../datenschutzhinweise.html" data-de="Datenschutzhinweise" data-en="Privacy notice">Datenschutzhinweise</a> · <span data-de="Kontakt:" data-en="Contact:">Kontakt:</span> <a href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer" data-umami-event="contact-linkedin">LinkedIn</a> · <a href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer" data-umami-event="contact-instagram">Instagram</a></span></div></footer>
+  <footer class="footer"><div class="shell footer-inner"><span><strong>Feedback Intelligence</strong> · Interaktive Pipeline-Übersicht</span><span>Fiktive Beispieldaten · Keine Echtdaten oder Unternehmenskennzahlen · <a href="../datenschutzhinweise.html" data-de="Datenschutzhinweise" data-en="Privacy notice">Datenschutzhinweise</a> · <span data-de="Kontakt:" data-en="Contact:">Kontakt:</span> <a href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer">Instagram</a></span></div></footer>
 
   <script>
     const examples = {
@@ -971,7 +980,5 @@
       window.addEventListener("pointerenter", () => cursor.classList.add("visible"));
     }
   </script>
-  <script src="../analytics-config.js"></script>
-  <script src="../analytics.js"></script>
 </body>
 </html>

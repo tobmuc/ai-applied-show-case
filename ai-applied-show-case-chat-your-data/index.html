@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXHY8714SY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NXHY8714SY');
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AI Applied Showcase: explore natural-language data analytics, interactive visuals and browser-based CSV, Excel and PowerPoint exports.">
@@ -302,7 +311,7 @@
                 <div class="ml-4 bg-slate-950 rounded-md px-4 py-1 text-xs text-slate-400 border border-slate-700 shadow-inner flex-grow flex items-center gap-2">
                     <i class="fa-solid fa-lock text-slate-500"></i> demo.example/veezoo
                 </div>
-                <button id="replay-btn" class="ml-2 text-sm bg-blue-600/20 text-blue-400 border border-blue-500/30 px-3 py-1.5 rounded hover:bg-blue-600/40 transition-colors" data-umami-event="replay-analytics-demo">
+                <button id="replay-btn" class="ml-2 text-sm bg-blue-600/20 text-blue-400 border border-blue-500/30 px-3 py-1.5 rounded hover:bg-blue-600/40 transition-colors">
                     <i class="fa-solid fa-rotate-right mr-1"></i> Demo wiederholen
                 </button>
             </div>
@@ -316,7 +325,7 @@
                         <div id="search-input" role="textbox" aria-label="Beispielprompt" aria-readonly="true" class="min-w-0 flex-1 py-3 px-4 text-sm md:text-base text-slate-200 outline-none bg-transparent text-left whitespace-normal break-words overflow-y-auto">
                             <!-- Typing text goes here -->
                         </div>
-                        <button id="submit-btn" type="button" aria-label="Beispielabfrage starten" class="bg-blue-600 text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mr-2 shadow hover:bg-blue-500 transition cursor-pointer" data-umami-event="run-analytics-demo">
+                        <button id="submit-btn" type="button" aria-label="Beispielabfrage starten" class="bg-blue-600 text-white rounded-full w-12 h-12 flex-shrink-0 flex items-center justify-center mr-2 shadow hover:bg-blue-500 transition cursor-pointer">
                             <i class="fa-solid fa-paper-plane"></i>
                         </button>
                     </div>
@@ -341,13 +350,13 @@
                                 <p class="text-sm text-slate-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> Beispielregion: Chicago, IL</p>
                             </div>
                             <div id="export-actions" class="flex flex-wrap gap-2" role="group" aria-label="Demo-Daten exportieren">
-                                <button id="download-csv-btn" type="button" class="export-btn px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-900/20" data-umami-event="export-csv">
+                                <button id="download-csv-btn" type="button" class="export-btn px-3 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-colors shadow-lg shadow-blue-900/20">
                                     <i class="fa-solid fa-file-csv mr-1" aria-hidden="true"></i> CSV
                                 </button>
-                                <button id="download-excel-btn" type="button" class="export-btn px-3 py-2 text-sm bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors shadow-lg shadow-emerald-900/20" data-umami-event="export-excel">
+                                <button id="download-excel-btn" type="button" class="export-btn px-3 py-2 text-sm bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors shadow-lg shadow-emerald-900/20">
                                     <i class="fa-solid fa-file-excel mr-1" aria-hidden="true"></i> Excel
                                 </button>
-                                <button id="download-pptx-btn" type="button" class="export-btn px-3 py-2 text-sm bg-violet-600 text-white rounded-lg hover:bg-violet-500 transition-colors shadow-lg shadow-violet-900/20" data-umami-event="export-powerpoint">
+                                <button id="download-pptx-btn" type="button" class="export-btn px-3 py-2 text-sm bg-violet-600 text-white rounded-lg hover:bg-violet-500 transition-colors shadow-lg shadow-violet-900/20">
                                     <i class="fa-solid fa-file-powerpoint mr-1" aria-hidden="true"></i> PowerPoint
                                 </button>
                             </div>
@@ -911,11 +920,9 @@
     </script>
     <footer class="border-t border-slate-800 px-6 py-5 text-xs text-slate-400">
         <nav aria-label="Contact · Kontakt" class="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-5 gap-y-2">
-            <a class="hover:text-white" href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer" data-umami-event="contact-linkedin">LinkedIn</a>
-            <a class="hover:text-white" href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer" data-umami-event="contact-instagram">Instagram</a>
+            <a class="hover:text-white" href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="hover:text-white" href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer">Instagram</a>
         </nav>
     </footer>
-    <script src="../analytics-config.js"></script>
-    <script src="../analytics.js"></script>
 </body>
 </html>

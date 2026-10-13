@@ -35,24 +35,9 @@ The static interfaces, simulated journeys, locale-aware German/English controls 
 
 Open `index.html` or `showcase-infographic.html` in a browser; the root page redirects to the infographic. Its language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally.
 
-## Optional Umami analytics
+## Google Analytics
 
-The static pages use [Umami](https://umami.is/) when explicitly configured. Its [free hosted tier](https://umami.is/pricing) has plan limits; the [open-source software](https://github.com/umami-software/umami) can also be self-hosted, but hosting and operating the backend may cost money. GitHub Pages only serves the frontend and cannot host Umami's server/database. See the [Umami documentation](https://umami.is/docs) for current setup details.
-
-1. Create a website in Umami Cloud or deploy your own Umami instance.
-2. Copy its public tracking-script URL and website ID into `analytics-config.js`:
-
-   ```js
-   window.SHOWCASE_ANALYTICS_CONFIG = Object.freeze({
-     scriptUrl: 'https://cloud.umami.is/script.js',
-     websiteId: 'your-public-website-id',
-   });
-   ```
-
-   For a self-hosted instance, use its HTTPS `/script.js` URL instead. The website ID is public configuration, not a secret; never put a personal access token there.
-3. Verify the selected provider, data location, retention, privacy terms and any consent/legal requirements before publishing the configuration. Update `datenschutzhinweise.html` with the actual provider and applicable details.
-
-Both configuration values are blank by default. With that default, no analytics provider is contacted. When enabled, Umami provides page views and reports such as country and browser language; marked links and controls report named interactions. `analytics.js` also sends active visible time as `active-time` events in 30-second increments and when a page is hidden or closed. These events count toward the provider's usage limits. Country reporting involves sending the visitor's IP address to the selected analytics host.
+Every HTML page loads the Google tag (`gtag.js`) for Google Analytics 4 with measurement ID `G-NXHY8714SY`, placed directly after the opening `<head>` element. The measurement ID is public and not a secret. Verify the legal basis or consent requirements and keep `datenschutzhinweise.html` in sync before publishing.
 
 LinkedIn and Instagram contact links appear in the page footers.
 
