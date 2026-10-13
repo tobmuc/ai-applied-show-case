@@ -311,10 +311,10 @@
       .nav-cta { min-height: 37px; padding-inline: 11px; font-size: .73rem; }
       .hero { padding: 64px 0 56px; }
       .hero-grid { grid-template-columns: 1fr; gap: 22px; }
-      .hero-visual { min-height: 350px; }
+      .hero-visual { min-height: 0; padding: 54px 0 58px; }
       .orbit { width: min(100%, 365px); }
-      .floating-note.note-top { top: 21px; right: -3px; }
-      .floating-note.note-bottom { bottom: 18px; left: -2px; }
+      .floating-note.note-top { top: 4px; right: 0; }
+      .floating-note.note-bottom { bottom: 6px; left: 0; }
       .trust-inner { justify-content: center; padding-block: 18px; }
       .trust-label { width: 100%; text-align: center; }
       .trust-items { justify-content: center; }
@@ -346,7 +346,6 @@
       .language-toggle { min-height: 34px; padding-inline: 7px; font-size: .66rem; }
       .hero { padding-top: 52px; }
       h1 { font-size: clamp(2.45rem, 12vw, 3.5rem); }
-      .hero-visual { min-height: 320px; }
       .preview-card { padding: 17px; }
       .floating-note { padding: 8px 9px; font-size: .62rem; }
       .trust-divider { margin-inline: 0; }
@@ -375,7 +374,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .reveal { opacity: 1; transform: none; }
+      .reveal, .js .reveal { opacity: 1; transform: none; }
       .custom-cursor { display: none; }
     }
   </style>
