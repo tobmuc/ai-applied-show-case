@@ -398,8 +398,8 @@
           <a href="#use-cases" data-i18n="navCases">Use cases</a>
           <a href="#skills" data-i18n="navSkills">Skills</a>
         </nav>
-        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Dunkles Design aktivieren" title="Dunkles Design aktivieren" aria-pressed="false"><span id="theme-toggle-icon" aria-hidden="true">☾</span></button>
-        <button class="lang-toggle" id="language-toggle" type="button" aria-label="Switch to German" title="Switch language">EN / DE</button>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Dunkles Design aktivieren" title="Dunkles Design aktivieren" aria-pressed="false" data-umami-event="theme-toggle"><span id="theme-toggle-icon" aria-hidden="true">☾</span></button>
+        <button class="lang-toggle" id="language-toggle" type="button" aria-label="Switch to German" title="Switch language" data-umami-event="language-toggle">EN / DE</button>
       </div>
     </div>
   </header>
@@ -443,7 +443,7 @@
             </ol>
           </div>
           <p class="case-proof"><strong data-i18n="evidenceLabel">In the demo:</strong> <span data-i18n="feedbackCardEvidence">Illustrative process; no live feedback sources or model calls are connected.</span></p>
-          <a class="case-link" href="./ai-applied-show-case-feedback-intelligence/"><span data-i18n="openFeedback">Open feedback showcase</span><span aria-hidden="true">↗</span></a>
+          <a class="case-link" href="./ai-applied-show-case-feedback-intelligence/" data-umami-event="open-feedback-showcase"><span data-i18n="openFeedback">Open feedback showcase</span><span aria-hidden="true">↗</span></a>
         </article>
         <article class="case-card analytics-case">
           <div class="case-top"><span class="case-mark" aria-hidden="true">⌕</span><div><small data-i18n="analyticsEyebrow">02 · AI Use Case</small><strong data-i18n="analyticsTagline">App Analytics</strong></div></div>
@@ -468,7 +468,7 @@
             </div>
           </div>
           <p class="case-proof"><strong data-i18n="targetLabel">Target vs. demo:</strong> <span data-i18n="analyticsCardEvidence">Query and chart use simulated data; Veezoo/VQL and live metrics are not connected.</span></p>
-          <a class="case-link" href="./ai-applied-show-case-chat-your-data/"><span data-i18n="openAnalytics">Open app analytics showcase</span><span aria-hidden="true">↗</span></a>
+          <a class="case-link" href="./ai-applied-show-case-chat-your-data/" data-umami-event="open-analytics-showcase"><span data-i18n="openAnalytics">Open app analytics showcase</span><span aria-hidden="true">↗</span></a>
         </article>
         <aside class="skills-card" id="skills" aria-labelledby="skills-title">
           <div class="case-top"><span class="case-mark" aria-hidden="true">↗</span><div><small data-i18n="skillsEyebrow">How I deliver</small><strong data-i18n="skillsTagline">From concept to usable product</strong></div></div>
@@ -492,7 +492,14 @@
   <footer class="footer">
     <div class="shell footer-inner">
       <span data-i18n="footerText">AI Applied Showcase · Concise solution infographic</span>
-      <div class="footer-links"><a href="./ai-applied-show-case-feedback-intelligence/" data-i18n="footerFeedback">Feedback deep dive</a><a href="./ai-applied-show-case-chat-your-data/" data-i18n="footerAnalytics">Analytics deep dive</a><a href="./datenschutzhinweise.html" data-i18n="footerPrivacy">Privacy &amp; tracking · draft</a></div>
+      <div class="footer-links">
+        <a href="./ai-applied-show-case-feedback-intelligence/" data-i18n="footerFeedback" data-umami-event="open-feedback-showcase">Feedback deep dive</a>
+        <a href="./ai-applied-show-case-chat-your-data/" data-i18n="footerAnalytics" data-umami-event="open-analytics-showcase">Analytics deep dive</a>
+        <a href="./datenschutzhinweise.html" data-i18n="footerPrivacy">Privacy &amp; tracking · draft</a>
+        <span data-i18n="footerContact">Contact:</span>
+        <a href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer" aria-label="Tobias on LinkedIn" data-umami-event="contact-linkedin">LinkedIn</a>
+        <a href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer" aria-label="Tobias on Instagram" data-umami-event="contact-instagram">Instagram</a>
+      </div>
     </div>
   </footer>
 
@@ -559,7 +566,7 @@
         skillsTitle: 'Skills to move your project forward', skill1: 'Product & requirements analysis', skill2: 'Data, cloud & warehouse architecture', skill3: 'Multilingual NLP & localization', skill4: 'Semantic & KPI modeling', skill5: 'Quality, governance & BI', skill6: 'Frontend, accessible UX & delivery',
         techTitle: 'Illustrative target architecture',
         noteLabel: 'Portfolio prototype:', noteText: 'the pages use illustrative data. Live AI, feedback sources, Veezoo/VQL, Databricks and production BI are not connected. Manual handling time and labor cost in the feedback scenario are assumptions; only ~1,000 items/day and ~€4/day token cost were supplied as inputs.',
-        footerText: 'AI Applied Showcase · Use Cases & Skills', footerFeedback: 'Explore feedback', footerAnalytics: 'Explore app analytics', footerPrivacy: 'Privacy & tracking · draft',
+        footerText: 'AI Applied Showcase · Use Cases & Skills', footerFeedback: 'Explore feedback', footerAnalytics: 'Explore app analytics', footerPrivacy: 'Privacy & tracking · draft', footerContact: 'Contact:',
       },
       de: {
         navSkills: 'Skills', overviewAria: 'Zwei AI Use Cases und die dafür eingesetzten Fähigkeiten', themeLabel: 'Dunkelmodus', themeEnableDark: 'Dunkles Design aktivieren', themeEnableLight: 'Helles Design aktivieren',
@@ -622,7 +629,7 @@
         skillsTitle: 'Skills, die Ihr Vorhaben voranbringen', skill1: 'Produkt- & Anforderungsanalyse', skill2: 'Daten-, Cloud- & Warehouse-Architektur', skill3: 'Mehrsprachiges NLP & Lokalisierung', skill4: 'Semantik & KPI-Modellierung', skill5: 'Qualität, Governance & BI', skill6: 'Frontend, barrierearme UX & Umsetzung',
         techTitle: 'Illustratives Architektur-Zielbild',
         noteLabel: 'Portfolio-Prototyp:', noteText: 'Die Seiten verwenden Beispieldaten. Live-KI, Feedbackquellen, Veezoo/VQL, Databricks und Produktiv-BI sind nicht angebunden. Bearbeitungszeit und Arbeitskosten im Feedback-Szenario sind Annahmen; als Inputs genannt wurden nur ~1.000 Feedbacks/Tag und ~4 € Tokenkosten/Tag.',
-        footerText: 'AI Applied Showcase · Use Cases & Skills', footerFeedback: 'Feedback-Demo ansehen', footerAnalytics: 'Analytics-Demo ansehen', footerPrivacy: 'Datenschutz & Tracking · Entwurf',
+        footerText: 'AI Applied Showcase · Use Cases & Skills', footerFeedback: 'Feedback-Demo ansehen', footerAnalytics: 'Analytics-Demo ansehen', footerPrivacy: 'Datenschutz & Tracking · Entwurf', footerContact: 'Kontakt:',
       },
     };
 
@@ -712,5 +719,7 @@
       startAnalyticsAnimation();
     });
   </script>
+  <script src="./analytics-config.js"></script>
+  <script src="./analytics.js"></script>
 </body>
 </html>
