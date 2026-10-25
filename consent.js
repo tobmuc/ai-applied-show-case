@@ -1,10 +1,11 @@
 /*
- * Cookie consent banner + Google Consent Mode v2 (basic implementation).
- * gtag.js is only loaded after the visitor opts in, and gtag('config') is
- * queued AFTER consent update so the initial page_view carries gcs=G101.
+ * Cookie consent banner + Google Consent Mode v2 (Advanced Consent Mode).
+ * Pages include the Google tag (gtag.js) with default denied consent in <head>.
+ * When the visitor opts in, analytics_storage is updated to 'granted' and a
+ * consented page_view (gcs=G101) is sent.
  */
 (() => {
-  const MEASUREMENT_ID = 'G-NXHY8714SY';
+  const MEASUREMENT_ID = 'G-NGR4GFF8Q4';
   const STORAGE_KEY = 'ai-showcase-consent';
   const CONSENT_VERSION = 1;
   const MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000;
@@ -14,7 +15,7 @@
   const texts = {
     de: {
       title: 'Cookies & Reichweitenmessung',
-      body: 'Mit deiner Einwilligung nutze ich Google Analytics, um Besuchsstatistiken zu erstellen. Dabei setzt Google Cookies und erhält u. a. deine IP-Adresse; eine Übermittlung in die USA ist möglich. Ohne Einwilligung wird Google Analytics nicht geladen. Du kannst deine Wahl jederzeit über „Cookie-Einstellungen“ im Footer ändern.',
+      body: 'Mit deiner Einwilligung nutze ich Google Analytics mit Cookies, um Besuchsstatistiken zu erstellen. Dabei setzt Google Cookies und erhält u. a. deine IP-Adresse; eine Übermittlung in die USA ist möglich. Ohne Einwilligung werden keine Analytics-Cookies gesetzt (Einwilligungsmodus v2). Du kannst deine Wahl jederzeit über „Cookie-Einstellungen“ im Footer ändern.',
       privacy: 'Datenschutzhinweise',
       accept: 'Akzeptieren',
       reject: 'Ablehnen',
@@ -22,7 +23,7 @@
     },
     en: {
       title: 'Cookies & audience measurement',
-      body: 'With your consent, I use Google Analytics to create visit statistics. Google sets cookies and receives data such as your IP address; data may be transferred to the USA. Without consent, Google Analytics is not loaded. You can change your choice at any time via “Cookie settings” in the footer.',
+      body: 'With your consent, I use Google Analytics with cookies to create visit statistics. Google sets cookies and receives data such as your IP address; data may be transferred to the USA. Without consent, no analytics cookies are set (Consent Mode v2). You can change your choice at any time via “Cookie settings” in the footer.',
       privacy: 'Privacy notice',
       accept: 'Accept',
       reject: 'Reject',
@@ -35,8 +36,6 @@
   window.gtag = gtag;
 
   let banner = null;
-  let tagLoaded = false;
-  let configSent = false;
 
   function language() {
     return (document.documentElement.lang || '').toLowerCase().startsWith('de') ? 'de' : 'en';
@@ -60,25 +59,6 @@
     } catch { /* The choice still applies to this page view. */ }
   }
 
-  function removePreQueuedConfig() {
-    if (!Array.isArray(window.dataLayer)) return;
-    for (let i = window.dataLayer.length - 1; i >= 0; i--) {
-      const entry = window.dataLayer[i];
-      if (entry && entry[0] === 'config' && entry[1] === MEASUREMENT_ID) {
-        window.dataLayer.splice(i, 1);
-      }
-    }
-  }
-
-  function loadGoogleTag() {
-    if (tagLoaded) return;
-    tagLoaded = true;
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
-    document.head.append(script);
-  }
-
   function deleteAnalyticsCookies() {
     const host = location.hostname;
     const domains = ['', host, `.${host}`];
@@ -89,15 +69,12 @@
       }));
   }
 
-  function applyChoice(analytics) {
+  function applyChoice(analytics, isInteractiveOptIn = false) {
     if (analytics === 'granted') {
-      removePreQueuedConfig();
       gtag('consent', 'update', { analytics_storage: 'granted' });
-      if (!configSent) {
-        configSent = true;
-        gtag('config', MEASUREMENT_ID, { send_page_view: true });
+      if (isInteractiveOptIn) {
+        gtag('event', 'page_view', { send_to: MEASUREMENT_ID });
       }
-      loadGoogleTag();
     } else {
       gtag('consent', 'update', { analytics_storage: 'denied' });
       deleteAnalyticsCookies();
@@ -106,7 +83,7 @@
 
   function choose(analytics) {
     saveChoice(analytics);
-    applyChoice(analytics);
+    applyChoice(analytics, analytics === 'granted');
     hideBanner();
   }
 
@@ -192,9 +169,8 @@
     if (banner) banner.hidden = true;
   }
 
-  removePreQueuedConfig();
   const initialChoice = readChoice();
-  if (initialChoice) applyChoice(initialChoice);
+  if (initialChoice) applyChoice(initialChoice, false);
 
   function init() {
     injectStyles();

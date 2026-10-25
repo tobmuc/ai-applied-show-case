@@ -37,7 +37,7 @@ Open `index.html` or `showcase-infographic.html` in a browser; the root page red
 
 ## Google Analytics and cookie consent
 
-Every HTML page sets Google Consent Mode v2 defaults to `denied` directly after the opening `<head>` element, queues `gtag('config', 'G-NXHY8714SY')` and includes `consent.js`. The script shows a bilingual cookie banner (Accept / Reject with equal weight) and loads the Google tag (`gtag.js`) only after the visitor accepts (basic consent mode). The choice is stored in `localStorage` under `ai-showcase-consent` for up to 12 months; footer buttons marked with `data-consent-open` reopen the banner, and rejecting deletes the `_ga` cookies. Ad storage and ad personalization always remain denied. Keep `datenschutzhinweise.html` in sync when changing tracking.
+Every HTML page sets Google Consent Mode v2 defaults to `denied` directly after the opening `<head>` element, queues `gtag('config', 'G-NGR4GFF8Q4')` and includes `consent.js`. The script shows a bilingual cookie banner (Accept / Reject with equal weight) and loads the Google tag (`gtag.js`) only after the visitor accepts (basic consent mode). The choice is stored in `localStorage` under `ai-showcase-consent` for up to 12 months; footer buttons marked with `data-consent-open` reopen the banner, and rejecting deletes the `_ga` cookies. Ad storage and ad personalization always remain denied. Keep `datenschutzhinweise.html` in sync when changing tracking.
 
 LinkedIn and Instagram contact links appear in the page footers.
 
