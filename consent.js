@@ -1,5 +1,5 @@
 /*
- * Cookie consent banner + Google Consent Mode v2 + Serverless Page Counter.
+ * Cookie consent banner + Google Consent Mode v2 (basic implementation).
  * gtag.js is only loaded after the visitor opts in, and gtag('config') is
  * queued AFTER consent update so the initial page_view carries gcs=G101.
  */
@@ -8,8 +8,6 @@
   const STORAGE_KEY = 'ai-showcase-consent';
   const CONSENT_VERSION = 1;
   const MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000;
-  const COUNTER_NAMESPACE = 'tobmuc-ai-applied-show-case';
-  const COUNTER_API = 'https://abacus.jasoncameron.dev';
   const scriptUrl = document.currentScript ? document.currentScript.src : location.href;
   const privacyUrl = new URL('datenschutzhinweise.html', scriptUrl).href;
 
@@ -21,7 +19,6 @@
       accept: 'Akzeptieren',
       reject: 'Ablehnen',
       settings: 'Cookie-Einstellungen',
-      viewsLabel: 'Aufrufe',
     },
     en: {
       title: 'Cookies & audience measurement',
@@ -30,7 +27,6 @@
       accept: 'Accept',
       reject: 'Reject',
       settings: 'Cookie settings',
-      viewsLabel: 'views',
     },
   };
 
@@ -41,7 +37,6 @@
   let banner = null;
   let tagLoaded = false;
   let configSent = false;
-  let latestCounterStats = null;
 
   function language() {
     return (document.documentElement.lang || '').toLowerCase().startsWith('de') ? 'de' : 'en';
@@ -115,66 +110,6 @@
     hideBanner();
   }
 
-  function pageCounterKey() {
-    const path = location.pathname.toLowerCase();
-    if (path.includes('feedback-intelligence')) return 'feedback-intelligence';
-    if (path.includes('chat-your-data')) return 'chat-your-data';
-    if (path.includes('datenschutzhinweise')) return 'privacy';
-    if (path.endsWith('/index.html')) return null;
-    return 'showcase-infographic';
-  }
-
-  async function updateServerlessCounter() {
-    const pageKey = pageCounterKey();
-    if (!pageKey) return;
-    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-    const sessionKey = `sc-counted-${pageKey}`;
-    let alreadyCountedInSession = false;
-    try {
-      alreadyCountedInSession = sessionStorage.getItem(sessionKey) === '1';
-    } catch {}
-
-    const action = (!isLocal && !alreadyCountedInSession) ? 'hit' : 'get';
-    try {
-      const [pageRes, totalRes] = await Promise.all([
-        fetch(`${COUNTER_API}/${action}/${COUNTER_NAMESPACE}/${pageKey}`, { mode: 'cors', cache: 'no-store' }),
-        fetch(`${COUNTER_API}/${action}/${COUNTER_NAMESPACE}/total`, { mode: 'cors', cache: 'no-store' }),
-      ]);
-      if (action === 'hit') {
-        try { sessionStorage.setItem(sessionKey, '1'); } catch {}
-      }
-      const pageData = pageRes.ok ? await pageRes.json() : null;
-      const totalData = totalRes.ok ? await totalRes.json() : null;
-      const pageViews = typeof pageData?.value === 'number' && pageData.value >= 0 ? pageData.value : 0;
-      const totalViews = typeof totalData?.value === 'number' && totalData.value >= 0 ? totalData.value : pageViews;
-      latestCounterStats = { pageKey, pageViews, totalViews };
-      renderCounterBadge();
-    } catch {
-      /* Fail silently if offline. */
-    }
-  }
-
-  function renderCounterBadge() {
-    if (!latestCounterStats) return;
-    let badge = document.getElementById('sc-view-counter');
-    if (!badge) {
-      const consentBtn = document.querySelector('[data-consent-open]');
-      if (!consentBtn || !consentBtn.parentElement) return;
-      badge = document.createElement('span');
-      badge.id = 'sc-view-counter';
-      badge.className = 'sc-view-counter';
-      consentBtn.insertAdjacentElement('afterend', badge);
-    }
-    const lang = language();
-    const t = texts[lang];
-    const formattedPage = latestCounterStats.pageViews.toLocaleString(lang === 'de' ? 'de-DE' : 'en-US');
-    const formattedTotal = latestCounterStats.totalViews.toLocaleString(lang === 'de' ? 'de-DE' : 'en-US');
-    badge.textContent = `👁 ${formattedTotal} ${t.viewsLabel}`;
-    badge.title = lang === 'de'
-      ? `Gesamt: ${formattedTotal} Aufrufe · Diese Seite (${latestCounterStats.pageKey}): ${formattedPage}`
-      : `Total: ${formattedTotal} views · This page (${latestCounterStats.pageKey}): ${formattedPage}`;
-  }
-
   function injectStyles() {
     if (document.getElementById('sc-consent-style')) return;
     const style = document.createElement('style');
@@ -198,8 +133,6 @@
       .sc-consent-link { background: none; border: 0; padding: 0; margin: 0; font: inherit; color: inherit; letter-spacing: inherit; text-decoration: none; cursor: pointer; }
       .sc-consent-link:hover { text-decoration: underline; }
       .sc-consent-link:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
-      .sc-view-counter { display: inline-flex; align-items: center; gap: 4px; padding: 1px 7px; border-radius: 999px;
-        border: 1px solid rgba(128,150,155,.28); font-size: .92em; font-variant-numeric: tabular-nums; opacity: .85; white-space: nowrap; }
     `;
     document.head.append(style);
   }
@@ -215,7 +148,6 @@
       banner.querySelector('[data-choice="denied"]').textContent = t.reject;
     }
     document.querySelectorAll('[data-consent-open]').forEach(element => { element.textContent = t.settings; });
-    renderCounterBadge();
   }
 
   // Footer buttons mimic neighbouring links so they blend into each page's footer style.
@@ -275,13 +207,9 @@
     new MutationObserver(() => { renderTexts(); syncLinkStyles(); })
       .observe(document.documentElement, { attributes: true, attributeFilter: ['lang', 'data-theme', 'class'] });
     if (!initialChoice) showBanner();
-    updateServerlessCounter();
   }
 
-  window.showcaseConsent = {
-    open: () => showBanner(true),
-    stats: () => latestCounterStats,
-  };
+  window.showcaseConsent = { open: () => showBanner(true) };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
   else init();
