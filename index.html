@@ -336,6 +336,70 @@
       transform: translateY(-2px);
     }
 
+        /* Profile Picture in Hero Side Card */
+    .hero-profile-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .profile-img-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      padding: 3px;
+      background: var(--gradient-brand);
+      box-shadow: 0 6px 20px rgba(217, 2, 125, 0.45);
+    }
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: var(--bg-base);
+    }
+    .profile-status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2.5px solid var(--bg-card);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+    }
+    .profile-meta {
+      min-width: 0;
+    }
+    .profile-name {
+      margin: 0 0 3px;
+      font-size: 1.25rem;
+      font-weight: 850;
+      line-height: 1.2;
+      color: var(--text-main);
+      letter-spacing: -.02em;
+    }
+    .profile-role {
+      font-size: .84rem;
+      font-weight: 750;
+      color: var(--se-pink);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+    .profile-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .74rem;
+      color: var(--text-muted);
+    }
+
     /* Hero Side Impact Panel */
     .hero-side-card {
       position: relative;
@@ -971,6 +1035,17 @@
         </div>
 
         <div class="hero-side-card">
+          <div class="hero-profile-row">
+            <div class="profile-img-wrap">
+              <img src="./tobias-burkard.jpg" alt="Tobias Burkard – Data Analyst &amp; AI Expert" class="profile-img" width="82" height="82" />
+              <span class="profile-status-dot" title="Verfügbar für AI Consulting"></span>
+            </div>
+            <div class="profile-meta">
+              <h2 class="profile-name">Tobias Burkard</h2>
+              <div class="profile-role" data-i18n="profRole">Data Analyst &amp; AI Expert</div>
+              <div class="profile-status" data-i18n="profStatus">München &middot; Remote &middot; AI Tool Consulting</div>
+            </div>
+          </div>
           <div class="impact-header" data-i18n="sideHeader">Fokus &amp; Mehrwert</div>
           <h3 class="impact-title" data-i18n="sideTitle">Vom Hype zur messbaren Wertschöpfung</h3>
           <div class="impact-metrics">
@@ -1504,6 +1579,8 @@
         heroLead: "Ich begleite Unternehmen herstellerneutral von der ersten Potenzialanalyse über agile Proof-of-Concepts bis zur sicheren Verankerung von modernen KI-Werkzeugen in Workflows und Datenarchitekturen.",
         ctaPrimary: "Projekt auf LinkedIn anfragen",
         ctaSecondary: "Agilen Projektkreislauf ansehen",
+        profRole: "Data Analyst & AI Expert",
+        profStatus: "München · Remote · AI Tool Consulting",
         sideHeader: "Fokus & Mehrwert",
         sideTitle: "Vom Hype zur messbaren Wertschöpfung",
         m1Label: "Herangehensweise", m1Val: "100% Herstellerneutral",
@@ -1554,6 +1631,8 @@
         heroLead: "I advise organizations vendor-neutrally from initial opportunity mapping through agile proof-of-concepts to seamlessly anchoring modern AI tools into workflows and data architectures.",
         ctaPrimary: "Inquire on LinkedIn",
         ctaSecondary: "Explore the Agile Lifecycle",
+        profRole: "Data Analyst & AI Expert",
+        profStatus: "Munich · Remote · AI Tool Consulting",
         sideHeader: "Focus & Impact",
         sideTitle: "From AI hype to measurable business value",
         m1Label: "Advisory Mindset", m1Val: "100% Vendor-Neutral",
