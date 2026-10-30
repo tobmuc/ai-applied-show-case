@@ -572,11 +572,22 @@
 
     .pulse-particle {
       transform-origin: 300px 300px;
-      animation: orbit-pulse 18s linear infinite;
+      will-change: transform;
+      pointer-events: none;
     }
-    @keyframes orbit-pulse {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .pulse-particle-trail {
+      opacity: 0.75;
+    }
+    .cycle-arrow {
+      fill: var(--text-muted);
+      opacity: 0.75;
+      transition: fill .25s, opacity .25s, transform .25s;
+      transform-origin: 300px 300px;
+    }
+    .cycle-arrow.is-passed {
+      fill: var(--se-hot-pink);
+      opacity: 1;
+      filter: drop-shadow(0 0 6px var(--se-hot-pink));
     }
 
     /* Cycle Arrows */
@@ -1032,14 +1043,26 @@
                     <feGaussianBlur stdDeviation="8" result="blur" />
                     <feComposite in="SourceGraphic" in2="blur" operator="over" />
                   </filter>
+                  <linearGradient id="trail-grad" x1="100%" y1="0%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#ff128e" stop-opacity="0.9" />
+                    <stop offset="60%" stop-color="#8b2fc9" stop-opacity="0.4" />
+                    <stop offset="100%" stop-color="#28004d" stop-opacity="0" />
+                  </linearGradient>
                 </defs>
 
                 <!-- Outer Orbit Guide Ring -->
                 <circle class="orbit-ring" cx="300" cy="300" r="268" />
 
-                <!-- Orbit Pulse Particle (animated) -->
-                <g class="pulse-particle">
-                  <circle cx="300" cy="32" r="6" fill="#d9027d" filter="drop-shadow(0 0 8px #ff128e)" />
+                <!-- Orbit Pulse Particle (Synchronized via requestAnimationFrame) -->
+                <g class="pulse-particle" id="orbit-particle">
+                  <!-- Energy Trail behind the orb (18 deg arc) -->
+                  <path class="pulse-particle-trail" d="M 300 32 A 268 268 0 0 0 216 46" fill="none" stroke="url(#trail-grad)" stroke-width="3" stroke-linecap="round" />
+                  <!-- Halo Glow -->
+                  <circle cx="300" cy="32" r="10" fill="none" stroke="rgba(255, 18, 142, 0.45)" stroke-width="2" />
+                  <!-- Outer Orb -->
+                  <circle cx="300" cy="32" r="6.5" fill="#ff128e" filter="drop-shadow(0 0 10px #ff128e)" />
+                  <!-- Core Spark -->
+                  <circle cx="300" cy="32" r="3" fill="#ffffff" />
                 </g>
 
                 <!-- SEGMENTS -->
@@ -1086,18 +1109,18 @@
                 </g>
 
                 <!-- CLOCKWISE DIRECTIONAL ARROWS (from uploaded image) -->
-                <!-- Arrow 1 (top) -->
-                <path class="cycle-arrow" d="M 296 38 L 305 34 L 296 30 Z" />
-                <!-- Arrow 2 (top right) -->
-                <path class="cycle-arrow" d="M 524 167 L 533 171 L 532 162 Z" />
-                <!-- Arrow 3 (bottom right) -->
-                <path class="cycle-arrow" d="M 526 429 L 528 438 L 535 433 Z" />
-                <!-- Arrow 4 (bottom) -->
-                <path class="cycle-arrow" d="M 304 562 L 295 566 L 304 570 Z" />
-                <!-- Arrow 5 (bottom left) -->
-                <path class="cycle-arrow" d="M 74 433 L 66 429 L 66 438 Z" />
-                <!-- Arrow 6 (top left) -->
-                <path class="cycle-arrow" d="M 73 171 L 71 162 L 64 166 Z" />
+                <!-- Arrow 1 (at 0 deg / boundary 6->1) -->
+                <path class="cycle-arrow" id="arrow-0" d="M 296 38 L 305 34 L 296 30 Z" />
+                <!-- Arrow 2 (at 60 deg / boundary 1->2) -->
+                <path class="cycle-arrow" id="arrow-1" d="M 524 167 L 533 171 L 532 162 Z" />
+                <!-- Arrow 3 (at 120 deg / boundary 2->3) -->
+                <path class="cycle-arrow" id="arrow-2" d="M 526 429 L 528 438 L 535 433 Z" />
+                <!-- Arrow 4 (at 180 deg / boundary 3->4) -->
+                <path class="cycle-arrow" id="arrow-3" d="M 304 562 L 295 566 L 304 570 Z" />
+                <!-- Arrow 5 (at 240 deg / boundary 4->5) -->
+                <path class="cycle-arrow" id="arrow-4" d="M 74 433 L 66 429 L 66 438 Z" />
+                <!-- Arrow 6 (at 300 deg / boundary 5->6) -->
+                <path class="cycle-arrow" id="arrow-5" d="M 73 171 L 71 162 L 64 166 Z" />
               </svg>
 
               <!-- Central Circular Hub -->
@@ -1604,20 +1627,36 @@
     const detailDelivText = document.querySelector('#detail-deliv-text');
 
     // -------------------------------------------------------------------
-    // CYCLE CONTROLLER
+    // FULLY SYNCHRONIZED CYCLE ENGINE (requestAnimationFrame)
     // -------------------------------------------------------------------
-    function showPhase(phaseNum, manual = false) {
+    // Total cycle duration: 18 seconds for full 360 deg (= exact 3.0s per 60 deg phase)
+    const CYCLE_DURATION_MS = 18000;
+    const orbitParticle = document.querySelector('#orbit-particle');
+    const arrows = [
+      document.querySelector('#arrow-0'),
+      document.querySelector('#arrow-1'),
+      document.querySelector('#arrow-2'),
+      document.querySelector('#arrow-3'),
+      document.querySelector('#arrow-4'),
+      document.querySelector('#arrow-5')
+    ];
+
+    let currentAngle = 0;          // 0 to 360 degrees
+    let isPlaying = true;
+    let lastTimestamp = null;
+    let targetAngle = null;         // for smooth transitions on user click
+    let animFrameId = null;
+
+    function showPhase(phaseNum) { updateUIForPhase(phaseNum); }
+    function updateUIForPhase(phaseNum) {
+      if (activePhaseIndex === phaseNum) return;
       activePhaseIndex = phaseNum;
       const data = phasesData[currentLang][phaseNum - 1];
 
       // Update Segments SVG
       document.querySelectorAll('.cycle-segment').forEach(seg => {
         const segNum = parseInt(seg.dataset.phase, 10);
-        if (segNum === phaseNum) {
-          seg.classList.add('is-active');
-        } else {
-          seg.classList.remove('is-active');
-        }
+        seg.classList.toggle('is-active', segNum === phaseNum);
       });
 
       // Update Mini Controls
@@ -1644,68 +1683,106 @@
         li.textContent = pt;
         detailPoints.appendChild(li);
       });
+    }
 
-      if (manual && isCyclePlaying) {
-        // Reset timer on manual interaction
-        restartCycleTimer();
+    function renderAngle(angle) {
+      currentAngle = ((angle % 360) + 360) % 360;
+      
+      // Rotate the particle exactly around SVG center (300, 300)
+      if (orbitParticle) {
+        orbitParticle.setAttribute('transform', `rotate(${currentAngle}, 300, 300)`);
       }
+
+      // Calculate which segment (1..6) the particle is currently over:
+      // Segment 1: 0° - 60°
+      // Segment 2: 60° - 120°
+      // Segment 3: 120° - 180°
+      // Segment 4: 180° - 240°
+      // Segment 5: 240° - 300°
+      // Segment 6: 300° - 360°
+      const calculatedPhase = Math.floor(currentAngle / 60) + 1;
+      const safePhase = Math.min(Math.max(calculatedPhase, 1), 6);
+      updateUIForPhase(safePhase);
+
+      // Highlight the arrow that was just crossed
+      const currentSegmentIndex = Math.floor(currentAngle / 60);
+      arrows.forEach((arr, idx) => {
+        if (!arr) return;
+        // Arrow idx is at idx * 60 deg
+        const diff = (currentAngle - (idx * 60) + 360) % 360;
+        if (diff >= 0 && diff < 30) {
+          arr.classList.add('is-passed');
+        } else {
+          arr.classList.remove('is-passed');
+        }
+      });
     }
 
-    function nextCyclePhase() {
-      let next = activePhaseIndex + 1;
-      if (next > 6) next = 1;
-      showPhase(next, false);
-    }
+    function animationLoop(timestamp) {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const dt = timestamp - lastTimestamp;
+      lastTimestamp = timestamp;
 
-    function startCycleTimer() {
-      stopCycleTimer();
-      cycleInterval = setInterval(nextCyclePhase, 3600);
-    }
+      if (targetAngle !== null) {
+        // Smoothly interpolate towards user-selected target angle
+        let diff = targetAngle - currentAngle;
+        // Shortest path around circle
+        while (diff < -180) diff += 360;
+        while (diff > 180) diff -= 360;
 
-    function stopCycleTimer() {
-      if (cycleInterval) {
-        clearInterval(cycleInterval);
-        cycleInterval = null;
+        if (Math.abs(diff) < 0.6) {
+          renderAngle(targetAngle);
+          targetAngle = null;
+        } else {
+          renderAngle(currentAngle + diff * 0.15);
+        }
+      } else if (isPlaying) {
+        // Continuous synchronous movement: exactly 360 deg in CYCLE_DURATION_MS
+        const degDelta = (dt / CYCLE_DURATION_MS) * 360;
+        renderAngle(currentAngle + degDelta);
       }
+
+      animFrameId = requestAnimationFrame(animationLoop);
     }
 
-    function restartCycleTimer() {
-      stopCycleTimer();
-      if (isCyclePlaying) startCycleTimer();
+    function jumpToPhase(phaseNum) {
+      // Jump directly to the start of the chosen phase (plus slight lead-in)
+      const startAngle = (phaseNum - 1) * 60 + 2;
+      targetAngle = null;
+      renderAngle(startAngle);
+      lastTimestamp = performance.now();
     }
 
     function togglePlayPause() {
-      isCyclePlaying = !isCyclePlaying;
-      if (isCyclePlaying) {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        lastTimestamp = performance.now();
         playPauseBtn.textContent = i18nStrings[currentLang].pauseText;
-        startCycleTimer();
       } else {
         playPauseBtn.textContent = i18nStrings[currentLang].playText;
-        stopCycleTimer();
       }
     }
 
-    // Attach Cycle Events
+    // Attach User Interaction Events
     document.querySelectorAll('.cycle-segment').forEach(seg => {
       seg.addEventListener('mouseenter', () => {
         const phaseNum = parseInt(seg.dataset.phase, 10);
-        showPhase(phaseNum, true);
+        jumpToPhase(phaseNum);
       });
       seg.addEventListener('click', () => {
         const phaseNum = parseInt(seg.dataset.phase, 10);
-        showPhase(phaseNum, true);
+        jumpToPhase(phaseNum);
       });
     });
 
     document.querySelectorAll('.phase-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         const phaseNum = parseInt(chip.dataset.chip, 10);
-        showPhase(phaseNum, true);
+        jumpToPhase(phaseNum);
       });
     });
 
     playPauseBtn.addEventListener('click', togglePlayPause);
-
     // -------------------------------------------------------------------
     // LANGUAGE LOGIC
     // -------------------------------------------------------------------
@@ -1733,7 +1810,7 @@
       playPauseBtn.textContent = isCyclePlaying ? dict.pauseText : dict.playText;
 
       // Update current phase in new language
-      showPhase(activePhaseIndex, false);
+      updateUIForPhase(activePhaseIndex);
       updateThemeToggle();
     }
 
@@ -1773,12 +1850,13 @@
     applyLanguage(currentLang);
     applyTheme(currentTheme);
 
-    // Reduced motion check
+    // Initialize first phase and start synchronized animation loop
+    renderAngle(0);
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      isCyclePlaying = false;
+      isPlaying = false;
       playPauseBtn.textContent = i18nStrings[currentLang].playText;
     } else {
-      startCycleTimer();
+      animFrameId = requestAnimationFrame(animationLoop);
     }
   </script>
 </body>
