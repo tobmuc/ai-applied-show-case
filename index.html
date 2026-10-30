@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGR4GFF8Q4"></script>
@@ -13,279 +13,1773 @@
       analytics_storage: 'denied'
     });
     gtag('js', new Date());
-
     gtag('config', 'G-NGR4GFF8Q4');
   </script>
   <script src="./consent.js" defer></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f7f6">
-  <meta name="description" content="Tobias Burkard – AI Tool Consulting: KI-Tools auswählen, einführen und produktiv nutzen.">
+  <meta name="theme-color" content="#0e0417">
+  <meta name="description" content="Tobias Burkard – AI Tool Consulting: Herstellerunabhängige Auswahl, agile Implementierung und nachhaltige Verankerung von KI-Tools in Unternehmen.">
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <title>Tobias Burkard — AI Tool Consulting</title>
+  <title>Tobias Burkard — AI Tool Consulting &amp; Agile KI-Implementierung</title>
+  
   <script>
     (() => {
-      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      let theme = 'dark'; // Default to modern high-tech Siemens Energy dark mode
       try {
-        const savedTheme = localStorage.getItem('ai-showcase-theme');
-        if (savedTheme === 'dark' || savedTheme === 'light') theme = savedTheme;
+        const saved = localStorage.getItem('ai-showcase-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
       } catch {}
       document.documentElement.dataset.theme = theme;
-      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#111a1d' : '#f4f7f6';
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0e0417' : '#faf7fd';
     })();
   </script>
+
   <style>
+    /* =========================================================
+       SIEMENS ENERGY INSPIRED COLOR PALETTE & DESIGN SYSTEM
+       ========================================================= */
     :root {
-      color-scheme: light;
-      --paper: #f4f7f6;
-      --card: #fff;
-      --ink: #172c34;
-      --muted: #5d7177;
-      --line: #dce6e3;
-      --mint: #087f72;
-      --mint-pale: #e6f4f0;
-      --shadow: 0 12px 32px rgba(21, 49, 53, .06);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      /* Siemens Energy Core Brand Colors */
+      --se-deep-purple: #18022e;
+      --se-purple: #4c0873;
+      --se-electric-purple: #6a0dad;
+      --se-lilac: #8b2fc9;
+      --se-neon-lilac: #b34ef5;
+      --se-pink: #d9027d;
+      --se-hot-pink: #ff128e;
+      --se-coral: #ff5e62;
+      --se-amber: #ff9966;
+      --se-cyan: #00d2ff;
+
+      /* Cycle Palette (from uploaded chart) */
+      --cy-blue-1: #1e4b85;
+      --cy-blue-2: #2d6fa5;
+      --cy-blue-3: #4b94c7;
+      --cy-green-4: #238b45;
+      --cy-green-5: #47ab5d;
+      --cy-green-6: #7bc47f;
+
+      /* Themes */
+      --bg-base: #0e0417;
+      --bg-card: rgba(26, 10, 43, 0.72);
+      --bg-card-hover: rgba(38, 14, 64, 0.88);
+      --bg-card-border: rgba(139, 47, 201, 0.28);
+      --bg-card-glow: rgba(217, 2, 125, 0.15);
+      
+      --text-main: #ffffff;
+      --text-muted: #c4b5d6;
+      --text-dim: #8e7c9f;
+      --line: rgba(179, 78, 245, 0.2);
+
+      --gradient-brand: linear-gradient(135deg, #28004d 0%, #5c0f8b 38%, #8b2fc9 70%, #d9027d 100%);
+      --gradient-text: linear-gradient(110deg, #ffffff 15%, #ff7ac2 65%, #c86eff 100%);
+      --gradient-glow: linear-gradient(90deg, #d9027d, #8b2fc9, #00d2ff, #d9027d);
+      
+      --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.45);
+      --shadow-glow: 0 0 35px rgba(217, 2, 125, 0.25);
+
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
-    html[data-theme="dark"] {
-      color-scheme: dark;
-      --paper: #111a1d;
-      --card: #1b292d;
-      --ink: #e9f0ee;
-      --muted: #b4c3c1;
-      --line: #34474a;
-      --mint: #68d2bf;
-      --mint-pale: #193c36;
-      --shadow: 0 12px 32px rgba(0, 0, 0, .28);
+
+    html[data-theme="light"] {
+      --bg-base: #faf7fd;
+      --bg-card: rgba(255, 255, 255, 0.88);
+      --bg-card-hover: rgba(255, 255, 255, 0.98);
+      --bg-card-border: rgba(92, 15, 139, 0.16);
+      --bg-card-glow: rgba(217, 2, 125, 0.1);
+
+      --text-main: #18022e;
+      --text-muted: #564666;
+      --text-dim: #7f6e8f;
+      --line: rgba(92, 15, 139, 0.14);
+
+      --gradient-text: linear-gradient(115deg, #18022e 10%, #7b1fa2 50%, #d9027d 95%);
+      --shadow-soft: 0 16px 36px rgba(40, 0, 77, 0.08);
+      --shadow-glow: 0 0 30px rgba(217, 2, 125, 0.15);
     }
+
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--ink); background: var(--paper); line-height: 1.6; }
+    body {
+      margin: 0;
+      color: var(--text-main);
+      background-color: var(--bg-base);
+      background-image: 
+        radial-gradient(circle at 12% 15%, rgba(217, 2, 125, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 88% 22%, rgba(92, 15, 139, 0.18) 0%, transparent 55%),
+        radial-gradient(circle at 50% 80%, rgba(139, 47, 201, 0.1) 0%, transparent 50%);
+      background-attachment: fixed;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
     a { color: inherit; text-decoration: none; }
     button { font: inherit; color: inherit; }
-    a:focus-visible, button:focus-visible { outline: 3px solid #25a99a; outline-offset: 3px; }
-    h1, h2, h3, p { margin-top: 0; }
-    .shell { width: min(1040px, calc(100% - 40px)); margin-inline: auto; }
-
-    .topbar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(12px); }
-    .nav { min-height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 750; font-size: .92rem; }
-    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--paper); background: var(--ink); font-size: .8rem; font-weight: 800; }
-    .nav-right { display: flex; align-items: center; gap: 8px; }
-    .toggle { min-height: 34px; min-width: 34px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--card); font-size: .72rem; font-weight: 750; cursor: pointer; }
-    .toggle:hover { border-color: var(--mint); }
-
-    .hero { padding: 72px 0 48px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--mint); font-size: .72rem; font-weight: 790; letter-spacing: .12em; text-transform: uppercase; }
-    .eyebrow::before { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); content: ""; }
-    h1 { max-width: 780px; margin-bottom: 18px; font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -.03em; text-wrap: balance; }
-    h1 span { color: var(--mint); }
-    .lead { max-width: 640px; margin-bottom: 26px; color: var(--muted); font-size: 1.05rem; }
-    .cta { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 11px; color: #fff; background: var(--mint); font-size: .85rem; font-weight: 720; transition: transform .18s; }
-    html[data-theme="dark"] .cta { color: #10201d; }
-    .cta:hover { transform: translateY(-1px); }
-
-    .section { padding: 36px 0; }
-    .section h2 { margin-bottom: 22px; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.02em; }
-    .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .skill { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); box-shadow: var(--shadow); }
-    .skill-icon { display: grid; place-items: center; width: 38px; height: 38px; margin-bottom: 14px; border-radius: 11px; color: var(--mint); background: var(--mint-pale); font-size: 1.05rem; }
-    .skill h3 { margin-bottom: 6px; font-size: 1rem; line-height: 1.3; }
-    .skill p { margin: 0; color: var(--muted); font-size: .86rem; }
-
-    .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
-    .steps li { padding: 18px 20px; border-left: 3px solid var(--mint); border-radius: 0 12px 12px 0; background: var(--card); counter-increment: step; }
-    .steps li::before { display: block; margin-bottom: 4px; color: var(--mint); content: counter(step, decimal-leading-zero); font-size: .72rem; font-weight: 800; }
-    .steps strong { display: block; margin-bottom: 3px; font-size: .95rem; }
-    .steps span { color: var(--muted); font-size: .84rem; }
-
-    .tools { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tools span { padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font-size: .8rem; font-weight: 620; }
-    .note { margin: 18px 0 0; color: var(--muted); font-size: .8rem; }
-
-    .footer { margin-top: 40px; border-top: 1px solid var(--line); }
-    .footer-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: .78rem; }
-    .footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-    .footer-links a:hover, .footer-links button:hover { color: var(--mint); }
-    .footer-links button { padding: 0; border: 0; background: none; cursor: pointer; font-size: inherit; color: inherit; }
-
-    @media (max-width: 860px) {
-      .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--se-pink); outline-offset: 3px; }
+    
+    .shell {
+      width: min(1200px, calc(100% - 48px));
+      margin-inline: auto;
     }
-    @media (max-width: 560px) {
-      .hero { padding: 44px 0 28px; }
-      .skills, .steps { grid-template-columns: 1fr; }
+
+    /* =========================================================
+       NAVIGATION BAR
+       ========================================================= */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg-base) 85%, transparent);
+      backdrop-filter: blur(16px);
+      transition: border-color .2s;
+    }
+    .nav {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 780;
+      font-size: .98rem;
+      letter-spacing: -.02em;
+    }
+    .brand-mark {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      color: #ffffff;
+      background: var(--gradient-brand);
+      font-size: .85rem;
+      font-weight: 850;
+      box-shadow: 0 4px 14px rgba(217, 2, 125, 0.4);
+    }
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 13px;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--se-pink), transparent, var(--se-neon-lilac));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .brand-sub {
+      display: block;
+      color: var(--text-muted);
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: .84rem;
+      font-weight: 650;
+      color: var(--text-muted);
+    }
+    .nav-center a:hover {
+      color: var(--se-pink);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-toggle {
+      min-height: 38px;
+      min-width: 38px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: .76rem;
+      font-weight: 750;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all .2s;
+    }
+    .btn-toggle:hover {
+      border-color: var(--se-pink);
+      box-shadow: 0 0 14px var(--bg-card-glow);
+    }
+
+    /* =========================================================
+       HERO SECTION (SIEMENS ENERGY VIBE)
+       ========================================================= */
+    .hero {
+      position: relative;
+      padding: clamp(48px, 8vw, 84px) 0 clamp(36px, 5vw, 60px);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 14px;
+      margin-bottom: 22px;
+      border-radius: 999px;
+      background: rgba(217, 2, 125, 0.12);
+      border: 1px solid rgba(217, 2, 125, 0.35);
+      color: var(--se-pink);
+      font-size: .74rem;
+      font-weight: 780;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--se-pink);
+      box-shadow: 0 0 0 0 rgba(217, 2, 125, 0.7);
+      animation: pulse-ring 2s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(217, 2, 125, 0.8); }
+      70% { box-shadow: 0 0 0 9px rgba(217, 2, 125, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(217, 2, 125, 0); }
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(2.3rem, 5.2vw, 3.8rem);
+      line-height: 1.05;
+      font-weight: 850;
+      letter-spacing: -.035em;
+      text-wrap: balance;
+    }
+    .gradient-title {
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline;
+    }
+    .hero-lead {
+      max-width: 620px;
+      margin-bottom: 32px;
+      color: var(--text-muted);
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .btn-energy {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 12px;
+      font-size: .88rem;
+      font-weight: 750;
+      color: #ffffff;
+      background: var(--gradient-brand);
+      box-shadow: 0 8px 24px rgba(217, 2, 125, 0.4);
+      transition: all .25s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-energy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(217, 2, 125, 0.6);
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 12px;
+      font-size: .88rem;
+      font-weight: 720;
+      color: var(--text-main);
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      transition: all .25s;
+    }
+    .btn-outline:hover {
+      border-color: var(--se-neon-lilac);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Side Impact Panel */
+    .hero-side-card {
+      position: relative;
+      padding: 30px;
+      border-radius: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(20px);
+      overflow: hidden;
+    }
+    .hero-side-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--se-deep-purple), var(--se-lilac), var(--se-pink));
+    }
+    .impact-header {
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--se-pink);
+      margin-bottom: 16px;
+    }
+    .impact-title {
+      font-size: 1.28rem;
+      font-weight: 780;
+      margin: 0 0 16px;
+      line-height: 1.25;
+    }
+    .impact-metrics {
+      display: grid;
+      gap: 12px;
+    }
+    .metric-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(139, 47, 201, 0.08);
+      border: 1px solid rgba(139, 47, 201, 0.16);
+    }
+    .metric-label {
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+    .metric-value {
+      font-size: .95rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .metric-value.highlight {
+      color: var(--se-pink);
+    }
+
+    /* =========================================================
+       THE AGILE CYCLE SECTION (DAS VISUELLE HIGHLIGHT)
+       ========================================================= */
+    .cycle-section {
+      position: relative;
+      padding: 70px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(ellipse at 50% 50%, rgba(92, 15, 139, 0.12) 0%, transparent 70%);
+    }
+    .section-head {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 46px;
+    }
+    .section-eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--se-pink);
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+      font-weight: 820;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+    }
+    .section-lead {
+      color: var(--text-muted);
+      font-size: .95rem;
+      margin: 0;
+    }
+
+    /* Cycle Interactive Layout */
+    .cycle-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .cycle-visual-wrap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      border-radius: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+    }
+    .cycle-visual-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 29px;
+      padding: 1px;
+      background: linear-gradient(145deg, rgba(217, 2, 125, 0.4), transparent 60%, rgba(139, 47, 201, 0.3));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .cycle-svg-container {
+      position: relative;
+      width: min(540px, 100%);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+    .cycle-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.25));
+    }
+
+    /* SVG Segments */
+    .cycle-segment {
+      cursor: pointer;
+      transition: transform .28s cubic-bezier(.2, .8, .2, 1), filter .28s, opacity .28s;
+      transform-origin: 300px 300px;
+    }
+    .cycle-segment path {
+      transition: fill .25s, stroke .25s, filter .25s;
+    }
+    .cycle-segment:hover {
+      transform: scale(1.028);
+      filter: drop-shadow(0 0 16px var(--glow-color, rgba(255, 255, 255, 0.6)));
+    }
+    .cycle-segment.is-active {
+      transform: scale(1.045);
+      filter: drop-shadow(0 0 22px var(--glow-color, rgba(217, 2, 125, 0.9)));
+    }
+
+    .segment-label {
+      font-size: 13.5px;
+      font-weight: 750;
+      fill: #ffffff;
+      text-anchor: middle;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.7));
+    }
+    .segment-sub {
+      font-size: 10.5px;
+      font-weight: 600;
+      fill: rgba(255, 255, 255, 0.9);
+      text-anchor: middle;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Center Cycle Hub */
+    .cycle-center-hub {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--bg-card-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(139, 47, 201, 0.2);
+      pointer-events: none;
+      transition: all .3s;
+    }
+    .hub-tag {
+      font-size: .62rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--se-pink);
+      margin-bottom: 4px;
+    }
+    .hub-title {
+      font-size: 1.15rem;
+      font-weight: 850;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .hub-status {
+      font-size: .75rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+      max-width: 190px;
+    }
+
+    /* Orbit Energy Ring & Pulse */
+    .orbit-ring {
+      fill: none;
+      stroke: rgba(217, 2, 125, 0.22);
+      stroke-width: 1.5;
+      stroke-dasharray: 4 6;
+      animation: rotate-orbit 40s linear infinite;
+      transform-origin: 300px 300px;
+    }
+    @keyframes rotate-orbit {
+      to { transform: rotate(360deg); }
+    }
+
+    .pulse-particle {
+      transform-origin: 300px 300px;
+      animation: orbit-pulse 18s linear infinite;
+    }
+    @keyframes orbit-pulse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Cycle Arrows */
+    .cycle-arrow {
+      fill: var(--text-muted);
+      opacity: 0.85;
+      transition: fill .3s, transform .3s;
+    }
+
+    /* Controls bar below circle */
+    .cycle-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      width: 100%;
+    }
+    .phase-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: .74rem;
+      font-weight: 700;
+      background: rgba(139, 47, 201, 0.12);
+      border: 1px solid rgba(139, 47, 201, 0.25);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .phase-chip:hover {
+      background: rgba(217, 2, 125, 0.2);
+      border-color: var(--se-pink);
+      color: var(--text-main);
+    }
+    .phase-chip.is-active {
+      background: var(--gradient-brand);
+      border-color: var(--se-pink);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(217, 2, 125, 0.4);
+    }
+    .btn-playpause {
+      min-height: 32px;
+      padding: 0 12px;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 750;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .btn-playpause:hover {
+      color: var(--text-main);
+      border-color: var(--se-pink);
+    }
+
+    /* Cycle Details Card (Inspector) */
+    .cycle-detail-panel {
+      position: relative;
+      padding: 34px;
+      border-radius: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-height: 440px;
+      justify-content: center;
+    }
+    .cycle-detail-panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      bottom: 0;
+      border-radius: 28px 0 0 28px;
+      background: var(--active-phase-color, var(--se-pink));
+      box-shadow: 0 0 18px var(--active-phase-color, var(--se-pink));
+      transition: background .3s, box-shadow .3s;
+    }
+
+    .detail-phase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--active-phase-color, var(--se-pink));
+    }
+    .detail-title {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 850;
+      line-height: 1.2;
+      color: var(--text-main);
+    }
+    .detail-desc {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: .95rem;
+      line-height: 1.65;
+    }
+    .detail-points {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .detail-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .88rem;
+      color: var(--text-main);
+    }
+    .detail-points li::before {
+      content: "✦";
+      color: var(--active-phase-color, var(--se-pink));
+      font-size: .88rem;
+      line-height: 1.5;
+    }
+    .detail-deliverable {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(139, 47, 201, 0.08);
+      border: 1px solid rgba(139, 47, 201, 0.2);
+      font-size: .84rem;
+      color: var(--text-muted);
+    }
+    .detail-deliverable strong {
+      color: var(--text-main);
+    }
+
+    /* =========================================================
+       SKILLSET GRID (UNTYPICAL & BOLD EDITORIAL)
+       ========================================================= */
+    .skills-section {
+      padding: 80px 0;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      position: relative;
+      padding: 28px;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+      transition: all .25s ease;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .skill-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--se-pink), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--se-neon-lilac);
+      box-shadow: var(--shadow-glow);
+    }
+    .skill-card:hover::after {
+      opacity: 1;
+    }
+    .skill-num {
+      font-size: .75rem;
+      font-weight: 850;
+      letter-spacing: .1em;
+      color: var(--se-pink);
+      margin-bottom: 12px;
+    }
+    .skill-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      font-weight: 780;
+      line-height: 1.3;
+    }
+    .skill-card p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       TOOLBOX & MATRIX
+       ========================================================= */
+    .toolbox-section {
+      padding: 60px 0 80px;
+    }
+    .toolbox-card {
+      padding: 38px;
+      border-radius: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      box-shadow: var(--shadow-soft);
+    }
+    .toolbox-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+    }
+    .tool-group h4 {
+      margin: 0 0 12px;
+      font-size: .84rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--se-pink);
+    }
+    .tool-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .tool-pill {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(139, 47, 201, 0.08);
+      border: 1px solid rgba(139, 47, 201, 0.18);
+      color: var(--text-main);
+      font-size: .82rem;
+      font-weight: 600;
+      transition: all .2s;
+    }
+    .tool-pill:hover {
+      border-color: var(--se-pink);
+      background: rgba(217, 2, 125, 0.12);
+    }
+
+    .nda-note {
+      margin-top: 30px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(92, 15, 139, 0.15);
+      border-left: 3px solid var(--se-pink);
+      color: var(--text-muted);
+      font-size: .84rem;
+    }
+    .nda-note strong {
+      color: var(--text-main);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .footer {
+      margin-top: auto;
+      border-top: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg-base) 92%, transparent);
+    }
+    .footer-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-muted);
+      font-size: .8rem;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .footer-links a:hover, .footer-links button:hover {
+      color: var(--se-pink);
+    }
+    .footer-links button {
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================= */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .cycle-layout { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .toolbox-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-center { display: none; }
+    }
+    @media (max-width: 640px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .toolbox-grid { grid-template-columns: 1fr; }
+      .cycle-center-hub { width: 190px; height: 190px; }
+      .hub-title { font-size: 1rem; }
+      .hub-status { font-size: .68rem; max-width: 150px; }
       .footer-inner { flex-direction: column; align-items: flex-start; padding-block: 16px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
+  <!-- HEADER & NAVIGATION -->
   <header class="topbar">
     <div class="shell nav">
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">TB</span><span>Tobias Burkard</span></a>
+      <a class="brand" href="#top" aria-label="Tobias Burkard Homepage">
+        <span class="brand-mark" aria-hidden="true">TB</span>
+        <div>
+          <span>Tobias Burkard</span>
+          <span class="brand-sub" data-i18n="brandSub">AI Tool Consulting</span>
+        </div>
+      </a>
+
+      <nav class="nav-center" aria-label="Hauptnavigation">
+        <a href="#cycle" data-i18n="navCycle">Agiler Kreislauf</a>
+        <a href="#skills" data-i18n="navSkills">Skillset</a>
+        <a href="#toolbox" data-i18n="navToolbox">Werkzeugkasten</a>
+      </nav>
+
       <div class="nav-right">
-        <button class="toggle" id="theme-toggle" type="button" aria-pressed="false"><span id="theme-icon" aria-hidden="true">☾</span></button>
-        <button class="toggle" id="language-toggle" type="button">DE / EN</button>
+        <button class="btn-toggle" id="theme-toggle" type="button" aria-label="Design wechseln">
+          <span id="theme-icon" aria-hidden="true">☾</span>
+        </button>
+        <button class="btn-toggle" id="language-toggle" type="button" aria-label="Sprache wechseln">
+          DE / EN
+        </button>
       </div>
     </div>
   </header>
 
-  <main id="top" class="shell">
-    <section class="hero">
-      <p class="eyebrow" data-i18n="eyebrow">AI Tool Consulting</p>
-      <h1 data-i18n-html="title">KI-Tools, die in Ihrem Alltag <span>wirklich ankommen.</span></h1>
-      <p class="lead" data-i18n="lead">Ich unterstütze Teams dabei, die passenden KI-Tools auszuwählen, sinnvoll in Prozesse und Datenlandschaften zu integrieren und nachhaltig produktiv zu nutzen – pragmatisch, herstellerneutral und mit messbarem Nutzen.</p>
-      <a class="cta" href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer"><span data-i18n="cta">Kontakt auf LinkedIn</span><span aria-hidden="true">↗</span></a>
-    </section>
+  <main id="top">
+    <!-- HERO SECTION -->
+    <section class="hero shell">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span data-i18n="badgeText">AI Tool Consulting · Pragmatisch &amp; Wertstiftend</span>
+          </div>
+          <h1>
+            <span data-i18n="heroP1">KI-Tools, die in Ihrem Alltag</span><br>
+            <span class="gradient-title" data-i18n="heroGradient">wirklich ankommen.</span>
+          </h1>
+          <p class="hero-lead" data-i18n="heroLead">
+            Ich begleite Unternehmen herstellerneutral von der ersten Potenzialanalyse über agile Proof-of-Concepts bis zur sicheren Verankerung von modernen KI-Werkzeugen in Workflows und Datenarchitekturen.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-energy" href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer">
+              <span data-i18n="ctaPrimary">Projekt auf LinkedIn anfragen</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a class="btn-outline" href="#cycle">
+              <span data-i18n="ctaSecondary">Agilen Projektkreislauf ansehen</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
 
-    <section class="section" aria-labelledby="skills-title">
-      <h2 id="skills-title" data-i18n="skillsTitle">Mein Skillset</h2>
-      <div class="skills">
-        <article class="skill"><div class="skill-icon" aria-hidden="true">◎</div><h3 data-i18n="s1">Use Cases identifizieren</h3><p data-i18n="s1d">Potenziale für KI erkennen, Nutzen und Aufwand bewerten und die richtigen Vorhaben priorisieren.</p></article>
-        <article class="skill"><div class="skill-icon" aria-hidden="true">⚖</div><h3 data-i18n="s2">Tool-Auswahl &amp; Evaluierung</h3><p data-i18n="s2d">LLMs, Assistenten, Agenten und Automatisierungstools herstellerneutral vergleichen und passend auswählen.</p></article>
-        <article class="skill"><div class="skill-icon" aria-hidden="true">⚡</div><h3 data-i18n="s3">Prototyping &amp; Proof of Concept</h3><p data-i18n="s3d">Ideen schnell und in kleinen Schritten testbar machen – bevor größere Investitionen anstehen.</p></article>
-        <article class="skill"><div class="skill-icon" aria-hidden="true">⇄</div><h3 data-i18n="s4">Integration in Daten &amp; Prozesse</h3><p data-i18n="s4d">KI-Tools an bestehende Systeme, Datenmodelle und Schnittstellen anbinden – mit Fokus auf Datenqualität.</p></article>
-        <article class="skill"><div class="skill-icon" aria-hidden="true">✦</div><h3 data-i18n="s5">Enablement &amp; Adoption</h3><p data-i18n="s5d">Teams befähigen: Schulungen, Prompting-Leitfäden und Best Practices für den täglichen Einsatz.</p></article>
-        <article class="skill"><div class="skill-icon" aria-hidden="true">✓</div><h3 data-i18n="s6">Governance &amp; Wirkung messen</h3><p data-i18n="s6d">Datenschutz, Qualitätssicherung und KPIs von Anfang an mitdenken – Ergebnisse transparent in Dashboards.</p></article>
+        <div class="hero-side-card">
+          <div class="impact-header" data-i18n="sideHeader">Fokus &amp; Mehrwert</div>
+          <h3 class="impact-title" data-i18n="sideTitle">Vom Hype zur messbaren Wertschöpfung</h3>
+          <div class="impact-metrics">
+            <div class="metric-row">
+              <span class="metric-label" data-i18n="m1Label">Herangehensweise</span>
+              <span class="metric-value highlight" data-i18n="m1Val">100% Herstellerneutral</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label" data-i18n="m2Label">Time-to-Value</span>
+              <span class="metric-value" data-i18n="m2Val">Tage statt Monate (MVP)</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label" data-i18n="m3Label">Daten &amp; Prozesse</span>
+              <span class="metric-value" data-i18n="m3Val">DSGVO &amp; Schnittstellen</span>
+            </div>
+            <div class="metric-row">
+              <span class="metric-label" data-i18n="m4Label">Team-Adoption</span>
+              <span class="metric-value highlight" data-i18n="m4Val">Befähigen statt Überfahren</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="approach-title">
-      <h2 id="approach-title" data-i18n="approachTitle">So arbeite ich</h2>
-      <ol class="steps">
-        <li><strong data-i18n="p1">Verstehen</strong><span data-i18n="p1d">Ziele, Prozesse und Daten analysieren.</span></li>
-        <li><strong data-i18n="p2">Bewerten</strong><span data-i18n="p2d">Use Cases und Tools priorisieren.</span></li>
-        <li><strong data-i18n="p3">Pilotieren</strong><span data-i18n="p3d">Schnell testen, Feedback einholen.</span></li>
-        <li><strong data-i18n="p4">Skalieren</strong><span data-i18n="p4d">Ausrollen, befähigen, Wirkung messen.</span></li>
-      </ol>
+    <!-- THE AGILE CYCLE SECTION (USER'S HIGHLIGHT) -->
+    <section class="cycle-section" id="cycle">
+      <div class="shell">
+        <div class="section-head">
+          <span class="section-eyebrow" data-i18n="cycleEyebrow">Agiler Projektmanagement-Lebenszyklus</span>
+          <h2 data-i18n="cycleTitle">Der agile Projektkreislauf im Überblick</h2>
+          <p class="section-lead" data-i18n="cycleLead">
+            Erfolgreiche KI-Einführung ist kein starrer Wasserfall, sondern ein lernender, iterativer Zyklus. Klicken oder hovern Sie über die Phasen, um Details zu entdecken.
+          </p>
+        </div>
+
+        <div class="cycle-layout">
+          <!-- VISUAL SVG DONUT WHEEL -->
+          <div class="cycle-visual-wrap">
+            <div class="cycle-svg-container" id="cycle-container">
+              <svg class="cycle-svg" viewBox="0 0 600 600" aria-label="Agiler Projektmanagement Lebenszyklus">
+                <defs>
+                  <!-- Gradients for segments inspired by chart & Siemens Energy -->
+                  <linearGradient id="seg-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#183e73" />
+                    <stop offset="100%" stop-color="#225b9b" />
+                  </linearGradient>
+                  <linearGradient id="seg-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#225b9b" />
+                    <stop offset="100%" stop-color="#367fae" />
+                  </linearGradient>
+                  <linearGradient id="seg-grad-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#367fae" />
+                    <stop offset="100%" stop-color="#55a3cf" />
+                  </linearGradient>
+                  <linearGradient id="seg-grad-4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1f8b4a" />
+                    <stop offset="100%" stop-color="#2ba85c" />
+                  </linearGradient>
+                  <linearGradient id="seg-grad-5" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3eb364" />
+                    <stop offset="100%" stop-color="#60c476" />
+                  </linearGradient>
+                  <linearGradient id="seg-grad-6" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6fc979" />
+                    <stop offset="100%" stop-color="#93d68c" />
+                  </linearGradient>
+                  
+                  <!-- Filter for glowing highlight -->
+                  <filter id="segment-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                <!-- Outer Orbit Guide Ring -->
+                <circle class="orbit-ring" cx="300" cy="300" r="268" />
+
+                <!-- Orbit Pulse Particle (animated) -->
+                <g class="pulse-particle">
+                  <circle cx="300" cy="32" r="6" fill="#d9027d" filter="drop-shadow(0 0 8px #ff128e)" />
+                </g>
+
+                <!-- SEGMENTS -->
+                <!-- 1. Beratung & Scope -->
+                <g class="cycle-segment is-active" id="seg-1" data-phase="1" style="--glow-color: rgba(34, 91, 155, 0.9);">
+                  <path d="M 309.81 50.19 A 250.00 250.00 0 0 1 511.43 166.60 L 422.63 222.63 A 145.00 145.00 0 0 0 305.69 155.11 Z" fill="url(#seg-grad-1)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+                  <text class="segment-label" x="398.8" y="125">1. Beratung &amp; Scope</text>
+                  <text class="segment-sub" x="398.8" y="142">Ziele &amp; Priorisierung</text>
+                </g>
+
+                <!-- 2. Analyse & Spezifikation -->
+                <g class="cycle-segment" id="seg-2" data-phase="2" style="--glow-color: rgba(54, 127, 174, 0.9);">
+                  <path d="M 521.25 183.60 A 250.00 250.00 0 0 1 521.25 416.40 L 428.32 367.51 A 145.00 145.00 0 0 0 428.32 232.49 Z" fill="url(#seg-grad-2)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+                  <text class="segment-label" x="496" y="295">2. Analyse &amp;</text>
+                  <text class="segment-label" x="496" y="312">Spezifikation</text>
+                </g>
+
+                <!-- 3. Agile Planung -->
+                <g class="cycle-segment" id="seg-3" data-phase="3" style="--glow-color: rgba(85, 163, 207, 0.9);">
+                  <path d="M 511.43 433.40 A 250.00 250.00 0 0 1 309.81 549.81 L 305.69 444.89 A 145.00 145.00 0 0 0 422.63 377.37 Z" fill="url(#seg-grad-3)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+                  <text class="segment-label" x="398.8" y="468">3. Agile Planung</text>
+                  <text class="segment-sub" x="398.8" y="485">Sprints &amp; Value</text>
+                </g>
+
+                <!-- 4. Umsetzung (Iterativ) -->
+                <g class="cycle-segment" id="seg-4" data-phase="4" style="--glow-color: rgba(43, 168, 92, 0.9);">
+                  <path d="M 290.19 549.81 A 250.00 250.00 0 0 1 88.57 433.40 L 177.37 377.37 A 145.00 145.00 0 0 0 294.31 444.89 Z" fill="url(#seg-grad-4)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+                  <text class="segment-label" x="201.3" y="466">4. Umsetzung</text>
+                  <text class="segment-sub" x="201.3" y="483">(Iterativ)</text>
+                </g>
+
+                <!-- 5. Testing & QA -->
+                <g class="cycle-segment" id="seg-5" data-phase="5" style="--glow-color: rgba(96, 196, 118, 0.9);">
+                  <path d="M 78.75 416.40 A 250.00 250.00 0 0 1 78.75 183.60 L 171.68 232.49 A 145.00 145.00 0 0 0 171.68 367.51 Z" fill="url(#seg-grad-5)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+                  <text class="segment-label" x="104" y="295">5. Testing &amp;</text>
+                  <text class="segment-label" x="104" y="312">QA</text>
+                </g>
+
+                <!-- 6. Evaluierung & Feedback -->
+                <g class="cycle-segment" id="seg-6" data-phase="6" style="--glow-color: rgba(147, 214, 140, 0.9);">
+                  <path d="M 88.57 166.60 A 250.00 250.00 0 0 1 290.19 50.19 L 294.31 155.11 A 145.00 145.00 0 0 0 177.37 222.63 Z" fill="url(#seg-grad-6)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" />
+                  <text class="segment-label" x="201.2" y="125">6. Evaluierung &amp;</text>
+                  <text class="segment-sub" x="201.2" y="142">Feedback</text>
+                </g>
+
+                <!-- CLOCKWISE DIRECTIONAL ARROWS (from uploaded image) -->
+                <!-- Arrow 1 (top) -->
+                <path class="cycle-arrow" d="M 296 38 L 305 34 L 296 30 Z" />
+                <!-- Arrow 2 (top right) -->
+                <path class="cycle-arrow" d="M 524 167 L 533 171 L 532 162 Z" />
+                <!-- Arrow 3 (bottom right) -->
+                <path class="cycle-arrow" d="M 526 429 L 528 438 L 535 433 Z" />
+                <!-- Arrow 4 (bottom) -->
+                <path class="cycle-arrow" d="M 304 562 L 295 566 L 304 570 Z" />
+                <!-- Arrow 5 (bottom left) -->
+                <path class="cycle-arrow" d="M 74 433 L 66 429 L 66 438 Z" />
+                <!-- Arrow 6 (top left) -->
+                <path class="cycle-arrow" d="M 73 171 L 71 162 L 64 166 Z" />
+              </svg>
+
+              <!-- Central Circular Hub -->
+              <div class="cycle-center-hub" id="center-hub">
+                <div class="hub-tag" id="hub-tag">Aktiver Zyklus</div>
+                <div class="hub-title" id="hub-title">Agiler Lebenszyklus</div>
+                <div class="hub-status" id="hub-status">Klicken oder hovern Sie auf eine Phase</div>
+              </div>
+            </div>
+
+            <!-- Cycle Mini-Controls -->
+            <div class="cycle-controls">
+              <button class="phase-chip is-active" data-chip="1">1. Scope</button>
+              <button class="phase-chip" data-chip="2">2. Analyse</button>
+              <button class="phase-chip" data-chip="3">3. Planung</button>
+              <button class="phase-chip" data-chip="4">4. Umsetzung</button>
+              <button class="phase-chip" data-chip="5">5. QA</button>
+              <button class="phase-chip" data-chip="6">6. Feedback</button>
+              <button class="btn-playpause" id="btn-cycle-pause" title="Animation pausieren/fortsetzen">⏸ Pause</button>
+            </div>
+          </div>
+
+          <!-- CYCLE DETAIL INSPECTOR CARD -->
+          <div class="cycle-detail-panel" id="cycle-detail">
+            <div class="detail-phase-badge" id="detail-badge">
+              <span>Phase 01 // VORBEREITUNG</span>
+            </div>
+            <h3 class="detail-title" id="detail-title">1. Beratung &amp; Scope</h3>
+            <p class="detail-desc" id="detail-desc">
+              Wir klären Erwartungshaltungen, identifizieren die wertvollsten KI-Einsatzfelder in Ihren Fachbereichen und definieren den konkreten Projektumfang – ohne überzogene Hype-Versprechen.
+            </p>
+            <ul class="detail-points" id="detail-points">
+              <li>Use-Case-Mapping &amp; ROI-Potenzialanalyse</li>
+              <li>Prüfung von Machbarkeit &amp; Abhängigkeiten</li>
+              <li>Definition von klaren Erfolgsmetriken &amp; KPIs</li>
+            </ul>
+            <div class="detail-deliverable" id="detail-deliverable">
+              <strong>Deliverable:</strong> <span id="detail-deliv-text">Abgestimmter Projekt-Scope &amp; priorisierter Value-Business-Case.</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="section" aria-labelledby="tools-title">
-      <h2 id="tools-title" data-i18n="toolsTitle">Werkzeugkasten</h2>
-      <div class="tools">
-        <span>LLMs &amp; AI Assistants</span>
-        <span>AI Agents</span>
-        <span>Agentic Coding</span>
-        <span>Prompt Engineering</span>
-        <span>Python &amp; SQL</span>
-        <span>ETL &amp; Data Modeling</span>
-        <span>Cloud Data Platforms</span>
-        <span>BI &amp; Dashboards</span>
-        <span data-i18n="agile">Agiles Projektmanagement</span>
+    <!-- CONSULTING SKILLSET SECTION -->
+    <section class="skills-section shell" id="skills">
+      <div class="section-head">
+        <span class="section-eyebrow" data-i18n="skillsEyebrow">Kompetenzprofil</span>
+        <h2 data-i18n="skillsTitle">Mein Skillset für Ihre KI-Initiativen</h2>
+        <p class="section-lead" data-i18n="skillsLead">
+          Von der strategischen Einordnung bis zum produktiven Betrieb: Fundierte Beratung an den Schnittstellen von Mensch, Modell und IT-Landschaft.
+        </p>
       </div>
-      <p class="note" data-i18n="note">Konkrete Projektbeispiele stelle ich gerne im persönlichen Gespräch vor.</p>
+
+      <div class="skills-grid">
+        <article class="skill-card">
+          <div class="skill-num">01 // EVALUIERUNG</div>
+          <h3 data-i18n="sk1Title">Herstellerneutrale Tool-Auswahl</h3>
+          <p data-i18n="sk1Desc">
+            Objektive Benchmarks von LLMs, KI-Assistenten und Automatisierungsframeworks. Ich filtere den Markt und empfehle Tools, die zu Ihrem Budget und Ihrer Governance passen.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-num">02 // ARCHITEKTUR</div>
+          <h3 data-i18n="sk2Title">Integration in Daten &amp; Prozesse</h3>
+          <p data-i18n="sk2Desc">
+            KI stiftet nur Nutzen mit verlässlichen Daten. Ich binde KI-Lösungen sauber an bestehende Datenmodelle, APIs und Cloud-Infrastrukturen an – mit Fokus auf hohe Datenqualität.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-num">03 // PROTOTYPING</div>
+          <h3 data-i18n="sk3Title">Schnelle Proof-of-Concepts (PoC)</h3>
+          <p data-i18n="sk3Desc">
+            Hypothesen in Tagen statt Quartalen überprüfen. Mit schlanken Prototypen machen wir Machbarkeit und Nutzerakzeptanz greifbar, bevor Großinvestitionen getätigt werden.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-num">04 // AUTOMATISIERUNG</div>
+          <h3 data-i18n="sk4Title">AI Agents &amp; Agentic Coding</h3>
+          <p data-i18n="sk4Desc">
+            Entwicklung autonomer Arbeitsabläufe und smarter Assistenten. Einsatz moderner agentischer Entwicklungsmethoden zur Beschleunigung interner Arbeits- und Codezyklen.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-num">05 // ADOPTION</div>
+          <h3 data-i18n="sk5Title">Team-Enablement &amp; Prompting</h3>
+          <p data-i18n="sk5Desc">
+            Das beste Tool nützt nichts, wenn Teams es meiden. Ich trainiere Mitarbeiter in praxistauglichem Prompting, Workflow-Integration und dem kritischen Umgang mit KI-Outputs.
+          </p>
+        </article>
+
+        <article class="skill-card">
+          <div class="skill-num">06 // GOVERNANCE</div>
+          <h3 data-i18n="sk6Title">Datenschutz, QA &amp; Messbarkeit</h3>
+          <p data-i18n="sk6Desc">
+            DSGVO-Konformität, Halluzinations-Vermeidung und laufende Qualitätskontrolle. Transparente Dashboards zur Nachverfolgung von Effizienzgewinnen und Modell-KPIs.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOOLBOX & TECH MATRIX -->
+    <section class="toolbox-section shell" id="toolbox">
+      <div class="toolbox-card">
+        <div class="section-head" style="margin-bottom: 24px; text-align: left;">
+          <span class="section-eyebrow" data-i18n="toolEyebrow">Technologie &amp; Methoden</span>
+          <h2 data-i18n="toolTitle">Der Werkzeugkasten</h2>
+          <p class="section-lead" data-i18n="toolLead">
+            Praxiserprobte Technologien, Frameworks und Standards für den modernen KI-Einsatz.
+          </p>
+        </div>
+
+        <div class="toolbox-grid">
+          <div class="tool-group">
+            <h4 data-i18n="tg1">LLMs &amp; Reasoning</h4>
+            <div class="tool-pills">
+              <span class="tool-pill">Anthropic Claude</span>
+              <span class="tool-pill">Google Gemini</span>
+              <span class="tool-pill">OpenAI GPT-4o</span>
+              <span class="tool-pill">Open-Source LLMs (Llama)</span>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h4 data-i18n="tg2">Agents &amp; Workflows</h4>
+            <div class="tool-pills">
+              <span class="tool-pill">Agentic Coding Frameworks</span>
+              <span class="tool-pill">Autonomous Task Agents</span>
+              <span class="tool-pill">Prompt Engineering &amp; Eval</span>
+              <span class="tool-pill">Function Calling &amp; Tool Use</span>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h4 data-i18n="tg3">Data &amp; Architecture</h4>
+            <div class="tool-pills">
+              <span class="tool-pill">Python &amp; SQL Pipelines</span>
+              <span class="tool-pill">ETL &amp; Data Modeling</span>
+              <span class="tool-pill">Cloud Data Platforms</span>
+              <span class="tool-pill">API Interfaces &amp; Webhooks</span>
+            </div>
+          </div>
+
+          <div class="tool-group">
+            <h4 data-i18n="tg4">Management &amp; BI</h4>
+            <div class="tool-pills">
+              <span class="tool-pill">Agile (Scrum / Kanban)</span>
+              <span class="tool-pill">Interactive Dashboards</span>
+              <span class="tool-pill">Quality &amp; Bias Checks</span>
+              <span class="tool-pill">Executive Decision Support</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nda-note">
+          <strong data-i18n="ndaStrong">Hinweis zur Diskretion:</strong>
+          <span data-i18n="ndaText">Aufgrund von Verschwiegenheitsvereinbarungen (NDA) werden geschäftskritische Kundendetails online abstrahiert. Konkrete Referenzen, Methodiken und Live-Demos präsentiere ich gerne im direkten Austausch.</span>
+        </div>
+      </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="shell footer-inner">
-      <span>© Tobias Burkard · AI Tool Consulting</span>
+      <span>© Tobias Burkard · Data Analyst &amp; AI Expert · AI Tool Consulting</span>
       <div class="footer-links">
         <a href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="./datenschutzhinweise.html" data-i18n="privacy">Datenschutz</a>
+        <a href="./datenschutzhinweise.html" data-i18n="privacyLink">Datenschutz</a>
         <button type="button" data-consent-open>Cookie-Einstellungen</button>
       </div>
     </div>
   </footer>
 
+  <!-- INTERACTIVE CYCLE & MULTILANGUAGE JAVASCRIPT -->
   <script>
-    const strings = {
+    // -------------------------------------------------------------------
+    // MULTILANGUAGE DICTIONARY & CONTENT DATA
+    // -------------------------------------------------------------------
+    const phasesData = {
+      de: [
+        {
+          num: 1,
+          badge: "Phase 01 // VORBEREITUNG",
+          title: "1. Beratung & Scope",
+          desc: "Wir klären Erwartungshaltungen, identifizieren die wertvollsten KI-Einsatzfelder in Ihren Fachbereichen und definieren den konkreten Projektumfang – ohne überzogene Hype-Versprechen.",
+          points: [
+            "Use-Case-Mapping & ROI-Potenzialanalyse",
+            "Prüfung von Machbarkeit, Schnittstellen & Abhängigkeiten",
+            "Definition von klaren Erfolgsmetriken & Akzeptanzkriterien"
+          ],
+          deliverable: "Abgestimmter Projekt-Scope & priorisierter Value-Business-Case.",
+          hubTitle: "1. Beratung & Scope",
+          hubStatus: "Potenziale identifizieren & Umfang definieren",
+          color: "#225b9b"
+        },
+        {
+          num: 2,
+          badge: "Phase 02 // ANALYSE",
+          title: "2. Analyse & Spezifikation",
+          desc: "Detaillierte Prüfung der vorhandenen Datenbasis, Schnittstellen und Prozessabläufe. Wir definieren die Architektur- und Sicherheitsanforderungen (DSGVO, Governance).",
+          points: [
+            "Herstellerneutraler Benchmark potenzieller KI-Modelle & Tools",
+            "Prüfung von Datenqualität, ETL-Anforderungen & Formaten",
+            "Spezifikation der Sicherheits-, Compliance- & Datenschutzrichtlinien"
+          ],
+          deliverable: "Technisches Fachkonzept & Tool-Auswahl-Matrix.",
+          hubTitle: "2. Analyse & Spez.",
+          hubStatus: "Daten, Tools & Governance prüfen",
+          color: "#367fae"
+        },
+        {
+          num: 3,
+          badge: "Phase 03 // PLANUNG",
+          title: "3. Agile Planung",
+          desc: "Aufteilung in überschaubare Sprint-Zyklen. Wir planen inkrementelle Zwischenschritte, damit Sie schon nach wenigen Tagen erste greifbare Ergebnisse in Händen halten.",
+          points: [
+            "Strukturierung in User Stories & Sprint-Backlog",
+            "Festlegung von Meilensteinen mit schnellem Feedback",
+            "Enge Einbindung aller Stakeholder in den iterativen Rhythmus"
+          ],
+          deliverable: "Agiler Sprint-Plan & priorisiertes Umsetzungs-Backlog.",
+          hubTitle: "3. Agile Planung",
+          hubStatus: "Iterationen & Sprints strukturieren",
+          color: "#55a3cf"
+        },
+        {
+          num: 4,
+          badge: "Phase 04 // IMPLEMENTIERUNG",
+          title: "4. Umsetzung (Iterativ)",
+          desc: "Pragmatischer Bau von Prototypen und MVPs. Wir binden KI-Modelle, Agenten und Datenströme an und testen die Lösung direkt im realistischen Workflow.",
+          points: [
+            "Schnelle Entwicklung von funktionsfähigen Prototypen & MVPs",
+            "Integration an Datenquellen, APIs und Arbeitswerkzeuge",
+            "Laufende Abstimmung und Anpassung an Nutzerfeedback"
+          ],
+          deliverable: "Lauffähiger KI-Prototyp / integrierter MVP-Workflow.",
+          hubTitle: "4. Umsetzung",
+          hubStatus: "Iteratives Prototyping & MVP-Build",
+          color: "#2ba85c"
+        },
+        {
+          num: 5,
+          badge: "Phase 05 // QUALITÄT",
+          title: "5. Testing & QA",
+          desc: "Systematische Validierung der Antworten, Latenzen und Kosten. Wir stellen sicher, dass das System stabil läuft, Halluzinationen minimiert sind und Fehler abgefangen werden.",
+          points: [
+            "Benchmarking von Antwortqualität, Robustheit & Halluzinationen",
+            "Performance-, Latenz- und Token-Kostenüberwachung",
+            "Schnittstellentests und Absicherung von Randfällen (Edge-Cases)"
+          ],
+          deliverable: "QA-Validierungsbericht & robuster Produktionskandidat.",
+          hubTitle: "5. Testing & QA",
+          hubStatus: "Qualitätsprüfung & Robustheit absichern",
+          color: "#60c476"
+        },
+        {
+          num: 6,
+          badge: "Phase 06 // MEHRWERT",
+          title: "6. Evaluierung & Feedback",
+          desc: "Messung der echten Nutzenstiftung im Arbeitsalltag. Wir holen strukturiertes Nutzerfeedback ein, schulen Ihr Team und planen nächste Erweiterungszyklen.",
+          points: [
+            "Messung des tatsächlichen Zeit- und Effizienzgewinns",
+            "Workshops & Enablement für dauerhafte Team-Adoption",
+            "Ableitung von Optimierungen für den nächsten Entwicklungszyklus"
+          ],
+          deliverable: "Evaluationsbericht, Team-Befähigung & Skalierungs-Roadmap.",
+          hubTitle: "6. Evaluierung",
+          hubStatus: "Nutzen messen & Team befähigen",
+          color: "#93d68c"
+        }
+      ],
+      en: [
+        {
+          num: 1,
+          badge: "Phase 01 // SCOPING",
+          title: "1. Consulting & Scope",
+          desc: "We clarify expectations, identify the highest-impact AI use cases across your departments, and set a clear project scope – without overpromising hype.",
+          points: [
+            "Use case mapping & ROI potential assessment",
+            "Feasibility, interface & dependency check",
+            "Definition of clear success metrics & acceptance criteria"
+          ],
+          deliverable: "Aligned project scope & prioritized business case.",
+          hubTitle: "1. Consulting & Scope",
+          hubStatus: "Identify potential & define scope",
+          color: "#225b9b"
+        },
+        {
+          num: 2,
+          badge: "Phase 02 // ANALYSIS",
+          title: "2. Analysis & Specification",
+          desc: "In-depth review of existing data assets, interfaces, and processes. We define architecture, compliance and security guardrails (GDPR, governance).",
+          points: [
+            "Vendor-neutral benchmarking of potential AI models & tools",
+            "Data quality, ETL requirements and format validation",
+            "Specification of security, compliance & privacy policies"
+          ],
+          deliverable: "Technical specification & tool selection matrix.",
+          hubTitle: "2. Analysis & Spec",
+          hubStatus: "Validate data, tools & governance",
+          color: "#367fae"
+        },
+        {
+          num: 3,
+          badge: "Phase 03 // PLANNING",
+          title: "3. Agile Planning",
+          desc: "Breaking initiatives down into manageable sprint cycles. We plan incremental milestones so you see tangible, working results within days.",
+          points: [
+            "Structuring into user stories & sprint backlogs",
+            "Milestone definition with rapid feedback loops",
+            "Close stakeholder integration into the iterative cadence"
+          ],
+          deliverable: "Agile sprint roadmap & prioritized implementation backlog.",
+          hubTitle: "3. Agile Planning",
+          hubStatus: "Structure iterations & sprints",
+          color: "#55a3cf"
+        },
+        {
+          num: 4,
+          badge: "Phase 04 // IMPLEMENTATION",
+          title: "4. Iterative Implementation",
+          desc: "Pragmatic creation of prototypes and MVPs. We connect AI models, agents, and data flows directly into realistic operating workflows.",
+          points: [
+            "Rapid development of working prototypes & MVPs",
+            "Integration with data sources, APIs and enterprise tools",
+            "Continuous refinement based on direct user feedback"
+          ],
+          deliverable: "Working AI prototype / integrated MVP workflow.",
+          hubTitle: "4. Implementation",
+          hubStatus: "Iterative prototyping & MVP build",
+          color: "#2ba85c"
+        },
+        {
+          num: 5,
+          badge: "Phase 05 // QUALITY",
+          title: "5. Testing & QA",
+          desc: "Systematic verification of model output accuracy, latency, and costs. We ensure the solution is reliable, hallucinations are minimized, and edge cases are handled.",
+          points: [
+            "Benchmarking answer quality, robustness & hallucination mitigation",
+            "Monitoring latency, throughput and token economics",
+            "Interface testing and robust edge-case validation"
+          ],
+          deliverable: "QA validation report & robust production candidate.",
+          hubTitle: "5. Testing & QA",
+          hubStatus: "Quality assurance & robustness checks",
+          color: "#60c476"
+        },
+        {
+          num: 6,
+          badge: "Phase 06 // IMPACT",
+          title: "6. Evaluation & Feedback",
+          desc: "Measuring real productivity gains in day-to-day operations. We collect structured user feedback, train your staff, and prepare the next expansion cycle.",
+          points: [
+            "Quantifying actual time and efficiency improvements",
+            "Hands-on workshops & enablement for lasting team adoption",
+            "Translating feedback into the next continuous improvement cycle"
+          ],
+          deliverable: "Evaluation report, team enablement & scaling roadmap.",
+          hubTitle: "6. Evaluation",
+          hubStatus: "Measure value & empower teams",
+          color: "#93d68c"
+        }
+      ]
+    };
+
+    const i18nStrings = {
       de: {
-        eyebrow: 'AI Tool Consulting',
-        title: 'KI-Tools, die in Ihrem Alltag <span>wirklich ankommen.</span>',
-        lead: 'Ich unterstütze Teams dabei, die passenden KI-Tools auszuwählen, sinnvoll in Prozesse und Datenlandschaften zu integrieren und nachhaltig produktiv zu nutzen – pragmatisch, herstellerneutral und mit messbarem Nutzen.',
-        cta: 'Kontakt auf LinkedIn',
-        skillsTitle: 'Mein Skillset',
-        s1: 'Use Cases identifizieren', s1d: 'Potenziale für KI erkennen, Nutzen und Aufwand bewerten und die richtigen Vorhaben priorisieren.',
-        s2: 'Tool-Auswahl & Evaluierung', s2d: 'LLMs, Assistenten, Agenten und Automatisierungstools herstellerneutral vergleichen und passend auswählen.',
-        s3: 'Prototyping & Proof of Concept', s3d: 'Ideen schnell und in kleinen Schritten testbar machen – bevor größere Investitionen anstehen.',
-        s4: 'Integration in Daten & Prozesse', s4d: 'KI-Tools an bestehende Systeme, Datenmodelle und Schnittstellen anbinden – mit Fokus auf Datenqualität.',
-        s5: 'Enablement & Adoption', s5d: 'Teams befähigen: Schulungen, Prompting-Leitfäden und Best Practices für den täglichen Einsatz.',
-        s6: 'Governance & Wirkung messen', s6d: 'Datenschutz, Qualitätssicherung und KPIs von Anfang an mitdenken – Ergebnisse transparent in Dashboards.',
-        approachTitle: 'So arbeite ich',
-        p1: 'Verstehen', p1d: 'Ziele, Prozesse und Daten analysieren.',
-        p2: 'Bewerten', p2d: 'Use Cases und Tools priorisieren.',
-        p3: 'Pilotieren', p3d: 'Schnell testen, Feedback einholen.',
-        p4: 'Skalieren', p4d: 'Ausrollen, befähigen, Wirkung messen.',
-        toolsTitle: 'Werkzeugkasten', agile: 'Agiles Projektmanagement',
-        note: 'Konkrete Projektbeispiele stelle ich gerne im persönlichen Gespräch vor.',
-        privacy: 'Datenschutz',
-        description: 'Tobias Burkard – AI Tool Consulting: KI-Tools auswählen, einführen und produktiv nutzen.',
-        themeDark: 'Dunkles Design aktivieren', themeLight: 'Helles Design aktivieren', langLabel: 'Sprache zu Englisch wechseln'
+        brandSub: "AI Tool Consulting",
+        navCycle: "Agiler Kreislauf",
+        navSkills: "Skillset",
+        navToolbox: "Werkzeugkasten",
+        badgeText: "AI Tool Consulting · Pragmatisch & Wertstiftend",
+        heroP1: "KI-Tools, die in Ihrem Alltag",
+        heroGradient: "wirklich ankommen.",
+        heroLead: "Ich begleite Unternehmen herstellerneutral von der ersten Potenzialanalyse über agile Proof-of-Concepts bis zur sicheren Verankerung von modernen KI-Werkzeugen in Workflows und Datenarchitekturen.",
+        ctaPrimary: "Projekt auf LinkedIn anfragen",
+        ctaSecondary: "Agilen Projektkreislauf ansehen",
+        sideHeader: "Fokus & Mehrwert",
+        sideTitle: "Vom Hype zur messbaren Wertschöpfung",
+        m1Label: "Herangehensweise", m1Val: "100% Herstellerneutral",
+        m2Label: "Time-to-Value", m2Val: "Tage statt Monate (MVP)",
+        m3Label: "Daten & Prozesse", m3Val: "DSGVO & Schnittstellen",
+        m4Label: "Team-Adoption", m4Val: "Befähigen statt Überfahren",
+        cycleEyebrow: "Agiler Projektmanagement-Lebenszyklus",
+        cycleTitle: "Der agile Projektkreislauf im Überblick",
+        cycleLead: "Erfolgreiche KI-Einführung ist kein starrer Wasserfall, sondern ein lernender, iterativer Zyklus. Klicken oder hovern Sie über die Phasen, um Details zu entdecken.",
+        skillsEyebrow: "Kompetenzprofil",
+        skillsTitle: "Mein Skillset für Ihre KI-Initiativen",
+        skillsLead: "Von der strategischen Einordnung bis zum produktiven Betrieb: Fundierte Beratung an den Schnittstellen von Mensch, Modell und IT-Landschaft.",
+        sk1Title: "Herstellerneutrale Tool-Auswahl",
+        sk1Desc: "Objektive Benchmarks von LLMs, KI-Assistenten und Automatisierungsframeworks. Ich filtere den Markt und empfehle Tools, die zu Ihrem Budget und Ihrer Governance passen.",
+        sk2Title: "Integration in Daten & Prozesse",
+        sk2Desc: "KI stiftet nur Nutzen mit verlässlichen Daten. Ich binde KI-Lösungen sauber an bestehende Datenmodelle, APIs und Cloud-Infrastrukturen an – mit Fokus auf hohe Datenqualität.",
+        sk3Title: "Schnelle Proof-of-Concepts (PoC)",
+        sk3Desc: "Hypothesen in Tagen statt Quartalen überprüfen. Mit schlanken Prototypen machen wir Machbarkeit und Nutzerakzeptanz greifbar, bevor Großinvestitionen getätigt werden.",
+        sk4Title: "AI Agents & Agentic Coding",
+        sk4Desc: "Entwicklung autonomer Arbeitsabläufe und smarter Assistenten. Einsatz moderner agentischer Entwicklungsmethoden zur Beschleunigung interner Arbeits- und Codezyklen.",
+        sk5Title: "Team-Enablement & Prompting",
+        sk5Desc: "Das beste Tool nützt nichts, wenn Teams es meiden. Ich trainiere Mitarbeiter in praxistauglichem Prompting, Workflow-Integration und dem kritischen Umgang mit KI-Outputs.",
+        sk6Title: "Datenschutz, QA & Messbarkeit",
+        sk6Desc: "DSGVO-Konformität, Halluzinations-Vermeidung und laufende Qualitätskontrolle. Transparente Dashboards zur Nachverfolgung von Effizienzgewinnen und Modell-KPIs.",
+        toolEyebrow: "Technologie & Methoden",
+        toolTitle: "Der Werkzeugkasten",
+        toolLead: "Praxiserprobte Technologien, Frameworks und Standards für den modernen KI-Einsatz.",
+        tg1: "LLMs & Reasoning",
+        tg2: "Agents & Workflows",
+        tg3: "Data & Architecture",
+        tg4: "Management & BI",
+        ndaStrong: "Hinweis zur Diskretion:",
+        ndaText: "Aufgrund von Verschwiegenheitsvereinbarungen (NDA) werden geschäftskritische Kundendetails online abstrahiert. Konkrete Referenzen, Methodiken und Live-Demos präsentiere ich gerne im direkten Austausch.",
+        privacyLink: "Datenschutz",
+        pauseText: "⏸ Pause",
+        playText: "▶ Weiterspielen",
+        themeDark: "Dunkles Design aktivieren",
+        themeLight: "Helles Design aktivieren"
       },
       en: {
-        eyebrow: 'AI Tool Consulting',
-        title: 'AI tools that <span>actually stick</span> in your daily work.',
-        lead: 'I help teams choose the right AI tools, integrate them into processes and data landscapes, and use them productively for the long run – pragmatic, vendor-neutral and with measurable impact.',
-        cta: 'Connect on LinkedIn',
-        skillsTitle: 'My skillset',
-        s1: 'Identifying use cases', s1d: 'Spot AI opportunities, assess value and effort, and prioritise the right initiatives.',
-        s2: 'Tool selection & evaluation', s2d: 'Compare LLMs, assistants, agents and automation tools vendor-neutrally and pick the right fit.',
-        s3: 'Prototyping & proof of concept', s3d: 'Make ideas testable quickly and in small steps – before larger investments are made.',
-        s4: 'Integration into data & processes', s4d: 'Connect AI tools to existing systems, data models and interfaces – with a focus on data quality.',
-        s5: 'Enablement & adoption', s5d: 'Empower teams with training, prompting guidelines and best practices for everyday use.',
-        s6: 'Governance & measuring impact', s6d: 'Build in data protection, quality assurance and KPIs from day one – with transparent dashboards.',
-        approachTitle: 'How I work',
-        p1: 'Understand', p1d: 'Analyse goals, processes and data.',
-        p2: 'Assess', p2d: 'Prioritise use cases and tools.',
-        p3: 'Pilot', p3d: 'Test fast, gather feedback.',
-        p4: 'Scale', p4d: 'Roll out, enable, measure impact.',
-        toolsTitle: 'Toolbox', agile: 'Agile project management',
-        note: 'Happy to walk you through concrete project examples in a personal conversation.',
-        privacy: 'Privacy',
-        description: 'Tobias Burkard – AI Tool Consulting: selecting, introducing and productively using AI tools.',
-        themeDark: 'Enable dark theme', themeLight: 'Enable light theme', langLabel: 'Switch language to German'
+        brandSub: "AI Tool Consulting",
+        navCycle: "Agile Lifecycle",
+        navSkills: "Skillset",
+        navToolbox: "Toolbox",
+        badgeText: "AI Tool Consulting · Pragmatic & Value-Driven",
+        heroP1: "AI tools that",
+        heroGradient: "actually deliver in daily work.",
+        heroLead: "I advise organizations vendor-neutrally from initial opportunity mapping through agile proof-of-concepts to seamlessly anchoring modern AI tools into workflows and data architectures.",
+        ctaPrimary: "Inquire on LinkedIn",
+        ctaSecondary: "Explore the Agile Lifecycle",
+        sideHeader: "Focus & Impact",
+        sideTitle: "From AI hype to measurable business value",
+        m1Label: "Advisory Mindset", m1Val: "100% Vendor-Neutral",
+        m2Label: "Time-to-Value", m2Val: "Days, not months (MVP)",
+        m3Label: "Data & Processes", m3Val: "GDPR & Clean APIs",
+        m4Label: "Team Adoption", m4Val: "Empower, don't overwhelm",
+        cycleEyebrow: "Agile Project Management Lifecycle",
+        cycleTitle: "Agile Project Lifecycle at a Glance",
+        cycleLead: "Successful AI adoption is not a rigid waterfall, but a continuous learning loop. Click or hover on any phase to explore details.",
+        skillsEyebrow: "Core Capabilities",
+        skillsTitle: "My Skillset for Your AI Initiatives",
+        skillsLead: "From strategic evaluation to production operations: solid consulting bridging humans, models, and IT infrastructure.",
+        sk1Title: "Vendor-Neutral Tool Selection",
+        sk1Desc: "Objective benchmarks of LLMs, AI assistants, and automation frameworks. I filter the market to recommend tools that fit your budget and governance.",
+        sk2Title: "Data & Process Integration",
+        sk2Desc: "AI only creates value with trusted data. I connect AI solutions cleanly into existing data models, APIs, and cloud infrastructure with high data hygiene.",
+        sk3Title: "Rapid Proof-of-Concepts (PoC)",
+        sk3Desc: "Validate hypotheses in days instead of quarters. We test feasibility and user acceptance with lightweight prototypes before major capital commits.",
+        sk4Title: "AI Agents & Agentic Coding",
+        sk4Desc: "Designing autonomous workflows and smart co-pilots. Leveraging modern agentic coding practices to accelerate internal build and iteration speed.",
+        sk5Title: "Team Enablement & Prompting",
+        sk5Desc: "Great tools fail if teams avoid them. I coach teams in practical prompting, workflow integration, and critical evaluation of AI responses.",
+        sk6Title: "Governance, QA & Metrics",
+        sk6Desc: "GDPR compliance, hallucination guardrails, and ongoing quality checks. Transparent dashboards to track tangible efficiency gains and model KPIs.",
+        toolEyebrow: "Technology & Standards",
+        toolTitle: "The Toolbox",
+        toolLead: "Battle-tested technologies, frameworks, and methodologies for modern enterprise AI.",
+        tg1: "LLMs & Reasoning",
+        tg2: "Agents & Workflows",
+        tg3: "Data & Architecture",
+        tg4: "Management & BI",
+        ndaStrong: "Discretion Notice:",
+        ndaText: "Due to confidentiality commitments (NDA), proprietary client specifics are abstracted online. Detailed references, architectures, and live walkthroughs are gladly shared in 1-on-1 consultations.",
+        privacyLink: "Privacy Notice",
+        pauseText: "⏸ Pause",
+        playText: "▶ Resume",
+        themeDark: "Enable dark theme",
+        themeLight: "Enable light theme"
       }
     };
 
-    const langToggle = document.querySelector('#language-toggle');
-    const themeToggle = document.querySelector('#theme-toggle');
-    const themeIcon = document.querySelector('#theme-icon');
-    let theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
-    let language = /^de(?:-|$)/i.test(navigator.languages?.[0] || navigator.language || 'de') ? 'de' : 'en';
+    // -------------------------------------------------------------------
+    // STATE & INITIALIZATION
+    // -------------------------------------------------------------------
+    let currentLang = /^de(?:-|$)/i.test(navigator.languages?.[0] || navigator.language || 'de') ? 'de' : 'en';
     try {
-      const saved = localStorage.getItem('ai-showcase-language');
-      if (saved === 'de' || saved === 'en') language = saved;
+      const savedLang = localStorage.getItem('ai-showcase-language');
+      if (savedLang === 'de' || savedLang === 'en') currentLang = savedLang;
     } catch {}
 
-    function updateThemeToggle() {
-      const isDark = theme === 'dark';
-      const label = isDark ? strings[language].themeLight : strings[language].themeDark;
-      themeToggle.setAttribute('aria-label', label);
-      themeToggle.setAttribute('aria-pressed', String(isDark));
-      themeToggle.title = label;
-      themeIcon.textContent = isDark ? '☼' : '☾';
+    let currentTheme = document.documentElement.dataset.theme || 'dark';
+    let activePhaseIndex = 1; // 1 to 6
+    let isCyclePlaying = true;
+    let cycleInterval = null;
+
+    // -------------------------------------------------------------------
+    // DOM REFS
+    // -------------------------------------------------------------------
+    const themeToggleBtn = document.querySelector('#theme-toggle');
+    const themeIcon = document.querySelector('#theme-icon');
+    const langToggleBtn = document.querySelector('#language-toggle');
+    const playPauseBtn = document.querySelector('#btn-cycle-pause');
+    const hubTag = document.querySelector('#hub-tag');
+    const hubTitle = document.querySelector('#hub-title');
+    const hubStatus = document.querySelector('#hub-status');
+    const detailPanel = document.querySelector('#cycle-detail');
+    const detailBadge = document.querySelector('#detail-badge');
+    const detailTitle = document.querySelector('#detail-title');
+    const detailDesc = document.querySelector('#detail-desc');
+    const detailPoints = document.querySelector('#detail-points');
+    const detailDelivText = document.querySelector('#detail-deliv-text');
+
+    // -------------------------------------------------------------------
+    // CYCLE CONTROLLER
+    // -------------------------------------------------------------------
+    function showPhase(phaseNum, manual = false) {
+      activePhaseIndex = phaseNum;
+      const data = phasesData[currentLang][phaseNum - 1];
+
+      // Update Segments SVG
+      document.querySelectorAll('.cycle-segment').forEach(seg => {
+        const segNum = parseInt(seg.dataset.phase, 10);
+        if (segNum === phaseNum) {
+          seg.classList.add('is-active');
+        } else {
+          seg.classList.remove('is-active');
+        }
+      });
+
+      // Update Mini Controls
+      document.querySelectorAll('.phase-chip').forEach(chip => {
+        const chipNum = parseInt(chip.dataset.chip, 10);
+        chip.classList.toggle('is-active', chipNum === phaseNum);
+      });
+
+      // Update Hub Center
+      hubTitle.textContent = data.hubTitle;
+      hubStatus.textContent = data.hubStatus;
+
+      // Update Inspector Detail Card
+      detailPanel.style.setProperty('--active-phase-color', data.color);
+      detailBadge.textContent = data.badge;
+      detailTitle.textContent = data.title;
+      detailDesc.textContent = data.desc;
+      detailDelivText.textContent = data.deliverable;
+
+      // Points list
+      detailPoints.innerHTML = '';
+      data.points.forEach(pt => {
+        const li = document.createElement('li');
+        li.textContent = pt;
+        detailPoints.appendChild(li);
+      });
+
+      if (manual && isCyclePlaying) {
+        // Reset timer on manual interaction
+        restartCycleTimer();
+      }
     }
+
+    function nextCyclePhase() {
+      let next = activePhaseIndex + 1;
+      if (next > 6) next = 1;
+      showPhase(next, false);
+    }
+
+    function startCycleTimer() {
+      stopCycleTimer();
+      cycleInterval = setInterval(nextCyclePhase, 3600);
+    }
+
+    function stopCycleTimer() {
+      if (cycleInterval) {
+        clearInterval(cycleInterval);
+        cycleInterval = null;
+      }
+    }
+
+    function restartCycleTimer() {
+      stopCycleTimer();
+      if (isCyclePlaying) startCycleTimer();
+    }
+
+    function togglePlayPause() {
+      isCyclePlaying = !isCyclePlaying;
+      if (isCyclePlaying) {
+        playPauseBtn.textContent = i18nStrings[currentLang].pauseText;
+        startCycleTimer();
+      } else {
+        playPauseBtn.textContent = i18nStrings[currentLang].playText;
+        stopCycleTimer();
+      }
+    }
+
+    // Attach Cycle Events
+    document.querySelectorAll('.cycle-segment').forEach(seg => {
+      seg.addEventListener('mouseenter', () => {
+        const phaseNum = parseInt(seg.dataset.phase, 10);
+        showPhase(phaseNum, true);
+      });
+      seg.addEventListener('click', () => {
+        const phaseNum = parseInt(seg.dataset.phase, 10);
+        showPhase(phaseNum, true);
+      });
+    });
+
+    document.querySelectorAll('.phase-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const phaseNum = parseInt(chip.dataset.chip, 10);
+        showPhase(phaseNum, true);
+      });
+    });
+
+    playPauseBtn.addEventListener('click', togglePlayPause);
+
+    // -------------------------------------------------------------------
+    // LANGUAGE LOGIC
+    // -------------------------------------------------------------------
     function applyLanguage(lang) {
-      const dict = strings[lang];
+      currentLang = lang;
       document.documentElement.lang = lang;
-      document.querySelector('meta[name="description"]').content = dict.description;
-      document.querySelectorAll('[data-i18n]').forEach(el => { if (dict[el.dataset.i18n] !== undefined) el.textContent = dict[el.dataset.i18n]; });
-      document.querySelectorAll('[data-i18n-html]').forEach(el => { if (dict[el.dataset.i18nHtml] !== undefined) el.innerHTML = dict[el.dataset.i18nHtml]; });
-      langToggle.textContent = lang === 'de' ? 'DE / EN' : 'EN / DE';
-      langToggle.setAttribute('aria-label', dict.langLabel);
+      const dict = i18nStrings[lang];
+
+      // Update Title & Meta
+      document.title = lang === 'de'
+        ? "Tobias Burkard — AI Tool Consulting & Agile KI-Implementierung"
+        : "Tobias Burkard — AI Tool Consulting & Agile AI Implementation";
+
+      document.querySelector('meta[name="description"]').content = lang === 'de'
+        ? "Tobias Burkard – AI Tool Consulting: Herstellerunabhängige Auswahl, agile Implementierung und nachhaltige Verankerung von KI-Tools in Unternehmen."
+        : "Tobias Burkard – AI Tool Consulting: Vendor-neutral selection, agile implementation and sustainable integration of AI tools.";
+
+      // Update text nodes
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+
+      langToggleBtn.textContent = lang === 'de' ? 'DE / EN' : 'EN / DE';
+      playPauseBtn.textContent = isCyclePlaying ? dict.pauseText : dict.playText;
+
+      // Update current phase in new language
+      showPhase(activePhaseIndex, false);
       updateThemeToggle();
     }
-    function applyTheme(next) {
-      theme = next;
+
+    langToggleBtn.addEventListener('click', () => {
+      const nextLang = currentLang === 'de' ? 'en' : 'de';
+      try { localStorage.setItem('ai-showcase-language', nextLang); } catch {}
+      applyLanguage(nextLang);
+    });
+
+    // -------------------------------------------------------------------
+    // THEME LOGIC
+    // -------------------------------------------------------------------
+    function updateThemeToggle() {
+      const isDark = currentTheme === 'dark';
+      const dict = i18nStrings[currentLang];
+      const label = isDark ? dict.themeLight : dict.themeDark;
+      themeToggleBtn.setAttribute('aria-label', label);
+      themeToggleBtn.title = label;
+      themeIcon.textContent = isDark ? '☼' : '☾';
+    }
+
+    function applyTheme(theme) {
+      currentTheme = theme;
       document.documentElement.dataset.theme = theme;
-      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#111a1d' : '#f4f7f6';
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0e0417' : '#faf7fd';
       updateThemeToggle();
       try { localStorage.setItem('ai-showcase-theme', theme); } catch {}
     }
 
-    applyLanguage(language);
-    themeToggle.addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark'));
-    langToggle.addEventListener('click', () => {
-      language = language === 'de' ? 'en' : 'de';
-      try { localStorage.setItem('ai-showcase-language', language); } catch {}
-      applyLanguage(language);
+    themeToggleBtn.addEventListener('click', () => {
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
     });
+
+    // -------------------------------------------------------------------
+    // INITIAL BOOTSTRAP
+    // -------------------------------------------------------------------
+    applyLanguage(currentLang);
+    applyTheme(currentTheme);
+
+    // Reduced motion check
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      isCyclePlaying = false;
+      playPauseBtn.textContent = i18nStrings[currentLang].playText;
+    } else {
+      startCycleTimer();
+    }
   </script>
 </body>
 </html>
