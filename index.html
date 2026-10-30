@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NGR4GFF8Q4"></script>
@@ -20,12 +20,272 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f4f7f6">
-  <meta name="description" content="Open the bilingual AI Applied Showcase infographic: customer feedback intelligence, Veezoo app analytics and a transparent illustrative savings scenario.">
-  <title>AI Applied Showcase — Infographic</title>
-  <meta http-equiv="refresh" content="0; url=./showcase-infographic.html">
-  <script>location.replace('./showcase-infographic.html');</script>
+  <meta name="description" content="Tobias Burkard – AI Tool Consulting: KI-Tools auswählen, einführen und produktiv nutzen.">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <title>Tobias Burkard — AI Tool Consulting</title>
+  <script>
+    (() => {
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      try {
+        const savedTheme = localStorage.getItem('ai-showcase-theme');
+        if (savedTheme === 'dark' || savedTheme === 'light') theme = savedTheme;
+      } catch {}
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#111a1d' : '#f4f7f6';
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f7f6;
+      --card: #fff;
+      --ink: #172c34;
+      --muted: #5d7177;
+      --line: #dce6e3;
+      --mint: #087f72;
+      --mint-pale: #e6f4f0;
+      --shadow: 0 12px 32px rgba(21, 49, 53, .06);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #111a1d;
+      --card: #1b292d;
+      --ink: #e9f0ee;
+      --muted: #b4c3c1;
+      --line: #34474a;
+      --mint: #68d2bf;
+      --mint-pale: #193c36;
+      --shadow: 0 12px 32px rgba(0, 0, 0, .28);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #25a99a; outline-offset: 3px; }
+    h1, h2, h3, p { margin-top: 0; }
+    .shell { width: min(1040px, calc(100% - 40px)); margin-inline: auto; }
+
+    .topbar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(12px); }
+    .nav { min-height: 62px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 750; font-size: .92rem; }
+    .brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: var(--paper); background: var(--ink); font-size: .8rem; font-weight: 800; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .toggle { min-height: 34px; min-width: 34px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--card); font-size: .72rem; font-weight: 750; cursor: pointer; }
+    .toggle:hover { border-color: var(--mint); }
+
+    .hero { padding: 72px 0 48px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 16px; color: var(--mint); font-size: .72rem; font-weight: 790; letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); content: ""; }
+    h1 { max-width: 780px; margin-bottom: 18px; font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.08; letter-spacing: -.03em; text-wrap: balance; }
+    h1 span { color: var(--mint); }
+    .lead { max-width: 640px; margin-bottom: 26px; color: var(--muted); font-size: 1.05rem; }
+    .cta { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px; border-radius: 11px; color: #fff; background: var(--mint); font-size: .85rem; font-weight: 720; transition: transform .18s; }
+    html[data-theme="dark"] .cta { color: #10201d; }
+    .cta:hover { transform: translateY(-1px); }
+
+    .section { padding: 36px 0; }
+    .section h2 { margin-bottom: 22px; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.02em; }
+    .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .skill { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); box-shadow: var(--shadow); }
+    .skill-icon { display: grid; place-items: center; width: 38px; height: 38px; margin-bottom: 14px; border-radius: 11px; color: var(--mint); background: var(--mint-pale); font-size: 1.05rem; }
+    .skill h3 { margin-bottom: 6px; font-size: 1rem; line-height: 1.3; }
+    .skill p { margin: 0; color: var(--muted); font-size: .86rem; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    .steps li { padding: 18px 20px; border-left: 3px solid var(--mint); border-radius: 0 12px 12px 0; background: var(--card); counter-increment: step; }
+    .steps li::before { display: block; margin-bottom: 4px; color: var(--mint); content: counter(step, decimal-leading-zero); font-size: .72rem; font-weight: 800; }
+    .steps strong { display: block; margin-bottom: 3px; font-size: .95rem; }
+    .steps span { color: var(--muted); font-size: .84rem; }
+
+    .tools { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tools span { padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font-size: .8rem; font-weight: 620; }
+    .note { margin: 18px 0 0; color: var(--muted); font-size: .8rem; }
+
+    .footer { margin-top: 40px; border-top: 1px solid var(--line); }
+    .footer-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: .78rem; }
+    .footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+    .footer-links a:hover, .footer-links button:hover { color: var(--mint); }
+    .footer-links button { padding: 0; border: 0; background: none; cursor: pointer; font-size: inherit; color: inherit; }
+
+    @media (max-width: 860px) {
+      .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .hero { padding: 44px 0 28px; }
+      .skills, .steps { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; padding-block: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-  <p>The AI Applied Showcase overview is now a concise infographic. <a href="./showcase-infographic.html">Open the infographic</a>.</p>
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">TB</span><span>Tobias Burkard</span></a>
+      <div class="nav-right">
+        <button class="toggle" id="theme-toggle" type="button" aria-pressed="false"><span id="theme-icon" aria-hidden="true">☾</span></button>
+        <button class="toggle" id="language-toggle" type="button">DE / EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="hero">
+      <p class="eyebrow" data-i18n="eyebrow">AI Tool Consulting</p>
+      <h1 data-i18n-html="title">KI-Tools, die in Ihrem Alltag <span>wirklich ankommen.</span></h1>
+      <p class="lead" data-i18n="lead">Ich unterstütze Teams dabei, die passenden KI-Tools auszuwählen, sinnvoll in Prozesse und Datenlandschaften zu integrieren und nachhaltig produktiv zu nutzen – pragmatisch, herstellerneutral und mit messbarem Nutzen.</p>
+      <a class="cta" href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer"><span data-i18n="cta">Kontakt auf LinkedIn</span><span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section class="section" aria-labelledby="skills-title">
+      <h2 id="skills-title" data-i18n="skillsTitle">Mein Skillset</h2>
+      <div class="skills">
+        <article class="skill"><div class="skill-icon" aria-hidden="true">◎</div><h3 data-i18n="s1">Use Cases identifizieren</h3><p data-i18n="s1d">Potenziale für KI erkennen, Nutzen und Aufwand bewerten und die richtigen Vorhaben priorisieren.</p></article>
+        <article class="skill"><div class="skill-icon" aria-hidden="true">⚖</div><h3 data-i18n="s2">Tool-Auswahl &amp; Evaluierung</h3><p data-i18n="s2d">LLMs, Assistenten, Agenten und Automatisierungstools herstellerneutral vergleichen und passend auswählen.</p></article>
+        <article class="skill"><div class="skill-icon" aria-hidden="true">⚡</div><h3 data-i18n="s3">Prototyping &amp; Proof of Concept</h3><p data-i18n="s3d">Ideen schnell und in kleinen Schritten testbar machen – bevor größere Investitionen anstehen.</p></article>
+        <article class="skill"><div class="skill-icon" aria-hidden="true">⇄</div><h3 data-i18n="s4">Integration in Daten &amp; Prozesse</h3><p data-i18n="s4d">KI-Tools an bestehende Systeme, Datenmodelle und Schnittstellen anbinden – mit Fokus auf Datenqualität.</p></article>
+        <article class="skill"><div class="skill-icon" aria-hidden="true">✦</div><h3 data-i18n="s5">Enablement &amp; Adoption</h3><p data-i18n="s5d">Teams befähigen: Schulungen, Prompting-Leitfäden und Best Practices für den täglichen Einsatz.</p></article>
+        <article class="skill"><div class="skill-icon" aria-hidden="true">✓</div><h3 data-i18n="s6">Governance &amp; Wirkung messen</h3><p data-i18n="s6d">Datenschutz, Qualitätssicherung und KPIs von Anfang an mitdenken – Ergebnisse transparent in Dashboards.</p></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="approach-title">
+      <h2 id="approach-title" data-i18n="approachTitle">So arbeite ich</h2>
+      <ol class="steps">
+        <li><strong data-i18n="p1">Verstehen</strong><span data-i18n="p1d">Ziele, Prozesse und Daten analysieren.</span></li>
+        <li><strong data-i18n="p2">Bewerten</strong><span data-i18n="p2d">Use Cases und Tools priorisieren.</span></li>
+        <li><strong data-i18n="p3">Pilotieren</strong><span data-i18n="p3d">Schnell testen, Feedback einholen.</span></li>
+        <li><strong data-i18n="p4">Skalieren</strong><span data-i18n="p4d">Ausrollen, befähigen, Wirkung messen.</span></li>
+      </ol>
+    </section>
+
+    <section class="section" aria-labelledby="tools-title">
+      <h2 id="tools-title" data-i18n="toolsTitle">Werkzeugkasten</h2>
+      <div class="tools">
+        <span>LLMs &amp; AI Assistants</span>
+        <span>AI Agents</span>
+        <span>Agentic Coding</span>
+        <span>Prompt Engineering</span>
+        <span>Python &amp; SQL</span>
+        <span>ETL &amp; Data Modeling</span>
+        <span>Cloud Data Platforms</span>
+        <span>BI &amp; Dashboards</span>
+        <span data-i18n="agile">Agiles Projektmanagement</span>
+      </div>
+      <p class="note" data-i18n="note">Konkrete Projektbeispiele stelle ich gerne im persönlichen Gespräch vor.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-inner">
+      <span>© Tobias Burkard · AI Tool Consulting</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/tobias-your-new-ai-expert/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/tobias.muenchen/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="./datenschutzhinweise.html" data-i18n="privacy">Datenschutz</a>
+        <button type="button" data-consent-open>Cookie-Einstellungen</button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const strings = {
+      de: {
+        eyebrow: 'AI Tool Consulting',
+        title: 'KI-Tools, die in Ihrem Alltag <span>wirklich ankommen.</span>',
+        lead: 'Ich unterstütze Teams dabei, die passenden KI-Tools auszuwählen, sinnvoll in Prozesse und Datenlandschaften zu integrieren und nachhaltig produktiv zu nutzen – pragmatisch, herstellerneutral und mit messbarem Nutzen.',
+        cta: 'Kontakt auf LinkedIn',
+        skillsTitle: 'Mein Skillset',
+        s1: 'Use Cases identifizieren', s1d: 'Potenziale für KI erkennen, Nutzen und Aufwand bewerten und die richtigen Vorhaben priorisieren.',
+        s2: 'Tool-Auswahl & Evaluierung', s2d: 'LLMs, Assistenten, Agenten und Automatisierungstools herstellerneutral vergleichen und passend auswählen.',
+        s3: 'Prototyping & Proof of Concept', s3d: 'Ideen schnell und in kleinen Schritten testbar machen – bevor größere Investitionen anstehen.',
+        s4: 'Integration in Daten & Prozesse', s4d: 'KI-Tools an bestehende Systeme, Datenmodelle und Schnittstellen anbinden – mit Fokus auf Datenqualität.',
+        s5: 'Enablement & Adoption', s5d: 'Teams befähigen: Schulungen, Prompting-Leitfäden und Best Practices für den täglichen Einsatz.',
+        s6: 'Governance & Wirkung messen', s6d: 'Datenschutz, Qualitätssicherung und KPIs von Anfang an mitdenken – Ergebnisse transparent in Dashboards.',
+        approachTitle: 'So arbeite ich',
+        p1: 'Verstehen', p1d: 'Ziele, Prozesse und Daten analysieren.',
+        p2: 'Bewerten', p2d: 'Use Cases und Tools priorisieren.',
+        p3: 'Pilotieren', p3d: 'Schnell testen, Feedback einholen.',
+        p4: 'Skalieren', p4d: 'Ausrollen, befähigen, Wirkung messen.',
+        toolsTitle: 'Werkzeugkasten', agile: 'Agiles Projektmanagement',
+        note: 'Konkrete Projektbeispiele stelle ich gerne im persönlichen Gespräch vor.',
+        privacy: 'Datenschutz',
+        description: 'Tobias Burkard – AI Tool Consulting: KI-Tools auswählen, einführen und produktiv nutzen.',
+        themeDark: 'Dunkles Design aktivieren', themeLight: 'Helles Design aktivieren', langLabel: 'Sprache zu Englisch wechseln'
+      },
+      en: {
+        eyebrow: 'AI Tool Consulting',
+        title: 'AI tools that <span>actually stick</span> in your daily work.',
+        lead: 'I help teams choose the right AI tools, integrate them into processes and data landscapes, and use them productively for the long run – pragmatic, vendor-neutral and with measurable impact.',
+        cta: 'Connect on LinkedIn',
+        skillsTitle: 'My skillset',
+        s1: 'Identifying use cases', s1d: 'Spot AI opportunities, assess value and effort, and prioritise the right initiatives.',
+        s2: 'Tool selection & evaluation', s2d: 'Compare LLMs, assistants, agents and automation tools vendor-neutrally and pick the right fit.',
+        s3: 'Prototyping & proof of concept', s3d: 'Make ideas testable quickly and in small steps – before larger investments are made.',
+        s4: 'Integration into data & processes', s4d: 'Connect AI tools to existing systems, data models and interfaces – with a focus on data quality.',
+        s5: 'Enablement & adoption', s5d: 'Empower teams with training, prompting guidelines and best practices for everyday use.',
+        s6: 'Governance & measuring impact', s6d: 'Build in data protection, quality assurance and KPIs from day one – with transparent dashboards.',
+        approachTitle: 'How I work',
+        p1: 'Understand', p1d: 'Analyse goals, processes and data.',
+        p2: 'Assess', p2d: 'Prioritise use cases and tools.',
+        p3: 'Pilot', p3d: 'Test fast, gather feedback.',
+        p4: 'Scale', p4d: 'Roll out, enable, measure impact.',
+        toolsTitle: 'Toolbox', agile: 'Agile project management',
+        note: 'Happy to walk you through concrete project examples in a personal conversation.',
+        privacy: 'Privacy',
+        description: 'Tobias Burkard – AI Tool Consulting: selecting, introducing and productively using AI tools.',
+        themeDark: 'Enable dark theme', themeLight: 'Enable light theme', langLabel: 'Switch language to German'
+      }
+    };
+
+    const langToggle = document.querySelector('#language-toggle');
+    const themeToggle = document.querySelector('#theme-toggle');
+    const themeIcon = document.querySelector('#theme-icon');
+    let theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    let language = /^de(?:-|$)/i.test(navigator.languages?.[0] || navigator.language || 'de') ? 'de' : 'en';
+    try {
+      const saved = localStorage.getItem('ai-showcase-language');
+      if (saved === 'de' || saved === 'en') language = saved;
+    } catch {}
+
+    function updateThemeToggle() {
+      const isDark = theme === 'dark';
+      const label = isDark ? strings[language].themeLight : strings[language].themeDark;
+      themeToggle.setAttribute('aria-label', label);
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.title = label;
+      themeIcon.textContent = isDark ? '☼' : '☾';
+    }
+    function applyLanguage(lang) {
+      const dict = strings[lang];
+      document.documentElement.lang = lang;
+      document.querySelector('meta[name="description"]').content = dict.description;
+      document.querySelectorAll('[data-i18n]').forEach(el => { if (dict[el.dataset.i18n] !== undefined) el.textContent = dict[el.dataset.i18n]; });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => { if (dict[el.dataset.i18nHtml] !== undefined) el.innerHTML = dict[el.dataset.i18nHtml]; });
+      langToggle.textContent = lang === 'de' ? 'DE / EN' : 'EN / DE';
+      langToggle.setAttribute('aria-label', dict.langLabel);
+      updateThemeToggle();
+    }
+    function applyTheme(next) {
+      theme = next;
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#111a1d' : '#f4f7f6';
+      updateThemeToggle();
+      try { localStorage.setItem('ai-showcase-theme', theme); } catch {}
+    }
+
+    applyLanguage(language);
+    themeToggle.addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark'));
+    langToggle.addEventListener('click', () => {
+      language = language === 'de' ? 'en' : 'de';
+      try { localStorage.setItem('ai-showcase-language', language); } catch {}
+      applyLanguage(language);
+    });
+  </script>
 </body>
 </html>

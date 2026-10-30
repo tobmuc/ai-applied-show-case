@@ -1,81 +1,20 @@
-# AI Applied Showcase — Infographic
+# Tobias Burkard — AI Tool Consulting
 
-A bilingual static portfolio hub connecting two AI solution concepts: multilingual feedback intelligence and natural-language analytics.
+Schlanke, zweisprachige (DE/EN) One-Page-Website mit Fokus auf das Skillset im Bereich AI Tool Consulting.
 
-## Sites
+Live: https://tobmuc.github.io/ai-applied-show-case/
 
-- Feedback intelligence: https://tobmuc.github.io/ai-applied-show-case/ai-applied-show-case-feedback-intelligence/
-- Chat your data: https://tobmuc.github.io/ai-applied-show-case/ai-applied-show-case-chat-your-data/
-- Combined overview: https://tobmuc.github.io/ai-applied-show-case/
-- Alternative Pages URL with the same content: https://tobmuc.github.io/my-ai-show-cases/
+## Struktur
 
-The overview explicitly summarizes the intended benefits of the combined design. All examples are illustrative; none of the sites connects to production systems or company data.
-
-## Skills represented in the showcases
-
-The infographic summarizes the applied capabilities across the two prototypes: product and requirements analysis; data, cloud and warehouse architecture; multilingual NLP and localization; semantic and KPI modeling; quality and governance; BI storytelling; and accessible frontend, UX and delivery. The individual demos show concrete examples, while clearly distinguishing working browser interactions from architecture concepts.
-
-## Use-case differentiators and illustrative savings scenario
-
-The overview and individual pages call out distinct strengths: multilingual feedback is retained with traceable feature and operating context plus a reviewable classification design. The Veezoo app-analytics target is asynchronous self-service over shared business semantics, intended to reduce repetitive ad-hoc analysis requests to partners and service providers. It also aims to provide presentation-ready app/feature visualizations for management, monitor usage after feature launches, and let teams test their own hypotheses and explore potential usage correlations. Those portal, live-query, before/after and correlation capabilities remain architecture targets; the current browser demo simulates the query/results, while its CSV/XLSX/PPTX export works on sample data.
-
-For feedback classification, the illustrative baseline uses 1,000 items per processing day, 1.5 minutes of manual handling per item, €40 loaded labor cost/hour, 250 processing days/year and €4/day for translation/LLM tokens. That gives €250,000/year of scenario manual labor cost, €1,000/year of token cost and a €249,000/year gross direct-labor difference. The handling time and labor rate are assumptions, not measured facts; to exceed €200,000 under these assumptions requires more than about 1.21 minutes of manual handling per item. If processing occurs on 365 calendar days, the same inputs yield about €363,540/year gross (€365,000 labor minus €1,460 tokens). Implementation, review, infrastructure and other operating costs are excluded. Released capacity is not automatically cash savings or guaranteed net savings.
-
-The static interfaces, simulated journeys, locale-aware German/English controls and CSV/XLSX/PPTX downloads from sample data are implemented. Connections to live feedback channels, AI inference, Countly/Azure ingestion, Veezoo-to-VQL execution, Databricks and production BI are architectural concepts only—not active integrations.
-
-## Repository structure
-
-- `index.html` — immediate redirect to the infographic start page
-- `showcase-infographic.html` — concise bilingual infographic connecting both use cases, USPs, skills and the illustrative savings scenario
-- `ai-applied-show-case-feedback-intelligence/index.html` — feedback pipeline showcase
-- `ai-applied-show-case-chat-your-data/index.html` — natural-language analytics showcase
-- `datenschutzhinweise.html` — bilingual privacy-notice draft; controller/contact details still need completion
-
-## Local preview
-
-Open `index.html` or `showcase-infographic.html` in a browser; the root page redirects to the infographic. Its language is selected from the browser's preferred languages on first visit; the DE/EN control stores a manual choice locally.
-
-## Google Analytics and cookie consent
-
-Every HTML page sets Google Consent Mode v2 defaults to `denied` directly after the opening `<head>` element, queues `gtag('config', 'G-NGR4GFF8Q4')` and includes `consent.js`. The script shows a bilingual cookie banner (Accept / Reject with equal weight) and loads the Google tag (`gtag.js`) only after the visitor accepts (basic consent mode). The choice is stored in `localStorage` under `ai-showcase-consent` for up to 12 months; footer buttons marked with `data-consent-open` reopen the banner, and rejecting deletes the `_ga` cookies. Ad storage and ad personalization always remain denied. Keep `datenschutzhinweise.html` in sync when changing tracking.
-
-LinkedIn and Instagram contact links appear in the page footers.
-
----
-
-# AI Applied Showcase — Infografik
-
-Eine zweisprachige statische Portfolio-Übersicht, die zwei KI-Lösungskonzepte verbindet: mehrsprachige Feedback-Intelligence und natürlichsprachliche Datenanalyse.
-
-## Seiten
-
-- Feedback Intelligence: https://tobmuc.github.io/ai-applied-show-case/ai-applied-show-case-feedback-intelligence/
-- Chat Your Data: https://tobmuc.github.io/ai-applied-show-case/ai-applied-show-case-chat-your-data/
-- Kombinierte Übersicht: https://tobmuc.github.io/ai-applied-show-case/
-- Zusätzliche Pages-URL mit identischem Inhalt: https://tobmuc.github.io/my-ai-show-cases/
-
-Die Übersicht benennt ausdrücklich die vorgesehenen Vorteile des kombinierten Designs. Alle Beispiele sind illustrativ; keine Seite ist mit Produktivsystemen oder Unternehmensdaten verbunden.
-
-## Dargestellte Kompetenzen
-
-Die Infografik fasst die eingesetzten Kompetenzen über beide Prototypen hinweg zusammen: Produkt- und Anforderungsanalyse, Daten-, Cloud- und Warehouse-Architektur, mehrsprachiges NLP und Lokalisierung, semantische/KPI-Modellierung, Qualität und Governance, BI-Storytelling sowie barrierearmes Frontend, UX und Umsetzung. Die Einzeldemos zeigen konkrete Beispiele und grenzen funktionierende Browser-Interaktionen klar von Architekturkonzepten ab.
-
-## Alleinstellungsmerkmale und beispielhaftes Einsparszenario
-
-Übersicht und Einzelseiten arbeiten die jeweiligen USPs heraus: Beim mehrsprachigen Feedback bleiben Originalstimme, nachvollziehbarer Feature-/Betriebskontext und ein prüfbares Klassifikationsdesign verbunden. Das Veezoo-App-Analytics-Zielbild ist asynchroner Self-Service auf Basis gemeinsamer Geschäftssemantik und soll wiederholte Ad-hoc-Analyseanfragen an Partner und Dienstleister reduzieren. Es zielt außerdem auf präsentationsfertige App-/Feature-Visualisierungen fürs Management, die Beobachtung der Feature-Nutzung nach einem Launch sowie die Prüfung eigener Produkthypothesen und möglicher Nutzungskorrelationen. Diese Portal-, Live-Abfrage-, Vorher/Nachher- und Korrelationsfunktionen sind Architekturziele; die aktuelle Browser-Demo simuliert Abfrage und Ergebnisse, während ihr CSV-/XLSX-/PPTX-Export mit Beispieldaten funktioniert.
-
-Für die Feedback-Klassifizierung verwendet das illustrative Basisszenario 1.000 Feedbacks pro Verarbeitungstag, 1,5 Minuten manuelle Bearbeitung je Feedback, 40 € Arbeitsvollkosten pro Stunde, 250 Verarbeitungstage pro Jahr und 4 € tägliche Tokenkosten für Übersetzung/LLM. Daraus ergeben sich 250.000 € jährliche manuelle Arbeitskosten im Szenario, 1.000 € Tokenkosten und eine Brutto-Differenz direkter Arbeitskosten von 249.000 € pro Jahr. Bearbeitungszeit und Stundensatz sind Annahmen, keine Messwerte; für mehr als 200.000 € Differenz wären unter diesen Annahmen mehr als etwa 1,21 Minuten manuelle Bearbeitung je Feedback erforderlich. Bei Verarbeitung an 365 Kalendertagen ergeben dieselben Eingaben etwa 363.540 € Brutto-Differenz pro Jahr (365.000 € Arbeitskosten minus 1.460 € Tokenkosten). Implementierung, Prüfung, Infrastruktur und weitere Betriebskosten sind nicht enthalten. Freiwerdende Kapazität ist keine automatische zahlungswirksame oder garantierte Nettoeinsparung.
-
-Die statischen Oberflächen, simulierten Nutzerabläufe, deutsch-englischen Sprachsteuerungen und CSV-/XLSX-/PPTX-Downloads aus Beispieldaten sind umgesetzt. Anbindungen an Live-Feedbackkanäle, KI-Inferenz, Countly-/Azure-Datenaufnahme, Veezoo-zu-VQL-Ausführung, Databricks und produktive BI sind nur Architekturkonzepte und keine aktiven Integrationen.
-
-## Repository-Struktur
-
-- `index.html` — sofortige Weiterleitung auf die Infografik-Startseite
-- `showcase-infographic.html` — kompakte zweisprachige Infografik zu beiden Use Cases, USPs, Kompetenzen und Einsparszenario
-- `ai-applied-show-case-feedback-intelligence/index.html` — Feedback-Pipeline-Showcase
-- `ai-applied-show-case-chat-your-data/index.html` — Showcase für natürlichsprachliche Datenanalyse
-- `datenschutzhinweise.html` — zweisprachiger Entwurf; Name/Kontakt des Verantwortlichen fehlen noch
+- `index.html` — Startseite (Skillset, Arbeitsweise, Werkzeugkasten, Kontakt)
+- `showcase-infographic.html` — Weiterleitung auf die Startseite (für alte Links)
+- `datenschutzhinweise.html` — zweisprachige Datenschutzhinweise
+- `consent.js` — Cookie-Banner (Google Consent Mode v2, Standard: abgelehnt)
 
 ## Lokale Vorschau
 
-`index.html` oder direkt `showcase-infographic.html` im Browser öffnen; die Root-Seite leitet zur Infografik weiter. Beim ersten Besuch richtet sich deren Sprache nach den bevorzugten Browsersprachen; die DE/EN-Steuerung speichert eine manuelle Auswahl lokal.
+`index.html` im Browser öffnen. Die Sprache richtet sich beim ersten Besuch nach den Browsereinstellungen; die DE/EN-Steuerung speichert die Auswahl lokal.
+
+## Google Analytics & Cookie-Consent
+
+Jede Seite setzt Google Consent Mode v2 standardmäßig auf `denied` und bindet `consent.js` ein. Google Analytics (`G-NGR4GFF8Q4`) wird erst nach Zustimmung aktiv. Die Auswahl wird unter `ai-showcase-consent` in `localStorage` gespeichert; der Footer-Button „Cookie-Einstellungen“ öffnet den Banner erneut. Bei Änderungen am Tracking `datenschutzhinweise.html` mitpflegen.
