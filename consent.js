@@ -1,13 +1,10 @@
 /*
- * Cookie consent banner + Google Consent Mode v2 (Advanced Consent Mode).
- * Pages include the Google tag (gtag.js) with default denied consent in <head>.
- * When the visitor opts in, analytics_storage is updated to 'granted' and a
- * consented page_view (gcs=G101) is sent.
+ * Basic consent mode: do not create or load a Google tag until the visitor opts in.
  */
 (() => {
-  const MEASUREMENT_ID = 'G-NGR4GFF8Q4';
+  const MEASUREMENT_ID = 'G-NXHY8714SY';
   const STORAGE_KEY = 'ai-showcase-consent';
-  const CONSENT_VERSION = 1;
+  const CONSENT_VERSION = 2;
   const MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000;
   const scriptUrl = document.currentScript ? document.currentScript.src : location.href;
   const privacyUrl = new URL('datenschutzhinweise.html', scriptUrl).href;
@@ -15,7 +12,7 @@
   const texts = {
     de: {
       title: 'Cookies & Reichweitenmessung',
-      body: 'Mit deiner Einwilligung nutze ich Google Analytics mit Cookies, um Besuchsstatistiken zu erstellen. Dabei setzt Google Cookies und erhält u. a. deine IP-Adresse; eine Übermittlung in die USA ist möglich. Ohne Einwilligung werden keine Analytics-Cookies gesetzt (Einwilligungsmodus v2). Du kannst deine Wahl jederzeit über „Cookie-Einstellungen“ im Footer ändern.',
+      body: 'Google Analytics 4 wird erst nach deiner ausdrücklichen Einwilligung geladen. Dabei können Nutzungsdaten, Browser- und Geräteinformationen, ungefähres Land (aus IP-Informationen abgeleitet) und Browsersprache verarbeitet werden. Ohne Einwilligung geht keine Anfrage an Google. Du kannst ablehnen und deine Wahl jederzeit über „Cookie-Einstellungen“ im Footer ändern.',
       privacy: 'Datenschutzhinweise',
       accept: 'Akzeptieren',
       reject: 'Ablehnen',
@@ -23,7 +20,7 @@
     },
     en: {
       title: 'Cookies & audience measurement',
-      body: 'With your consent, I use Google Analytics with cookies to create visit statistics. Google sets cookies and receives data such as your IP address; data may be transferred to the USA. Without consent, no analytics cookies are set (Consent Mode v2). You can change your choice at any time via “Cookie settings” in the footer.',
+      body: 'Google Analytics 4 is loaded only after your explicit consent. It may process usage data, browser and device information, approximate country (derived from IP information) and browser language. No request is sent to Google without consent. You can reject and change your choice at any time via “Cookie settings” in the footer.',
       privacy: 'Privacy notice',
       accept: 'Accept',
       reject: 'Reject',
@@ -31,11 +28,12 @@
     },
   };
 
-  window.dataLayer = window.dataLayer || [];
-  const gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
-  window.gtag = gtag;
-
   let banner = null;
+  let analyticsEnabled = false;
+  let tagConfigured = false;
+  let activeTimeTimer = null;
+  let activeSince = null;
+  let accumulatedActiveMs = 0;
 
   function language() {
     return (document.documentElement.lang || '').toLowerCase().startsWith('de') ? 'de' : 'en';
@@ -46,7 +44,8 @@
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (!stored || stored.version !== CONSENT_VERSION) return null;
       if (stored.analytics !== 'granted' && stored.analytics !== 'denied') return null;
-      if (typeof stored.timestamp !== 'number' || Date.now() - stored.timestamp > MAX_AGE_MS) return null;
+      const age = Date.now() - stored.timestamp;
+      if (typeof stored.timestamp !== 'number' || age < 0 || age > MAX_AGE_MS) return null;
       return stored.analytics;
     } catch {
       return null;
@@ -69,21 +68,160 @@
       }));
   }
 
-  function applyChoice(analytics, isInteractiveOptIn = false) {
-    if (analytics === 'granted') {
-      gtag('consent', 'update', { analytics_storage: 'granted' });
-      if (isInteractiveOptIn) {
-        gtag('event', 'page_view', { send_to: MEASUREMENT_ID });
-      }
-    } else {
-      gtag('consent', 'update', { analytics_storage: 'denied' });
-      deleteAnalyticsCookies();
+  function getGtag() {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+    return window.gtag;
+  }
+
+  function pageLocation() {
+    if (location.protocol !== 'http:' && location.protocol !== 'https:') return '';
+    return `${location.origin}${location.pathname}`;
+  }
+
+  function pageReferrer() {
+    if (!document.referrer) return '';
+    try {
+      return new URL(document.referrer).origin;
+    } catch {
+      return '';
     }
+  }
+
+  function loadGoogleTag() {
+    if (document.querySelector('[data-showcase-ga4]')) return;
+    const script = document.createElement('script');
+    script.async = true;
+    script.dataset.showcaseGa4 = 'true';
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(MEASUREMENT_ID)}`;
+    document.head.append(script);
+  }
+
+  function trackEvent(name, parameters = {}) {
+    if (!analyticsEnabled) return;
+    getGtag()('event', name, { ...parameters, send_to: MEASUREMENT_ID });
+  }
+
+  function flushActiveDuration(continueTiming) {
+    if (activeSince !== null) {
+      accumulatedActiveMs += performance.now() - activeSince;
+      activeSince = continueTiming ? performance.now() : null;
+    }
+
+    const seconds = Math.floor(accumulatedActiveMs / 1000);
+    if (seconds < 1) return;
+    accumulatedActiveMs -= seconds * 1000;
+    trackEvent('active_visible_time', {
+      active_visible_seconds: seconds,
+    });
+  }
+
+  function handleVisibilityChange() {
+    if (!analyticsEnabled) return;
+    if (document.visibilityState === 'visible') {
+      if (activeSince === null) activeSince = performance.now();
+    } else {
+      flushActiveDuration(false);
+    }
+  }
+
+  function handlePageHide() {
+    flushActiveDuration(false);
+  }
+
+  function handlePageShow() {
+    if (analyticsEnabled && document.visibilityState === 'visible' && activeSince === null) {
+      activeSince = performance.now();
+    }
+  }
+
+  function startActiveDuration() {
+    if (activeTimeTimer !== null) return;
+    activeSince = document.visibilityState === 'visible' ? performance.now() : null;
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('pagehide', handlePageHide);
+    window.addEventListener('pageshow', handlePageShow);
+    activeTimeTimer = window.setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        if (activeSince === null) activeSince = performance.now();
+        flushActiveDuration(true);
+      } else {
+        flushActiveDuration(false);
+      }
+    }, 15_000);
+  }
+
+  function stopActiveDuration() {
+    if (activeTimeTimer !== null) window.clearInterval(activeTimeTimer);
+    activeTimeTimer = null;
+    activeSince = null;
+    accumulatedActiveMs = 0;
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
+    window.removeEventListener('pagehide', handlePageHide);
+    window.removeEventListener('pageshow', handlePageShow);
+  }
+
+  function enableAnalytics() {
+    if (analyticsEnabled || (location.protocol !== 'http:' && location.protocol !== 'https:')) return;
+    analyticsEnabled = true;
+    window[`ga-disable-${MEASUREMENT_ID}`] = false;
+    const gtag = getGtag();
+
+    if (!tagConfigured) {
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+      });
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+      gtag('js', new Date());
+      gtag('config', MEASUREMENT_ID, {
+        send_page_view: false,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+        page_location: pageLocation(),
+        page_referrer: pageReferrer(),
+      });
+      tagConfigured = true;
+      loadGoogleTag();
+    } else {
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+      });
+    }
+
+    trackEvent('page_view', {
+      page_location: pageLocation(),
+      page_referrer: pageReferrer(),
+      page_title: document.title,
+    });
+    startActiveDuration();
+  }
+
+  function disableAnalytics() {
+    analyticsEnabled = false;
+    window[`ga-disable-${MEASUREMENT_ID}`] = true;
+    stopActiveDuration();
+    deleteAnalyticsCookies();
+  }
+
+  function applyChoice(analytics) {
+    if (analytics === 'granted') enableAnalytics();
+    else disableAnalytics();
   }
 
   function choose(analytics) {
     saveChoice(analytics);
-    applyChoice(analytics, analytics === 'granted');
+    applyChoice(analytics);
     hideBanner();
   }
 
@@ -169,8 +307,34 @@
     if (banner) banner.hidden = true;
   }
 
+  function linkType(anchor) {
+    const href = anchor.getAttribute('href') || '';
+    if (/^(mailto:|tel:)/i.test(href)) return 'contact';
+    try {
+      return new URL(href, location.href).origin === location.origin ? 'internal' : 'external';
+    } catch {
+      return 'other';
+    }
+  }
+
+  function handleInteraction(event) {
+    if (!analyticsEnabled || !(event.target instanceof Element)) return;
+    const control = event.target.closest('a, button, [role="button"]');
+    if (!control || control.closest('.sc-consent') || control.hasAttribute('data-consent-open')) return;
+
+    const isLink = control.matches('a');
+    trackEvent('site_interaction', {
+      interaction_type: isLink ? 'link_click' : 'button_click',
+      ...(isLink ? { link_type: linkType(control) } : {}),
+    });
+  }
+
   const initialChoice = readChoice();
-  if (initialChoice) applyChoice(initialChoice, false);
+  if (initialChoice === 'granted') enableAnalytics();
+  else {
+    window[`ga-disable-${MEASUREMENT_ID}`] = true;
+    deleteAnalyticsCookies();
+  }
 
   function init() {
     injectStyles();
@@ -178,6 +342,7 @@
       element.classList.add('sc-consent-link');
       element.addEventListener('click', event => { event.preventDefault(); showBanner(true); });
     });
+    document.addEventListener('click', handleInteraction, true);
     renderTexts();
     syncLinkStyles();
     new MutationObserver(() => { renderTexts(); syncLinkStyles(); })
